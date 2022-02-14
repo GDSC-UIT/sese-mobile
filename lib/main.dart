@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       translations: LocalizationService(),
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      defaultTransition: Transition.cupertino,
+      defaultTransition: Transition.fadeIn,
     );
   }
 }
