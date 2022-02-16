@@ -10,16 +10,13 @@ import 'package:sese/app/routes/app_routes.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   LoginController loginController = Get.find();
-  AuthService authService = Get.find();
   @override
   Widget build(BuildContext context) {
     //check is User loged in
-    authService.checkIsLogin();
-    print('isLogin: ${authService.isLogin.value}');
-    return authService.isLogin.value
-        ? HomeScreen(
-            loginMethod: authService.loginMethod.value,
-          )
+    AuthService.instance.checkLogin();
+    print('isLogin: ${AuthService.instance.isLogined}');
+    return AuthService.instance.isLogined
+        ? HomeScreen()
         : Scaffold(
             backgroundColor: Colors.grey[800],
             body: SafeArea(
@@ -33,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                     BoxShadow(
                       color: Colors.black45,
                       blurRadius: 5,
-                      offset: Offset(3, 6), // changes position of` shadow
+                      offset: Offset(3, 6),
                     ),
                   ],
                 ),
@@ -54,7 +51,6 @@ class LoginScreen extends StatelessWidget {
                     Expanded(
                       child: LoginButton(
                         loginController: loginController,
-                        authService: authService,
                         textMethod: 'google',
                         icon: const FaIcon(
                           FontAwesomeIcons.google,
@@ -63,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         onPress: () async {
                           await loginController.googleSignInAction();
-                          authService.isLogin.value == true
+                          AuthService.instance.isLogined == true
                               ? Get.toNamed(AppRoutes.home,
                                   arguments: ['google'])
                               : print('Login gg fail');
@@ -76,7 +72,6 @@ class LoginScreen extends StatelessWidget {
                     Expanded(
                       child: LoginButton(
                         loginController: loginController,
-                        authService: authService,
                         textMethod: 'facebook',
                         icon: const FaIcon(
                           FontAwesomeIcons.google,
@@ -85,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         onPress: () async {
                           await loginController.facebookLoginAction();
-                          authService.isLogin.value == true
+                          AuthService.instance.isLogined == true
                               ? Get.toNamed(AppRoutes.home,
                                   arguments: ['facebook'])
                               : print('Login fb fail');

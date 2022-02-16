@@ -2,12 +2,17 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:sese/app/core/values/app_enums.dart';
 
-class AuthService extends GetxController {
-  RxBool isLogin = false.obs;
-  RxString loginMethod = ''.obs;
-  late GoogleSignInAccount? _googleUser;
-  late GoogleSignInAuthentication _googleAuth;
+class AuthService {
+  // Singleton pattern
+  AuthService._privateConstructor();
+  static final AuthService instance = AuthService._privateConstructor();
+
+  bool get isLogined => FirebaseAuth.instance.currentUser != null;
+  User? get currentUser => FirebaseAuth.instance.currentUser;
+  LoginMethod loginMethod = LoginMethod.none;
+
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
@@ -21,20 +26,20 @@ class AuthService extends GetxController {
         );
         //print('auth:$_auth');
         User? user = (await _auth.signInWithCredential(credential)).user;
-        isLogin.value = true;
-        update();
         return user;
       }
     } catch (e) {
       print('error: $e');
       return null;
     }
+    return null;
   }
 
   Future<User?> googleSignIn() async {
     try {
-      _googleUser = await _googleSignIn.signIn();
-      _googleAuth = await _googleUser!.authentication;
+      var _googleUser = await _googleSignIn.signIn();
+      GoogleSignInAuthentication _googleAuth =
+          await _googleUser!.authentication;
 
       var credential = GoogleAuthProvider.credential(
         accessToken: _googleAuth.accessToken,
@@ -42,9 +47,6 @@ class AuthService extends GetxController {
       );
 
       User? user = (await _auth.signInWithCredential(credential)).user;
-
-      isLogin.value = true;
-      update();
       return user;
     } catch (e) {
       print('errorGG: $e');
@@ -55,8 +57,6 @@ class AuthService extends GetxController {
   Future<void> googleSignOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
-    isLogin.value = false;
-    update();
   }
 
   Future<void> faceBookSignOut() async {
@@ -64,25 +64,19 @@ class AuthService extends GetxController {
 
     await _auth.signOut();
     await _facebookAuth.logOut();
-    isLogin.value = false;
-    update();
   }
 
-  Future<void> checkIsLogin() async {
+  Future<void> checkLogin() async {
     User? user = FirebaseAuth.instance.currentUser;
     print('user:$user');
     if (user != null) {
-      isLogin.value = true;
       if (user.providerData[0].providerId ==
           'google.com') //check the previous login method
       {
-        loginMethod.value = 'google';
+        loginMethod = LoginMethod.google;
       } else {
-        loginMethod.value = 'facebook';
+        loginMethod = LoginMethod.facebook;
       }
-    } else {
-      isLogin.value = false;
     }
-    update();
   }
 }

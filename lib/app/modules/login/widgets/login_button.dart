@@ -9,14 +9,12 @@ class LoginButton extends StatelessWidget {
   LoginButton(
       {Key? key,
       required this.loginController,
-      required this.authService,
       required this.icon,
       required this.textMethod,
       required this.onPress})
       : super(key: key);
 
   final LoginController loginController;
-  final AuthService authService;
 
   @override
   Widget build(BuildContext context) {
