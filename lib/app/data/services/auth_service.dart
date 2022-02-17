@@ -24,7 +24,6 @@ class AuthService {
         final credential = FacebookAuthProvider.credential(
           result.accessToken!.token,
         );
-        //print('auth:$_auth');
         User? user = (await _auth.signInWithCredential(credential)).user;
         return user;
       }
@@ -60,8 +59,6 @@ class AuthService {
   }
 
   Future<void> faceBookSignOut() async {
-    print('face sign out');
-
     await _auth.signOut();
     await _facebookAuth.logOut();
   }

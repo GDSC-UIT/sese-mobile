@@ -11,15 +11,19 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => HomeScreen(),
+      transition: Transition.leftToRight,
       binding: HomeBinding(),
     ),
     GetPage(
       name: AppRoutes.auth,
+      transition: Transition.leftToRight,
       page: () => LoginScreen(),
       binding: LoginBinding(),
+      transitionDuration: Duration(seconds: 1),
     ),
     GetPage(
       name: AppRoutes.welcome,
+      transition: Transition.leftToRight,
       page: () => WelcomeScreen(),
     ),
   ];

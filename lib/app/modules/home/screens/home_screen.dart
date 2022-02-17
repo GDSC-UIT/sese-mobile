@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             Text(
-              //loginController.name.value,
               'Test',
               style: TextStyle(fontSize: 60),
             ),
@@ -29,12 +28,12 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.redAccent,
                 onPress:
                     AuthService.instance.loginMethod == LoginMethod.facebook
-                        ? () {
-                            AuthService.instance.faceBookSignOut();
+                        ? () async {
+                            await AuthService.instance.faceBookSignOut();
                             Get.offAllNamed(AppRoutes.auth);
                           }
-                        : () {
-                            AuthService.instance.googleSignOut();
+                        : () async {
+                            await AuthService.instance.googleSignOut();
                             Get.offAllNamed(AppRoutes.auth);
                           },
                 text: 'Log out')
