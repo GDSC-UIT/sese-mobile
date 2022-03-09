@@ -130,13 +130,12 @@ class AppTheme {
       backgroundColor: AppColors.lightBackgroundColor,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      selectedItemColor: AppColors.lightTextColor,
-      unselectedItemColor:
-          AppColors.lightTextColor.withOpacity(AppColors.disabledTextOpacity),
+      selectedItemColor: AppColors.mainHomeColor,
+      unselectedItemColor: AppColors.lightGreyColor,
       selectedIconTheme:
-          const IconThemeData(color: AppColors.lightTextColor, opacity: 1),
+          const IconThemeData(color: AppColors.mainHomeColor, opacity: 1),
       unselectedIconTheme: const IconThemeData(
-          color: AppColors.lightTextColor,
+          color: AppColors.lightGreyColor,
           opacity: AppColors.disabledIconOpacity),
       selectedLabelStyle: GoogleFonts.montserrat(
         fontSize: 10,
@@ -192,9 +191,8 @@ class AppTheme {
       backgroundColor: AppColors.darkBackgroundColor,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      selectedItemColor: AppColors.darkTextColor,
-      unselectedItemColor:
-          AppColors.darkTextColor.withOpacity(AppColors.disabledTextOpacity),
+      selectedItemColor: AppColors.mainHomeColor,
+      unselectedItemColor: AppColors.lightGreyColor,
       selectedIconTheme:
           const IconThemeData(color: AppColors.darkTextColor, opacity: 1),
       unselectedIconTheme: const IconThemeData(

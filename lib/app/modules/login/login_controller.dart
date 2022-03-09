@@ -4,8 +4,22 @@ import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'dart:convert';
 
+import 'package:sese/app/routes/app_pages.dart';
+import 'package:sese/app/routes/app_routes.dart';
+
 class LoginController extends GetxController {
   RxString loginMethod = ''.obs;
+  @override
+  void onReady() {
+    //check is User loged in
+    AuthService.instance.checkLogin();
+    if (AuthService.instance.isLogined) {
+      Get.toNamed(AppRoutes.home);
+    } else {
+      Get.toNamed(AppRoutes.authBegin);
+    }
+    super.onInit();
+  }
 
   Future<void> facebookLoginAction() async {
     try {
