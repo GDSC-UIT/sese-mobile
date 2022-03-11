@@ -3,10 +3,18 @@ import 'package:sese/app/modules/home/home_binding.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
 import 'package:sese/app/modules/login/login_binding.dart';
 import 'package:sese/app/modules/login/screens/login_begin_screen.dart';
+
 import 'package:sese/app/modules/login/screens/login_birth_screen.dart';
 import 'package:sese/app/modules/login/screens/login_name_screen.dart';
 import 'package:sese/app/modules/login/screens/login_university_screen.dart';
+
+import 'package:sese/app/modules/login/screens/login_email_screen.dart';
+import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
+import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
+
 import 'package:sese/app/routes/app_routes.dart';
+
+import '../modules/login/screens/login_interest_screen.dart';
 
 abstract class AppPages {
   static final List<GetPage> pages = [
@@ -41,6 +49,34 @@ abstract class AppPages {
       name: AppRoutes.authUni,
       transition: Transition.leftToRight,
       page: () => LoginUniversityScreen(),
+      binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.authInterest,
+      transition: Transition.leftToRight,
+      page: () => LoginInterestScreen(),
+      binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.authPhone,
+      transition: Transition.leftToRight,
+      page: () => LoginPhoneScreen(),
+      binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.authEmail,
+      transition: Transition.leftToRight,
+      page: () => LoginEmailScreen(),
+      binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.authVerifyBegin,
+      transition: Transition.leftToRight,
+      page: () => LoginVerifyBeginScreen(),
       binding: LoginBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),

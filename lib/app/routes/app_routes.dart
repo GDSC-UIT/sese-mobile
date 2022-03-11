@@ -6,4 +6,7 @@ abstract class AppRoutes {
   static const authUni = '/auth/uni';
   static const splash = '/splash';
   static const authInterest = '/auth/interest';
+  static const authPhone = '/auth/phone';
+  static const authEmail = '/auth/email';
+  static const authVerifyBegin = '/auth/verifyBegin';
 }

@@ -17,6 +17,10 @@ class AppColors {
   static const Color secondaryColor = Color(0xFF827717);
   static const Color whiteAccentColor = Color(0xffFAFAFA);
   static const Color lightGreenColor = Color(0xffDFF3EA);
+  static const Color lightGreen = Color.fromRGBO(223, 243, 234, 1);
+
+  static const Color backIcon = Color.fromRGBO(143, 216, 181, 1);
+  static const Color neutralGrey = Color.fromRGBO(179, 171, 188, 1);
 
   static Color get backgroundColor =>
       (Get.isDarkMode) ? darkBackgroundColor : lightBackgroundColor;
