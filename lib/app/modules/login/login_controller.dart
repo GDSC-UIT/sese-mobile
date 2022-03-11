@@ -1,24 +1,43 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'dart:convert';
 
-import 'package:sese/app/routes/app_pages.dart';
-import 'package:sese/app/routes/app_routes.dart';
-
 class LoginController extends GetxController {
   RxString loginMethod = ''.obs;
+  var nameInputController = TextEditingController().obs;
+  var dateInputController = TextEditingController().obs;
+  var schoolInputController = TextEditingController().obs;
+
   @override
-  void onReady() {
-    //check is User loged in
-    AuthService.instance.checkLogin();
-    if (AuthService.instance.isLogined) {
-      Get.toNamed(AppRoutes.home);
-    } else {
-      Get.toNamed(AppRoutes.authBegin);
+  // void onReady() {
+  //   //check is User loged in
+  //   AuthService.instance.checkLogin();
+  //   if (AuthService.instance.isLogined) {
+  //     Get.toNamed(AppRoutes.authName);
+  //   } else {
+  //     Get.toNamed(AppRoutes.authBegin);
+  //   }
+  //   super.onInit();
+  // }
+  Future<void> datePicker(context) async {
+    DateFormat formatter = DateFormat('dd/MM/yyyy');
+
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900, 1, 1),
+      lastDate: DateTime(2022, 12, 30),
+    );
+    if (picked != null && picked != DateTime.now()) {
+      dateInputController.value.value =
+          TextEditingValue(text: formatter.format(picked));
+      print('${dateInputController.value.value.text}');
     }
-    super.onInit();
   }
 
   Future<void> facebookLoginAction() async {

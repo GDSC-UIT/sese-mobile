@@ -44,7 +44,7 @@ class LoginBeginScreen extends StatelessWidget {
                   onPress: () async {
                     await loginController.googleSignInAction();
                     AuthService.instance.isLogined == true
-                        ? Get.offNamed(AppRoutes.home)
+                        ? Get.offNamed(AppRoutes.authName)
                         : print('Login gg fail');
                   },
                   text: 'Login with google',
@@ -64,7 +64,7 @@ class LoginBeginScreen extends StatelessWidget {
                   onPress: () async {
                     await loginController.facebookLoginAction();
                     AuthService.instance.isLogined == true
-                        ? Get.offNamed(AppRoutes.home)
+                        ? Get.offNamed(AppRoutes.authName)
                         : print('Login facebook fail');
                   },
                   text: 'Login with facebook',
