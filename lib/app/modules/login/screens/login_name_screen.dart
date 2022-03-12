@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
@@ -8,7 +9,7 @@ import 'package:sese/app/routes/app_routes.dart';
 
 class LoginNameScreen extends StatelessWidget {
   LoginNameScreen({Key? key}) : super(key: key);
-  LoginController loginController = Get.put(LoginController());
+  LoginController loginController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,17 +22,15 @@ class LoginNameScreen extends StatelessWidget {
             const SizedBox(
               height: 32,
             ),
-            const Text(
+            Text(
               'Tên mình là',
-              style: TextStyle(
-                fontSize: 32,
-                color: AppColors.primaryColor,
-              ),
+              style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
               height: 16,
             ),
             InPutTextField(
+              textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
               hintText: 'Nhập tên bạn ở đây nhé',
               isEnable: true,
               controller: loginController.nameInputController.value,
@@ -44,7 +43,7 @@ class LoginNameScreen extends StatelessWidget {
                 Get.toNamed(AppRoutes.authBirth);
               },
               text: 'TIẾP TỤC NHA',
-              textColor: Colors.white,
+              textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )
           ],

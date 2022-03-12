@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class InPutTextField extends StatelessWidget {
@@ -9,21 +8,20 @@ class InPutTextField extends StatelessWidget {
     required this.isEnable,
     required this.controller,
     this.suffixIcon,
+    this.textStyle,
   }) : super(key: key);
   final String hintText;
   final Widget? suffixIcon;
   final TextEditingController controller;
   final bool isEnable;
+  final TextStyle? textStyle;
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       enabled: isEnable,
       autofocus: isEnable,
-      style: const TextStyle(
-        fontSize: 24,
-        color: AppColors.lightTextColor,
-      ),
+      style: textStyle,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,
@@ -35,10 +33,7 @@ class InPutTextField extends StatelessWidget {
             Radius.circular(8),
           ),
         ),
-        hintStyle: const TextStyle(
-          fontSize: 18,
-          color: AppColors.lightGreyColor,
-        ),
+        hintStyle: textStyle,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.lightGreenColor,

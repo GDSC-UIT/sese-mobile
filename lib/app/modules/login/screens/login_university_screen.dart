@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
@@ -22,12 +23,9 @@ class LoginUniversityScreen extends StatelessWidget {
             const SizedBox(
               height: 32,
             ),
-            const Text(
+            Text(
               'Mình học tại',
-              style: TextStyle(
-                fontSize: 32,
-                color: AppColors.primaryColor,
-              ),
+              style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
               height: 16,
@@ -35,6 +33,7 @@ class LoginUniversityScreen extends StatelessWidget {
             InPutTextField(
               hintText: 'Nhập tên trường',
               isEnable: true,
+              textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
               controller: loginController.schoolInputController.value,
             ),
             const SizedBox(
@@ -45,7 +44,7 @@ class LoginUniversityScreen extends StatelessWidget {
                 Get.toNamed(AppRoutes.authBirth);
               },
               text: 'TIẾP TỤC NHA',
-              textColor: Colors.white,
+              textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )
           ],
