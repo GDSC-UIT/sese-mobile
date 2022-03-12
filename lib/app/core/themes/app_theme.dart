@@ -3,6 +3,144 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
+class CustomTextStyle extends TextStyle {
+  static TextStyle h1(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 32,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle h2(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle h3(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle h4(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle h5(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle h6(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle t1(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle t2(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: color,
+    );
+  }
+
+  static TextStyle t3(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle t4(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: color,
+    );
+  }
+
+  static TextStyle t5(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle t6(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: color,
+    );
+  }
+
+  static TextStyle t7(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle t8(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: color,
+    );
+  }
+
+  static TextStyle t9(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle t10(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      color: color,
+    );
+  }
+
+  static TextStyle link(Color color) {
+    return GoogleFonts.inter(
+      fontSize: 10,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+}
+
 class AppTheme {
   static final ElevatedButtonThemeData _elevatedButtonThemeData =
       ElevatedButtonThemeData(
@@ -41,35 +179,35 @@ class AppTheme {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)))));
   static TextTheme _textTheme(Color textColor) => TextTheme(
-        headline1: GoogleFonts.montserrat(
+        headline1: GoogleFonts.inter(
           color: textColor,
-          fontSize: 26,
-          fontWeight: FontWeight.w400,
+          fontSize: 32,
+          fontWeight: FontWeight.w600,
         ),
-        headline2: GoogleFonts.montserrat(
+        headline2: GoogleFonts.inter(
           color: textColor,
-          fontSize: 25,
-          fontWeight: FontWeight.w400,
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
         ),
-        headline3: GoogleFonts.montserrat(
+        headline3: GoogleFonts.inter(
           color: textColor,
-          fontSize: 22,
-          fontWeight: FontWeight.w500,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
         ),
-        headline4: GoogleFonts.montserrat(
-          color: textColor,
-          fontSize: 15,
-          fontWeight: FontWeight.w500,
-        ),
-        headline5: GoogleFonts.montserrat(
+        headline4: GoogleFonts.inter(
           color: textColor,
           fontSize: 16,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w600,
         ),
-        headline6: GoogleFonts.montserrat(
+        headline5: GoogleFonts.inter(
           color: textColor,
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        headline6: GoogleFonts.inter(
+          color: textColor,
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
         ),
         subtitle1: GoogleFonts.montserrat(
           color: textColor,
@@ -105,6 +243,7 @@ class AppTheme {
           color: textColor,
         ),
       );
+
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     colorScheme: const ColorScheme.light().copyWith(
       primary: AppColors.primaryColor,

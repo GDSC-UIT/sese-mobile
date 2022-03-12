@@ -21,6 +21,7 @@ class AppColors {
 
   static const Color backIcon = Color.fromRGBO(143, 216, 181, 1);
   static const Color neutralGrey = Color.fromRGBO(179, 171, 188, 1);
+  static const Color lightOrange = Color.fromRGBO(255, 239, 234, 1);
 
   static Color get backgroundColor =>
       (Get.isDarkMode) ? darkBackgroundColor : lightBackgroundColor;
