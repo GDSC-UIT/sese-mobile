@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
-
-import '../../../core/values/app_colors.dart';
+import 'package:sese/app/core/values/app_colors.dart';
 
 class LoginEmailScreen extends StatelessWidget {
   const LoginEmailScreen({Key? key}) : super(key: key);
