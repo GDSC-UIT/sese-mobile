@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class AppButton extends StatelessWidget {
   final String text;
-  final Color textColor;
+  //final Color textColor;
+  final TextStyle? textStyle;
   Color? borderColor;
+  double? borderThickness;
   Color? backgroundColor;
   Widget? icon;
   final Function onPress;
@@ -12,14 +14,17 @@ class AppButton extends StatelessWidget {
     Key? key,
     required this.onPress,
     required this.text,
-    required this.textColor,
+    //required this.textColor,
+    this.textStyle,
     this.backgroundColor,
+    this.borderThickness,
     this.borderColor,
     this.icon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('$textStyle');
     return InkWell(
       onTap: () => {
         onPress(),
@@ -30,7 +35,7 @@ class AppButton extends StatelessWidget {
           color: backgroundColor ?? Colors.white,
           border: Border.all(
             color: borderColor ?? Colors.white,
-            width: 2,
+            width: borderThickness ?? 2,
           ),
           borderRadius: BorderRadius.circular(5),
         ),
@@ -46,10 +51,7 @@ class AppButton extends StatelessWidget {
                 : Container(),
             Text(
               text,
-              style: TextStyle(
-                color: textColor,
-                fontSize: 20,
-              ),
+              style: textStyle,
             ),
           ],
         ),

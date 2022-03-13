@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
@@ -21,16 +22,12 @@ class LoginBeginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Expanded(
+              Expanded(
                 flex: 2,
                 child: Center(
                   child: Text(
                     'Bắt đầu mua bán, trao đổi đồ cũ cùng Se Sẻ ngay bây giờ!',
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 32,
-                      letterSpacing: 1.3,
-                    ),
+                    style: CustomTextStyle.h1(AppColors.primaryColor),
                   ),
                 ),
               ),
@@ -41,14 +38,15 @@ class LoginBeginScreen extends StatelessWidget {
               ),
               Expanded(
                 child: AppButton(
+                  textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
                   onPress: () async {
                     await loginController.googleSignInAction();
                     AuthService.instance.isLogined == true
                         ? Get.offNamed(AppRoutes.authName)
                         : print('Login gg fail');
                   },
-                  text: 'Login with google',
-                  textColor: AppColors.darkGreyColor,
+                  text: 'LOGGIN WITH GOOGLE',
+                  // textColor: AppColors.darkGreyColor,
                   borderColor: AppColors.greenColor,
                   icon: Image.asset(
                     'assets/images/google_icon.png',
@@ -61,14 +59,15 @@ class LoginBeginScreen extends StatelessWidget {
               ),
               Expanded(
                 child: AppButton(
+                  textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
                   onPress: () async {
                     await loginController.facebookLoginAction();
                     AuthService.instance.isLogined == true
                         ? Get.offNamed(AppRoutes.authName)
                         : print('Login facebook fail');
                   },
-                  text: 'Login with facebook',
-                  textColor: AppColors.darkGreyColor,
+                  text: 'LOGGIN WITH FACEBOOK',
+                  // textColor: AppColors.darkGreyColor,
                   borderColor: AppColors.greenColor,
                   icon: Image.asset(
                     'assets/images/facebook_icon.png',

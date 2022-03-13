@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
@@ -23,12 +24,9 @@ class LoginBirthScreen extends StatelessWidget {
             const SizedBox(
               height: 32,
             ),
-            const Text(
+            Text(
               'Mình sinh ngày',
-              style: TextStyle(
-                fontSize: 32,
-                color: AppColors.primaryColor,
-              ),
+              style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
               height: 16,
@@ -41,6 +39,7 @@ class LoginBirthScreen extends StatelessWidget {
                 controller: loginController.dateInputController.value,
                 isEnable: false,
                 hintText: 'Ngày/Tháng/Năm',
+                textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
                 suffixIcon: Image.asset('assets/images/Calendar_icon.png'),
               ),
             ),
@@ -50,7 +49,7 @@ class LoginBirthScreen extends StatelessWidget {
             AppButton(
               onPress: () {},
               text: 'TIẾP TỤC NHA',
-              textColor: Colors.white,
+              textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )
           ],

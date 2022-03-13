@@ -54,7 +54,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
               AppButton(
                 onPress: () {},
                 text: "THẺ SINH VIÊN",
-                textColor: AppColors.primaryColor,
+                //  textColor: AppColors.primaryColor,
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
               ),
@@ -64,7 +64,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
               AppButton(
                 onPress: () {},
                 text: "CMND/CCCD",
-                textColor: AppColors.primaryColor,
+                // textColor: AppColors.primaryColor,
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
               ),
