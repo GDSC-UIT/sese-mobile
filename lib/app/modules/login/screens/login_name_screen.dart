@@ -7,15 +7,29 @@ import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
+// ignore: must_be_immutable
 class LoginNameScreen extends StatelessWidget {
   LoginNameScreen({Key? key}) : super(key: key);
   LoginController loginController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColors.backIcon,
+            size: 30,
+          ),
+        ),
+        elevation: 0,
+      ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
