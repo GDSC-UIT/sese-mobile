@@ -11,6 +11,9 @@ import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
+import 'package:sese/app/modules/verify/screens/verify_begin_screen.dart';
+import 'package:sese/app/modules/verify/screens/verify_front_sv_screen.dart';
+import 'package:sese/app/modules/verify/verify_binding.dart';
 
 import 'package:sese/app/routes/app_routes.dart';
 
@@ -78,6 +81,20 @@ abstract class AppPages {
       transition: Transition.leftToRight,
       page: () => LoginVerifyBeginScreen(),
       binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.verifyBegin,
+      transition: Transition.leftToRight,
+      page: () => VerifyBeginScreen(),
+      binding: VerifyBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.verifyFrontSv,
+      transition: Transition.leftToRight,
+      page: () => VerifyFrontSvScreen(),
+      binding: VerifyBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
   ];

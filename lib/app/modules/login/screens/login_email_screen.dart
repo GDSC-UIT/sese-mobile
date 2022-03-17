@@ -57,7 +57,7 @@ class LoginEmailScreen extends StatelessWidget {
               AppButton(
                 onPress: () {},
                 text: "TIẾP TỤC NHA",
-                textColor: Colors.white,
+                textStyle: CustomTextStyle.t8(Colors.white),
                 backgroundColor: AppColors.primaryColor,
               ),
             ],
