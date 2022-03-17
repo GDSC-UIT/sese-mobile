@@ -63,7 +63,7 @@ class LoginBeginScreen extends StatelessWidget {
                   onPress: () async {
                     await loginController.facebookLoginAction();
                     AuthService.instance.isLogined == true
-                        ? Get.offNamed(AppRoutes.authName)
+                        ? Get.toNamed(AppRoutes.authName)
                         : print('Login facebook fail');
                   },
                   text: 'LOGGIN WITH FACEBOOK',

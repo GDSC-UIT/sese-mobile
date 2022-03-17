@@ -12,18 +12,36 @@ class LoginController extends GetxController {
   var nameInputController = TextEditingController().obs;
   var dateInputController = TextEditingController().obs;
   var schoolInputController = TextEditingController().obs;
-
+  var recommendUniName = [].obs;
+  List<String> universityName = [
+    'Đại học bách khoa',
+    'Đại học khoa học tự nhiên',
+    'Đại học công nghệ thông tin',
+    'Đại học quốc tế',
+    'Đại học sư phạm kĩ thuật'
+  ];
+  RxString searchKey = ''.obs;
   @override
-  // void onReady() {
-  //   //check is User loged in
-  //   AuthService.instance.checkLogin();
-  //   if (AuthService.instance.isLogined) {
-  //     Get.toNamed(AppRoutes.authName);
-  //   } else {
-  //     Get.toNamed(AppRoutes.authBegin);
-  //   }
-  //   super.onInit();
-  // }
+  void onReady() {
+    //check is User loged in
+    // AuthService.instance.checkLogin();
+    // if (AuthService.instance.isLogined) {
+    //   Get.toNamed(AppRoutes.authName);
+    // } else {
+    //   Get.toNamed(AppRoutes.authBegin);
+    // }
+    super.onInit();
+  }
+
+  void searchSchool() {
+    recommendUniName = universityName
+        .where((element) {
+          return element.contains(searchKey);
+        })
+        .toList()
+        .obs;
+  }
+
   Future<void> datePicker(context) async {
     DateFormat formatter = DateFormat('dd/MM/yyyy');
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 import '../../../core/values/app_colors.dart';
 
@@ -14,8 +16,8 @@ class LoginPhoneScreen extends StatefulWidget {
 
 class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
   final TextEditingController controller = TextEditingController();
-  String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
+  String initialCountry = 'VNM';
+  PhoneNumber number = PhoneNumber(isoCode: 'VN');
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +26,24 @@ class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_ios_new,
+              color: AppColors.backIcon,
+              size: 30,
+            ),
+          ),
+          elevation: 0,
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: _screenHeight * 0.05,
-                ),
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.backIcon,
-                  size: 30,
-                ),
-              ),
               SizedBox(
                 height: _screenHeight * 0.03,
               ),
@@ -52,12 +57,12 @@ class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
                 height: _screenHeight * 0.028,
               ),
               InternationalPhoneNumberInput(
+                locale: 'Vietnam',
                 onInputChanged: (PhoneNumber number) {},
                 onInputValidated: (bool value) {},
-                selectorConfig: SelectorConfig(
+                selectorConfig: const SelectorConfig(
                   selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                 ),
-                autoValidateMode: AutovalidateMode.disabled,
                 selectorTextStyle: CustomTextStyle.t6(AppColors.greenColor),
                 initialValue: number,
                 textFieldController: controller,
@@ -66,14 +71,16 @@ class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
                 textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
                 keyboardType: const TextInputType.numberWithOptions(
                     signed: true, decimal: true),
-                inputBorder: OutlineInputBorder(),
+                inputBorder: const OutlineInputBorder(),
               ),
               const SizedBox(
                 height: 100,
               ),
               AppButton(
-                onPress: () {},
-                text: "TIẾP TỤC NHA",
+                onPress: () {
+                  Get.toNamed(AppRoutes.authEmail);
+                },
+                text: 'TIẾP TỤC NHA',
                 textStyle: CustomTextStyle.t8(Colors.white),
                 backgroundColor: AppColors.primaryColor,
               )

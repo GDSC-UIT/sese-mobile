@@ -4,6 +4,8 @@ abstract class AppRoutes {
   static const authName = '/auth/name';
   static const authBirth = '/auth/birth';
   static const authUni = '/auth/uni';
+  static const updateName = '/update/name';
+
   static const splash = '/splash';
   static const authInterest = '/auth/interest';
   static const authPhone = '/auth/phone';

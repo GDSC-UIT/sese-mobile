@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 
@@ -13,6 +14,19 @@ class LoginVerifyBeginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_ios_new,
+              color: AppColors.backIcon,
+              size: 30,
+            ),
+          ),
+          elevation: 0,
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -20,16 +34,6 @@ class LoginVerifyBeginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: _screenHeight * 0.05,
-                ),
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.backIcon,
-                  size: 30,
-                ),
-              ),
               Container(
                 margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.03,
@@ -52,19 +56,19 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                 height: _screenHeight * 0.032,
               ),
               AppButton(
-                onPress: () {},
-                text: "THẺ SINH VIÊN",
-                //  textColor: AppColors.primaryColor,
-                backgroundColor: AppColors.lightOrange,
-                borderColor: AppColors.primaryColor,
-              ),
+                  onPress: () {},
+                  text: "THẺ SINH VIÊN",
+                  //  textColor: AppColors.primaryColor,
+                  backgroundColor: AppColors.lightOrange,
+                  borderColor: AppColors.primaryColor,
+                  textStyle: CustomTextStyle.t8(AppColors.primaryColor)),
               SizedBox(
                 height: _screenHeight * 0.032,
               ),
               AppButton(
                 onPress: () {},
                 text: "CMND/CCCD",
-                // textColor: AppColors.primaryColor,
+                textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
               ),

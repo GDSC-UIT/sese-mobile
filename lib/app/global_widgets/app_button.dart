@@ -41,14 +41,13 @@ class AppButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          //mainAxisSize: MainAxisSize.max,
           children: [
-            icon ?? Container(),
+            icon ?? const SizedBox(),
             icon != null
                 ? const SizedBox(
                     width: 32,
                   )
-                : Container(),
+                : const SizedBox(),
             Text(
               text,
               style: textStyle,
