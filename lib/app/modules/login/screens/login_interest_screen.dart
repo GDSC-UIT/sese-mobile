@@ -9,22 +9,21 @@ import 'package:sese/app/routes/app_routes.dart';
 
 class LoginInterestScreen extends StatelessWidget {
   LoginController loginController = Get.find();
-  Map<String, AssetGenImage> mapOfInterest = {
-    "LÀM ĐẸP": Assets.imagesLamDep,
-    'SÁCH': Assets.imagesSach,
-    'THỜI TRANG': Assets.imagesThoiTrang,
-    'ĐỒ ĐIỆN TỬ': Assets.imagesDoDienTu,
-    'GIẢI TRÍ': Assets.imagesGiaiTri,
-    'ĐỒ GIA DỤNG': Assets.imagesDoGiaDung
-  };
+  // Map<String, AssetGenImage> mapOfInterest = {
+  //   "LÀM ĐẸP": Assets.imagesLamDep,
+  //   'SÁCH': Assets.imagesSach,
+  //   'THỜI TRANG': Assets.imagesThoiTrang,
+  //   'ĐỒ ĐIỆN TỬ': Assets.imagesDoDienTu,
+  //   'GIẢI TRÍ': Assets.imagesGiaiTri,
+  //   'ĐỒ GIA DỤNG': Assets.imagesDoGiaDung
+  // };
 
   @override
   Widget build(BuildContext context) {
     var _screenHeight = MediaQuery.of(context).size.height;
     var _screenWidth = MediaQuery.of(context).size.width;
-    List<String> imageName = mapOfInterest.keys.toList();
-    List<AssetGenImage> imageUrl = mapOfInterest.values.toList();
-
+    // List<dynamic> imageName = listOfInterest.map((e) => e['title']).toList();
+    // List<dynamic> imageUrl = listOfInterest.map((e) => e['image']).toList();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -68,41 +67,56 @@ class LoginInterestScreen extends StatelessWidget {
                         childAspectRatio:
                             ((_screenWidth * 0.43) / (_screenHeight * 0.29)),
                       ),
-                      itemCount: mapOfInterest.length,
+                      itemCount: loginController.listOfInterest.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          margin: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: AppColors.neutralGrey,
-                              width: 2,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: _screenWidth * 0.36,
-                                height: _screenHeight * 0.2,
+                        return Obx(() => InkWell(
+                              onTap: () {
+                                loginController.toggleSelectInterest(index);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: imageUrl[index],
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: loginController.listOfInterest[index]
+                                                ['isSelected'] ==
+                                            false
+                                        ? AppColors.neutralGrey
+                                        : AppColors.greenColor,
+                                    width: 2,
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(top: _screenHeight * 0.02),
-                                child: Text(
-                                  imageName[index],
-                                  style:
-                                      CustomTextStyle.t8(AppColors.neutralGrey),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: _screenWidth * 0.36,
+                                      height: _screenHeight * 0.2,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: loginController
+                                              .listOfInterest[index]['image'],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: _screenHeight * 0.02),
+                                      child: Text(
+                                        loginController.listOfInterest[index]
+                                            ['title'],
+                                        style: CustomTextStyle.t8(
+                                            loginController.listOfInterest[
+                                                        index]['isSelected'] ==
+                                                    false
+                                                ? AppColors.neutralGrey
+                                                : AppColors.greenColor),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        );
+                            ));
                       },
                     ),
                     Positioned(

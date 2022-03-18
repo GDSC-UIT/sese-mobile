@@ -55,7 +55,7 @@ class LoginEmailScreen extends StatelessWidget {
                 textStyle: CustomTextStyle.t8(AppColors.neutralGrey),
                 hintText: 'Điền địa chỉ email của bạn',
                 isEnable: true,
-                controller: loginController.nameInputController.value,
+                controller: loginController.emailInputController.value,
               ),
               SizedBox(
                 height: _screenHeight * 0.076,

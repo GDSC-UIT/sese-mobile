@@ -55,13 +55,25 @@ class LoginUniversityScreen extends StatelessWidget {
               () => loginController.recommendUniName.isEmpty
                   ? const SizedBox()
                   : Expanded(
+                      flex: 2,
                       child: ListView.builder(
                         itemBuilder: (context, index) {
-                          print(
-                              'list school recommend:${loginController.recommendUniName}');
-                          return Container(
-                            child:
-                                Text(loginController.recommendUniName[index]),
+                          return InkWell(
+                            onTap: () {
+                              loginController.schoolInputController.value.text =
+                                  loginController.recommendUniName[index];
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 2),
+                              padding: const EdgeInsets.all(2),
+                              child: Text(
+                                loginController.recommendUniName[index],
+                                style: CustomTextStyle.t8(Colors.white),
+                              ),
+                              decoration: BoxDecoration(
+                                  color: AppColors.greenColor,
+                                  borderRadius: BorderRadius.circular(8)),
+                            ),
                           );
                         },
                         itemCount: loginController.recommendUniName.length > 5

@@ -3,26 +3,20 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/modules/login/login_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 import '../../../core/values/app_colors.dart';
 
-class LoginPhoneScreen extends StatefulWidget {
-  const LoginPhoneScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoginPhoneScreen> createState() => _LoginPhoneScreenState();
-}
-
-class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
-  final TextEditingController controller = TextEditingController();
+class _LoginPhoneScreenState extends StatelessWidget {
   String initialCountry = 'VNM';
   PhoneNumber number = PhoneNumber(isoCode: 'VN');
+  LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     var _screenHeight = MediaQuery.of(context).size.height;
-    var _screenWidth = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -65,7 +59,7 @@ class _LoginPhoneScreenState extends State<LoginPhoneScreen> {
                 ),
                 selectorTextStyle: CustomTextStyle.t6(AppColors.greenColor),
                 initialValue: number,
-                textFieldController: controller,
+                textFieldController: loginController.phoneInputController.value,
                 formatInput: false,
                 hintText: "Điền số điện thoại của bạn",
                 textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
