@@ -1,4 +1,12 @@
 import 'package:get/get.dart';
+import 'package:sese/app/modules/edit_profile/edit_profile_binding.dart';
+import 'package:sese/app/modules/edit_profile/screens/change_link_accounts.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_dob.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_email.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_gender.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_name.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_phone_number.dart';
+import 'package:sese/app/modules/edit_profile/screens/user_profile.dart';
 import 'package:sese/app/modules/home/home_binding.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
 import 'package:sese/app/modules/login/login_binding.dart';
@@ -62,7 +70,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.authPhone,
       transition: Transition.leftToRight,
-      page: () => LoginPhoneScreen(),
+      page: () => const LoginPhoneScreen(),
       binding: LoginBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -76,8 +84,57 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.authVerifyBegin,
       transition: Transition.leftToRight,
-      page: () => LoginVerifyBeginScreen(),
+      page: () => const LoginVerifyBeginScreen(),
       binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editUserProfile,
+      transition: Transition.leftToRight,
+      page: () =>  EditUserProfileScreen(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editName,
+      transition: Transition.leftToRight,
+      page: () => EditName(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editEmail,
+      transition: Transition.leftToRight,
+      page: () =>  EditEmail(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editGender,
+      transition: Transition.leftToRight,
+      page: () => EditGender(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editDateOfBirth,
+      transition: Transition.leftToRight,
+      page: () => EditDateOfBirth(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editPhoneNumber,
+      transition: Transition.leftToRight,
+      page: () => EditPhoneNumber(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editLinkAccount,
+      transition: Transition.leftToRight,
+      page: () => ChangeLinkAccount(),
+      binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
   ];
