@@ -9,6 +9,7 @@ import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
+import 'package:sese/app/modules/login/widgets/input_text_field_recommend_login.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 // ignore: must_be_immutable
@@ -48,12 +49,11 @@ class LoginUniversityScreen extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            InPutTextField(
-              onChange: loginController.searchSchool,
+            InPutTextFieldRecommendLogin(
               hintText: 'Nhập tên trường',
-              isEnable: true,
-              textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
               controller: loginController.schoolInputController.value,
+              onChange: loginController.searchSchool,
+              textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
             ),
             Obx(
               () => loginController.recommendUniName.isEmpty
