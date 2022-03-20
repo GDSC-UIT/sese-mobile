@@ -8,7 +8,7 @@ import 'package:sese/app/routes/app_routes.dart';
 
 import '../../../core/values/app_colors.dart';
 
-class _LoginPhoneScreenState extends StatelessWidget {
+class LoginPhoneScreen extends StatelessWidget {
   String initialCountry = 'VNM';
   PhoneNumber number = PhoneNumber(isoCode: 'VN');
   LoginController loginController = Get.find();
@@ -73,6 +73,12 @@ class _LoginPhoneScreenState extends StatelessWidget {
               AppButton(
                 onPress: () {
                   Get.toNamed(AppRoutes.authEmail);
+                  if (loginController.phoneInputController.value.value.text !=
+                      '') {
+                    Get.toNamed(AppRoutes.authEmail);
+                  } else {
+                    Get.snackbar('', 'Please fill all  the field!');
+                  }
                 },
                 text: 'TIẾP TỤC NHA',
                 textStyle: CustomTextStyle.t8(Colors.white),

@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
+import 'package:sese/app/core/values/app_values.dart';
+
 import 'dart:convert';
 
 class LoginController extends GetxController {
@@ -26,39 +28,39 @@ class LoginController extends GetxController {
     'Đại học quốc tế',
     'Đại học sư phạm kĩ thuật'
   ];
-
-  var listOfInterest = <Map<String, dynamic>>[
-    {
-      "title": "LÀM ĐẸP",
-      "image": Assets.imagesLamDep,
-      "isSelected": true,
-    },
-    {
-      "title": "SÁCH",
-      "image": Assets.imagesSach,
-      "isSelected": true,
-    },
-    {
-      "title": "THỜI TRANG",
-      "image": Assets.imagesDoDienTu,
-      "isSelected": false,
-    },
-    {
-      "title": "THỜI TRANG",
-      "image": Assets.imagesDoDienTu,
-      "isSelected": false,
-    },
-    {
-      "title": "GIẢI TRÍ",
-      "image": Assets.imagesGiaiTri,
-      "isSelected": false,
-    },
-    {
-      "title": "ĐỒ GIA DỤNG",
-      "image": Assets.imagesDoGiaDung,
-      "isSelected": false,
-    }
-  ].obs;
+  var listOfInterest = [].obs;
+  // var listOfInterest = <Map<String, dynamic>>[
+  //   {
+  //     "title": "LÀM ĐẸP",
+  //     "image": Assets.imagesLamDep,
+  //     "isSelected": true,
+  //   },
+  //   {
+  //     "title": "SÁCH",
+  //     "image": Assets.imagesSach,
+  //     "isSelected": true,
+  //   },
+  //   {
+  //     "title": "THỜI TRANG",
+  //     "image": Assets.imagesDoDienTu,
+  //     "isSelected": false,
+  //   },
+  //   {
+  //     "title": "THỜI TRANG",
+  //     "image": Assets.imagesDoDienTu,
+  //     "isSelected": false,
+  //   },
+  //   {
+  //     "title": "GIẢI TRÍ",
+  //     "image": Assets.imagesGiaiTri,
+  //     "isSelected": false,
+  //   },
+  //   {
+  //     "title": "ĐỒ GIA DỤNG",
+  //     "image": Assets.imagesDoGiaDung,
+  //     "isSelected": false,
+  //   }
+  // ].obs;
   RxString searchKey = ''.obs;
   @override
   void onReady() {
@@ -71,10 +73,10 @@ class LoginController extends GetxController {
     // }
   }
 
+  @override
   void onInit() {
     AuthService.instance.readIdToken();
 
-    //accessToken.value = GetStorage().read('accessToken') ?? '';
     print(
         'accessTokenLoginControllerInit: ${AuthService.instance.accessToken}');
 
@@ -106,7 +108,6 @@ class LoginController extends GetxController {
     if (picked != null && picked != DateTime.now()) {
       dateInputController.value.value =
           TextEditingValue(text: formatter.format(picked));
-      print('${dateInputController.value.value.text}');
     }
   }
 
@@ -121,7 +122,7 @@ class LoginController extends GetxController {
           body: jsonEncode(<String, String>{
             'idToken': '$idToken',
           }),
-          url: 'https://messchill.herokuapp.com/api/auth/login/social',
+          url: UrlValue.appUrlLoginSocial,
         );
 
         AuthService.instance
@@ -142,7 +143,7 @@ class LoginController extends GetxController {
           body: jsonEncode(<String, String>{
             'idToken': '$idToken',
           }),
-          url: 'https://messchill.herokuapp.com/api/auth/login/social',
+          url: UrlValue.appUrlLoginSocial,
         );
         //set accessToken
 

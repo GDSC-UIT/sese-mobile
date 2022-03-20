@@ -1,29 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/core/values/app_values.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class LoginInterestScreen extends StatelessWidget {
   LoginController loginController = Get.find();
-  // Map<String, AssetGenImage> mapOfInterest = {
-  //   "LÀM ĐẸP": Assets.imagesLamDep,
-  //   'SÁCH': Assets.imagesSach,
-  //   'THỜI TRANG': Assets.imagesThoiTrang,
-  //   'ĐỒ ĐIỆN TỬ': Assets.imagesDoDienTu,
-  //   'GIẢI TRÍ': Assets.imagesGiaiTri,
-  //   'ĐỒ GIA DỤNG': Assets.imagesDoGiaDung
-  // };
+  var categories = Get.arguments[0];
+
+  LoginInterestScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var _screenHeight = MediaQuery.of(context).size.height;
     var _screenWidth = MediaQuery.of(context).size.width;
-    // List<dynamic> imageName = listOfInterest.map((e) => e['title']).toList();
-    // List<dynamic> imageUrl = listOfInterest.map((e) => e['image']).toList();
+    loginController.listOfInterest.value = categories;
+    print('list of interest2: ${loginController.listOfInterest.value}');
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -92,11 +91,9 @@ class LoginInterestScreen extends StatelessWidget {
                                     Container(
                                       width: _screenWidth * 0.36,
                                       height: _screenHeight * 0.2,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                          image: loginController
-                                              .listOfInterest[index]['image'],
-                                        ),
+                                            image: Assets.imagesSach),
                                       ),
                                     ),
                                     Padding(
@@ -104,7 +101,7 @@ class LoginInterestScreen extends StatelessWidget {
                                           top: _screenHeight * 0.02),
                                       child: Text(
                                         loginController.listOfInterest[index]
-                                            ['title'],
+                                            ['name'],
                                         style: CustomTextStyle.t8(
                                             loginController.listOfInterest[
                                                         index]['isSelected'] ==

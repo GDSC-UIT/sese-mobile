@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
@@ -86,8 +90,21 @@ class LoginUniversityScreen extends StatelessWidget {
               height: 64,
             ),
             AppButton(
-              onPress: () {
-                Get.toNamed(AppRoutes.authInterest);
+              onPress: () async {
+                if (loginController.schoolInputController.value.value.text !=
+                    '') {
+                  var response = await HttpService.getRequest(
+                      UrlValue.appUrlGetAllCategories);
+                  var listInterests = json.decode(response.body)['categories'];
+
+                  listInterests.forEach((item) {
+                    item['isSelected'] = false;
+                  });
+                  Get.toNamed(AppRoutes.authInterest,
+                      arguments: [listInterests]);
+                } else {
+                  Get.snackbar('', 'Please fill all  the field!');
+                }
               },
               text: 'TIẾP TỤC NHA',
               textStyle: CustomTextStyle.t8(Colors.white),

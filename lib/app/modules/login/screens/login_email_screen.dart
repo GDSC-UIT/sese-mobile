@@ -62,7 +62,12 @@ class LoginEmailScreen extends StatelessWidget {
               ),
               AppButton(
                 onPress: () {
-                  Get.toNamed(AppRoutes.authVerifyBegin);
+                  if (loginController.emailInputController.value.value.text !=
+                      '') {
+                    Get.toNamed(AppRoutes.authVerifyBegin);
+                  } else {
+                    Get.snackbar('', 'Please fill all  the field!');
+                  }
                 },
                 text: 'TIẾP TỤC NHA',
                 textStyle: CustomTextStyle.t8(Colors.white),

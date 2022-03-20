@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:sese/app/core/values/app_enums.dart';
+import 'package:sese/app/data/services/theme_service.dart';
 
 class AuthService {
   // Singleton pattern
@@ -10,13 +12,13 @@ class AuthService {
   static final AuthService instance = AuthService._privateConstructor();
   String? accessToken = '';
 
-  void readIdToken() {
-    accessToken = GetStorage().read('accessToken');
+  void readIdToken() async {
+    accessToken = ThemeService.box.read('accessToken');
   }
 
   void saveIdToken(newAccessToken) {
     //accessToken = newAccessToken;
-    GetStorage().write('accessToken', newAccessToken);
+    ThemeService.box.write('accessToken', newAccessToken);
     readIdToken();
     print('acessTokenAuthServiceAfterSave:$accessToken');
     print('save suceess');
