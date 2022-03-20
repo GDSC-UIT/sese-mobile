@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sese/app/core/themes/app_theme.dart';
-import 'package:sese/app/core/values/app_constant.dart';
-import 'package:sese/app/core/values/assets.gen.dart';
-import 'package:sese/app/modules/verify/verify_controller.dart';
 
+import '../../../core/themes/app_theme.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../core/values/app_constant.dart';
+import '../../../core/values/assets.gen.dart';
 import '../../../global_widgets/app_button.dart';
 import '../../../routes/app_routes.dart';
+import '../verify_controller.dart';
 
-class VerifyFrontSvScreen extends StatefulWidget {
-  const VerifyFrontSvScreen({Key? key}) : super(key: key);
-
-  @override
-  State<VerifyFrontSvScreen> createState() => _VerifyFrontSvScreenState();
-}
-
-class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
-  VerifyController verifyController = Get.find();
+class VerifyBackSvScreen extends StatelessWidget {
+  final VerifyController verifyController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +49,7 @@ class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
                   height: 23,
                 ),
                 Text(
-                  "Vui lòng chụp mặt trước ${verifyController.typeCard}",
+                  "Vui lòng chụp mặt sau ${verifyController.typeCard}",
                   style: CustomTextStyle.t4(Colors.black),
                 ),
                 const SizedBox(
@@ -78,9 +71,8 @@ class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
                   height: 53,
                 ),
                 AppButton(
-                  onPress: () async {
-                    await verifyController.pickFrontImage(ImageSource.camera);
-                    Get.toNamed(AppRoutes.verifyFrontSvSuccess);
+                  onPress: () {
+                    verifyController.pickBackImage(ImageSource.camera);
                   },
                   text: "CHỤP ẢNH",
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor),
@@ -93,7 +85,7 @@ class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
                 ),
                 AppButton(
                   onPress: () {
-                    verifyController.pickFrontImage(ImageSource.gallery);
+                    verifyController.pickBackImage(ImageSource.gallery);
                   },
                   text: "CHỌN TỪ THƯ VIỆN",
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor),

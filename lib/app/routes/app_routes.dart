@@ -13,4 +13,11 @@ abstract class AppRoutes {
   static const authVerifyBegin = '/auth/verifyBegin';
   static const verifyBegin = '/verify/begin';
   static const verifyFrontSv = '/verify/frontSv';
+  static const verifyFrontSvSuccess = '/verify/frontSvSuccess';
+  static const verifyFrontSvFailed = '/verify/frontSvFailed';
+  static const verifyBackSv = '/verify/backSv';
+  static const verifyBackSvSuccess = '/verify/backSvSuccess';
+  static const verifyBackSvFailed = '/verify/backSvFailed';
+  static const verifySuccess = '/verify/success';
+  static const testImage = '/verify/testImage';
 }

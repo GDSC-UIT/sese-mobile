@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sese/app/modules/verify/verify_controller.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 import '../../../core/themes/app_theme.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../global_widgets/app_button.dart';
 
 class VerifyBeginScreen extends StatelessWidget {
-  const VerifyBeginScreen({Key? key}) : super(key: key);
+  final VerifyController verifyController = Get.put(VerifyController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,10 @@ class VerifyBeginScreen extends StatelessWidget {
                 height: _screenHeight * 0.032,
               ),
               AppButton(
-                onPress: () {},
+                onPress: () {
+                  verifyController.typeCard = "thẻ sinh viên";
+                  Get.toNamed(AppRoutes.verifyFrontSv);
+                },
                 text: "THẺ SINH VIÊN",
                 textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
@@ -63,7 +69,10 @@ class VerifyBeginScreen extends StatelessWidget {
                 height: _screenHeight * 0.032,
               ),
               AppButton(
-                onPress: () {},
+                onPress: () {
+                  verifyController.typeCard = "CMND/CCCD";
+                  Get.toNamed(AppRoutes.verifyFrontSv);
+                },
                 text: "CMND/CCCD",
                 textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,

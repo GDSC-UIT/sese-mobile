@@ -8,10 +8,11 @@ class AppColors {
   static const Color mainHomeColor = Color(0xFF739EF1);
   static const Color mainHomeBackGroundColor =
       Color.fromARGB(255, 221, 221, 221);
-  static const Color lightGreyColor = Color.fromARGB(255, 138, 138, 138);
+  static const Color lightGreyColor = Color.fromRGBO(232, 237, 241, 1);
   static const Color textHomeColor = Color(0xFF3e4958);
 
   static const Color greenColor = Color(0xFF8FD8B5);
+  static const Color boldGreenColor = Color.fromRGBO(76, 217, 100, 1);
   static const Color darkGreyColor = Color(0xFF190134);
   static const Color primaryColor = Color(0xFFFF6D3B);
   static const Color secondaryColor = Color(0xFF827717);

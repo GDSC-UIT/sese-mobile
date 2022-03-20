@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/core/values/app_constant.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 
 import '../../../core/values/app_colors.dart';
@@ -35,8 +36,8 @@ class LoginVerifyBeginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.03,
+                margin: const EdgeInsets.only(
+                  top: AppConstant.gapBackButtonHeader,
                 ),
                 child: Text(
                   "Hãy xác thực tài khoản với Se Sẻ nha",
