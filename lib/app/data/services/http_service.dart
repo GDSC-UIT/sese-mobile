@@ -1,14 +1,33 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sese/app/data/services/auth_service.dart';
 
 class HttpService {
-  static void postRequest({body, url}) async {
-    http.Response response = await http.post(Uri.parse(url),
+  static Future<http.Response> postRequest({body, url}) async {
+    return await http.post(Uri.parse(url),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ${AuthService.instance.accessToken}',
         },
         body: body);
-    print('status1:${response.statusCode}');
-    print('response:${response.body}');
+  }
+
+  static Future<http.Response> putRequest({body, url}) async {
+    return await http.put(Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ${AuthService.instance.accessToken}',
+        },
+        body: body);
+  }
+
+  static Future<http.Response> getRequest(url) async {
+    return await http.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ${AuthService.instance.accessToken}',
+      },
+    );
   }
 }

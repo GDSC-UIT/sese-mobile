@@ -6,6 +6,10 @@ class AppValue {
 
 class UrlValue {
   // API endpoints go here
+  static const appUrl = 'https://sturee.herokuapp.com';
+  static const appUrlLoginSocial = '${UrlValue.appUrl}/api/auth/login/social';
+  static const appUrlUpdateUserProfile = '${UrlValue.appUrl}/api/users/me';
+  static const appUrlGetAllCategories = '${UrlValue.appUrl}/api/categories';
 }
 
 class FormatValue {

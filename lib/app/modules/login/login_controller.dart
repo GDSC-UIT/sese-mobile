@@ -4,14 +4,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
+import 'package:sese/app/core/values/app_values.dart';
+
 import 'dart:convert';
 
 class LoginController extends GetxController {
-  RxString loginMethod = ''.obs;
   var nameInputController = TextEditingController().obs;
   var dateInputController = TextEditingController().obs;
   var schoolInputController = TextEditingController().obs;
+  var emailInputController = TextEditingController().obs;
+  var phoneInputController = TextEditingController().obs;
+  var interestFavourite = [].obs;
+
   var recommendUniName = [].obs;
+
   List<String> universityName = [
     'Đại học bách khoa',
     'Đại học khoa học tự nhiên',
@@ -19,12 +25,10 @@ class LoginController extends GetxController {
     'Đại học quốc tế',
     'Đại học sư phạm kĩ thuật'
   ];
-  RxString searchKey = ''.obs;
-  @override
   var listOfInterest = [].obs;
 
-  @override
-  @override
+  RxString searchKey = ''.obs;
+
   void toggleSelectInterest(index) {
     var interestChange = listOfInterest[index];
     print('${interestChange['isSelected']}');
@@ -33,12 +37,9 @@ class LoginController extends GetxController {
   }
 
   void searchSchool() {
-    recommendUniName = universityName
-        .where((element) {
-          return element.contains(searchKey);
-        })
-        .toList()
-        .obs;
+    recommendUniName.value = universityName.where((element) {
+      return element.contains(searchKey);
+    }).toList();
   }
 
   Future<void> datePicker(context) async {
@@ -53,7 +54,6 @@ class LoginController extends GetxController {
     if (picked != null && picked != DateTime.now()) {
       dateInputController.value.value =
           TextEditingValue(text: formatter.format(picked));
-      print('${dateInputController.value.value.text}');
     }
   }
 
@@ -63,13 +63,16 @@ class LoginController extends GetxController {
       User? user = await AuthService.instance.facebookLogin();
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
-        print('idToken:$idToken');
 
-        HttpService.postRequest(
-            body: jsonEncode(<String, String>{
-              'idToken': '$idToken',
-            }),
-            url: 'https://messchill.herokuapp.com/api/auth/login/social');
+        var response = await HttpService.postRequest(
+          body: jsonEncode(<String, String>{
+            'idToken': '$idToken',
+          }),
+          url: UrlValue.appUrlLoginSocial,
+        );
+
+        AuthService.instance
+            .saveIdToken(json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
       print('fbErorr:$e');
@@ -81,13 +84,17 @@ class LoginController extends GetxController {
       User? user = await AuthService.instance.googleSignIn();
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
-        print('idToken:$idToken');
 
-        HttpService.postRequest(
-            body: jsonEncode(<String, String>{
-              'idToken': '$idToken',
-            }),
-            url: 'https://messchill.herokuapp.com/api/auth/login/social');
+        var response = await HttpService.postRequest(
+          body: jsonEncode(<String, String>{
+            'idToken': '$idToken',
+          }),
+          url: UrlValue.appUrlLoginSocial,
+        );
+        //set accessToken
+
+        AuthService.instance
+            .saveIdToken(json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
       print('errorGG: $e');

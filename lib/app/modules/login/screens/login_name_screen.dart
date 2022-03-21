@@ -54,7 +54,12 @@ class LoginNameScreen extends StatelessWidget {
             ),
             AppButton(
               onPress: () {
-                Get.toNamed(AppRoutes.authBirth);
+                if (loginController.nameInputController.value.value.text !=
+                    '') {
+                  Get.toNamed(AppRoutes.authBirth);
+                } else {
+                  Get.snackbar('', 'Please fill all  the field!');
+                }
               },
               text: 'TIẾP TỤC NHA',
               textStyle: CustomTextStyle.t8(Colors.white),

@@ -62,7 +62,12 @@ class LoginBirthScreen extends StatelessWidget {
             ),
             AppButton(
               onPress: () {
-                Get.toNamed(AppRoutes.authUni);
+                if (loginController.dateInputController.value.value.text !=
+                    '') {
+                  Get.toNamed(AppRoutes.authUni);
+                } else {
+                  Get.snackbar('', 'Please fill all  the field!');
+                }
               },
               text: 'TIẾP TỤC NHA',
               textStyle: CustomTextStyle.t8(Colors.white),
