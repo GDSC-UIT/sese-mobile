@@ -23,18 +23,8 @@ class LoginController extends GetxController {
   @override
   var listOfInterest = [].obs;
 
-  RxString searchKey = ''.obs;
   @override
   @override
-  void onInit() {
-    AuthService.instance.readIdToken();
-
-    print(
-        'accessTokenLoginControllerInit: ${AuthService.instance.accessToken}');
-
-    super.onInit();
-  }
-
   void toggleSelectInterest(index) {
     var interestChange = listOfInterest[index];
     print('${interestChange['isSelected']}');
