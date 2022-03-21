@@ -19,6 +19,7 @@ import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_begin.dart';
 
 import 'package:sese/app/routes/app_routes.dart';
 
@@ -134,6 +135,14 @@ abstract class AppPages {
       name: AppRoutes.editLinkAccount,
       transition: Transition.leftToRight,
       page: () => ChangeLinkAccount(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    ////post product
+    GetPage(
+      name: AppRoutes.postProductBegin,
+      transition: Transition.leftToRight,
+      page: () => const PostProductBegin(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),

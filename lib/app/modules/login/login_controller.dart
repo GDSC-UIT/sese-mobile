@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,6 +21,27 @@ class LoginController extends GetxController {
   ];
   RxString searchKey = ''.obs;
   @override
+  var listOfInterest = [].obs;
+
+  RxString searchKey = ''.obs;
+  @override
+  @override
+  void onInit() {
+    AuthService.instance.readIdToken();
+
+    print(
+        'accessTokenLoginControllerInit: ${AuthService.instance.accessToken}');
+
+    super.onInit();
+  }
+
+  void toggleSelectInterest(index) {
+    var interestChange = listOfInterest[index];
+    print('${interestChange['isSelected']}');
+    interestChange['isSelected'] = !interestChange['isSelected'];
+    listOfInterest[index] = interestChange;
+  }
+
   void searchSchool() {
     recommendUniName = universityName
         .where((element) {
