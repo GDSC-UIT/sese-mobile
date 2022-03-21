@@ -22,17 +22,6 @@ class LoginController extends GetxController {
   ];
   RxString searchKey = ''.obs;
   @override
-  void onReady() {
-    //check is User loged in
-    // AuthService.instance.checkLogin();
-    // if (AuthService.instance.isLogined) {
-    //   Get.toNamed(AppRoutes.authName);
-    // } else {
-    //   Get.toNamed(AppRoutes.authBegin);
-    // }
-    super.onInit();
-  }
-
   void searchSchool() {
     recommendUniName = universityName
         .where((element) {
