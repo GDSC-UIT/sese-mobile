@@ -24,7 +24,6 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('$textStyle');
     return InkWell(
       onTap: () => {
         onPress(),

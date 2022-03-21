@@ -23,10 +23,12 @@ class InPutTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: (value) {
-        loginController.searchKey.value = value;
-        onChange!();
-      },
+      onChanged: onChange != null
+          ? (value) {
+              loginController.searchKey.value = value;
+              onChange!();
+            }
+          : (value) {},
       controller: controller,
       enabled: isEnable,
       autofocus: isEnable,
