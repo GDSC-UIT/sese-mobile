@@ -11,7 +11,7 @@ import 'package:sese/app/global_widgets/search_input.dart';
 import 'package:sese/app/global_widgets/shopping_cart.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sese/app/modules/home/widgets/app_bottom_navigation_bar.dart';
+import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/modules/home/widgets/slider_banner.dart';
 import 'package:sese/app/routes/app_routes.dart';
 

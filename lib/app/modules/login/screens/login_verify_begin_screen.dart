@@ -1,13 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/modules/login/login_controller.dart';
 
 import '../../../core/values/app_colors.dart';
 
 class LoginVerifyBeginScreen extends StatelessWidget {
-  const LoginVerifyBeginScreen({Key? key}) : super(key: key);
-
+  LoginVerifyBeginScreen({Key? key}) : super(key: key);
+  LoginController loginController = Get.find();
   @override
   Widget build(BuildContext context) {
     var _screenHeight = MediaQuery.of(context).size.height;
@@ -75,14 +80,45 @@ class LoginVerifyBeginScreen extends StatelessWidget {
               SizedBox(
                 height: _screenHeight * 0.076,
               ),
-              const Center(
-                child: Text(
-                  "Mình sẽ xác thực sau nha",
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: AppColors.greenColor,
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.w600,
+              Center(
+                child: InkWell(
+                  onTap: () async {
+                    try {
+                      var favouriteListInterests = loginController
+                          .listOfInterest
+                          .where((e) => e["isSelected"] == true)
+                          .toList();
+                      Map<String, dynamic> userInfo = {
+                        "name": loginController.nameInputController.value.text,
+                        "phoneNumber":
+                            loginController.phoneInputController.value.text,
+                        "birthDate":
+                            loginController.dateInputController.value.text,
+                        "university":
+                            loginController.schoolInputController.value.text,
+                        "interestedCategories":
+                            favouriteListInterests.map((e) => e["_id"]),
+                      };
+                      print('userInfo:$userInfo');
+                      var response = await HttpService.putRequest(
+                        body: jsonEncode(
+                          userInfo,
+                        ),
+                        url: UrlValue.appUrlUpdateUserProfile,
+                      );
+                      print('response:${response.body}');
+                    } catch (e) {
+                      Get.snackbar('Error', 'Something went wrong');
+                    }
+                  },
+                  child: const Text(
+                    "Mình sẽ xác thực sau nha",
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: AppColors.greenColor,
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),

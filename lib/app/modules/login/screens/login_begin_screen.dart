@@ -42,7 +42,7 @@ class LoginBeginScreen extends StatelessWidget {
                   onPress: () async {
                     await loginController.googleSignInAction();
                     AuthService.instance.isLogined == true
-                        ? Get.offNamed(AppRoutes.authName)
+                        ? Get.toNamed(AppRoutes.authName)
                         : print('Login gg fail');
                   },
                   text: 'LOGGIN WITH GOOGLE',

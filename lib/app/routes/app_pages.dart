@@ -19,6 +19,7 @@ import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_begin.dart';
 
 import 'package:sese/app/routes/app_routes.dart';
 
@@ -70,7 +71,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.authPhone,
       transition: Transition.leftToRight,
-      page: () => const LoginPhoneScreen(),
+      page: () => LoginPhoneScreen(),
       binding: LoginBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -84,14 +85,14 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.authVerifyBegin,
       transition: Transition.leftToRight,
-      page: () => const LoginVerifyBeginScreen(),
+      page: () => LoginVerifyBeginScreen(),
       binding: LoginBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
       name: AppRoutes.editUserProfile,
       transition: Transition.leftToRight,
-      page: () =>  EditUserProfileScreen(),
+      page: () => EditUserProfileScreen(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -105,7 +106,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.editEmail,
       transition: Transition.leftToRight,
-      page: () =>  EditEmail(),
+      page: () => EditEmail(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -134,6 +135,14 @@ abstract class AppPages {
       name: AppRoutes.editLinkAccount,
       transition: Transition.leftToRight,
       page: () => ChangeLinkAccount(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    ////post product
+    GetPage(
+      name: AppRoutes.postProductBegin,
+      transition: Transition.leftToRight,
+      page: () => const PostProductBegin(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
