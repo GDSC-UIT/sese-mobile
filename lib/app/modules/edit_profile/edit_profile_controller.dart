@@ -1,13 +1,23 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class EditProfileController extends GetxController {
-  RxBool genderCheckbox = false.obs; 
+  RxBool genderCheckbox = false.obs;
   var nameInputController = TextEditingController().obs;
   var dateInputController = TextEditingController().obs;
+  RxList<Map> listGender = [
+    {"gender": "Nam", "isSelected": false},
+    {"gender": "Nữ", "isSelected": false},
+    {"gender": "Khác", "isSelected": false}
+  ].obs;
+
+  void toggleSelectedGender(index) {
+    var temListItem = listGender[index];
+    temListItem["isSelected"] = !temListItem["isSelected"];
+    listGender[index] = temListItem;
+  }
+
   Future<void> datePicker(context) async {
     DateFormat formatter = DateFormat('dd/MM/yyyy');
 
