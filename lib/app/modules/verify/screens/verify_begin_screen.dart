@@ -70,10 +70,24 @@ class VerifyBeginScreen extends StatelessWidget {
               ),
               AppButton(
                 onPress: () {
-                  verifyController.typeCard = "CMND/CCCD";
+                  verifyController.typeCard = "căn cước công dân";
                   Get.toNamed(AppRoutes.verifyFrontSv);
                 },
-                text: "CMND/CCCD",
+                text: "CĂN CƯỚC CÔNG DÂN",
+                textStyle: CustomTextStyle.t8(AppColors.primaryColor),
+                backgroundColor: AppColors.lightOrange,
+                borderColor: AppColors.primaryColor,
+                borderThickness: 1,
+              ),
+              SizedBox(
+                height: _screenHeight * 0.032,
+              ),
+              AppButton(
+                onPress: () {
+                  verifyController.typeCard = "chứng minh nhân dân";
+                  Get.toNamed(AppRoutes.verifyFrontSv);
+                },
+                text: "CHỨNG MINH NHÂN DÂN",
                 textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,

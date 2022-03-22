@@ -42,7 +42,7 @@ class LoginBeginScreen extends StatelessWidget {
                   onPress: () async {
                     await loginController.googleSignInAction();
                     AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.authName)
+                        ? Get.toNamed(AppRoutes.verifyBegin)
                         : print('Login gg fail');
                   },
                   text: 'LOGGIN WITH GOOGLE',
@@ -63,7 +63,7 @@ class LoginBeginScreen extends StatelessWidget {
                   onPress: () async {
                     await loginController.facebookLoginAction();
                     AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.authName)
+                        ? Get.toNamed(AppRoutes.verifyBegin)
                         : print('Login facebook fail');
                   },
                   text: 'LOGGIN WITH FACEBOOK',

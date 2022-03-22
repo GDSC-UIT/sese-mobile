@@ -96,7 +96,8 @@ class _VerifyBackSvSuccessScreenState extends State<VerifyBackSvSuccessScreen> {
                   height: 16,
                 ),
                 AppButton(
-                  onPress: () {
+                  onPress: () async {
+                    await verifyController.getTypeCard();
                     Get.toNamed(AppRoutes.verifySuccess);
                   },
                   text: "XÁC NHẬN",

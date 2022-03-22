@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/modules/verify/verify_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
+import '../../../core/values/app_values.dart';
+
 class VerifySuccessScreen extends StatelessWidget {
-  const VerifySuccessScreen({Key? key}) : super(key: key);
+  VerifyController verifyController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +68,25 @@ class VerifySuccessScreen extends StatelessWidget {
                   height: 130,
                 ),
                 AppButton(
-                  onPress: () {
-                    Get.toNamed(AppRoutes.testImage);
+                  onPress: () async {
+                    try {
+                      Map<String, dynamic> userVerifyInfo = {
+                        "type": verifyController.typeCardEnum,
+                        "frontImg": verifyController.frontImage,
+                        "backImg": verifyController.backImage,
+                      };
+                      var response = await HttpService.putRequest(
+                        body: jsonEncode(
+                          userVerifyInfo,
+                        ),
+                        url: UrlValue.appUrlVerifyUser,
+                      );
+                      Get.toNamed(AppRoutes.testImage);
+                    } catch (e) {
+                      Get.snackbar('Error', 'Something went wrong');
+                    }
+
+                    ;
                   },
                   text: "Bắt đầu thôi !",
                   textStyle: CustomTextStyle.t1(Colors.white),
