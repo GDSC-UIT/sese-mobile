@@ -1,32 +1,33 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
+
 import 'package:sese/app/core/values/app_colors.dart';
 
-class InPutTextField extends StatelessWidget {
-  InPutTextField({
+class InputEditText extends StatelessWidget {
+  InputEditText({
     Key? key,
-    required this.hintText,
+    required this.text,
     required this.isEnable,
-    required this.controller,
     this.suffixIcon,
     this.textStyle,
     this.onChange,
   }) : super(key: key);
-  final String hintText;
+  final String text;
   final Widget? suffixIcon;
-  final TextEditingController controller;
   final bool isEnable;
   final TextStyle? textStyle;
   final Function? onChange;
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
+    return TextFormField(
+      onChanged: (value) {
+        onChange!();
+      },
       enabled: isEnable,
       autofocus: isEnable,
       style: textStyle,
+      initialValue: text,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-        hintText: hintText,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             width: 1.5,
@@ -38,13 +39,13 @@ class InPutTextField extends StatelessWidget {
         hintStyle: textStyle,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreenColor,
+            color: AppColors.backIcon,
             width: 1.5,
           ),
         ),
         disabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreenColor,
+            color: AppColors.backIcon,
             width: 1.5,
           ),
         ),
@@ -52,3 +53,4 @@ class InPutTextField extends StatelessWidget {
     );
   }
 }
+ */

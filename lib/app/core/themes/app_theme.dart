@@ -270,10 +270,10 @@ class AppTheme {
       backgroundColor: AppColors.lightBackgroundColor,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      selectedItemColor: AppColors.mainHomeColor,
+      selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.lightGreyColor,
       selectedIconTheme:
-          const IconThemeData(color: AppColors.mainHomeColor, opacity: 1),
+          const IconThemeData(color: AppColors.primaryColor, opacity: 1),
       unselectedIconTheme: const IconThemeData(
           color: AppColors.lightGreyColor,
           opacity: AppColors.disabledIconOpacity),
@@ -331,7 +331,7 @@ class AppTheme {
       backgroundColor: AppColors.darkBackgroundColor,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      selectedItemColor: AppColors.mainHomeColor,
+      selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.lightGreyColor,
       selectedIconTheme:
           const IconThemeData(color: AppColors.darkTextColor, opacity: 1),

@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/core/values/app_values.dart';
@@ -29,59 +26,8 @@ class LoginController extends GetxController {
     'Đại học sư phạm kĩ thuật'
   ];
   var listOfInterest = [].obs;
-  // var listOfInterest = <Map<String, dynamic>>[
-  //   {
-  //     "title": "LÀM ĐẸP",
-  //     "image": Assets.imagesLamDep,
-  //     "isSelected": true,
-  //   },
-  //   {
-  //     "title": "SÁCH",
-  //     "image": Assets.imagesSach,
-  //     "isSelected": true,
-  //   },
-  //   {
-  //     "title": "THỜI TRANG",
-  //     "image": Assets.imagesDoDienTu,
-  //     "isSelected": false,
-  //   },
-  //   {
-  //     "title": "THỜI TRANG",
-  //     "image": Assets.imagesDoDienTu,
-  //     "isSelected": false,
-  //   },
-  //   {
-  //     "title": "GIẢI TRÍ",
-  //     "image": Assets.imagesGiaiTri,
-  //     "isSelected": false,
-  //   },
-  //   {
-  //     "title": "ĐỒ GIA DỤNG",
-  //     "image": Assets.imagesDoGiaDung,
-  //     "isSelected": false,
-  //   }
-  // ].obs;
+
   RxString searchKey = ''.obs;
-  @override
-  void onReady() {
-    //check is User loged in
-    // AuthService.instance.checkLogin();
-    // if (AuthService.instance.isLogined) {
-    //   Get.toNamed(AppRoutes.authName);
-    // } else {
-    //   Get.toNamed(AppRoutes.authBegin);
-    // }
-  }
-
-  @override
-  void onInit() {
-    AuthService.instance.readIdToken();
-
-    print(
-        'accessTokenLoginControllerInit: ${AuthService.instance.accessToken}');
-
-    super.onInit();
-  }
 
   void toggleSelectInterest(index) {
     var interestChange = listOfInterest[index];
