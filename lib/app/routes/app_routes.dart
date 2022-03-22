@@ -21,4 +21,5 @@ abstract class AppRoutes {
   static const editLinkAccount = '/edit/linkAccount';
   //post product route
   static const postProductBegin = '/post/product/begin';
+  static const postProductInfo = '/post/product/info';
 }

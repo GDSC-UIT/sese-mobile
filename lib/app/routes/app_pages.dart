@@ -19,7 +19,10 @@ import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
-import 'package:sese/app/modules/post_product/screens/post_product_begin.dart';
+import 'package:sese/app/modules/post_product/post_product_binding.dart';
+import 'package:sese/app/modules/post_product/post_product_controller.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_begin_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_info_screen.dart';
 
 import 'package:sese/app/routes/app_routes.dart';
 
@@ -142,8 +145,15 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.postProductBegin,
       transition: Transition.leftToRight,
-      page: () => const PostProductBegin(),
-      binding: EditProfileBinding(),
+      page: () => PostProductBeginScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductInfo,
+      transition: Transition.leftToRight,
+      page: () => PostProductInfoScreen(),
+      binding: PostProductBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
   ];
