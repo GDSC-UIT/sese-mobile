@@ -6,12 +6,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sese/app/core/values/app_enums.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
 
+import '../../data/services/upload_image_service.dart';
 import '../../routes/app_routes.dart';
 
 class VerifyController extends GetxController {
   Rx<File> image = File(Assets.imagesDoDienTu.path).obs;
   Rx<File> frontImage = File(Assets.imagesDoDienTu.path).obs;
   Rx<File> backImage = File(Assets.imagesDoDienTu.path).obs;
+  late String? frontImageUrl;
+  late String? backImageUrl;
+
   String typeCard = "";
   late TypeCard typeCardEnum;
 
