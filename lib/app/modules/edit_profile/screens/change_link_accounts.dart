@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/data/services/auth_service.dart';
 
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 class ChangeLinkAccount extends StatelessWidget {
-  const ChangeLinkAccount({Key? key}) : super(key: key);
+  EditProfileController editProfileController = Get.find();
+  ChangeLinkAccount({Key? key}) : super(key: key);
 
   get loginController => null;
 
@@ -20,7 +25,9 @@ class ChangeLinkAccount extends StatelessWidget {
             color: AppColors.backIcon,
             size: 30,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text("Tài khoản liên kết",
             style: CustomTextStyle.h4(AppColors.primaryColor)),
@@ -28,15 +35,19 @@ class ChangeLinkAccount extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 32),
         height: 158,
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 32),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
             child: AppButton(
               textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-              onPress: () {},
+              onPress: () async {
+                await editProfileController.googleSignInAction();
+                AuthService.instance.isLogined == true
+                    ? Get.toNamed(AppRoutes.authName)
+                    : print('Login gg fail');
+              },
               text: 'LOGIN WITH GOOGLE',
-
               // textColor: AppColors.darkGreyColor,
               borderColor: AppColors.greenColor,
               icon: Image.asset(
@@ -45,14 +56,19 @@ class ChangeLinkAccount extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
           Expanded(
             child: AppButton(
               textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-              onPress: () {},
-              text: 'LOGIN WITH FACEBOOK',
+              onPress: () async {
+                await loginController.facebookLoginAction();
+                AuthService.instance.isLogined == true
+                    ? Get.toNamed(AppRoutes.authName)
+                    : print('Login facebook fail');
+              },
+              text: 'LOGGIN WITH FACEBOOK',
               // textColor: AppColors.darkGreyColor,
               borderColor: AppColors.greenColor,
               icon: Image.asset(

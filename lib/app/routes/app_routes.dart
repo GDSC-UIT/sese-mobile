@@ -19,6 +19,8 @@ abstract class AppRoutes {
   static const editDateOfBirth = '/edit/dateOfBirth';
   static const editPhoneNumber = '/edit/phoneNumber';
   static const editLinkAccount = '/edit/linkAccount';
+  static const editUniversity = '/edit/university'; 
+  
   //post product route
   static const postProductBegin = '/post/product/begin';
 }

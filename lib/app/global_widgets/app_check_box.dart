@@ -2,21 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
-import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 
-Widget GenderCheckbox( int index) {
-  EditProfileController editProfileController = Get.find();
-  return Obx(()=>
-     Container(
+class CheckBox extends StatelessWidget {
+  const CheckBox(
+      {Key? key,
+      required this.genderValue,
+      required this.onPress,
+      required this.isSelected})
+      : super(key: key);
+
+  final String genderValue;
+  final Function onPress;
+  final bool isSelected;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
-          editProfileController.listGender[index]["gender"],
+          genderValue,
           style: CustomTextStyle.t6(AppColors.darkGreyColor),
         ),
         InkWell(
           onTap: () {
-            editProfileController.toggleSelectedGender(index);
+            onPress();
           },
           child: Container(
             width: 20,
@@ -25,7 +34,7 @@ Widget GenderCheckbox( int index) {
               shape: BoxShape.circle,
               color: AppColors.primaryColor,
             ),
-            child: editProfileController.listGender[index]["isSelected"]
+            child: isSelected
                 ? const Center(
                     child: Icon(
                       Icons.circle,
@@ -43,6 +52,6 @@ Widget GenderCheckbox( int index) {
           ),
         )
       ]),
-    ),
-  );
+    );
+  }
 }

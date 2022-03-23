@@ -7,11 +7,11 @@ import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 class EditName extends StatelessWidget {
-  
   EditName({Key? key}) : super(key: key);
-  EditProfileController editProfileController = Get.find(); 
+  EditProfileController editProfileController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,9 @@ class EditName extends StatelessWidget {
             color: AppColors.backIcon,
             size: 30,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title:
             Text("Họ tên", style: CustomTextStyle.h4(AppColors.primaryColor)),
@@ -36,14 +38,19 @@ class EditName extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const HeaderText(text: "Họ tên"),
-              InPutTextField(
-                hintText: "abc xyz",
-                isEnable: true,
-                suffixIcon: TextButton(
-                  onPressed: () {},
-                  child: const Icon(Icons.close),
+              Obx(
+                () => InPutTextField(
+                  hintText: "abc xyz",
+                  isEnable: true,
+                  suffixIcon: TextButton(
+                    onPressed: () {
+                      editProfileController.nameInputController.value =
+                          TextEditingController(text: "");
+                    },
+                    child: const Icon(Icons.close),
+                  ),
+                  controller: editProfileController.nameInputController.value,
                 ),
-                controller: editProfileController.nameInputController.value,
               ),
               const SizedBox(
                 height: AppConstant.gapInputAppButton,

@@ -6,6 +6,7 @@ import 'package:sese/app/modules/edit_profile/screens/edit_email.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_gender.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_name.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_phone_number.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_university_screen.dart';
 import 'package:sese/app/modules/edit_profile/screens/user_profile.dart';
 import 'package:sese/app/modules/home/home_binding.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
@@ -128,6 +129,13 @@ abstract class AppPages {
       name: AppRoutes.editPhoneNumber,
       transition: Transition.leftToRight,
       page: () => EditPhoneNumber(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editUniversity,
+      transition: Transition.leftToRight,
+      page: () => EditUniversity(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
