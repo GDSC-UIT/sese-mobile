@@ -22,4 +22,5 @@ abstract class AppRoutes {
   //post product route
   static const postProductBegin = '/post/product/begin';
   static const postProductInfo = '/post/product/info';
+  static const postProductquantity = '/post/product/quantity';
 }
