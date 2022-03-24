@@ -24,7 +24,6 @@ class HomeScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double headerHeight = height * 1 / 3;
 
-    print('Home screen');
     return Scaffold(
       bottomNavigationBar: AppBottomNavigationBar(),
       body: SafeArea(
@@ -39,15 +38,16 @@ class HomeScreen extends StatelessWidget {
                       top: 8, left: 12, right: 12, bottom: 12),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(24),
-                        bottomRight: Radius.circular(24)),
-                    color: AppColors.mainHomeColor,
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
+                    ),
+                    color: AppColors.primaryColor,
                   ),
                   child: Column(
                     children: [
                       Row(
                         children: [
-                          Container(
+                          SizedBox(
                             width: width * 0.8,
                             height: 35,
                             child: const SearchInput(),
@@ -62,16 +62,18 @@ class HomeScreen extends StatelessWidget {
                         height: 16,
                       ),
                       SliderBanner(
-                          sliderController: sliderController,
-                          headerHeight: headerHeight),
+                        sliderController: sliderController,
+                        headerHeight: headerHeight,
+                      ),
                       const SizedBox(
                         height: 16,
                       ),
                       Obx(
                         () => AppIndicator(
-                            sliderLength: homeController.sliderImages.length,
-                            sliderController: sliderController,
-                            activeIndex: homeController.sliderIdx.value),
+                          sliderLength: homeController.sliderImages.length,
+                          sliderController: sliderController,
+                          activeIndex: homeController.sliderIdx.value,
+                        ),
                       ),
                     ],
                   ),
@@ -93,28 +95,12 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               child: Stack(
                 clipBehavior: Clip.none,
-                children: [
-                  const Positioned(
+                children: const [
+                  Positioned(
                     top: -12,
                     left: 24,
                     child: AppLabel(
                       content: 'Sản phẩm mới',
-                    ),
-                  ),
-                  Container(
-                    color: AppColors.mainHomeBackGroundColor,
-                    // child: AppProductListView(),
-                    child: TextButton(
-                      onPressed: () async {
-                        if (AuthService.instance.loginMethod ==
-                            LoginMethod.facebook) {
-                          await AuthService.instance.faceBookSignOut();
-                        } else {
-                          await AuthService.instance.googleSignOut();
-                        }
-                        Get.offAllNamed(AppRoutes.authBegin);
-                      },
-                      child: const Text('Logout'),
                     ),
                   ),
                 ],

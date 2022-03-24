@@ -16,6 +16,8 @@ import '../../../core/values/app_values.dart';
 class VerifySuccessScreen extends StatelessWidget {
   VerifyController verifyController = Get.find();
 
+  VerifySuccessScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -72,28 +74,26 @@ class VerifySuccessScreen extends StatelessWidget {
                 AppButton(
                   onPress: () async {
                     try {
-                      verifyController.frontImageUrl =
-                          await UploadImageService.uploadImageToFirebase(
-                              File(verifyController.frontImage.value.path),
-                              "verify_images");
-                      verifyController.backImageUrl =
-                          await UploadImageService.uploadImageToFirebase(
-                              File(verifyController.backImage.value.path),
-                              "verify_images");
-                      Map<String, dynamic> userVerifyInfo = {
-                        "type": verifyController.typeCardEnum,
-                        "frontImg": verifyController.frontImageUrl,
-                        "backImg": verifyController.backImageUrl,
-                      };
-                      await HttpService.putRequest(
-                        body: jsonEncode(
-                          userVerifyInfo,
-                        ),
-                        url: UrlValue.appUrlVerifyUser,
-                      );
-                      print(verifyController.typeCardEnum);
-                      print(verifyController.frontImageUrl);
-                      print(verifyController.backImageUrl);
+                      // verifyController.frontImageUrl =
+                      //     await UploadImageService.uploadImageToFirebase(
+                      //         File(verifyController.frontImage.value.path),
+                      //         "verify_images");
+                      // verifyController.backImageUrl =
+                      //     await UploadImageService.uploadImageToFirebase(
+                      //         File(verifyController.backImage.value.path),
+                      //         "verify_images");
+                      // Map<String, dynamic> userVerifyInfo = {
+                      //   "type": verifyController.typeCardEnum,
+                      //   "frontImg": verifyController.frontImageUrl,
+                      //   "backImg": verifyController.backImageUrl,
+                      // };
+                      // var response = await HttpService.putRequest(
+                      //   body: jsonEncode(
+                      //     userVerifyInfo,
+                      //   ),
+                      //   url: UrlValue.appUrlVerifyUser,
+                      // );
+                      // print("Phat dep chai:  ${response.body}");
                       Get.toNamed(AppRoutes.testImage);
                     } catch (e) {
                       Get.snackbar('Error', 'Something went wrong');

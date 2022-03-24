@@ -7,36 +7,38 @@ class Category extends StatelessWidget {
 
   List<CategoryModel> categoryData = [
     CategoryModel(
-      content: 'Dụng cụ học tập',
-      iconData: Icons.note_alt,
+      content: 'Sách, tài liệu',
+      iconData: Icons.menu_book_outlined,
     ),
     CategoryModel(
-      content: 'Điện tử phụ kiện thiết bị',
-      iconData: Icons.lightbulb,
+      content: 'Đồ điện tử',
+      iconData: Icons.lightbulb_outline,
     ),
     CategoryModel(
-      content: 'Nội thất, vật dụng trang trí',
-      iconData: Icons.chair,
+      content: 'Đồ gia dụng nội thất',
+      iconData: Icons.chair_outlined,
     ),
     CategoryModel(
-      content: 'Đồ mặc, quần áo',
-      iconData: Icons.checkroom,
+      content: 'Thời trang, trang điểm',
+      iconData: Icons.abc,
     ),
     CategoryModel(
-      content: 'Giày dép',
-      iconData: Icons.ice_skating,
+      content: 'Thể thao, chơi game, sở thích',
+      iconData: Icons.gamepad,
     ),
     CategoryModel(
-      content: 'Mỹ phẩm',
-      iconData: Icons.vertical_split,
+        content: 'Đồ dùng cá nhân', iconData: Icons.person_outline_outlined),
+    CategoryModel(
+      content: 'Đồ dùng văn phòng',
+      iconData: Icons.my_library_books_outlined,
     ),
   ];
   @override
   Widget build(BuildContext context) {
     // return CarouselSlider.builder(
 
-    return Container(
-      height: 100,
+    return SizedBox(
+      height: 110,
       child: ListView.builder(
         itemExtent: 100,
         scrollDirection: Axis.horizontal,

@@ -5,6 +5,8 @@ import 'package:sese/app/modules/verify/verify_controller.dart';
 class TestImage extends StatelessWidget {
   VerifyController verifyController = Get.find();
 
+  TestImage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
