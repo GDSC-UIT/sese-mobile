@@ -8,9 +8,9 @@ import 'package:sese/app/modules/edit_profile/widgets/input_text_field_recommend
 import 'package:sese/app/modules/login/widgets/input_text_field_recommend_login.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
-class EditUniversity extends StatelessWidget {
+class EditUniversityScreen extends StatelessWidget {
   EditProfileController editProfileController = Get.find();
-  EditUniversity({Key? key}) : super(key: key);
+  EditUniversityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

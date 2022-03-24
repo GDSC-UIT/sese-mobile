@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
-class CheckBox extends StatelessWidget {
-  const CheckBox(
+class AppCheckBox extends StatelessWidget {
+  const AppCheckBox(
       {Key? key,
-      required this.genderValue,
+      required this.textOptionString,
       required this.onPress,
       required this.isSelected})
       : super(key: key);
 
-  final String genderValue;
+  final String textOptionString;
   final Function onPress;
   final bool isSelected;
   @override
@@ -20,7 +20,7 @@ class CheckBox extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
-          genderValue,
+          textOptionString,
           style: CustomTextStyle.t6(AppColors.darkGreyColor),
         ),
         InkWell(

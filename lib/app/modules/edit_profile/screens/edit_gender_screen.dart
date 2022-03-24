@@ -6,11 +6,10 @@ import 'package:sese/app/core/values/app_constant.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/global_widgets/app_check_box.dart';
-import 'package:sese/app/routes/app_routes.dart';
 
-class EditGender extends StatelessWidget {
+class EditGenderScreen extends StatelessWidget {
   EditProfileController editProfileController = Get.find();
-  EditGender({Key? key}) : super(key: key);
+  EditGenderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +37,8 @@ class EditGender extends StatelessWidget {
           // GenderCheckbox(1),
           // GenderCheckbox(2),
           Obx(
-            () => CheckBox(
-              genderValue: editProfileController.listGender[0]["gender"],
+            () => AppCheckBox(
+              textOptionString: editProfileController.listGender[0]["gender"],
               onPress: () {
                 editProfileController.toggleSelectedGender(0);
               },
@@ -47,12 +46,21 @@ class EditGender extends StatelessWidget {
             ),
           ),
           Obx(
-            () => CheckBox(
-              genderValue: editProfileController.listGender[1]["gender"],
+            () => AppCheckBox(
+              textOptionString: editProfileController.listGender[1]["gender"],
               onPress: () {
                 editProfileController.toggleSelectedGender(1);
               },
               isSelected: editProfileController.listGender[1]["isSelected"],
+            ),
+          ),
+          Obx(
+            () => AppCheckBox(
+              textOptionString: editProfileController.listGender[2]["gender"],
+              onPress: () {
+                editProfileController.toggleSelectedGender(2);
+              },
+              isSelected: editProfileController.listGender[2]["isSelected"],
             ),
           ),
 

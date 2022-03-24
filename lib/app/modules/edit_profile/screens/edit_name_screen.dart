@@ -9,8 +9,8 @@ import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
-class EditName extends StatelessWidget {
-  EditName({Key? key}) : super(key: key);
+class EditNameScreen extends StatelessWidget {
+  EditNameScreen({Key? key}) : super(key: key);
   EditProfileController editProfileController = Get.find();
   @override
   Widget build(BuildContext context) {

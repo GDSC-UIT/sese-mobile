@@ -6,16 +6,15 @@ import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_constant.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
-import 'package:sese/app/routes/app_routes.dart';
 
-class EditPhoneNumber extends StatefulWidget {
-  const EditPhoneNumber({Key? key}) : super(key: key);
+class EditPhoneNumberScreen extends StatefulWidget {
+  const EditPhoneNumberScreen({Key? key}) : super(key: key);
 
   @override
-  State<EditPhoneNumber> createState() => _EditPhoneNumberState();
+  State<EditPhoneNumberScreen> createState() => _EditPhoneNumberScreenState();
 }
 
-class _EditPhoneNumberState extends State<EditPhoneNumber> {
+class _EditPhoneNumberScreenState extends State<EditPhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
