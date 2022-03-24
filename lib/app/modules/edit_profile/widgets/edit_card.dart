@@ -46,11 +46,11 @@ class EditCard extends StatelessWidget {
             child: TextButton(
               child: const Icon(
                 Icons.arrow_forward_ios,
-                color: AppColors.backIcon,
+                color: AppColors.greenColor,
                 size: 14,
               ),
               onPressed: () {
-                Get.toNamed(toPage); 
+                Get.toNamed(toPage);
               },
             ),
           ),

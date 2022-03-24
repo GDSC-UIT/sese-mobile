@@ -23,7 +23,10 @@ class InPutTextField extends StatelessWidget {
       controller: controller,
       enabled: isEnable,
       autofocus: isEnable,
-      style: textStyle,
+      style: 
+      const TextStyle(
+        color: AppColors.darkGreyColor, 
+      ),
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,
@@ -38,13 +41,13 @@ class InPutTextField extends StatelessWidget {
         hintStyle: textStyle,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreenColor,
+            color: AppColors.greenColor,
             width: 1.5,
           ),
         ),
         disabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreenColor,
+            color: AppColors.greenColor,
             width: 1.5,
           ),
         ),

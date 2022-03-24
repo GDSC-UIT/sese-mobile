@@ -27,7 +27,7 @@ class InPutTextFieldRecommendEditProfile extends StatelessWidget {
           : (value) {},
       controller: controller,
       autofocus: true,
-      style: textStyle,
+      style: const TextStyle(color: AppColors.darkGreyColor),
       decoration: InputDecoration(
         hintText: hintText,
         border: const OutlineInputBorder(
@@ -41,13 +41,13 @@ class InPutTextFieldRecommendEditProfile extends StatelessWidget {
         hintStyle: textStyle,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreenColor,
+            color: AppColors.greenColor,
             width: 1.5,
           ),
         ),
         disabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreenColor,
+            color: AppColors.greenColor,
             width: 1.5,
           ),
         ),
