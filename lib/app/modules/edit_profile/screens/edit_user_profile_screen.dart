@@ -66,35 +66,35 @@ class EditUserProfileScreen extends StatelessWidget {
               ),
             ),
             const EditCard(
-              lable: "Tên",
+              label: "Tên",
               userInfo: "meow",
               toPage: AppRoutes.editName,
             ),
             const EditCard(
-              lable: "Ngày sinh",
+              label: "Ngày sinh",
               userInfo: "22/02/2022",
               toPage: AppRoutes.editDateOfBirth,
             ),
             const EditCard(
-              lable: "Giới tính",
+              label: "Giới tính",
               userInfo: "Nam",
               toPage: AppRoutes.editGender,
             ),
             const EditCard(
-              lable: "Đại học",
+              label: "Đại học",
               userInfo: "VNU-UIT",
               toPage: AppRoutes.editUniversity,
             ),
             const EditCard(
-                lable: "Phone",
+                label: "Phone",
                 userInfo: "*****897",
                 toPage: AppRoutes.editPhoneNumber),
             const EditCard(
-                lable: "Email",
+                label: "Email",
                 userInfo: "abc@gmail.com",
                 toPage: AppRoutes.editEmail),
             const EditCard(
-              lable: "Tài khoản liên kết",
+              label: "Tài khoản liên kết",
               userInfo: "",
               toPage: AppRoutes.editLinkAccount,
             ),

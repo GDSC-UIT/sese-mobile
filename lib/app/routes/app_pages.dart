@@ -7,7 +7,7 @@ import 'package:sese/app/modules/edit_profile/screens/edit_gender_screen.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_name_screen.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_phone_number.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_university_screen.dart';
-import 'package:sese/app/modules/edit_profile/screens/user_profile_screen.dart';
+import 'package:sese/app/modules/edit_profile/screens/edit_user_profile_screen.dart';
 import 'package:sese/app/modules/home/home_binding.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
 import 'package:sese/app/modules/login/login_binding.dart';
@@ -21,6 +21,8 @@ import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
 import 'package:sese/app/modules/post_product/screens/post_product_begin.dart';
+import 'package:sese/app/modules/user_profile/screens/user_profile_screen.dart';
+import 'package:sese/app/modules/user_profile/user_profile_binding.dart';
 
 import 'package:sese/app/routes/app_routes.dart';
 
@@ -144,6 +146,14 @@ abstract class AppPages {
       transition: Transition.leftToRight,
       page: () => ChangeLinkAccountScreen(),
       binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    //user profile
+    GetPage(
+      name: AppRoutes.userProfile,
+      transition: Transition.leftToRight,
+      page: () => UserProfileScreen(),
+      binding: UserProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
     ////post product
