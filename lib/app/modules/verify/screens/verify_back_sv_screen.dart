@@ -53,7 +53,7 @@ class VerifyBackSvScreen extends StatelessWidget {
                   style: CustomTextStyle.t4(Colors.black),
                 ),
                 const SizedBox(
-                  height: 71,
+                  height: 20,
                 ),
                 Center(
                   child: Container(
