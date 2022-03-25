@@ -8,6 +8,7 @@ import 'package:sese/app/modules/edit_profile/screens/edit_name.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_phone_number.dart';
 import 'package:sese/app/modules/edit_profile/screens/user_profile.dart';
 import 'package:sese/app/modules/home/home_binding.dart';
+import 'package:sese/app/modules/home/screens/home_all_category_screen.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
 import 'package:sese/app/modules/login/login_binding.dart';
 import 'package:sese/app/modules/login/screens/login_begin_screen.dart';
@@ -40,12 +41,20 @@ import '../modules/login/screens/login_interest_screen.dart';
 
 abstract class AppPages {
   static final List<GetPage> pages = [
+    //home page
     GetPage(
       name: AppRoutes.home,
       page: () => HomeScreen(),
       transition: Transition.leftToRight,
       binding: HomeBinding(),
     ),
+    GetPage(
+      name: AppRoutes.homeAllCategory,
+      page: () => HomeAllCategoryScreen(),
+      transition: Transition.leftToRight,
+      binding: HomeBinding(),
+    ),
+    //auth page
     GetPage(
       name: AppRoutes.authBegin,
       transition: Transition.leftToRight,

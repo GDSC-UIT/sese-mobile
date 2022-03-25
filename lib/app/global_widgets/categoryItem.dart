@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -9,13 +10,13 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-                color: AppColors.mainHomeColor,
+                color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: const [
                   BoxShadow(
@@ -37,9 +38,10 @@ class CategoryItem extends StatelessWidget {
             content,
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 12,
-              color: AppColors.lightTextColor,
+            style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.w600,
+              fontSize: 9,
+              color: AppColors.textHomeColor,
             ),
           )
         ],
