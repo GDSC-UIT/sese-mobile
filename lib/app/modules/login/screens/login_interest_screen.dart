@@ -22,7 +22,7 @@ class LoginInterestScreen extends StatelessWidget {
     var _screenHeight = MediaQuery.of(context).size.height;
     var _screenWidth = MediaQuery.of(context).size.width;
     loginController.listOfInterest.value = categories;
-    print('list of interest2: ${loginController.listOfInterest.value}');
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

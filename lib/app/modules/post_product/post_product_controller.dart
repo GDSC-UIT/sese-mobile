@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,8 +10,26 @@ import 'package:sese/app/routes/app_routes.dart';
 class PostProductController extends GetxController {
   //Rx<File>? image = File('').obs;
 
+  //varible to store data
+  String idCategory = '';
+  String idSubcategory = '';
   var imageFileList = [].obs;
+  RxInt quantity = 5.obs;
+  //varible to controller input
+  var categoryInputController = TextEditingController().obs;
+  var subCategoryInputController = TextEditingController().obs;
+  var priceInputController = TextEditingController().obs;
+  var nameProductInputController = TextEditingController().obs;
+  var descriptionProductInputController = TextEditingController().obs;
+  var provinceProductLoCationInputController = TextEditingController().obs;
+  var districtProductLoCationInputController = TextEditingController().obs;
+  var wardsProductLoCationInputController = TextEditingController().obs;
 
+  //variable to check toggle
+  var isNegotiable = true.obs;
+  var isOpenedCategory = false.obs;
+  var isOpenedSubCategory = false.obs;
+  //method
   Future pickImage(ImageSource source) async {
     try {
       final imagesTem = await ImagePicker().pickMultiImage();

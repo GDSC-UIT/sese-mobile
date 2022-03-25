@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/modules/edit_profile/widgets/edit_card.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 class EditUserProfileScreen extends StatelessWidget {
   const EditUserProfileScreen({Key? key}) : super(key: key);
@@ -23,47 +24,82 @@ class EditUserProfileScreen extends StatelessWidget {
         elevation: 0.5,
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 47),
-            child: Center(
-              child: Stack(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  overflow: Overflow.visible,
-                  children: const [
-                    SizedBox(
-                      width: 96,
-                      height: 96,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/avatar.png'),
-                        radius: 50,
-                      ),
-                    ),
-                    Positioned(
-                      child: CircleAvatar(
-                        radius: 13,
-                        backgroundColor: AppColors.backIcon,
-                        child: Icon(
-                          Icons.photo_camera,
-                          color: Colors.white,
-                          size: 15,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 47),
+              child: Container(
+                child: Center(
+                  child: Stack(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      overflow: Overflow.visible,
+                      children: [
+                        const SizedBox(
+                          width: 96,
+                          height: 96,
+                          child: CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/images/avatar.png'),
+                            radius: 50,
+                          ),
                         ),
-                      ),
-                      bottom: -8,
-                      right: 0,
-                    )
-                  ]),
+                        Positioned(
+                          child: InkWell(
+                            child: const CircleAvatar(
+                              radius: 13,
+                              backgroundColor: AppColors.backIcon,
+                              child: Icon(
+                                Icons.photo_camera,
+                                color: Colors.white,
+                                size: 15,
+                              ),
+                            ),
+                            onTap: () {},
+                          ),
+                          bottom: -8,
+                          right: 0,
+                        )
+                      ]),
+                ),
+              ),
             ),
-          ),
-          const EditCard(lable: "Tên", userInfo: "meow"),
-          const EditCard(lable: "Ngày sinh", userInfo: "22/02/2022"),
-          const EditCard(lable: "Giới tính", userInfo: "Nam"),
-          const EditCard(lable: "Đại học", userInfo: "VNU-UIT"),
-          const EditCard(lable: "Phone", userInfo: "*****897"),
-          const EditCard(lable: "Email", userInfo: "abc@gmail.com"),
-          const EditCard(lable: "Tài khoản liên kết", userInfo: ""),
-        ],
+            const EditCard(
+              lable: "Tên",
+              userInfo: "meow",
+              toPage: AppRoutes.editName,
+            ),
+            const EditCard(
+              lable: "Ngày sinh",
+              userInfo: "22/02/2022",
+              toPage: AppRoutes.editDateOfBirth,
+            ),
+            const EditCard(
+              lable: "Giới tính",
+              userInfo: "Nam",
+              toPage: AppRoutes.editGender,
+            ),
+            const EditCard(
+              lable: "Đại học",
+              userInfo: "VNU-UIT",
+              toPage: AppRoutes.editUniversity,
+            ),
+            const EditCard(
+                lable: "Phone",
+                userInfo: "*****897",
+                toPage: AppRoutes.editPhoneNumber),
+            const EditCard(
+                lable: "Email",
+                userInfo: "abc@gmail.com",
+                toPage: AppRoutes.editEmail),
+            const EditCard(
+              lable: "Tài khoản liên kết",
+              userInfo: "",
+              toPage: AppRoutes.editLinkAccount,
+            ),
+          ],
+        ),
       ),
     );
   }

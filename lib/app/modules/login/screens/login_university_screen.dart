@@ -93,6 +93,7 @@ class LoginUniversityScreen extends StatelessWidget {
               onPress: () async {
                 if (loginController.schoolInputController.value.value.text !=
                     '') {
+                  HttpService.showLoadingIndecator();
                   var response = await HttpService.getRequest(
                       UrlValue.appUrlGetAllCategories);
                   var listInterests = json.decode(response.body)['categories'];

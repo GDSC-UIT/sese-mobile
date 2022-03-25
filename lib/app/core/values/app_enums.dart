@@ -3,3 +3,8 @@ enum LoginMethod {
   google,
   none,
 }
+
+enum TypeCategory {
+  category,
+  subCategory,
+}

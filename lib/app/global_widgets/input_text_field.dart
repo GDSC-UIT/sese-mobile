@@ -7,6 +7,7 @@ class InPutTextField extends StatelessWidget {
       required this.hintText,
       required this.isEnable,
       required this.controller,
+      this.typeKeyBoard,
       this.suffixIcon,
       this.prefixicon,
       this.textStyle,
@@ -21,6 +22,7 @@ class InPutTextField extends StatelessWidget {
   final TextStyle? textStyle;
   final Function? onChange;
   final int? maxLine;
+  final TextInputType? typeKeyBoard;
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -29,6 +31,7 @@ class InPutTextField extends StatelessWidget {
       enabled: isEnable,
       autofocus: isEnable,
       style: textStyle,
+      keyboardType: typeKeyBoard,
       decoration: InputDecoration(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),

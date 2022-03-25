@@ -19,8 +19,15 @@ abstract class AppRoutes {
   static const editDateOfBirth = '/edit/dateOfBirth';
   static const editPhoneNumber = '/edit/phoneNumber';
   static const editLinkAccount = '/edit/linkAccount';
+  static const editUniversity = '/edit/university';
+
   //post product route
   static const postProductBegin = '/post/product/begin';
   static const postProductInfo = '/post/product/info';
-  static const postProductquantity = '/post/product/quantity';
+  static const postProductPrice = '/post/product/price';
+  static const postProductCategory = '/post/product/category';
+  static const postProductLocation = '/post/product/location';
+  static const postProductSuccess = '/post/product/success';
+  static const postProductFail = '/post/product/fail';
+  static const postProductWaiting = '/post/product/waiting';
 }
