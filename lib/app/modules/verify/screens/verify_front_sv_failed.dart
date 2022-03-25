@@ -10,27 +10,20 @@ import '../../../global_widgets/app_button.dart';
 import '../verify_controller.dart';
 import '../widgets/image_verify.dart';
 
-class VerifyFrontSvFailedScreen extends StatefulWidget {
-  const VerifyFrontSvFailedScreen({Key? key}) : super(key: key);
-
-  @override
-  State<VerifyFrontSvFailedScreen> createState() =>
-      _VerifyFrontSvFailedScreenState();
-}
-
-class _VerifyFrontSvFailedScreenState extends State<VerifyFrontSvFailedScreen> {
+class VerifyFrontSvFailedScreen extends StatelessWidget {
+  VerifyFrontSvFailedScreen({Key? key}) : super(key: key);
   VerifyController verifyController = Get.find();
-
-  void showMessage() {
-    showDialog(
-      context: context,
-      builder: (_) => const DialogFailed(),
-      barrierDismissible: true,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
+    void showMessage() {
+      showDialog(
+        context: context,
+        builder: (_) => const DialogFailed(),
+        barrierDismissible: true,
+      );
+    }
+
     Future.delayed(Duration.zero, () => showMessage());
     return SafeArea(
       child: Scaffold(

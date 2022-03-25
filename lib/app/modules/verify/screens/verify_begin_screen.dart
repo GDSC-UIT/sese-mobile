@@ -5,11 +5,12 @@ import 'package:sese/app/routes/app_routes.dart';
 
 import '../../../core/themes/app_theme.dart';
 import '../../../core/values/app_colors.dart';
-import '../../../core/values/assets.gen.dart';
 import '../../../global_widgets/app_button.dart';
 
 class VerifyBeginScreen extends StatelessWidget {
   final VerifyController verifyController = Get.put(VerifyController());
+
+  VerifyBeginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

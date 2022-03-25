@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,17 +9,11 @@ import 'package:sese/app/modules/verify/verify_controller.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/assets.gen.dart';
 import '../../../global_widgets/app_button.dart';
-import '../../../routes/app_routes.dart';
 
-class VerifyFrontSvScreen extends StatefulWidget {
-  const VerifyFrontSvScreen({Key? key}) : super(key: key);
-
-  @override
-  State<VerifyFrontSvScreen> createState() => _VerifyFrontSvScreenState();
-}
-
-class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
+class VerifyFrontSvScreen extends StatelessWidget {
   VerifyController verifyController = Get.find();
+
+  VerifyFrontSvScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
