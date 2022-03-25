@@ -72,28 +72,32 @@ class VerifySuccessScreen extends StatelessWidget {
                 AppButton(
                   onPress: () async {
                     try {
+                      print(
+                          'pathImge:${verifyController.frontImage.value.path}');
                       verifyController.frontImageUrl =
                           await UploadImageService.uploadImageToFirebase(
                               File(verifyController.frontImage.value.path),
                               "verify_images");
+                      print('frontImg:${verifyController.frontImageUrl}');
                       verifyController.backImageUrl =
                           await UploadImageService.uploadImageToFirebase(
                               File(verifyController.backImage.value.path),
                               "verify_images");
+                      print('backImg:${verifyController.backImageUrl}');
                       Map<String, dynamic> userVerifyInfo = {
                         "type": verifyController.typeCardEnum,
                         "frontImg": verifyController.frontImageUrl,
                         "backImg": verifyController.backImageUrl,
                       };
-                      await HttpService.putRequest(
+                      print(userVerifyInfo);
+                      var response = await HttpService.putRequest(
                         body: jsonEncode(
                           userVerifyInfo,
                         ),
                         url: UrlValue.appUrlVerifyUser,
                       );
-                      print(verifyController.typeCardEnum);
-                      print(verifyController.frontImageUrl);
-                      print(verifyController.backImageUrl);
+
+                      print("phát covid: ${response.body}");
                       Get.toNamed(AppRoutes.testImage);
                     } catch (e) {
                       Get.snackbar('Error', 'Something went wrong');
