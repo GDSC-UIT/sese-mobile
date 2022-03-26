@@ -10,6 +10,8 @@ import '../../../global_widgets/app_button.dart';
 class VerifyBeginScreen extends StatelessWidget {
   final VerifyController verifyController = Get.put(VerifyController());
 
+  VerifyBeginScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var _screenHeight = MediaQuery.of(context).size.height;

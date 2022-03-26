@@ -6,11 +6,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sese/app/core/values/app_enums.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
 
-import '../../data/services/upload_image_service.dart';
 import '../../routes/app_routes.dart';
 
 class VerifyController extends GetxController {
-  Rx<File> image = File(Assets.imagesDoDienTu.path).obs;
+  Rx<File> image = File(Assets.imagesCalendarIcon.path).obs;
   Rx<File> frontImage = File(Assets.imagesDoDienTu.path).obs;
   Rx<File> backImage = File(Assets.imagesDoDienTu.path).obs;
   String frontImageUrl = '';
@@ -50,6 +49,7 @@ class VerifyController extends GetxController {
       Get.toNamed(AppRoutes.verifyFrontSvSuccess);
       frontImage.value = imageTemp;
     } on PlatformException catch (e) {
+      print('Lấy ảnh không thành công: $e');
       Get.toNamed(AppRoutes.verifyFrontSvFailed);
     }
   }

@@ -28,7 +28,7 @@ class VerifySuccessScreen extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 259,
+                  height: 200,
                 ),
                 Container(
                   height: 110,
