@@ -34,6 +34,7 @@ class _VerifyBackSvFailedScreenState extends State<VerifyBackSvFailedScreen> {
     Future.delayed(Duration.zero, () => showMessage());
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: InkWell(

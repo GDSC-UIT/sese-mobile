@@ -24,6 +24,7 @@ class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: InkWell(

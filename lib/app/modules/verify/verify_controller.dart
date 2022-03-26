@@ -13,8 +13,8 @@ class VerifyController extends GetxController {
   Rx<File> image = File(Assets.imagesDoDienTu.path).obs;
   Rx<File> frontImage = File(Assets.imagesDoDienTu.path).obs;
   Rx<File> backImage = File(Assets.imagesDoDienTu.path).obs;
-  String? frontImageUrl;
-  String? backImageUrl;
+  String frontImageUrl = '';
+  String backImageUrl = '';
 
   String typeCard = "";
   late TypeCard typeCardEnum;

@@ -15,6 +15,7 @@ class VerifyBeginScreen extends StatelessWidget {
     var _screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.symmetric(
