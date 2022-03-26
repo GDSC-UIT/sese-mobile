@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/modules/edit_profile/widgets/edit_card.dart';
@@ -17,7 +18,9 @@ class EditUserProfileScreen extends StatelessWidget {
             color: AppColors.backIcon,
             size: 30,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text("Thông tin cá nhân",
             style: CustomTextStyle.h4(AppColors.primaryColor)),
@@ -66,35 +69,35 @@ class EditUserProfileScreen extends StatelessWidget {
               ),
             ),
             const EditCard(
-              lable: "Tên",
+              label: "Tên",
               userInfo: "meow",
               toPage: AppRoutes.editName,
             ),
             const EditCard(
-              lable: "Ngày sinh",
+              label: "Ngày sinh",
               userInfo: "22/02/2022",
               toPage: AppRoutes.editDateOfBirth,
             ),
             const EditCard(
-              lable: "Giới tính",
+              label: "Giới tính",
               userInfo: "Nam",
               toPage: AppRoutes.editGender,
             ),
             const EditCard(
-              lable: "Đại học",
+              label: "Đại học",
               userInfo: "VNU-UIT",
               toPage: AppRoutes.editUniversity,
             ),
             const EditCard(
-                lable: "Phone",
+                label: "Phone",
                 userInfo: "*****897",
                 toPage: AppRoutes.editPhoneNumber),
             const EditCard(
-                lable: "Email",
+                label: "Email",
                 userInfo: "abc@gmail.com",
                 toPage: AppRoutes.editEmail),
             const EditCard(
-              lable: "Tài khoản liên kết",
+              label: "Tài khoản liên kết",
               userInfo: "",
               toPage: AppRoutes.editLinkAccount,
             ),

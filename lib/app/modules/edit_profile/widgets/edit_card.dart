@@ -4,12 +4,12 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class EditCard extends StatelessWidget {
-  final String lable;
+  final String label;
   final String userInfo;
   final String toPage;
   const EditCard(
       {Key? key,
-      required this.lable,
+      required this.label,
       required this.userInfo,
       required this.toPage})
       : super(key: key);
@@ -31,7 +31,7 @@ class EditCard extends StatelessWidget {
           Expanded(
               flex: 3,
               child: Text(
-                lable,
+                label,
                 style: CustomTextStyle.t6(AppColors.darkGreyColor),
               )),
           Expanded(
