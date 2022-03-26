@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/modules/edit_profile/widgets/edit_card.dart';
@@ -17,7 +18,9 @@ class EditUserProfileScreen extends StatelessWidget {
             color: AppColors.backIcon,
             size: 30,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text("Thông tin cá nhân",
             style: CustomTextStyle.h4(AppColors.primaryColor)),

@@ -3,21 +3,21 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class ColumnText extends StatelessWidget {
-  final String lable;
+  final String label;
   final String number;
-  const ColumnText({Key? key, required this.lable, required this.number})
+  const ColumnText({Key? key, required this.label, required this.number})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
         child: Column(children: [
       Text(
-        lable,
+        number,
         style: CustomTextStyle.t3(AppColors.primaryColor),
       ),
       Text(
-        "Folowers",
+        label,
         style: CustomTextStyle.t6(AppColors.darkGreyColor),
       )
     ]));

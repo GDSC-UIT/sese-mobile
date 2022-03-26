@@ -26,5 +26,7 @@ abstract class AppRoutes {
 
   //user profile
   static const userProfile = '/user/profile';
-  
+  static const userSettings = '/user/settings';
+  static const userSettingLanguage = '/user/settings/language';
+  static const userSettingAddresses = '/user/settings/addresses';
 }
