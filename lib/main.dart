@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeService.theme,
-      initialRoute: AppRoutes.homeAllCategory,
+      initialRoute: AppRoutes.home,
       locale: LocalizationService.locale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),

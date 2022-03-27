@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sese/app/data/models/product_model.dart';
-import 'package:sese/app/global_widgets/app_product_item.dart';
+import 'package:sese/app/global_widgets/product_item_list_view.dart';
 
-class AppRecommendProductListView extends StatelessWidget {
-  AppRecommendProductListView({Key? key, required this.scrollController})
+class HorizontalProductListView extends StatelessWidget {
+  HorizontalProductListView({Key? key, required this.scrollController})
       : super(key: key);
   final ScrollController scrollController;
 
-  final List<ProductModel> recommendProductData = [
+  final List<ProductModel> productData = [
     ProductModel(
         address: 'Hồ Chí Minh',
         imageUrl:
@@ -71,8 +71,8 @@ class AppRecommendProductListView extends StatelessWidget {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          ProductModel product = recommendProductData[index];
-          return AppProductItem(
+          ProductModel product = productData[index];
+          return ProductItemListView(
             address: product.address,
             imageUrl: product.imageUrl,
             name: product.name,
@@ -81,7 +81,7 @@ class AppRecommendProductListView extends StatelessWidget {
             type: product.type,
           );
         },
-        itemCount: recommendProductData.length,
+        itemCount: productData.length,
       ),
     );
   }

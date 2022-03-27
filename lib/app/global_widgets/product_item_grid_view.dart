@@ -4,8 +4,8 @@ import 'package:sese/app/core/values/app_colors.dart';
 
 import '../core/values/assets.gen.dart';
 
-class AppProductItem extends StatelessWidget {
-  AppProductItem({
+class ProductItemGridView extends StatelessWidget {
+  ProductItemGridView({
     Key? key,
     required this.imageUrl,
     required this.name,
@@ -24,9 +24,7 @@ class AppProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 15),
       padding: const EdgeInsets.all(5),
-      width: 129,
       decoration: BoxDecoration(
         border: Border.all(
           color: AppColors.neutralGrey,
@@ -36,9 +34,12 @@ class AppProductItem extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Image.network(
-            imageUrl,
-            height: 97,
+          SizedBox(
+            height: 150,
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(
             height: 6,
@@ -70,9 +71,13 @@ class AppProductItem extends StatelessWidget {
                   const SizedBox(
                     width: 4,
                   ),
-                  Text(
-                    userName,
-                    style: CustomTextStyle.t10(AppColors.primaryColor),
+                  Flexible(
+                    child: Text(
+                      userName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: CustomTextStyle.t10(AppColors.primaryColor),
+                    ),
                   ),
                 ],
               ),
@@ -105,11 +110,13 @@ Widget IconText(IconData icon, String text) {
         color: AppColors.neutralGrey,
       ),
       const SizedBox(width: 7),
-      Text(
-        text,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: CustomTextStyle.t10(AppColors.neutralGrey),
+      Flexible(
+        child: Text(
+          text,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: CustomTextStyle.t10(AppColors.neutralGrey),
+        ),
       ),
     ],
   );

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sese/app/data/models/product_model.dart';
-import 'package:sese/app/global_widgets/app_product_item.dart';
+import 'package:sese/app/global_widgets/product_item_grid_view.dart';
 
-class AppNewProductListView extends StatelessWidget {
-  AppNewProductListView({Key? key, required this.scrollController})
-      : super(key: key);
-  final ScrollController scrollController;
+import '../data/models/product_model.dart';
 
-  final List<ProductModel> newProductData = [
+class ProductGridView extends StatelessWidget {
+  ProductGridView({Key? key}) : super(key: key);
+  final List<ProductModel> productData = [
     ProductModel(
         address: 'Hồ Chí Minh',
         imageUrl:
@@ -63,26 +61,28 @@ class AppNewProductListView extends StatelessWidget {
         userName: "duong_dep_trai",
         type: 'Đồ dùng học tập'),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 15),
-      child: ListView.builder(
-        controller: scrollController,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          ProductModel product = newProductData[index];
-          return AppProductItem(
-            address: product.address,
-            imageUrl: product.imageUrl,
-            name: product.name,
-            userName: product.userName,
-            timeUpload: product.timeUpload,
-            type: product.type,
-          );
-        },
-        itemCount: newProductData.length,
+    return GridView.builder(
+      itemCount: productData.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 0.67,
       ),
+      itemBuilder: (context, index) {
+        ProductModel product = productData[index];
+        return ProductItemGridView(
+          address: product.address,
+          imageUrl: product.imageUrl,
+          name: product.name,
+          userName: product.userName,
+          timeUpload: product.timeUpload,
+          type: product.type,
+        );
+      },
     );
   }
 }

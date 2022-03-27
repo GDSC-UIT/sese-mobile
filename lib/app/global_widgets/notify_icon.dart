@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
-class ShoppingCart extends StatelessWidget {
-  ShoppingCart(this.notifi, {Key? key}) : super(key: key);
-  final notifi;
+class NotifyIcon extends StatelessWidget {
+  NotifyIcon(this.notifi, {Key? key}) : super(key: key);
+  final int notifi;
 
   @override
   Widget build(BuildContext context) {
