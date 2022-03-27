@@ -22,6 +22,7 @@ import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
 import 'package:sese/app/modules/post_product/screens/post_product_begin.dart';
 import 'package:sese/app/modules/user_profile/screens/language_screen.dart';
+import 'package:sese/app/modules/user_profile/screens/new_address_screen.dart';
 import 'package:sese/app/modules/user_profile/screens/setting_screen.dart';
 import 'package:sese/app/modules/user_profile/screens/user_addresses_screen.dart';
 import 'package:sese/app/modules/user_profile/screens/user_profile_screen.dart';
@@ -177,6 +178,13 @@ abstract class AppPages {
       name: AppRoutes.userSettingAddresses,
       transition: Transition.leftToRight,
       page: () => UserAddressesScreen(),
+      binding: UserProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.userNewAddress,
+      transition: Transition.leftToRight,
+      page: () => NewAddressScreen(),
       binding: UserProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
