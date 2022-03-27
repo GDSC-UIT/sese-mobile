@@ -35,108 +35,107 @@ class UserProfileScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0.3,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Center(
-                    child: SizedBox(
-                      width: 96,
-                      height: 96,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/avatar.png'),
-                        radius: 50,
-                      ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Center(
+                  child: SizedBox(
+                    width: 96,
+                    height: 96,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage('assets/images/avatar.png'),
+                      radius: 50,
                     ),
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            ColumnText(label: "Products", number: "10"),
-                            ColumnText(label: "Followers", number: "12"),
-                            ColumnText(label: "Following", number: "2"),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Expanded(
-                              flex: 1,
-                              child: ColumnText(
-                                  label: "Review", number: "4.0/5.0"),
-                            ),
-                            Expanded(
-                                flex: 2,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: AppButton(
-                                    onPress: () {
-                                      Get.toNamed(AppRoutes.editUserProfile);
-                                    },
-                                    text: "EDIT PROFILE",
-                                    textStyle: CustomTextStyle.t8(Colors.white),
-                                    backgroundColor: AppColors.primaryColor,
-                                  ),
-                                )),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          ColumnText(label: "Products", number: "10"),
+                          ColumnText(label: "Followers", number: "12"),
+                          ColumnText(label: "Following", number: "2"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 1,
+                            child:
+                                ColumnText(label: "Review", number: "4.0/5.0"),
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: AppButton(
+                                  onPress: () {
+                                    Get.toNamed(AppRoutes.editUserProfile);
+                                  },
+                                  text: "EDIT PROFILE",
+                                  textStyle: CustomTextStyle.t8(Colors.white),
+                                  backgroundColor: AppColors.primaryColor,
+                                ),
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+              border: Border.symmetric(
+                horizontal: BorderSide(width: 1, color: Colors.black12),
               ),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                border: Border.symmetric(
-                  horizontal: BorderSide(width: 1, color: Colors.black12),
-                ),
-              ),
-              height: 60,
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextButton(
-                    onPressed: () {},
-                    child: Center(
-                        child: Text(
-                      "Bought",
-                      style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                    )),
+            height: 60,
+            child: Row(
+              children: [
+                Expanded(
+                    child: TextButton(
+                  onPressed: () {},
+                  child: Center(
+                      child: Text(
+                    "Bought",
+                    style: CustomTextStyle.t4(AppColors.darkGreyColor),
                   )),
-                  Expanded(
-                      child: TextButton(
-                    onPressed: () {},
-                    child: Center(
-                        child: Text(
-                      "Listing",
-                      style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                    )),
+                )),
+                Expanded(
+                    child: TextButton(
+                  onPressed: () {},
+                  child: Center(
+                      child: Text(
+                    "Listing",
+                    style: CustomTextStyle.t4(AppColors.darkGreyColor),
                   )),
-                ],
-              ),
+                )),
+              ],
             ),
-            GridView.builder(
-                itemCount: 3,
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 2 / 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return ProductCard();
-                })
-          ],
-        ),
+          ),
+          GridView.builder(
+              itemCount: 6,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2 / 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return ProductCard();
+              })
+        ],
       ),
       bottomNavigationBar: AppBottomNavigationBar(),
     );
