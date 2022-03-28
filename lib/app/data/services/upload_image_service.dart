@@ -16,9 +16,8 @@ class UploadImageService {
       firebase_storage.UploadTask uploadTask =
           firebaseStorageRef.putFile(image);
       firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
-      taskSnapshot.ref.getDownloadURL().then(
-            (value) => value,
-          );
+      String value = await taskSnapshot.ref.getDownloadURL();
+      return value;
     } catch (e) {
       Get.snackbar('Error occurs when upload image', e.toString());
     }

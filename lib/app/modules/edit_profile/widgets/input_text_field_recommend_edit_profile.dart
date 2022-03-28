@@ -1,53 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 
-class InPutTextField extends StatelessWidget {
-  InPutTextField(
-      {Key? key,
-      required this.hintText,
-      required this.isEnable,
-      required this.controller,
-      this.typeKeyBoard,
-      this.suffixIcon,
-      this.prefixicon,
-      this.textStyle,
-      this.onChange,
-      this.maxLine})
-      : super(key: key);
+class InPutTextFieldRecommendEditProfile extends StatelessWidget {
+  InPutTextFieldRecommendEditProfile({
+    Key? key,
+    required this.hintText,
+    required this.controller,
+    this.textStyle,
+    this.onChange,
+  }) : super(key: key);
   final String hintText;
-  final Widget? suffixIcon;
-  final Widget? prefixicon;
   final TextEditingController controller;
-  final bool isEnable;
   final TextStyle? textStyle;
   final Function? onChange;
-  final int? maxLine;
-  final TextInputType? typeKeyBoard;
+  final EditProfileController editProfileController = Get.find();
   @override
   Widget build(BuildContext context) {
     return TextField(
-      maxLines: maxLine ?? 1,
+      onChanged: onChange != null
+          ? (value) {
+              editProfileController.searchKey.value = value;
+              onChange!();
+            }
+          : (value) {},
       controller: controller,
-      enabled: isEnable,
-      autofocus: isEnable,
-      style: textStyle,
-      keyboardType: typeKeyBoard,
+      autofocus: true,
+      style: const TextStyle(color: AppColors.darkGreyColor),
       decoration: InputDecoration(
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-        suffixIcon: suffixIcon,
-        prefixIcon: prefixicon,
         hintText: hintText,
-        hintStyle: textStyle,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreen,
             width: 1.5,
           ),
           borderRadius: BorderRadius.all(
             Radius.circular(8),
           ),
         ),
+        hintStyle: textStyle,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.greenColor,

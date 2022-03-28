@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/core/values/app_constant.dart';
+import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 
-class EditPhoneNumber extends StatefulWidget {
-  const EditPhoneNumber({Key? key}) : super(key: key);
+class EditPhoneNumberScreen extends StatefulWidget {
+  const EditPhoneNumberScreen({Key? key}) : super(key: key);
 
   @override
-  State<EditPhoneNumber> createState() => _EditPhoneNumberState();
+  State<EditPhoneNumberScreen> createState() => _EditPhoneNumberScreenState();
 }
 
-class _EditPhoneNumberState extends State<EditPhoneNumber> {
+class _EditPhoneNumberScreenState extends State<EditPhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
@@ -24,7 +27,9 @@ class _EditPhoneNumberState extends State<EditPhoneNumber> {
             color: AppColors.backIcon,
             size: 30,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text("Số điện thoại",
             style: CustomTextStyle.h4(AppColors.primaryColor)),
@@ -55,6 +60,15 @@ class _EditPhoneNumberState extends State<EditPhoneNumber> {
               borderRadius: BorderRadius.circular(5),
             ),
           ),
+          const SizedBox(
+                height: AppConstant.gapInputAppButton,
+              ),
+          AppButton(
+                onPress: () {},
+                text: "LƯU THAY ĐỔI",
+                textStyle: CustomTextStyle.t8(Colors.white),
+                backgroundColor: AppColors.primaryColor,
+              ),
         ]),
       ),
     );

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class EditCard extends StatelessWidget {
-  final String lable;
+  final String label;
   final String userInfo;
-  const EditCard({Key? key, required this.lable, required this.userInfo})
+  final String toPage;
+  const EditCard(
+      {Key? key,
+      required this.label,
+      required this.userInfo,
+      required this.toPage})
       : super(key: key);
 
   @override
@@ -25,7 +31,7 @@ class EditCard extends StatelessWidget {
           Expanded(
               flex: 3,
               child: Text(
-                lable,
+                label,
                 style: CustomTextStyle.t6(AppColors.darkGreyColor),
               )),
           Expanded(
@@ -40,10 +46,12 @@ class EditCard extends StatelessWidget {
             child: TextButton(
               child: const Icon(
                 Icons.arrow_forward_ios,
-                color: AppColors.backIcon,
+                color: AppColors.greenColor,
                 size: 14,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(toPage);
+              },
             ),
           ),
         ],

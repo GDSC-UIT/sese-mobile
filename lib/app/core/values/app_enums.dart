@@ -3,4 +3,9 @@ enum LoginMethod {
   google,
   none,
 }
-enum TypeCard { student_card, identity_card, citizen_identity_card }
+
+enum TypeCategory {
+  category,
+  subCategory,
+  params,
+}

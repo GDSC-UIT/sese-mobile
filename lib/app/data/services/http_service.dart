@@ -1,5 +1,7 @@
-import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 
 class HttpService {
@@ -29,5 +31,14 @@ class HttpService {
         'Authorization': 'Bearer ${AuthService.instance.accessToken}',
       },
     );
+  }
+
+  static showLoadingIndecator() {
+    Get.defaultDialog(
+        title: 'Loading...',
+        content: const CircularProgressIndicator(
+          color: AppColors.primaryColor,
+          backgroundColor: AppColors.cloadDarkColor,
+        ));
   }
 }
