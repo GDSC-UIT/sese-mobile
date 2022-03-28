@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 
 class Filter extends StatelessWidget {
@@ -38,15 +39,22 @@ class Filter extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  TextField("Nơi bán"),
+                  TextField(
+                      "Nơi bán", "TP Hồ Chí Minh", homeController.seller.value),
                   (homeController.typeScreen == "Sản phẩm mới" ||
                           homeController.typeScreen == "Gợi ý")
                       ? Container()
-                      : TextField("Danh mục"),
-                  TextField("Tình trạng"),
-                  TextField("Người bán"),
-                  TextField("Thời gian đăng"),
-                  TextField("Trường đại học"),
+                      : TextField(
+                          "Danh mục", "Quần áo", homeController.seller.value),
+                  TextField("Tình trạng", "Mới", homeController.seller.value),
+                  TextField(
+                      "Người bán", "phát covid", homeController.seller.value),
+                  TextField("Thời gian đăng", "1 giờ trước",
+                      homeController.seller.value),
+                  TextField(
+                      "Trường đại học",
+                      "Trường đại học Công nghệ Thông tin",
+                      homeController.seller.value),
                   (homeController.typeScreen == "Sản phẩm mới" ||
                           homeController.typeScreen == "Gợi ý")
                       ? Flexible(child: Container())
@@ -91,7 +99,8 @@ class Filter extends StatelessWidget {
   }
 }
 
-Widget TextField(String title) {
+Widget TextField(String title, String hintText,
+    TextEditingController textEditingController) {
   return Flexible(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,11 +111,14 @@ Widget TextField(String title) {
           style: CustomTextStyle.t3(Colors.black),
         ),
         Flexible(child: Container()),
-        AppButton(
-          onPress: () {},
-          text: "alo alo",
-          backgroundColor: AppColors.primaryColor,
-        ),
+        InPutTextField(
+            hintText: hintText,
+            isEnable: false,
+            suffixIcon: const Icon(
+              Icons.keyboard_arrow_down_outlined,
+              color: AppColors.backIcon,
+            ),
+            controller: textEditingController),
         Flexible(child: Container()),
       ],
     ),

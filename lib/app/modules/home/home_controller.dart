@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 
 class HomeController extends GetxController {
   var pageIdx = 0.obs;
   var sliderIdx = 0.obs;
+  var seller = TextEditingController().obs;
+
   String typeScreen = "";
 
   final List<String> sliderImages = [

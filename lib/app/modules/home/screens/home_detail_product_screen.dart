@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/data/models/product_model.dart';
 
-import '../../../core/themes/app_theme.dart';
 import '../../../core/values/app_colors.dart';
 
 class HomeDetailProductScreen extends StatelessWidget {
