@@ -7,23 +7,19 @@ import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/modules/verify/verify_controller.dart';
 
 import '../../../core/values/app_colors.dart';
+import '../../../core/values/assets.gen.dart';
 import '../../../global_widgets/app_button.dart';
-import '../../../routes/app_routes.dart';
 
-class VerifyFrontSvScreen extends StatefulWidget {
-  const VerifyFrontSvScreen({Key? key}) : super(key: key);
-
-  @override
-  State<VerifyFrontSvScreen> createState() => _VerifyFrontSvScreenState();
-}
-
-class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
+class VerifyFrontSvScreen extends StatelessWidget {
   VerifyController verifyController = Get.find();
+
+  VerifyFrontSvScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: InkWell(
@@ -60,7 +56,7 @@ class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
                   style: CustomTextStyle.t4(Colors.black),
                 ),
                 const SizedBox(
-                  height: 71,
+                  height: 20,
                 ),
                 Center(
                   child: Container(
@@ -78,9 +74,8 @@ class _VerifyFrontSvScreenState extends State<VerifyFrontSvScreen> {
                   height: 53,
                 ),
                 AppButton(
-                  onPress: () async {
-                    await verifyController.pickFrontImage(ImageSource.camera);
-                    Get.toNamed(AppRoutes.verifyFrontSvSuccess);
+                  onPress: () {
+                    verifyController.pickFrontImage(ImageSource.camera);
                   },
                   text: "CHỤP ẢNH",
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor),

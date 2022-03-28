@@ -7,16 +7,18 @@ import '../../../core/values/app_colors.dart';
 import '../../../core/values/app_constant.dart';
 import '../../../core/values/assets.gen.dart';
 import '../../../global_widgets/app_button.dart';
-import '../../../routes/app_routes.dart';
 import '../verify_controller.dart';
 
 class VerifyBackSvScreen extends StatelessWidget {
   final VerifyController verifyController = Get.find();
 
+  VerifyBackSvScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: InkWell(
@@ -53,7 +55,7 @@ class VerifyBackSvScreen extends StatelessWidget {
                   style: CustomTextStyle.t4(Colors.black),
                 ),
                 const SizedBox(
-                  height: 71,
+                  height: 20,
                 ),
                 Center(
                   child: Container(

@@ -12,31 +12,25 @@ import '../../../core/values/app_colors.dart';
 import '../../../core/values/app_constant.dart';
 import '../widgets/image_verify.dart';
 
-class VerifyFrontSvSuccessScreen extends StatefulWidget {
-  const VerifyFrontSvSuccessScreen({Key? key}) : super(key: key);
-
-  @override
-  State<VerifyFrontSvSuccessScreen> createState() =>
-      _VerifyFrontSvSuccessScreenState();
-}
-
-class _VerifyFrontSvSuccessScreenState
-    extends State<VerifyFrontSvSuccessScreen> {
+class VerifyFrontSvSuccessScreen extends StatelessWidget {
   VerifyController verifyController = Get.find();
 
-  void showMessage() {
-    showDialog(
-      context: context,
-      builder: (_) => DialogSuccess(),
-      barrierDismissible: true,
-    );
-  }
+  VerifyFrontSvSuccessScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    void showMessage() {
+      showDialog(
+        context: context,
+        builder: (_) => DialogSuccess(),
+        barrierDismissible: true,
+      );
+    }
+
     Future.delayed(Duration.zero, () => showMessage());
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: InkWell(
