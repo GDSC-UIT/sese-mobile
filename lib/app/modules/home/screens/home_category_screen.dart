@@ -4,6 +4,8 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/search_input.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/global_widgets/product_grid_view.dart';
+import 'package:sese/app/modules/home/screens/home_all_category_screen.dart';
+import 'package:sese/app/modules/home/widgets/filter.dart';
 
 import '../../../core/values/app_colors.dart';
 
@@ -18,6 +20,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
     with SingleTickerProviderStateMixin {
   HomeController homeController = Get.find();
   late TabController tabController;
+  GlobalKey<ScaffoldState> globalKey = GlobalKey();
 
   @override
   void initState() {
@@ -41,7 +44,15 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
 
     return SafeArea(
       child: Scaffold(
+        key: globalKey,
+        endDrawer: Drawer(
+          child: Filter(),
+        ),
         appBar: AppBar(
+          actions: [
+            Container(),
+          ],
+          automaticallyImplyLeading: false,
           leading: InkWell(
             onTap: () {
               Get.back();
@@ -69,7 +80,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
               ),
               InkWell(
                 onTap: (() {
-                  Scaffold.of(context).openDrawer();
+                  globalKey.currentState!.openEndDrawer();
                 }),
                 child: Stack(
                   alignment: Alignment.topLeft,
@@ -109,7 +120,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                       ? SizedBox(
                           width: 120,
                           child: Text(
-                            homeController.typeScreen.toUpperCase(),
+                            homeController.typeScreen,
                             textAlign: TextAlign.center,
                             style: CustomTextStyle.h4(AppColors.primaryColor),
                             overflow: TextOverflow.ellipsis,
