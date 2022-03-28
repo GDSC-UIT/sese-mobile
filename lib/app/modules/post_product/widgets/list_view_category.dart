@@ -26,33 +26,43 @@ class ListViewCategory extends StatelessWidget {
         ),
       ),
       height: 150,
-      child: Scrollbar(
-        isAlwaysShown: true,
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                controller.text = listItem[index]['name'];
-                if (type == TypeCategory.category) {
-                  postProductController.idCategory = listItem[index]['_id'];
-                } else {
-                  postProductController.idSubcategory = listItem[index]['_id'];
-                }
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              controller.text = listItem[index]['name'];
+              if (type == TypeCategory.category) {
+                postProductController.idCategory = listItem[index]['_id'];
+              } else {
+                postProductController.idSubcategory.value =
+                    listItem[index]['_id'];
+                //get params
+                var params = listItem[index]["params"];
 
-                postProductController.isOpenedCategory.value = false;
-                postProductController.isOpenedSubCategory.value = false;
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  listItem[index]['name'],
-                  style: CustomTextStyle.t6(AppColors.neutralGrey),
-                ),
+                for (var i = 0; i < params.length; i++) {
+                  params[i]['controller'] = TextEditingController();
+                  params[i]['isOpen'] = false;
+                  params[i]['index'] = i;
+                  if (params[i]["type"] == "dropdown") {
+                    params[i]['paramValue'] = '';
+                  }
+                }
+                postProductController.listParams.value = params;
+              }
+
+              postProductController.isOpenedCategory.value = false;
+              postProductController.isOpenedSubCategory.value = false;
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                listItem[index]['name'],
+                style: CustomTextStyle.t6(AppColors.neutralGrey),
               ),
-            );
-          },
-          itemCount: listItem.length,
-        ),
+            ),
+          );
+        },
+        itemCount: listItem.length,
       ),
     );
   }

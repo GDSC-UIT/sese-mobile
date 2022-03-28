@@ -36,11 +36,25 @@ class PostProductLocationScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              Text(
-                'Sử dụng vị trí mặc định',
-                style: CustomTextStyle.t2(
-                  AppColors.neutralGrey,
-                ),
+              Row(
+                children: [
+                  Obx(
+                    () => Switch(
+                        inactiveThumbColor: AppColors.primaryColor,
+                        activeTrackColor: AppColors.primaryColor,
+                        activeColor: Colors.white,
+                        value: postProductController.isUseDefaultLoca.value,
+                        onChanged: (value) {
+                          postProductController.isUseDefaultLoca.value = value;
+                        }),
+                  ),
+                  Text(
+                    'Sử dụng vị trí mặc định',
+                    style: CustomTextStyle.t2(
+                      AppColors.neutralGrey,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 24,
@@ -93,14 +107,16 @@ class PostProductLocationScreen extends StatelessWidget {
                       hintText: 'Nhập phường/xã',
                       isEnable: true,
                       controller: postProductController
-                          .districtProductLoCationInputController.value)
+                          .wardsProductLoCationInputController.value)
                 ],
               ),
               const SizedBox(
                 height: 32,
               ),
               AppButton(
-                onPress: () {},
+                onPress: () {
+                  Get.back();
+                },
                 text: 'Đăng sản phẩm',
                 borderColor: AppColors.primaryColor,
                 backgroundColor: AppColors.primaryColor,

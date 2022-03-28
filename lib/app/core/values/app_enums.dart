@@ -7,4 +7,5 @@ enum LoginMethod {
 enum TypeCategory {
   category,
   subCategory,
+  params,
 }

@@ -98,7 +98,9 @@ class PostProductPriceScreen extends StatelessWidget {
             ),
             const SizedBox(height: 48),
             AppButton(
-              onPress: () {},
+              onPress: () {
+                Get.back();
+              },
               text: 'Xong',
               backgroundColor: AppColors.primaryColor,
               textStyle: CustomTextStyle.t8(Colors.white),
