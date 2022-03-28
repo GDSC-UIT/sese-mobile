@@ -17,10 +17,11 @@ class UploadImageService {
           firebaseStorageRef.putFile(image);
       firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
       String value = await taskSnapshot.ref.getDownloadURL();
+      print('image link:$value');
       return value;
     } catch (e) {
       Get.snackbar('Error occurs when upload image', e.toString());
+      return 'khong co link';
     }
-    return null;
   }
 }

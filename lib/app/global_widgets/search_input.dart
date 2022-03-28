@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class SearchInput extends StatelessWidget {
-  const SearchInput({
-    Key? key,
-  }) : super(key: key);
+  SearchInput({Key? key, required this.color, required this.hintText})
+      : super(key: key);
+  Color color;
+  String hintText;
 
   @override
   Widget build(BuildContext context) {
-    return const TextField(
+    return TextField(
       //controller: controller,
-      style: TextStyle(
-        fontSize: 20.0,
-        color: Color.fromARGB(255, 65, 67, 70),
-      ),
+
+      style: CustomTextStyle.t6(AppColors.neutralGrey),
       decoration: InputDecoration(
-        //hintText: 'Search product here...',
+        contentPadding: const EdgeInsets.only(top: 8),
         border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(24.0))),
-        // hintText: 'Search',
-        hintStyle: TextStyle(
-          color: AppColors.lightGreyColor,
-          fontSize: 20,
+          borderSide: BorderSide(color: color, width: 1),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(5),
+          ),
         ),
-        prefixIcon: Icon(Icons.search),
-        suffixIcon: Icon(Icons.camera_alt_outlined),
-        labelStyle: TextStyle(
-          fontSize: 20,
+        hintText: hintText,
+        hintStyle: CustomTextStyle.t6(AppColors.neutralGrey),
+        prefixIcon: const Icon(
+          Icons.search,
+          color: AppColors.backIcon,
         ),
+        // labelStyle: TextStyle(
+        //   fontSize: 20,
+        // ),
         filled: true,
         fillColor: Colors.white,
       ),

@@ -13,6 +13,9 @@ class Assets {
   /// File path: assets/images/Calendar_icon.png
   static const AssetGenImage imagesCalendarIcon = AssetGenImage('assets/images/Calendar_icon.png');
 
+  /// File path: assets/images/avatar.png
+  static const AssetGenImage imagesAvatar = AssetGenImage('assets/images/avatar.png');
+
   /// File path: assets/images/do_dien_tu.png
   static const AssetGenImage imagesDoDienTu = AssetGenImage('assets/images/do_dien_tu.png');
 
@@ -34,8 +37,14 @@ class Assets {
   /// File path: assets/images/login_begin_img.png
   static const AssetGenImage imagesLoginBeginImg = AssetGenImage('assets/images/login_begin_img.png');
 
+  /// File path: assets/images/post_product_begin.png
+  static const AssetGenImage imagesPostProductBegin = AssetGenImage('assets/images/post_product_begin.png');
+
   /// File path: assets/images/sach.png
   static const AssetGenImage imagesSach = AssetGenImage('assets/images/sach.png');
+
+  /// File path: assets/images/sese.png
+  static const AssetGenImage imagesSese = AssetGenImage('assets/images/sese.png');
 
   /// File path: assets/images/thoi_trang.png
   static const AssetGenImage imagesThoiTrang = AssetGenImage('assets/images/thoi_trang.png');
