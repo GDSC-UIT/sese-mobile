@@ -3,7 +3,7 @@ description: An app to share old things
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -36,7 +36,19 @@ dependencies:
   get_storage: ^2.0.3
   google_fonts: ^2.3.1
   intl: ^0.17.0
-
+  firebase_auth: ^3.3.5
+  google_sign_in: ^5.2.3
+  flutter_facebook_auth: ^4.0.1
+  http: ^0.13.4
+  flutter_login_facebook: ^1.2.1
+  carousel_slider: ^4.0.0
+  smooth_page_indicator: ^1.0.0+2
+  intl_phone_number_input: ^0.7.0+2
+  libphonenumber_web: ^0.2.0+1
+  image_picker: ^0.8.4+11
+  path_provider: ^2.0.9
+  firebase_storage: ^10.2.9
+  scroll_indicator: ^0.0.3
 dev_dependencies:
   build_runner: null
   flutter_gen_runner: null
@@ -54,7 +66,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -62,7 +73,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/images/
+    - assets/icons/
+  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
