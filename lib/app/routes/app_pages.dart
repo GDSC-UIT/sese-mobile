@@ -16,11 +16,18 @@ import 'package:sese/app/modules/login/screens/login_begin_screen.dart';
 import 'package:sese/app/modules/login/screens/login_birth_screen.dart';
 import 'package:sese/app/modules/login/screens/login_name_screen.dart';
 import 'package:sese/app/modules/login/screens/login_university_screen.dart';
-
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
 import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
-import 'package:sese/app/modules/post_product/screens/post_product_begin.dart';
+import 'package:sese/app/modules/post_product/post_product_binding.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_add_category_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_begin_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_fail_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_info_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_location_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_price_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_success_screen.dart';
+import 'package:sese/app/modules/post_product/screens/post_product_waiting_screen.dart';
 import 'package:sese/app/modules/user_profile/screens/user_profile_screen.dart';
 import 'package:sese/app/modules/user_profile/user_profile_binding.dart';
 
@@ -160,8 +167,57 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.postProductBegin,
       transition: Transition.leftToRight,
-      page: () => const PostProductBegin(),
-      binding: EditProfileBinding(),
+      page: () => PostProductBeginScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductInfo,
+      transition: Transition.leftToRight,
+      page: () => PostProductInfoScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductPrice,
+      transition: Transition.leftToRight,
+      page: () => PostProductPriceScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductCategory,
+      transition: Transition.leftToRight,
+      page: () => PostProductCategoryScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductLocation,
+      transition: Transition.leftToRight,
+      page: () => PostProductLocationScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductWaiting,
+      transition: Transition.leftToRight,
+      page: () => const PostProductWaitingScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductSuccess,
+      transition: Transition.leftToRight,
+      page: () => const PostProductSuccessScreen(),
+      binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.postProductFail,
+      transition: Transition.leftToRight,
+      page: () => const PostProductFailScreen(),
+      binding: PostProductBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
   ];

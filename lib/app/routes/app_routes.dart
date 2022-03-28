@@ -23,8 +23,14 @@ abstract class AppRoutes {
 
   //post product route
   static const postProductBegin = '/post/product/begin';
+  static const postProductInfo = '/post/product/info';
+  static const postProductPrice = '/post/product/price';
+  static const postProductCategory = '/post/product/category';
+  static const postProductLocation = '/post/product/location';
+  static const postProductSuccess = '/post/product/success';
+  static const postProductFail = '/post/product/fail';
+  static const postProductWaiting = '/post/product/waiting';
 
   //user profile
   static const userProfile = '/user/profile';
-  
 }

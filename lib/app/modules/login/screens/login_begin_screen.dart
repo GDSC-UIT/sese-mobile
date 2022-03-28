@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/data/services/auth_service.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
@@ -40,9 +41,13 @@ class LoginBeginScreen extends StatelessWidget {
                 child: AppButton(
                   textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
                   onPress: () async {
+                    //show loader when login
+                    HttpService.showLoadingIndecator();
+                    //login
                     await loginController.googleSignInAction();
+
                     AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.authName)
+                        ? Get.toNamed(AppRoutes.postProductBegin)
                         : print('Login gg fail');
                   },
                   text: 'LOGGIN WITH GOOGLE',
@@ -61,6 +66,9 @@ class LoginBeginScreen extends StatelessWidget {
                 child: AppButton(
                   textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
                   onPress: () async {
+                    //show loader when login
+                    HttpService.showLoadingIndecator();
+                    //login
                     await loginController.facebookLoginAction();
                     AuthService.instance.isLogined == true
                         ? Get.toNamed(AppRoutes.authName)
