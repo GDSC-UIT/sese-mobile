@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/core/values/app_constant.dart';
+import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 import 'package:sese/app/modules/edit_profile/widgets/input_text_field_recommend_edit_profile.dart';
 import 'package:sese/app/modules/login/widgets/input_text_field_recommend_login.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
-class EditUniversity extends StatelessWidget {
+class EditUniversityScreen extends StatelessWidget {
   EditProfileController editProfileController = Get.find();
-  EditUniversity({Key? key}) : super(key: key);
+  EditUniversityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class EditUniversity extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 32),
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -43,6 +45,7 @@ class EditUniversity extends StatelessWidget {
               onChange: editProfileController.searchSchool,
               textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
             ),
+            const SizedBox(height: 16),
             Obx(
               () => editProfileController.recommendUniName.isEmpty
                   ? const SizedBox()
@@ -57,7 +60,7 @@ class EditUniversity extends StatelessWidget {
                                   editProfileController.recommendUniName[index];
                             },
                             child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 2),
+                              margin: const EdgeInsets.symmetric(vertical: 4),
                               padding: const EdgeInsets.all(2),
                               child: Text(
                                 editProfileController.recommendUniName[index],
@@ -75,6 +78,15 @@ class EditUniversity extends StatelessWidget {
                                 : editProfileController.recommendUniName.length,
                       ),
                     ),
+            ),
+            const SizedBox(
+              height: AppConstant.gapInputAppButton,
+            ),
+            AppButton(
+              onPress: () {},
+              text: "LƯU THAY ĐỔI",
+              textStyle: CustomTextStyle.t8(Colors.white),
+              backgroundColor: AppColors.primaryColor,
             ),
           ],
         ),

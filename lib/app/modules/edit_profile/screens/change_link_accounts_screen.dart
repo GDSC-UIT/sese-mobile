@@ -9,9 +9,9 @@ import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
-class ChangeLinkAccount extends StatelessWidget {
+class ChangeLinkAccountScreen extends StatelessWidget {
   EditProfileController editProfileController = Get.find();
-  ChangeLinkAccount({Key? key}) : super(key: key);
+  ChangeLinkAccountScreen({Key? key}) : super(key: key);
 
   get loginController => null;
 

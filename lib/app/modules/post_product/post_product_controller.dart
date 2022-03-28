@@ -9,8 +9,6 @@ import 'package:sese/app/data/services/upload_image_service.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class PostProductController extends GetxController {
-  //Rx<File>? image = File('').obs;
-
   //varible to store data
   String idCategory = '';
   RxString idSubcategory = ''.obs;

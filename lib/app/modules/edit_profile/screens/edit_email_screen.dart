@@ -8,9 +8,9 @@ import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 
-class EditEmail extends StatelessWidget {
+class EditEmailScreen extends StatelessWidget {
   EditProfileController editProfileController = Get.find();
-  EditEmail({Key? key}) : super(key: key);
+  EditEmailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

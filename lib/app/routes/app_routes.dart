@@ -30,4 +30,7 @@ abstract class AppRoutes {
   static const postProductSuccess = '/post/product/success';
   static const postProductFail = '/post/product/fail';
   static const postProductWaiting = '/post/product/waiting';
+
+  //user profile
+  static const userProfile = '/user/profile';
 }

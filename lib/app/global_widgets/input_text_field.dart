@@ -50,7 +50,7 @@ class InPutTextField extends StatelessWidget {
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.primaryColor,
+            color: AppColors.greenColor,
             width: 1.5,
           ),
         ),
