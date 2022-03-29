@@ -119,7 +119,7 @@ class VerifySuccessScreen extends StatelessWidget {
                       );
 
                       print("phát covid: ${response.body}");
-                      Get.toNamed(AppRoutes.testImage);
+                      Get.toNamed(AppRoutes.home);
                     } catch (e) {
                       Get.snackbar(
                         'Error',

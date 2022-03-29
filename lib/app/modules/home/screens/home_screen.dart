@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroll_indicator/scroll_indicator.dart';
@@ -13,12 +14,12 @@ import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeController homeController = Get.put(HomeController());
+  HomeController homeController = Get.find<HomeController>();
   ScrollController scrollCategory = ScrollController();
   ScrollController scrollNewProduct = ScrollController();
   ScrollController scrollRecommendProduct = ScrollController();
 
-  int notifi = 12;
+  int notifi = 3;
 
   HomeScreen({Key? key}) : super(key: key);
 
@@ -28,8 +29,16 @@ class HomeScreen extends StatelessWidget {
     double _screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.lightGreyColor,
-      bottomNavigationBar: AppBottomNavigationBar(),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Obx(
+        () => AppBottomNavigationBar(
+          selectedIndex: homeController.pageIdx.value,
+          onTap: (index) {
+            homeController.pageIdx.value = index;
+          },
+          onPressButton: () => Get.toNamed(AppRoutes.postProductBegin),
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -63,8 +72,11 @@ class HomeScreen extends StatelessWidget {
                           width: 32,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(90),
-                            image: const DecorationImage(
-                              image: Assets.imagesAvatar,
+                            image: DecorationImage(
+                              image: Image.network(FirebaseAuth
+                                          .instance.currentUser!.photoURL ??
+                                      "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&d=mm&r=g")
+                                  .image,
                             ),
                           ),
                         ),
@@ -80,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          width: 15,
+                          width: 16,
                         ),
                         NotifyIcon(notifi),
                       ],
@@ -89,71 +101,72 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 26, right: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Danh mục",
-                          style: CustomTextStyle.h4(Colors.black),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.homeAllCategory);
-                          },
-                          child: Text(
-                            "Tất cả >",
-                            style: CustomTextStyle.t4(AppColors.primaryColor),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: _screenHeight * 0.14,
-                    child: ListCategory(
-                      homeController: homeController,
-                      scrollController: scrollCategory,
-                    ),
-                  ),
-                  ScrollIndicator(
-                    width: 48,
-                    height: 5,
-                    indicatorWidth: 15,
-                    scrollController: scrollCategory,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: AppColors.neutralGrey,
-                    ),
-                    indicatorDecoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 11,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 6,
-            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    Container(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 26, right: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Danh mục",
+                                  style: CustomTextStyle.h4(Colors.black),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.homeAllCategory);
+                                  },
+                                  child: Text(
+                                    "Tất cả >",
+                                    style: CustomTextStyle.t4(
+                                        AppColors.primaryColor),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: _screenHeight * 0.14,
+                            child: ListCategory(
+                              homeController: homeController,
+                              scrollController: scrollCategory,
+                            ),
+                          ),
+                          ScrollIndicator(
+                            width: 48,
+                            height: 5,
+                            indicatorWidth: 15,
+                            scrollController: scrollCategory,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.neutralGrey,
+                            ),
+                            indicatorDecoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 11,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
                     Container(
                       color: Colors.white,
                       child: Column(

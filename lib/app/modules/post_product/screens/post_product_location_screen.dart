@@ -71,7 +71,7 @@ class PostProductLocationScreen extends StatelessWidget {
                       hintText: 'Nhập tỉnh thành',
                       isEnable: true,
                       controller: postProductController
-                          .provinceProductLoCationInputController.value)
+                          .provinceProductLoCationInputController)
                 ],
               ),
               const SizedBox(
@@ -89,7 +89,7 @@ class PostProductLocationScreen extends StatelessWidget {
                       hintText: 'Nhập quận/huyện',
                       isEnable: true,
                       controller: postProductController
-                          .districtProductLoCationInputController.value)
+                          .districtProductLoCationInputController)
                 ],
               ),
               const SizedBox(
@@ -107,7 +107,7 @@ class PostProductLocationScreen extends StatelessWidget {
                       hintText: 'Nhập phường/xã',
                       isEnable: true,
                       controller: postProductController
-                          .wardsProductLoCationInputController.value)
+                          .wardsProductLoCationInputController)
                 ],
               ),
               const SizedBox(

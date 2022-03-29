@@ -4,6 +4,8 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 
+import '../../../routes/app_routes.dart';
+
 class PostProductSuccessScreen extends StatelessWidget {
   const PostProductSuccessScreen({Key? key}) : super(key: key);
 
@@ -47,7 +49,10 @@ class PostProductSuccessScreen extends StatelessWidget {
               height: 24,
             ),
             AppButton(
-              onPress: () {},
+              onPress: () async {
+                await Get.offAllNamed(AppRoutes.home);
+                Get.toNamed(AppRoutes.postProductBegin);
+              },
               text: 'Đăng sản phẩm khác',
               borderColor: AppColors.primaryColor,
               backgroundColor: AppColors.primaryColor,
@@ -57,7 +62,9 @@ class PostProductSuccessScreen extends StatelessWidget {
               height: 24,
             ),
             AppButton(
-              onPress: () {},
+              onPress: () {
+                Get.offAllNamed(AppRoutes.home);
+              },
               text: 'Quay lại trang chủ',
               borderColor: AppColors.neutralGrey,
               textStyle: CustomTextStyle.t8(AppColors.neutralGrey),

@@ -108,7 +108,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                       );
                       print('response:${response.body}');
                     } catch (e) {
-                      Get.snackbar('Error', 'Something went wrong');
+                      Get.snackbar('Error', '${e}');
                     }
                   },
                   child: const Text(

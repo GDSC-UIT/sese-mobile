@@ -99,14 +99,19 @@ class VerifyBeginScreen extends StatelessWidget {
               SizedBox(
                 height: _screenHeight * 0.076,
               ),
-              const Center(
-                child: Text(
-                  "Mình sẽ xác thực sau nha",
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: AppColors.greenColor,
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.w600,
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Get.offAllNamed(AppRoutes.home);
+                  },
+                  child: const Text(
+                    "Mình sẽ xác thực sau nha",
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: AppColors.greenColor,
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
