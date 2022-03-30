@@ -244,7 +244,7 @@ class HomeScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Gợi ý cho bạn",
+                                  "Give away",
                                   style: CustomTextStyle.h4(Colors.black),
                                 ),
                                 InkWell(
