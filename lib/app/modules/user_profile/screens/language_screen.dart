@@ -44,7 +44,7 @@ class LanguageScreen extends StatelessWidget {
           Obx(
             () => InkWell(
               onTap: () {
-                userProfileController.toggleSelectedLanguage(0);
+                userProfileController.english.value = true;
               },
               child: Container(
                   height: 57,
@@ -63,10 +63,10 @@ class LanguageScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        userProfileController.listLanguage[0]["language"],
+                        "English",
                         style: CustomTextStyle.t4(AppColors.darkGreyColor),
                       ),
-                      userProfileController.listLanguage[0]["isSelected"]
+                      userProfileController.english.value
                           ? const Icon(
                               Icons.check,
                               color: AppColors.primaryColor,
@@ -82,7 +82,7 @@ class LanguageScreen extends StatelessWidget {
           Obx(
             () => InkWell(
               onTap: () {
-                userProfileController.toggleSelectedLanguage(1);
+                userProfileController.english.value = false; 
               },
               child: Container(
                   height: 57,
@@ -101,10 +101,10 @@ class LanguageScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        userProfileController.listLanguage[1]["language"],
+                        "Việt Nam",
                         style: CustomTextStyle.t4(AppColors.darkGreyColor),
                       ),
-                      userProfileController.listLanguage[1]["isSelected"]
+                      userProfileController.english.value==false
                           ? const Icon(
                               Icons.check,
                               color: AppColors.primaryColor,

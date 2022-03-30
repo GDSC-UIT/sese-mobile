@@ -29,5 +29,6 @@ abstract class AppRoutes {
   static const userSettings = '/user/settings';
   static const userSettingLanguage = '/user/settings/language';
   static const userSettingAddresses = '/user/settings/addresses';
-  static const userNewAddress = '/user/newAddress'; 
+  static const userNewAddress = '/user/newAddress';
+  static const userEditAddress = '/user/editAddress'; 
 }

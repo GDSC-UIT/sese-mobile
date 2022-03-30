@@ -6,7 +6,9 @@ import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/user_profile/user_profile_controller.dart';
 import 'package:sese/app/modules/user_profile/widgets/column_text.dart';
-import 'package:sese/app/modules/user_profile/widgets/product_card.dart';
+import 'package:sese/app/modules/user_profile/widgets/sort_button.dart';
+import 'package:sese/app/modules/user_profile/widgets/user_profile_bought.dart';
+import 'package:sese/app/modules/user_profile/widgets/user_profile_listing.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -99,151 +101,73 @@ class UserProfileScreen extends StatelessWidget {
               ),
             ),
             height: 60,
-            child: Row(
+            child: Column(
               children: [
-                Expanded(
-                    child: TextButton(
-                  onPressed: () {},
-                  child: Center(
-                      child: Text(
-                    "Bought",
-                    style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                  )),
-                )),
-                Expanded(
-                    child: TextButton(
-                  onPressed: () {},
-                  child: Center(
-                      child: Text(
-                    "Listing",
-                    style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                  )),
-                )),
+                Row(
+                  children: [
+                    Expanded(
+                        child: TextButton(
+                      onPressed: () {
+                        userProfileController.bought.value = true;
+                      },
+                      child: Center(
+                          child: Text(
+                        "Bought",
+                        style: CustomTextStyle.t4(AppColors.darkGreyColor),
+                      )),
+                    )),
+                    Expanded(
+                        child: TextButton(
+                      onPressed: () {
+                        userProfileController.bought.value = false;
+                      },
+                      child: Center(
+                          child: Text(
+                        "Listing",
+                        style: CustomTextStyle.t4(AppColors.darkGreyColor),
+                      )),
+                
+                    )),
+                
+                  ],
+                  
+                ),
               ],
             ),
           ),
-          GridView.builder(
-              itemCount: 6,
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+          Row(children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.sort_sharp)),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  verticalDirection: VerticalDirection.down,
+                  children: [
+                    SortButton(
+                      onPress: () {},
+                      text: "Lowest-Highest",
+                    ),
+                    SortButton(
+                      onPress: () {},
+                      text: "Applications",
+                    ),
+                    SortButton(
+                      onPress: () {},
+                      text: "Highest-Lowest",
+                    )
+                  ],
+                ),
               ),
-              itemBuilder: (BuildContext context, int index) {
-                return ProductCard();
-              })
+            ),
+          ]),
+          Obx(()=> userProfileController.bought.value?BoughtWidget():ListingWidget()),
         ],
       ),
       bottomNavigationBar: AppBottomNavigationBar(),
     );
   }
 }
-
-/*
-          body: GridView(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-        children: [
-          GridView(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1, childAspectRatio: 2.8),
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Center(
-                        child: SizedBox(
-                          width: 96,
-                          height: 96,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/avatar.png'),
-                            radius: 50,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                ColumnText(label: "Products", number: "10"),
-                                ColumnText(label: "Followers", number: "12"),
-                                ColumnText(label: "Following", number: "2"),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const Expanded(
-                                  flex: 1,
-                                  child: ColumnText(
-                                      label: "Review", number: "4.0/5.0"),
-                                ),
-                                Expanded(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: AppButton(
-                                        onPress: () {
-                                          Get.toNamed(
-                                              AppRoutes.editUserProfile);
-                                        },
-                                        text: "EDIT PROFILE",
-                                        textStyle:
-                                            CustomTextStyle.t8(Colors.white),
-                                        backgroundColor: AppColors.primaryColor,
-                                      ),
-                                    )),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 1,
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(
-                    border: Border.symmetric(
-                      horizontal: BorderSide(width: 1, color: Colors.black12),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: TextButton(
-                        onPressed: () {},
-                        child: Center(
-                            child: Text(
-                          "Bought",
-                          style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                        )),
-                      )),
-                      Expanded(
-                          child: TextButton(
-                        onPressed: () {},
-                        child: Center(
-                            child: Text(
-                          "Listing",
-                          style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                        )),
-                      )),
-                    ],
-                  ),
-                ),
-              ]),
-          
-      
- */
-/*
-      
- */

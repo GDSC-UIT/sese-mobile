@@ -5,6 +5,7 @@ import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/user_profile/user_profile_controller.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 class SettingsScreen extends StatelessWidget {
   UserProfileController userProfileController = Get.find();
@@ -35,19 +36,23 @@ class SettingsScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.userSettingAddresses);
+              },
               child: InPutTextField(
                   hintText: "My address",
                   textStyle: CustomTextStyle.t4(AppColors.darkGreyColor),
                   isEnable: false,
-                  controller: userProfileController.userAddress.value),
+                  controller: userProfileController.userName.value),
             ),
           ),
           const SizedBox(
             height: 8,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.userSettingLanguage); 
+            },
             child: Container(
                 height: 57,
                 padding: const EdgeInsets.all(8),
@@ -64,13 +69,16 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    
                     Text(
                       "Language",
                       style: CustomTextStyle.t4(AppColors.darkGreyColor),
                     ),
-                    Text(
-                      userProfileController.listLanguage[0]["language"],
-                      style: CustomTextStyle.t4(AppColors.lightGreyColor),
+                    Obx(()=>
+                       Text(
+                        userProfileController.english.value?"English":"Việt Nam",
+                        style: CustomTextStyle.t4(AppColors.lightGreyColor),
+                      ),
                     ),
                   ],
                 )),

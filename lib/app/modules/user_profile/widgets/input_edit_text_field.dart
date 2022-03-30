@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
+import 'package:sese/app/modules/user_profile/user_profile_controller.dart';
 
-class InPutTextField extends StatelessWidget {
-  InPutTextField({
+class InPutEditTextField extends StatelessWidget {
+  InPutEditTextField({
     Key? key,
-    required this.hintText,
-    required this.isEnable,
     required this.controller,
+    required this.isEnable,
     this.suffixIcon,
     this.textStyle,
     this.onChange,
   }) : super(key: key);
-  final String hintText;
   final Widget? suffixIcon;
-  final TextEditingController controller;
+  final UserProfileController userProfileController = Get.find();
   final bool isEnable;
   final TextStyle? textStyle;
   final Function? onChange;
+  final TextEditingController controller; 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
+    return TextFormField(
+      initialValue: controller.text,
       enabled: isEnable,
       autofocus: isEnable,
-      style: const TextStyle(
-        color: AppColors.darkGreyColor,
-      ),
+      style: CustomTextStyle.t4(AppColors.darkGreyColor),
       decoration: InputDecoration(
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.greenColor)),
         suffixIcon: suffixIcon,
-        hintText: hintText,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             width: 1.5,
@@ -39,7 +39,6 @@ class InPutTextField extends StatelessWidget {
             Radius.circular(8),
           ),
         ),
-        hintStyle: textStyle,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.greenColor,
