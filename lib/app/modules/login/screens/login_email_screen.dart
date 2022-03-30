@@ -64,7 +64,7 @@ class LoginEmailScreen extends StatelessWidget {
                 onPress: () {
                   if (loginController.emailInputController.value.value.text !=
                       '') {
-                    Get.toNamed(AppRoutes.authVerifyBegin);
+                    Get.toNamed(AppRoutes.verifyBegin);
                   } else {
                     Get.snackbar('', 'Please fill all  the field!');
                   }
