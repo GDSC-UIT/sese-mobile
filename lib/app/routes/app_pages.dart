@@ -11,6 +11,7 @@ import 'package:sese/app/modules/edit_profile/screens/edit_user_profile_screen.d
 import 'package:sese/app/modules/home/home_binding.dart';
 import 'package:sese/app/modules/home/screens/home_all_category_screen.dart';
 import 'package:sese/app/modules/home/screens/home_category_screen.dart';
+import 'package:sese/app/modules/home/screens/home_detail_product_screen.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
 import 'package:sese/app/modules/login/login_binding.dart';
 import 'package:sese/app/modules/login/screens/login_begin_screen.dart';
@@ -65,6 +66,12 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.homeCategory,
       page: () => HomeCategoryScreen(),
+      transition: Transition.leftToRight,
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.homeDetailProduct,
+      page: () => HomeDetailProductScreen(),
       transition: Transition.leftToRight,
       binding: HomeBinding(),
     ),

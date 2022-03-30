@@ -20,6 +20,8 @@ class AppColors {
   static const Color whiteAccentColor = Color(0xffFAFAFA);
   static const Color lightGreenColor = Color(0xffDFF3EA);
   static const Color lightGreen = Color.fromRGBO(223, 243, 234, 1);
+  static const Color lightGrey = Color.fromRGBO(104, 88, 121, 1);
+  static const Color yellow = Color.fromRGBO(250, 191, 72, 1);
 
   static const Color backIcon = Color.fromRGBO(143, 216, 181, 1);
   static const Color neutralGrey = Color.fromRGBO(179, 171, 188, 1);
