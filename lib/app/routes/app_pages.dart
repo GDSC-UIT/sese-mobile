@@ -28,6 +28,8 @@ import 'package:sese/app/modules/post_product/screens/post_product_location_scre
 import 'package:sese/app/modules/post_product/screens/post_product_price_screen.dart';
 import 'package:sese/app/modules/post_product/screens/post_product_success_screen.dart';
 import 'package:sese/app/modules/post_product/screens/post_product_waiting_screen.dart';
+import 'package:sese/app/modules/search/screens/search_screen.dart';
+import 'package:sese/app/modules/search/search_binding.dart';
 import 'package:sese/app/modules/user_profile/screens/user_profile_screen.dart';
 import 'package:sese/app/modules/user_profile/user_profile_binding.dart';
 
@@ -218,6 +220,14 @@ abstract class AppPages {
       transition: Transition.leftToRight,
       page: () => const PostProductFailScreen(),
       binding: PostProductBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    //search
+    GetPage(
+      name: AppRoutes.search,
+      transition: Transition.leftToRight,
+      page: () => SearchScreen(),
+      binding: SearchBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
   ];

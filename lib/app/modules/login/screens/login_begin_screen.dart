@@ -45,10 +45,13 @@ class LoginBeginScreen extends StatelessWidget {
                     HttpService.showLoadingIndecator();
                     //login
                     await loginController.googleSignInAction();
-
-                    AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.postProductBegin)
-                        : print('Login gg fail');
+                    if (AuthService.instance.isLogined == true) {
+                      Get.back();
+                      Get.toNamed(AppRoutes.search);
+                    } else {
+                      Get.snackbar('Error',
+                          'Something went wrong, please try later in few minutes!!');
+                    }
                   },
                   text: 'LOGGIN WITH GOOGLE',
                   // textColor: AppColors.darkGreyColor,
@@ -70,9 +73,13 @@ class LoginBeginScreen extends StatelessWidget {
                     HttpService.showLoadingIndecator();
                     //login
                     await loginController.facebookLoginAction();
-                    AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.authName)
-                        : print('Login facebook fail');
+                    if (AuthService.instance.isLogined == true) {
+                      Get.back();
+                      Get.toNamed(AppRoutes.authName);
+                    } else {
+                      Get.snackbar('Error',
+                          'Something went wrong, please try later in few minutes!!');
+                    }
                   },
                   text: 'LOGGIN WITH FACEBOOK',
                   // textColor: AppColors.darkGreyColor,
