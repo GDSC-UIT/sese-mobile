@@ -233,8 +233,8 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                           ),
                           SizedBox(
                             height: 220,
-                            child: HorizontalProductListView(
-                                scrollController: scrollNewProduct),
+                            // child: HorizontalProductListView(
+                            //     scrollController: scrollNewProduct),
                           ),
                           const SizedBox(
                             height: 12,

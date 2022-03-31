@@ -119,7 +119,19 @@ class VerifySuccessScreen extends StatelessWidget {
                       );
 
                       print("phát covid: ${response.body}");
-                      Get.toNamed(AppRoutes.home);
+                      HttpService.showLoadingIndecator();
+                      var responseNew = await HttpService.getRequest(
+                          '${UrlValue.appUrlPostProduct}?type=new');
+                      var listNewProduct =
+                          json.decode(responseNew.body)["posts"];
+
+                      HttpService.showLoadingIndecator();
+                      var responseRecommend = await HttpService.getRequest(
+                          '${UrlValue.appUrlPostProduct}?type=recommendation');
+                      var listRecommendProduct =
+                          json.decode(responseRecommend.body)["posts"];
+                      Get.toNamed(AppRoutes.home,
+                          arguments: [listNewProduct, listRecommendProduct]);
                     } catch (e) {
                       Get.snackbar(
                         'Error',
