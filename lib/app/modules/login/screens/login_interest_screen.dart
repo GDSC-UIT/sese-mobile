@@ -49,7 +49,7 @@ class LoginInterestScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Text(
-                  "Mình quan tâm đến",
+                  "I'm interested",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
               ),
@@ -91,17 +91,23 @@ class LoginInterestScreen extends StatelessWidget {
                                     Container(
                                       width: _screenWidth * 0.36,
                                       height: _screenHeight * 0.2,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         image: DecorationImage(
-                                            image: Assets.imagesSach),
+                                            image: NetworkImage(loginController
+                                                    .listOfInterest[index]
+                                                ["image"])),
                                       ),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: _screenHeight * 0.02),
+                                        top: _screenHeight * 0.02,
+                                        left: 10,
+                                        right: 10,
+                                      ),
                                       child: Text(
                                         loginController.listOfInterest[index]
                                             ['name'],
+                                        textAlign: TextAlign.center,
                                         style: CustomTextStyle.t8(
                                             loginController.listOfInterest[
                                                         index]['isSelected'] ==
@@ -116,21 +122,19 @@ class LoginInterestScreen extends StatelessWidget {
                             ));
                       },
                     ),
-                    Positioned(
-                      bottom: 20,
-                      right: 0,
-                      left: 0,
-                      child: AppButton(
-                        textStyle: CustomTextStyle.t8(Colors.white),
-                        onPress: () {
-                          Get.toNamed(AppRoutes.authPhone);
-                        },
-                        text: 'TIẾP TỤC NHA',
-                        backgroundColor: AppColors.primaryColor,
-                      ),
-                    ),
                   ],
                 ),
+              ),
+              AppButton(
+                textStyle: CustomTextStyle.t8(Colors.white),
+                onPress: () {
+                  Get.toNamed(AppRoutes.authPhone);
+                },
+                text: 'NEXT',
+                backgroundColor: AppColors.primaryColor,
+              ),
+              SizedBox(
+                height: _screenHeight * (50 / 846),
               ),
             ],
           ),

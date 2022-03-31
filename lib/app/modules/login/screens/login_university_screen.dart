@@ -43,14 +43,14 @@ class LoginUniversityScreen extends StatelessWidget {
               height: 32,
             ),
             Text(
-              'Mình học tại',
+              'My university is',
               style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
               height: 16,
             ),
             InPutTextFieldRecommendLogin(
-              hintText: 'Nhập tên trường',
+              hintText: "Fill your university's name here",
               controller: loginController.schoolInputController.value,
               onChange: loginController.searchSchool,
               textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
@@ -107,7 +107,7 @@ class LoginUniversityScreen extends StatelessWidget {
                   Get.snackbar('', 'Please fill all  the field!');
                 }
               },
-              text: 'TIẾP TỤC NHA',
+              text: 'NEXT',
               textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )
