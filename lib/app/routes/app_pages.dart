@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:sese/app/modules/chat/chat_binding.dart';
+import 'package:sese/app/modules/chat/screens/detail_chat_screen.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_binding.dart';
 import 'package:sese/app/modules/edit_profile/screens/change_link_accounts_screen.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_dob_screen.dart';
@@ -323,6 +325,14 @@ abstract class AppPages {
       transition: Transition.leftToRight,
       page: () => SearchScreen(),
       binding: SearchBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    // chat
+    GetPage(
+      name: AppRoutes.chatDetail,
+      transition: Transition.leftToRight,
+      page: () => DetailChatScreen(),
+      binding: ChatBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
   ];
