@@ -14,66 +14,6 @@ class PostProductCategoryScreen extends StatelessWidget {
   var categories = Get.arguments[0];
 
   var subCategory = [];
-  List<Map<String, dynamic>> params = [
-    {
-      "param": "62217391d5fa2bec4c3b10a2",
-      "label": "Màu sắc",
-      "required": true,
-      "type": "dropdown",
-      "options": [
-        {"label": "Bạc", "_id": "62217391d5fa2bec4c3b10ac"},
-        {"label": "Bạc", "_id": "62217391d5fa2bec4c3b10ad"},
-        {"label": "Đen", "_id": "62217391d5fa2bec4c3b10ae"},
-        {"label": "Đen bóng - Jet black", "_id": "62217391d5fa2bec4c3b10af"},
-        {"label": "Đỏ", "_id": "62217391d5fa2bec4c3b10b0"},
-        {"label": "Hồng", "_id": "62217391d5fa2bec4c3b10b1"},
-        {"label": "Trắng", "_id": "62217391d5fa2bec4c3b10b2"},
-        {"label": "Vàng", "_id": "62217391d5fa2bec4c3b10b3"},
-        {"label": "Vàng hồng", "_id": "62217391d5fa2bec4c3b10b4"},
-        {"label": "Xám", "_id": "62217391d5fa2bec4c3b10b5"},
-        {"label": "Xanh dương", "_id": "62217391d5fa2bec4c3b10b6"},
-        {"label": "Xanh lá", "_id": "62217391d5fa2bec4c3b10b7"},
-        {"label": "Màu khác", "_id": "62217391d5fa2bec4c3b10b8"}
-      ],
-      "_id": "62217391d5fa2bec4c3b10a2"
-    },
-    {
-      "param": "62218f7674933671c91e1e25",
-      "label": "Chất liệu",
-      "required": true,
-      "type": "string",
-      "options": [],
-      "_id": "62218f7674933671c91e1e25"
-    },
-    {
-      "param": "62217391d5fa2bec4c3b10a3",
-      "label": "Dung lượng",
-      "required": false,
-      "type": "dropdown",
-      "options": [
-        {"label": "< 8GB", "_id": "62217391d5fa2bec4c3b10ba"},
-        {"label": "8 GB", "_id": "62217391d5fa2bec4c3b10bb"},
-        {"label": "16 GB", "_id": "62217391d5fa2bec4c3b10bc"},
-        {"label": "32 GB", "_id": "62217391d5fa2bec4c3b10bd"},
-        {"label": "64 GB", "_id": "62217391d5fa2bec4c3b10be"},
-        {"label": "128 GB", "_id": "62217391d5fa2bec4c3b10bf"},
-        {"label": "256 GB", "_id": "62217391d5fa2bec4c3b10c0"},
-        {"label": "> 256 GB", "_id": "62217391d5fa2bec4c3b10c1"}
-      ],
-      "_id": "62217391d5fa2bec4c3b10a3"
-    },
-    {
-      "param": "62217391d5fa2bec4c3b10a4",
-      "label": "Bảo hành",
-      "required": false,
-      "type": "dropdown",
-      "options": [
-        {"label": "Hết bảo hành", "_id": "62217391d5fa2bec4c3b10c3"},
-        {"label": "Còn bảo hành", "_id": "62217391d5fa2bec4c3b10c4"}
-      ],
-      "_id": "62217391d5fa2bec4c3b10a4"
-    }
-  ];
 
   PostProductCategoryScreen({Key? key}) : super(key: key);
   final TextEditingController controller = TextEditingController();
@@ -81,15 +21,6 @@ class PostProductCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // for (var i = 0; i < params.length; i++) {
-    //   params[i]['controller'] = TextEditingController();
-    //   params[i]['isOpen'] = false;
-    //   params[i]['index'] = i;
-    //   if (params[i]["type"] == "dropdown") {
-    //     params[i]['paramValue'] = '';
-    //   }
-    // }
-    // postProductController.listParams.value = params;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -100,6 +31,7 @@ class PostProductCategoryScreen extends StatelessWidget {
           ),
           leading: InkWell(
             onTap: () {
+              Get.back();
               Get.back();
             },
             child: const Icon(

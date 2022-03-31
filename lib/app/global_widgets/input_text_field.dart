@@ -12,9 +12,11 @@ class InPutTextField extends StatelessWidget {
       this.prefixicon,
       this.textStyle,
       this.onChange,
-      this.maxLine})
+      this.maxLine,
+      this.onSubmit})
       : super(key: key);
   final String hintText;
+  final Function? onSubmit;
   final Widget? suffixIcon;
   final Widget? prefixicon;
   final TextEditingController controller;
@@ -26,10 +28,12 @@ class InPutTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onSubmitted: (value) {
+        onSubmit == null ? () {} : onSubmit!();
+      },
       maxLines: maxLine ?? 1,
       controller: controller,
       enabled: isEnable,
-      autofocus: isEnable,
       style: textStyle,
       keyboardType: typeKeyBoard,
       decoration: InputDecoration(

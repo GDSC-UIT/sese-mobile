@@ -46,4 +46,6 @@ abstract class AppRoutes {
 
   //user profile
   static const userProfile = '/user/profile';
+  //search product
+  static const search = '/search';
 }
