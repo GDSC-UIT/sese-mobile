@@ -26,7 +26,7 @@ class PostProductCategoryScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Danh mục sản phẩm',
+            'Product Category',
             style: CustomTextStyle.h4(AppColors.primaryColor),
           ),
           leading: InkWell(
@@ -69,7 +69,7 @@ class PostProductCategoryScreen extends StatelessWidget {
                         },
                         child: InPutTextField(
                           textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                          hintText: 'Chọn danh mục',
+                          hintText: 'Choose category for your product',
                           isEnable: false,
                           controller:
                               postProductController.categoryInputController,
@@ -132,7 +132,7 @@ class PostProductCategoryScreen extends StatelessWidget {
                                   ''
                               ? postProductController
                                   .subCategoryInputController.value.text
-                              : 'Chọn danh mục',
+                              : 'Choose subcategory',
                           isEnable: false,
                           controller:
                               postProductController.subCategoryInputController,
@@ -193,7 +193,7 @@ class PostProductCategoryScreen extends StatelessWidget {
                                             AppColors.neutralGrey),
                                         hintText: e["controller"].text != ''
                                             ? e["controller"].text
-                                            : 'Chọn ${e["label"]}',
+                                            : 'Choose ${e["label"]}',
                                         isEnable: false,
                                         controller: e["controller"],
                                         suffixIcon: const Icon(
@@ -237,7 +237,7 @@ class PostProductCategoryScreen extends StatelessWidget {
                                           AppColors.neutralGrey),
                                       hintText: e["controller"].text != ''
                                           ? e["controller"].text
-                                          : 'Nhập ${e["label"]}',
+                                          : 'Enter ${e["label"]}',
                                       isEnable: true,
                                       controller: e["controller"],
                                     ),
@@ -253,7 +253,7 @@ class PostProductCategoryScreen extends StatelessWidget {
                     onPress: () {
                       Get.back();
                     },
-                    text: 'Xong',
+                    text: 'APPLY',
                     backgroundColor: AppColors.primaryColor,
                     textStyle: CustomTextStyle.t8(Colors.white),
                   )

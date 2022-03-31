@@ -9,6 +9,8 @@ class AppColors {
   static const Color mainHomeBackGroundColor =
       Color.fromARGB(255, 221, 221, 221);
   static const Color lightGreyColor = Color.fromARGB(255, 138, 138, 132);
+  static const Color recommendBackground = Color.fromRGBO(232, 237, 241, 1);
+
   static const Color textHomeColor = Color(0xFF3e4958);
   static const Color messageBoxColor = Color.fromRGBO(232, 237, 241, 1);
 

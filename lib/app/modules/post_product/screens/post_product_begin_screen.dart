@@ -19,7 +19,7 @@ class PostProductBeginScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Thêm sản phẩm',
+          'List your products',
           style: CustomTextStyle.h4(AppColors.primaryColor),
         ),
         leading: InkWell(
@@ -45,7 +45,7 @@ class PostProductBeginScreen extends StatelessWidget {
               height: 24,
             ),
             Text(
-              'Bắt đầu bán nào!',
+              "Let's list your first item!",
               style: CustomTextStyle.h2(AppColors.darkGreyColor),
             ),
             // Expanded(
@@ -72,7 +72,7 @@ class PostProductBeginScreen extends StatelessWidget {
                 await postProductController.pickImage(ImageSource.gallery);
                 Get.toNamed(AppRoutes.postProductInfo);
               },
-              text: 'CHỌN ẢNH TỪ THƯ VIỆN',
+              text: 'CHOOSE FROM LIBRARY',
               textStyle: CustomTextStyle.t8(AppColors.primaryColor),
               backgroundColor: AppColors.lightOrange,
               borderColor: AppColors.primaryColor,

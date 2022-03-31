@@ -18,7 +18,7 @@ class PostProductLocationScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Vị trí của bạn',
+            'Product Location',
             style: CustomTextStyle.h4(AppColors.primaryColor),
           ),
           leading: InkWell(
@@ -49,7 +49,7 @@ class PostProductLocationScreen extends StatelessWidget {
                         }),
                   ),
                   Text(
-                    'Sử dụng vị trí mặc định',
+                    'Use default location',
                     style: CustomTextStyle.t2(
                       AppColors.neutralGrey,
                     ),
@@ -62,13 +62,13 @@ class PostProductLocationScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Tỉnh thành'),
+                  const InfoLabel(isRequired: true, text: 'City'),
                   const SizedBox(
                     height: 8,
                   ),
                   InPutTextField(
                       textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                      hintText: 'Nhập tỉnh thành',
+                      hintText: 'Enter your city',
                       isEnable: true,
                       controller: postProductController
                           .provinceProductLoCationInputController)
@@ -80,13 +80,13 @@ class PostProductLocationScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Quận/Huyện'),
+                  const InfoLabel(isRequired: true, text: 'District'),
                   const SizedBox(
                     height: 8,
                   ),
                   InPutTextField(
                       textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                      hintText: 'Nhập quận/huyện',
+                      hintText: 'Enter your district',
                       isEnable: true,
                       controller: postProductController
                           .districtProductLoCationInputController)
@@ -98,13 +98,13 @@ class PostProductLocationScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Phường/Xã'),
+                  const InfoLabel(isRequired: true, text: 'Ward'),
                   const SizedBox(
                     height: 8,
                   ),
                   InPutTextField(
                       textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                      hintText: 'Nhập phường/xã',
+                      hintText: 'Enter your ward',
                       isEnable: true,
                       controller: postProductController
                           .wardsProductLoCationInputController)
@@ -117,7 +117,7 @@ class PostProductLocationScreen extends StatelessWidget {
                 onPress: () {
                   Get.back();
                 },
-                text: 'Đăng sản phẩm',
+                text: 'APPLY',
                 borderColor: AppColors.primaryColor,
                 backgroundColor: AppColors.primaryColor,
                 textStyle: CustomTextStyle.t8(Colors.white),

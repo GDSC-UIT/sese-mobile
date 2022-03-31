@@ -19,11 +19,11 @@ class LoginController extends GetxController {
   var recommendUniName = [].obs;
 
   List<String> universityName = [
-    'Đại học bách khoa',
-    'Đại học khoa học tự nhiên',
-    'Đại học công nghệ thông tin',
-    'Đại học quốc tế',
-    'Đại học sư phạm kĩ thuật'
+    'University of Technology',
+    'University of Science',
+    'University of Infomation Technology',
+    'International University',
+    'University of Technology and Education'
   ];
   var listOfInterest = [].obs;
 
