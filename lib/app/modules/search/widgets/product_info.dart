@@ -1,132 +1,147 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/core/utils/utils.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/routes/app_routes.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ProductInfo extends StatelessWidget {
   ProductInfo({
     Key? key,
-    required this.productImgUrl,
-    required this.nameProduct,
-    required this.userImgUrl,
-    required this.nameUser,
-    required this.location,
+    required this.product,
   }) : super(key: key);
-  String productImgUrl;
-  String userImgUrl;
-  String nameProduct;
-  String nameUser;
-
-  String location;
+  final dynamic product;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(5),
-      child: Row(
-        children: [
-          Expanded(
-            // child: Image.network(productImgUrl),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                productImgUrl,
-                fit: BoxFit.cover,
+    String time = product["createdAt"];
+    time = time.substring(0, 10) + " " + time.substring(11);
+    DateTime dateTime = DateTime.parse(time);
+    var _postTime = DateTime.now().subtract(Duration(
+        days: dateTime.day, hours: dateTime.hour, minutes: dateTime.minute));
+    timeago.setLocaleMessages('en', timeago.ViMessages());
+    return InkWell(
+      onTap: () {
+        Get.toNamed(AppRoutes.homeDetailProduct, arguments: product);
+      },
+      child: Container(
+        height: 160,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: const EdgeInsets.all(5),
+        child: Row(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  product['images'][0],
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    nameProduct,
-                    style: CustomTextStyle.t4(
-                      AppColors.darkGreyColor,
+            const SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product["name"],
+                      style: CustomTextStyle.t4(
+                        AppColors.darkGreyColor,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  //price
-                  Text(
-                    '10000đ',
-                    style: CustomTextStyle.t3(AppColors.primaryColor),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 16.0,
-                        backgroundImage: NetworkImage(userImgUrl),
-                        backgroundColor: Colors.transparent,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        nameUser,
-                        style: CustomTextStyle.t10(AppColors.primaryColor),
-                      ),
-                    ],
-                  ),
-
-                  //info product
-                  Padding(
-                    padding: const EdgeInsets.only(left: 4),
-                    child: Column(
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    //price
+                    Text(
+                      num.parse(product["price"].toString()).money("đ"),
+                      style: CustomTextStyle.t3(AppColors.primaryColor),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.schedule,
-                              color: AppColors.neutralGrey,
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              '1 giờ trước',
-                              style: CustomTextStyle.t10(AppColors.neutralGrey),
-                            ),
-                          ],
+                        CircleAvatar(
+                          radius: 12.0,
+                          backgroundImage:
+                              NetworkImage(product['user']['avatar']),
+                          backgroundColor: Colors.transparent,
                         ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.place,
-                              color: AppColors.neutralGrey,
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              location,
-                              style: CustomTextStyle.t10(AppColors.neutralGrey),
-                            ),
-                          ],
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          product['user']['name'],
+                          style: CustomTextStyle.t10(AppColors.primaryColor),
                         ),
                       ],
                     ),
-                  )
-                ],
+
+                    //info product
+                    Padding(
+                      padding: const EdgeInsets.only(left: 2),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.schedule,
+                                color: AppColors.neutralGrey,
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                timeago.format(_postTime, locale: 'us'),
+                                style:
+                                    CustomTextStyle.t10(AppColors.neutralGrey),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.place,
+                                color: AppColors.neutralGrey,
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                product['location'].length > 16
+                                    ? product['location'].substring(0, 16) +
+                                        '...'
+                                    : product['location'],
+                                style:
+                                    CustomTextStyle.t10(AppColors.neutralGrey),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

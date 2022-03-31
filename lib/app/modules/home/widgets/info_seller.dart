@@ -6,8 +6,8 @@ import '../../../core/values/assets.gen.dart';
 import '../../../global_widgets/app_button.dart';
 
 class InfoSeller extends StatelessWidget {
-  const InfoSeller({Key? key}) : super(key: key);
-
+  const InfoSeller({Key? key, this.product}) : super(key: key);
+  final dynamic product;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,12 +24,13 @@ class InfoSeller extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          height: 50,
-                          width: 50,
+                          height: 48,
+                          width: 48,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(90),
-                            image: const DecorationImage(
-                              image: Assets.imagesAvatar,
+                            image: DecorationImage(
+                              image: Image.network(product['user']['avatar'])
+                                  .image,
                             ),
                           ),
                         ),
@@ -39,11 +40,11 @@ class InfoSeller extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          "meow meow",
+                          product["user"]["name"],
                           style: CustomTextStyle.t4(Colors.black),
                         ),
                         Text(
-                          "Online 1 giờ trước",
+                          "Online 1m ago",
                           style: CustomTextStyle.t10(AppColors.neutralGrey),
                         ),
                       ],
@@ -56,14 +57,14 @@ class InfoSeller extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "10",
+                          "3",
                           style: CustomTextStyle.t9(AppColors.primaryColor),
                         ),
                         const SizedBox(
                           width: 5,
                         ),
                         Text(
-                          "Sản phẩm",
+                          "Post(s)",
                           style: CustomTextStyle.t10(Colors.black),
                         ),
                       ],
@@ -93,7 +94,7 @@ class InfoSeller extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AppButton(
                 onPress: () {},
-                text: "Xem người bán",
+                text: "View Profile",
                 textStyle: CustomTextStyle.t3(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,

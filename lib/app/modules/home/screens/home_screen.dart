@@ -91,12 +91,17 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      SizedBox(
-                        width: _screeenWidth * 0.68,
-                        height: 34,
-                        child: SearchInput(
-                          hintText: "Search",
-                          color: Colors.transparent,
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.search);
+                        },
+                        child: SizedBox(
+                          width: _screeenWidth * 0.68,
+                          height: 34,
+                          child: SearchInput(
+                            hintText: "Search",
+                            color: Colors.transparent,
+                          ),
                         ),
                       ),
                       const SizedBox(

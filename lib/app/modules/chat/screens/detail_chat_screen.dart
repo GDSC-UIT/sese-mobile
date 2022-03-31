@@ -9,6 +9,7 @@ import '../../../core/values/app_colors.dart';
 
 class DetailChatScreen extends StatefulWidget {
   DetailChatScreen({Key? key}) : super(key: key);
+  final dynamic user = Get.arguments;
 
   @override
   State<DetailChatScreen> createState() => _DetailChatScreenState();
@@ -55,8 +56,8 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                 width: 36,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(90),
-                  image: const DecorationImage(
-                    image: Assets.imagesAvatar,
+                  image: DecorationImage(
+                    image: Image.network(widget.user['avatar']).image,
                   ),
                 ),
               ),
@@ -64,7 +65,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                 width: 10,
               ),
               Text(
-                "Ba Duong",
+                widget.user['name'],
                 style: CustomTextStyle.t1(AppColors.primaryColor),
               ),
               Expanded(child: Container()),

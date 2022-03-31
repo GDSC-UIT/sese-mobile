@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/core/utils/utils.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 import '../core/values/assets.gen.dart';
@@ -64,7 +65,7 @@ class ProductItemListView extends StatelessWidget {
                   : Column(
                       children: [
                         Text(
-                          "$priceđ",
+                          num.parse(price.toString()).money("đ"),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: CustomTextStyle.h6(AppColors.primaryColor),

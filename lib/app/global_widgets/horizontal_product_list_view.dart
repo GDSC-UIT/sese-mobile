@@ -4,7 +4,6 @@ import 'package:sese/app/data/models/product_model.dart';
 import 'package:sese/app/global_widgets/product_item_list_view.dart';
 import 'package:duration/duration.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:timeago/timeago.dart';
 
 class HorizontalProductListView extends StatelessWidget {
   HorizontalProductListView(
@@ -32,7 +31,7 @@ class HorizontalProductListView extends StatelessWidget {
               days: dateTime.day,
               hours: dateTime.hour,
               minutes: dateTime.minute));
-          timeago.setLocaleMessages('vi', timeago.ViMessages());
+          timeago.setLocaleMessages('en', timeago.ViMessages());
 
           return ProductItemListView(
             address: product["location"],
@@ -41,7 +40,7 @@ class HorizontalProductListView extends StatelessWidget {
             name: product["name"],
             userName: product["user"]["name"],
             userAvatar: product["user"]["avatar"],
-            timeUpload: timeago.format(timeAgo, locale: 'vi'),
+            timeUpload: timeago.format(timeAgo, locale: 'us'),
             isGiveAway: isGiveAway,
           );
         },

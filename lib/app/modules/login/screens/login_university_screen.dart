@@ -130,6 +130,8 @@ class LoginUniversityScreen extends StatelessWidget {
                         id: sub["_id"],
                         params: params,
                       );
+                      DataCenter.appSubCategory[subCategory[sub["_id"]]!.id] =
+                          subCategory[sub["_id"]];
                     });
                     DataCenter.appCategory[item["_id"]] = AppCategoryModel(
                         id: item['_id'],

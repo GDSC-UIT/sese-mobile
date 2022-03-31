@@ -21,7 +21,7 @@ class UserEvaluate extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "Đánh giá người bán",
+                  "Review user",
                   style: CustomTextStyle.h4(Colors.black),
                 ),
                 Row(
@@ -37,7 +37,7 @@ class UserEvaluate extends StatelessWidget {
                           style: CustomTextStyle.t6(AppColors.primaryColor),
                         ),
                         Text(
-                          "(1 đánh giá)",
+                          "(1 review(s))",
                           style: CustomTextStyle.t6(AppColors.neutralGrey),
                         ),
                       ],
@@ -47,7 +47,7 @@ class UserEvaluate extends StatelessWidget {
               ],
             ),
             Text(
-              "Xem tất cả >",
+              "View all >",
               style: CustomTextStyle.t8(AppColors.primaryColor),
             ),
           ],

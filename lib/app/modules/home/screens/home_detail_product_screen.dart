@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:scroll_indicator/scroll_indicator.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
@@ -14,12 +15,13 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../global_widgets/horizontal_product_list_view.dart';
 import '../../../routes/app_routes.dart';
+import '../../../core/utils/utils.dart';
 
 class HomeDetailProductScreen extends StatefulWidget {
   HomeDetailProductScreen({
     Key? key,
   }) : super(key: key);
-
+  final dynamic product = Get.arguments;
   @override
   State<HomeDetailProductScreen> createState() =>
       _HomeDetailProductScreenState();
@@ -28,13 +30,13 @@ class HomeDetailProductScreen extends StatefulWidget {
 class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
   final HomeController homeController = Get.find();
   int activeIndex = 0;
-  final urlImages = [
-    "https://www.techsignin.com/wp-content/uploads/2021/11/172965-nhung-con-so-gdg-devfest-hcmc-2021-2.jpg",
-    "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_3,f_auto,g_center,h_175,q_auto:good,w_175/v1/gcs/platform-data-goog/events/%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%E1%84%86%E1%85%A9%E1%84%89%E1%85%A7%E1%86%AB%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png",
-    "https://images.tkbcdn.com/1/1560/600/Upload/eventcover/2018/11/16/BF1C60.jpg"
-  ];
-
   ScrollController scrollNewProduct = ScrollController();
+  var urlImages = [];
+  @override
+  void initState() {
+    urlImages = widget.product['images'];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,10 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
               ),
               Expanded(
                 child: AppButton(
-                  onPress: () {},
+                  onPress: () {
+                    Get.toNamed(AppRoutes.chatDetail,
+                        arguments: widget.product["user"]);
+                  },
                   text: "SEND MESSAGE",
                   backgroundColor: AppColors.primaryColor,
                   textStyle: CustomTextStyle.t8(Colors.white),
@@ -87,7 +92,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
               SizedBox(
                 width: _screeenWidth * 0.5,
                 child: Text(
-                  "Bánh gạo Hàn Quốc dạng hộp dùng để tặng quà, 4 loại hương vị",
+                  widget.product["name"],
                   style: CustomTextStyle.t1(AppColors.primaryColor),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -99,7 +104,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                 child: const Icon(
                   Icons.share,
                   color: AppColors.backIcon,
-                  size: 40,
+                  size: 32,
                 ),
               ),
               const SizedBox(
@@ -135,69 +140,71 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                 child: AnimatedSmoothIndicator(
                   activeIndex: activeIndex,
                   count: urlImages.length,
-                  effect: const SlideEffect(
+                  effect: WormEffect(
                       activeDotColor: AppColors.backIcon,
-                      dotColor: AppColors.lightGreyColor),
+                      dotColor: AppColors.lightGreyColor.withOpacity(0.5)),
                 ),
               ),
-              SizedBox(
-                height: _screenHeight * (58 / 844),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      Icons.info_outline,
-                      color: AppColors.backIcon,
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Icon(
-                      Icons.more_vert,
-                      color: AppColors.backIcon,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(
+              //   height: _screenHeight * (58 / 844),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: const [
+              //       SizedBox(
+              //         width: 20,
+              //       ),
+              //       Icon(
+              //         Icons.info_outline,
+              //         color: AppColors.backIcon,
+              //       ),
+              //       SizedBox(
+              //         width: 15,
+              //       ),
+              //       Icon(
+              //         Icons.more_vert,
+              //         color: AppColors.backIcon,
+              //       ),
+              //       SizedBox(
+              //         width: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text(
-                  "Bánh gạo Hàn Quốc dạng hộp dùng để tặng quà, 4 loại hương vị",
+                  widget.product["name"],
                   style: CustomTextStyle.t1(Colors.black),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "540.000đ",
+                  num.parse(widget.product["price"].toString()).money("đ"),
                   style: CustomTextStyle.h4(AppColors.primaryColor),
                 ),
               ),
               const SizedBox(
-                height: 13,
+                height: 16,
               ),
-              InfoProduct(),
+              InfoProduct(
+                product: widget.product,
+              ),
               const SizedBox(
-                height: 11,
+                height: 16,
               ),
               Container(
-                height: 3,
+                height: 8,
                 color: AppColors.cloadDarkColor,
               ),
-              DetailProduct(),
+              DetailProduct(product: widget.product),
               Container(
                 height: 4,
                 color: AppColors.cloadDarkColor,
               ),
-              InfoSeller(),
+              InfoSeller(product: widget.product),
               Container(
                 height: 4,
                 color: AppColors.cloadDarkColor,

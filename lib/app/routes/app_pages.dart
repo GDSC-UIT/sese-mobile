@@ -76,7 +76,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.homeDetailProduct,
       page: () => HomeDetailProductScreen(),
-      transition: Transition.leftToRight,
+      transition: Transition.cupertino,
       binding: HomeBinding(),
     ),
     //auth page
@@ -322,18 +322,16 @@ abstract class AppPages {
     //search
     GetPage(
       name: AppRoutes.search,
-      transition: Transition.leftToRight,
+      transition: Transition.cupertino,
       page: () => SearchScreen(),
       binding: SearchBinding(),
-      transitionDuration: const Duration(seconds: 1),
     ),
     // chat
     GetPage(
       name: AppRoutes.chatDetail,
-      transition: Transition.leftToRight,
+      transition: Transition.cupertino,
       page: () => DetailChatScreen(),
       binding: ChatBinding(),
-      transitionDuration: const Duration(seconds: 1),
     ),
   ];
 }

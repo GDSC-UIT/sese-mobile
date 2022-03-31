@@ -23,16 +23,18 @@ class SearchScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            //search input
             Padding(
               padding: const EdgeInsets.only(
                   top: 20, left: 20, right: 20, bottom: 5),
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: AppColors.backIcon,
-                    size: 30,
+                  GestureDetector(
+                    onTap: () => Get.back(),
+                    child: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: AppColors.backIcon,
+                      size: 30,
+                    ),
                   ),
                   const SizedBox(
                     width: 16,
@@ -41,8 +43,6 @@ class SearchScreen extends StatelessWidget {
                     child: TextField(
                       autofocus: true,
                       onSubmitted: (value) async {
-                        print(value);
-
                         HttpService.showLoadingIndecator();
                         var response = await HttpService.getRequest(
                             '${UrlValue.appUrlPostProduct}?q=$value');
@@ -108,7 +108,7 @@ class SearchScreen extends StatelessWidget {
                                   width: 32,
                                 ),
                                 Text(
-                                  'Xắp xếp: đề cử ',
+                                  'Sort by: Most relavance',
                                   style: CustomTextStyle.t6(
                                       AppColors.darkGreyColor),
                                 )
@@ -125,7 +125,7 @@ class SearchScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Tìm thấy ${searchController.listProduct.length} sản phẩm',
+                                    'Found ${searchController.listProduct.length} products',
                                     style: CustomTextStyle.t10(
                                       AppColors.darkGreyColor,
                                     ),
@@ -134,33 +134,19 @@ class SearchScreen extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Expanded(
-                                    child: Container(
-                                      child: ListView.separated(
-                                          itemBuilder: (context, index) {
-                                            return ProductInfo(
-                                              productImgUrl: searchController
-                                                      .listProduct[index]
-                                                  ["images"][0],
-                                              nameProduct: searchController
-                                                  .listProduct[index]["name"],
-                                              userImgUrl: searchController
-                                                      .listProduct[index]
-                                                  ['user']['avatar'],
-                                              nameUser: searchController
-                                                      .listProduct[index]
-                                                  ['user']['name'],
-                                              location: searchController
-                                                      .listProduct[index]
-                                                  ['location'],
-                                            );
-                                          },
-                                          separatorBuilder: (context, index) =>
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
-                                          itemCount: searchController
-                                              .listProduct.length),
-                                    ),
+                                    child: ListView.separated(
+                                        itemBuilder: (context, index) {
+                                          return ProductInfo(
+                                            product: searchController
+                                                .listProduct[index],
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                        itemCount: searchController
+                                            .listProduct.length),
                                   )
                                 ],
                               ),
