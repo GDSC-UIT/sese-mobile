@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:sese/app/core/values/assets.gen.dart';
 
 class CategoryModel {
   String content;
-  IconData iconData;
+  AssetGenImage image;
 
-  CategoryModel({required this.content, required this.iconData});
+  CategoryModel({required this.content, required this.image});
   static List<CategoryModel> createListCategory() {
     return [
       CategoryModel(
-        content: 'Sách, tài liệu',
-        iconData: Icons.menu_book_outlined,
+        content: 'House Appliances',
+        image: Assets.imagesHouse,
       ),
       CategoryModel(
-        content: 'Đồ điện tử',
-        iconData: Icons.lightbulb_outline,
+        content: 'Fashion, Beauty',
+        image: Assets.imagesFashion,
       ),
       CategoryModel(
-        content: 'Đồ gia dụng nội thất',
-        iconData: Icons.chair_outlined,
+        content: 'Electronic Devices',
+        image: Assets.imagesMonitor,
       ),
       CategoryModel(
-        content: 'Thời trang, trang điểm',
-        iconData: Icons.abc_rounded,
+        content: 'Sports, Games',
+        image: Assets.imagesGame,
       ),
       CategoryModel(
-        content: 'Thể thao, chơi game, sở thích',
-        iconData: Icons.gamepad,
+        content: 'Books, References',
+        image: Assets.imagesBook,
       ),
       CategoryModel(
-          content: 'Đồ dùng cá nhân', iconData: Icons.person_outline_outlined),
-      CategoryModel(
-        content: 'Đồ dùng văn phòng',
-        iconData: Icons.my_library_books_outlined,
+        content: 'Stationery',
+        image: Assets.imagesMouse,
       ),
     ];
   }

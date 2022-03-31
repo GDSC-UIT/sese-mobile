@@ -21,7 +21,7 @@ class ListCategory extends StatelessWidget {
       itemBuilder: (context, index) {
         return CategoryItem(
           content: categoryData[index].content,
-          iconData: categoryData[index].iconData,
+          image: categoryData[index].image,
           homeController: homeController,
         );
       },
