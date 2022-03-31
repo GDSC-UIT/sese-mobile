@@ -44,7 +44,7 @@ class LoginEmailScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Text(
-                  "Đây là email của mình",
+                  "My email is",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
               ),
@@ -53,7 +53,7 @@ class LoginEmailScreen extends StatelessWidget {
               ),
               InPutTextField(
                 textStyle: CustomTextStyle.t8(AppColors.neutralGrey),
-                hintText: 'Điền địa chỉ email của bạn',
+                hintText: 'Fill your email here',
                 isEnable: true,
                 controller: loginController.emailInputController.value,
               ),
@@ -64,12 +64,12 @@ class LoginEmailScreen extends StatelessWidget {
                 onPress: () {
                   if (loginController.emailInputController.value.value.text !=
                       '') {
-                    Get.toNamed(AppRoutes.authVerifyBegin);
+                    Get.toNamed(AppRoutes.verifyBegin);
                   } else {
                     Get.snackbar('', 'Please fill all  the field!');
                   }
                 },
-                text: 'TIẾP TỤC NHA',
+                text: 'NEXT',
                 textStyle: CustomTextStyle.t8(Colors.white),
                 backgroundColor: AppColors.primaryColor,
               ),

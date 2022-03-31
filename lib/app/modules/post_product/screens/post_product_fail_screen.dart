@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 class PostProductFailScreen extends StatelessWidget {
   const PostProductFailScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class PostProductFailScreen extends StatelessWidget {
         ),
         leading: InkWell(
           onTap: () {
-            Get.back();
+            Get.offAllNamed(AppRoutes.home);
           },
           child: const Icon(
             Icons.arrow_back_ios_new,
@@ -55,7 +56,10 @@ class PostProductFailScreen extends StatelessWidget {
               height: 24,
             ),
             AppButton(
-              onPress: () {},
+              onPress: () async {
+                await Get.offAllNamed(AppRoutes.home);
+                Get.toNamed(AppRoutes.postProductBegin);
+              },
               text: 'Đăng sản phẩm khác',
               borderColor: AppColors.primaryColor,
               backgroundColor: AppColors.primaryColor,
@@ -65,7 +69,9 @@ class PostProductFailScreen extends StatelessWidget {
               height: 24,
             ),
             AppButton(
-              onPress: () {},
+              onPress: () {
+                Get.offAllNamed(AppRoutes.home);
+              },
               text: 'Quay lại trang chủ',
               borderColor: AppColors.neutralGrey,
               textStyle: CustomTextStyle.t8(AppColors.neutralGrey),

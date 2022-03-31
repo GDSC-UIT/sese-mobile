@@ -12,7 +12,7 @@ class SearchInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       //controller: controller,
-
+      enabled: false,
       style: CustomTextStyle.t6(AppColors.neutralGrey),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(top: 8),

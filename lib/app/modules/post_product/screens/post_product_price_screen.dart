@@ -18,7 +18,7 @@ class PostProductPriceScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Giá sản phẩm',
+          'Product Price',
           style: CustomTextStyle.h4(AppColors.primaryColor),
         ),
         leading: InkWell(
@@ -42,7 +42,7 @@ class PostProductPriceScreen extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    text: 'Gía sản phẩm ',
+                    text: 'Price',
                     style: CustomTextStyle.t2(AppColors.darkGreyColor),
                     children: const <TextSpan>[
                       TextSpan(
@@ -60,21 +60,20 @@ class PostProductPriceScreen extends StatelessWidget {
                 InPutTextField(
                     typeKeyBoard: TextInputType.number,
                     textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                    hintText: 'Nhập giá sản phẩm',
+                    hintText: 'đ100.000',
                     isEnable: true,
-                    controller:
-                        postProductController.priceInputController.value)
+                    controller: postProductController.priceInputController)
               ],
             ),
             const SizedBox(height: 48),
             Text(
-              'Có thể thương lượng không?',
+              'Is this price negotiable?',
               style: CustomTextStyle.t2(AppColors.darkGreyColor),
             ),
             const SizedBox(height: 20),
             Obx(
               () => AppCheckBox(
-                textOptionString: 'Có',
+                textOptionString: 'Yes',
                 onPress: () {
                   print('click');
                   postProductController.isNegotiable.value =
@@ -87,7 +86,7 @@ class PostProductPriceScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Obx(
               () => AppCheckBox(
-                textOptionString: 'Không',
+                textOptionString: 'No',
                 onPress: () {
                   postProductController.isNegotiable.value =
                       !postProductController.isNegotiable.value;
@@ -101,7 +100,7 @@ class PostProductPriceScreen extends StatelessWidget {
               onPress: () {
                 Get.back();
               },
-              text: 'Xong',
+              text: 'APPLY',
               backgroundColor: AppColors.primaryColor,
               textStyle: CustomTextStyle.t8(Colors.white),
             )

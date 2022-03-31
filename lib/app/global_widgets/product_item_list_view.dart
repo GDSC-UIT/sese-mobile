@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/core/utils/utils.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 import '../core/values/assets.gen.dart';
@@ -8,19 +9,23 @@ class ProductItemListView extends StatelessWidget {
   ProductItemListView({
     Key? key,
     required this.imageUrl,
+    required this.price,
     required this.name,
     required this.userName,
+    required this.userAvatar,
     required this.timeUpload,
-    required this.type,
     required this.address,
+    required this.isGiveAway,
   }) : super(key: key);
 
   String imageUrl;
+  int price;
   String name;
   String userName;
-  String type;
-  int timeUpload;
+  String userAvatar;
+  String timeUpload;
   String address;
+  bool isGiveAway;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,11 +55,26 @@ class ProductItemListView extends StatelessWidget {
                 name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.t8(Colors.black),
+                style: CustomTextStyle.h6(Colors.black),
               ),
               const SizedBox(
                 height: 6,
               ),
+              isGiveAway
+                  ? Container()
+                  : Column(
+                      children: [
+                        Text(
+                          num.parse(price.toString()).money("đ"),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: CustomTextStyle.h6(AppColors.primaryColor),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                      ],
+                    ),
               Row(
                 children: [
                   Container(
@@ -62,8 +82,8 @@ class ProductItemListView extends StatelessWidget {
                     width: 20,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(90),
-                      image: const DecorationImage(
-                        image: Assets.imagesAvatar,
+                      image: DecorationImage(
+                        image: NetworkImage(userAvatar),
                       ),
                     ),
                   ),
@@ -83,11 +103,7 @@ class ProductItemListView extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              IconText(Icons.access_time, "$timeUpload trước"),
-              const SizedBox(
-                height: 4,
-              ),
-              IconText(Icons.list, type),
+              IconText(Icons.access_time, timeUpload),
               const SizedBox(
                 height: 4,
               ),

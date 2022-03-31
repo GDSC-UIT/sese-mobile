@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:sese/app/data/services/auth_service.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/core/values/app_values.dart';
 
@@ -19,11 +20,11 @@ class LoginController extends GetxController {
   var recommendUniName = [].obs;
 
   List<String> universityName = [
-    'Đại học bách khoa',
-    'Đại học khoa học tự nhiên',
-    'Đại học công nghệ thông tin',
-    'Đại học quốc tế',
-    'Đại học sư phạm kĩ thuật'
+    'University of Technology',
+    'University of Science',
+    'University of Infomation Technology',
+    'International University',
+    'University of Technology and Education'
   ];
   var listOfInterest = [].obs;
 
@@ -91,10 +92,10 @@ class LoginController extends GetxController {
           }),
           url: UrlValue.appUrlLoginSocial,
         );
+        DataCenter.user = json.decode(response.body)['user'];
+        print('userCenter:${DataCenter.user}');
         //set accessToken
-
-        AuthService.instance
-            .saveIdToken(json.decode(response.body)['accessToken'].toString());
+        AuthService.instance.saveIdToken(json.decode(response.body).toString());
       }
     } catch (e) {
       print('errorGG: $e');

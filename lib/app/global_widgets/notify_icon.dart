@@ -16,16 +16,16 @@ class NotifyIcon extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           const Icon(
-            Icons.notifications_none_rounded,
-            size: 35,
+            Icons.notifications,
+            size: 32,
             color: Colors.white,
           ),
           Positioned(
-            top: -5,
-            left: -5,
+            top: -2,
+            right: 0,
             child: Container(
-              width: 20,
-              height: 20,
+              width: 16,
+              height: 16,
               child: Center(
                 child: Text(
                   notifi.toString(),

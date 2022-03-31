@@ -44,7 +44,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Text(
-                  "Hãy xác thực tài khoản với Se Sẻ nha",
+                  "Verification",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
               ),
@@ -53,7 +53,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.08,
                 ),
                 child: Text(
-                  "Mình muốn xác thực bằng:",
+                  "I want to use this for verification:",
                   style: CustomTextStyle.t8(Colors.black),
                 ),
               ),
@@ -62,7 +62,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
               ),
               AppButton(
                   onPress: () {},
-                  text: "THẺ SINH VIÊN",
+                  text: "STUDENT CARD",
                   //  textColor: AppColors.primaryColor,
                   backgroundColor: AppColors.lightOrange,
                   borderColor: AppColors.primaryColor,
@@ -108,7 +108,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                       );
                       print('response:${response.body}');
                     } catch (e) {
-                      Get.snackbar('Error', 'Something went wrong');
+                      Get.snackbar('Error', '${e}');
                     }
                   },
                   child: const Text(

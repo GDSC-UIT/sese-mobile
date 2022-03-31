@@ -127,7 +127,7 @@ class CustomTextStyle extends TextStyle {
 
   static TextStyle t10(Color color) {
     return GoogleFonts.inter(
-      fontSize: 10,
+      fontSize: 10.5,
       fontWeight: FontWeight.w400,
       color: color,
     );

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_enums.dart';
+import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/data/services/upload_image_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
@@ -21,6 +22,7 @@ class VerifySuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,25 +35,18 @@ class VerifySuccessScreen extends StatelessWidget {
                 Container(
                   height: 110,
                   width: 110,
-                  child: const Icon(
-                    Icons.check,
-                    size: 70,
-                    color: Colors.white,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(90),
-                    color: AppColors.primaryColor,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: Assets.imagesVerifySuccess,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 16,
                 ),
                 Text(
-                  "Chào mừng bạn đến với",
-                  style: CustomTextStyle.h2(Colors.black),
-                ),
-                Text(
-                  "Se Sẻ!",
+                  "Welcome to Se Sẻ!",
                   style: CustomTextStyle.h2(Colors.black),
                 ),
                 const SizedBox(
@@ -60,11 +55,19 @@ class VerifySuccessScreen extends StatelessWidget {
                 SizedBox(
                   width: 251,
                   child: Center(
-                    child: Text(
-                      "Dữ liệu của bạn sẽ được lưu ở chế độ riêng tư và bây giờ bạn có thể tận hưởng tất cả các tính năng của Se Sẻ",
-                      style: CustomTextStyle.t5(AppColors.neutralGrey),
-                      maxLines: 3,
-                      textAlign: TextAlign.center,
+                    child: Column(
+                      children: [
+                        Text(
+                          "Your account is now being processed.",
+                          style: CustomTextStyle.t5(AppColors.neutralGrey),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          "We will notify you after 24 hours.",
+                          style: CustomTextStyle.t5(AppColors.neutralGrey),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -119,7 +122,19 @@ class VerifySuccessScreen extends StatelessWidget {
                       );
 
                       print("phát covid: ${response.body}");
-                      Get.toNamed(AppRoutes.testImage);
+                      HttpService.showLoadingIndecator();
+                      var responseNew = await HttpService.getRequest(
+                          '${UrlValue.appUrlPostProduct}?type=new');
+                      var listNewProduct =
+                          json.decode(responseNew.body)["posts"];
+
+                      HttpService.showLoadingIndecator();
+                      var responseRecommend = await HttpService.getRequest(
+                          '${UrlValue.appUrlPostProduct}?type=recommendation');
+                      var listRecommendProduct =
+                          json.decode(responseRecommend.body)["posts"];
+                      Get.toNamed(AppRoutes.home,
+                          arguments: [listNewProduct, listRecommendProduct]);
                     } catch (e) {
                       Get.snackbar(
                         'Error',
@@ -131,8 +146,8 @@ class VerifySuccessScreen extends StatelessWidget {
 
                     ;
                   },
-                  text: "Bắt đầu thôi !",
-                  textStyle: CustomTextStyle.t1(Colors.white),
+                  text: "LET'S GET STARTED",
+                  textStyle: CustomTextStyle.t8(Colors.white),
                   backgroundColor: AppColors.primaryColor,
                 ),
               ],

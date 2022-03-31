@@ -4,6 +4,8 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 
+import '../../../routes/app_routes.dart';
+
 class PostProductSuccessScreen extends StatelessWidget {
   const PostProductSuccessScreen({Key? key}) : super(key: key);
 
@@ -14,7 +16,7 @@ class PostProductSuccessScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Thêm sản phẩm',
+          'List your products',
           style: CustomTextStyle.h4(AppColors.primaryColor),
         ),
         leading: InkWell(
@@ -39,7 +41,7 @@ class PostProductSuccessScreen extends StatelessWidget {
               height: 24,
             ),
             Text(
-              'Sản phẩm đã được đăng thành công!',
+              'Your item was listed successfully!',
               textAlign: TextAlign.center,
               style: CustomTextStyle.h2(AppColors.darkGreyColor),
             ),
@@ -47,8 +49,11 @@ class PostProductSuccessScreen extends StatelessWidget {
               height: 24,
             ),
             AppButton(
-              onPress: () {},
-              text: 'Đăng sản phẩm khác',
+              onPress: () async {
+                //await Get.offAllNamed(AppRoutes.home);
+                Get.toNamed(AppRoutes.postProductBegin);
+              },
+              text: 'LIST ANOTHER ITEM',
               borderColor: AppColors.primaryColor,
               backgroundColor: AppColors.primaryColor,
               textStyle: CustomTextStyle.t8(Colors.white),
@@ -57,8 +62,10 @@ class PostProductSuccessScreen extends StatelessWidget {
               height: 24,
             ),
             AppButton(
-              onPress: () {},
-              text: 'Quay lại trang chủ',
+              onPress: () {
+                Get.offAllNamed(AppRoutes.home);
+              },
+              text: 'BACK TO HOME SCREEN',
               borderColor: AppColors.neutralGrey,
               textStyle: CustomTextStyle.t8(AppColors.neutralGrey),
             ),

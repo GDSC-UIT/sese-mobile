@@ -5,6 +5,10 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/models/app_category_model.dart';
+import 'package:sese/app/data/models/category_model.dart';
+import 'package:sese/app/data/models/subCategory_model.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
@@ -20,6 +24,7 @@ class LoginUniversityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
@@ -43,23 +48,26 @@ class LoginUniversityScreen extends StatelessWidget {
               height: 32,
             ),
             Text(
-              'Mình học tại',
+              'My university is',
               style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
               height: 16,
             ),
             InPutTextFieldRecommendLogin(
-              hintText: 'Nhập tên trường',
+              hintText: "Fill your university's name here",
               controller: loginController.schoolInputController.value,
               onChange: loginController.searchSchool,
               textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
             ),
+            const SizedBox(
+              height: 8,
+            ),
             Obx(
               () => loginController.recommendUniName.isEmpty
                   ? const SizedBox()
-                  : Expanded(
-                      flex: 2,
+                  : Container(
+                      height: 150,
                       child: ListView.builder(
                         itemBuilder: (context, index) {
                           return InkWell(
@@ -69,13 +77,14 @@ class LoginUniversityScreen extends StatelessWidget {
                             },
                             child: Container(
                               margin: const EdgeInsets.symmetric(vertical: 2),
-                              padding: const EdgeInsets.all(2),
+                              padding: const EdgeInsets.all(4),
                               child: Text(
                                 loginController.recommendUniName[index],
-                                style: CustomTextStyle.t8(Colors.white),
+                                style:
+                                    CustomTextStyle.t8(AppColors.neutralGrey),
                               ),
                               decoration: BoxDecoration(
-                                  color: AppColors.greenColor,
+                                  color: AppColors.recommendBackground,
                                   borderRadius: BorderRadius.circular(8)),
                             ),
                           );
@@ -87,7 +96,7 @@ class LoginUniversityScreen extends StatelessWidget {
                     ),
             ),
             const SizedBox(
-              height: 64,
+              height: 24,
             ),
             AppButton(
               onPress: () async {
@@ -97,17 +106,52 @@ class LoginUniversityScreen extends StatelessWidget {
                   var response = await HttpService.getRequest(
                       UrlValue.appUrlGetAllCategories);
                   var listInterests = json.decode(response.body)['categories'];
-
+                  //loop list of category
                   listInterests.forEach((item) {
+                    //set  isSelect property
                     item['isSelected'] = false;
+
+                    //get subcategoryList
+                    var subCategoriesList = item["subcategories"];
+                    //create subCategory
+                    Map<String, SubCategory> subCategory = {};
+                    subCategoriesList.forEach((sub) {
+                      //get params of sub
+                      var subParam = sub["params"];
+                      Map<String, dynamic> params = {};
+                      //loop subParam
+                      subParam.forEach((param) {
+                        params[param["param"]] = param;
+                      });
+                      //create subCategory
+                      subCategory[sub["_id"]] = SubCategory(
+                        category: sub["category"],
+                        name: sub["name"],
+                        id: sub["_id"],
+                        params: params,
+                      );
+                      DataCenter.appSubCategory[subCategory[sub["_id"]]!.id] =
+                          subCategory[sub["_id"]];
+                    });
+                    DataCenter.appCategory[item["_id"]] = AppCategoryModel(
+                        id: item['_id'],
+                        imageUrl: item['image'],
+                        name: item['name'],
+                        subCategory: subCategory);
                   });
+                  print(
+                      "Appcategory1name:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.name}");
+                  print(
+                      "Appcategory1imagUrl:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.imageUrl}");
+                  print(
+                      "Appcategory1SubCate:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.subCategory["623be0cac61a2e8a00b9b061"]?.params}");
                   Get.toNamed(AppRoutes.authInterest,
                       arguments: [listInterests]);
                 } else {
                   Get.snackbar('', 'Please fill all  the field!');
                 }
               },
-              text: 'TIẾP TỤC NHA',
+              text: 'NEXT',
               textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )

@@ -28,7 +28,7 @@ class PostProductInfoScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Thêm sản phẩm',
+            'List your products',
             style: CustomTextStyle.h4(AppColors.primaryColor),
           ),
           leading: InkWell(
@@ -75,16 +75,16 @@ class PostProductInfoScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Tên sản phẩm'),
+                  const InfoLabel(isRequired: true, text: 'Product name'),
                   const SizedBox(
                     height: 6,
                   ),
                   InPutTextField(
                       textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                      hintText: 'Nhập tên sản phẩm',
+                      hintText: 'Enter your product name here',
                       isEnable: true,
-                      controller: postProductController
-                          .nameProductInputController.value)
+                      controller:
+                          postProductController.nameProductInputController)
                 ],
               ),
 
@@ -92,17 +92,17 @@ class PostProductInfoScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Mô tả sản phẩm'),
+                  const InfoLabel(isRequired: true, text: 'Description'),
                   const SizedBox(
                     height: 6,
                   ),
                   InPutTextField(
                     maxLine: 5,
                     textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                    hintText: 'Nhập mô tả tại đây',
+                    hintText: 'Enter your product description here',
                     isEnable: true,
-                    controller: postProductController
-                        .descriptionProductInputController.value,
+                    controller:
+                        postProductController.descriptionProductInputController,
                   )
                 ],
               ),
@@ -111,14 +111,32 @@ class PostProductInfoScreen extends StatelessWidget {
                 children: [
                   //price
                   InkWell(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.postProductPrice);
+                    onTap: () async {
+                      await Get.toNamed(AppRoutes.postProductPrice);
+                      if (postProductController
+                          .priceInputController.text.isNotEmpty) {
+                        postProductController.labelPrice.value =
+                            postProductController.priceInputController.text;
+                        if (postProductController.priceInputController.text
+                            .startsWith("0")) {
+                          postProductController.labelPrice.value = "Give-away";
+                        }
+                        postProductController.labelPrice.value +=
+                            (postProductController.isNegotiable.value)
+                                ? ", negotiable"
+                                : ", non-negotiable";
+                      }
+                      FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: InfoProductPropertyButton(
                       leading: Image.asset(
                         'assets/icons/Tag.png',
                       ),
-                      title: const InfoLabel(isRequired: true, text: 'Giá'),
+                      title: Obx(() => InfoLabel(
+                          isRequired: postProductController.labelPrice.value
+                                  .toLowerCase() ==
+                              "Price",
+                          text: postProductController.labelPrice.value)),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
                         color: AppColors.backIcon,
@@ -130,12 +148,11 @@ class PostProductInfoScreen extends StatelessWidget {
                     height: 8,
                   ),
 
-                  //quantity
                   InfoProductPropertyButton(
                     leading: Image.asset(
                       'assets/icons/Shopping_Bag_01.png',
                     ),
-                    title: const InfoLabel(isRequired: true, text: 'Số lượng'),
+                    title: const InfoLabel(isRequired: false, text: 'Quantity'),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -180,16 +197,31 @@ class PostProductInfoScreen extends StatelessWidget {
                       var response = await HttpService.getRequest(
                           UrlValue.appUrlGetAllCategories);
                       var categories = json.decode(response.body)['categories'];
-
-                      Get.toNamed(AppRoutes.postProductCategory,
+                      Get.back();
+                      await Get.toNamed(AppRoutes.postProductCategory,
                           arguments: [categories]);
+                      if (postProductController
+                          .categoryInputController.text.isNotEmpty) {
+                        postProductController.labelCategory.value =
+                            postProductController.categoryInputController.text;
+                        if (postProductController
+                            .subCategoryInputController.text.isNotEmpty) {
+                          postProductController.labelCategory.value +=
+                              "- ${postProductController.subCategoryInputController.text}";
+                        }
+                      }
+                      print("${postProductController.labelCategory.value}");
+                      FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: InfoProductPropertyButton(
                       leading: Image.asset(
                         'assets/icons/List_Unordered.png',
                       ),
-                      title:
-                          const InfoLabel(isRequired: true, text: 'Danh Mục'),
+                      title: Obx(() => InfoLabel(
+                          isRequired: postProductController.labelCategory.value
+                                  .toLowerCase() ==
+                              "Category",
+                          text: postProductController.labelCategory.value)),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
                         color: AppColors.backIcon,
@@ -202,14 +234,16 @@ class PostProductInfoScreen extends StatelessWidget {
                   ),
                   //location
                   InkWell(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.postProductLocation);
+                    onTap: () async {
+                      await Get.toNamed(AppRoutes.postProductLocation);
+                      FocusScope.of(context).unfocus();
                     },
                     child: InfoProductPropertyButton(
                       leading: Image.asset(
                         'assets/icons/Map_Pin.png',
                       ),
-                      title: const InfoLabel(isRequired: true, text: 'Vị trí'),
+                      title:
+                          const InfoLabel(isRequired: false, text: 'Location'),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
                         color: AppColors.backIcon,
@@ -266,7 +300,7 @@ class PostProductInfoScreen extends StatelessWidget {
                     Get.toNamed(AppRoutes.postProductFail);
                   }
                 },
-                text: 'Đăng sản phẩm',
+                text: 'LIST NOW',
                 borderColor: AppColors.primaryColor,
                 backgroundColor: AppColors.primaryColor,
                 textStyle: CustomTextStyle.t8(Colors.white),

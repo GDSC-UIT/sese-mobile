@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroll_indicator/scroll_indicator.dart';
@@ -13,12 +14,14 @@ import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeController homeController = Get.put(HomeController());
+  HomeController homeController = Get.find<HomeController>();
   ScrollController scrollCategory = ScrollController();
   ScrollController scrollNewProduct = ScrollController();
   ScrollController scrollRecommendProduct = ScrollController();
+  var listNewProduct = Get.arguments[0];
+  var listRecommendProduct = Get.arguments[1];
 
-  int notifi = 12;
+  int notifi = 3;
 
   HomeScreen({Key? key}) : super(key: key);
 
@@ -28,263 +31,289 @@ class HomeScreen extends StatelessWidget {
     double _screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.lightGreyColor,
-      bottomNavigationBar: AppBottomNavigationBar(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: AppColors.primaryColor,
-              height: _screenHeight * 0.15,
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: _screenHeight * 0.022,
-                      ),
-                      child: const Image(
-                        image: Assets.imagesSese,
-                        height: 27,
-                        width: 67,
-                      ),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Obx(
+        () => AppBottomNavigationBar(
+          selectedIndex: homeController.pageIdx.value,
+          onTap: (index) {
+            homeController.pageIdx.value = index;
+          },
+          onPressButton: () => Get.toNamed(AppRoutes.postProductBegin),
+        ),
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 16),
+            color: AppColors.primaryColor,
+            height: _screenHeight * 0.16,
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: _screenHeight * 0.022,
+                    ),
+                    child: const Image(
+                      image: Assets.imagesSese,
+                      height: 27,
+                      width: 67,
                     ),
                   ),
-                  SizedBox(
-                    height: _screenHeight * 0.02,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      children: [
-                        Container(
+                ),
+                SizedBox(
+                  height: _screenHeight * 0.02,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          print(
+                              "list recommend: ${listRecommendProduct[0]["name"]}");
+                        },
+                        child: Container(
                           height: 32,
                           width: 32,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(90),
-                            image: const DecorationImage(
-                              image: Assets.imagesAvatar,
+                            image: DecorationImage(
+                              image: Image.network(FirebaseAuth
+                                          .instance.currentUser!.photoURL ??
+                                      "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&d=mm&r=g")
+                                  .image,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        SizedBox(
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.search);
+                        },
+                        child: SizedBox(
                           width: _screeenWidth * 0.68,
                           height: 34,
                           child: SearchInput(
-                            hintText: "Tìm kiếm sản phẩm",
+                            hintText: "Search",
                             color: Colors.transparent,
                           ),
                         ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        NotifyIcon(notifi),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      NotifyIcon(notifi),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Container(
-              color: Colors.white,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 26, right: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Container(
+                    color: Colors.white,
+                    child: Column(
                       children: [
-                        Text(
-                          "Danh mục",
-                          style: CustomTextStyle.h4(Colors.black),
+                        const SizedBox(
+                          height: 10,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.homeAllCategory);
-                          },
-                          child: Text(
-                            "Tất cả >",
-                            style: CustomTextStyle.t4(AppColors.primaryColor),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 26, right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Category",
+                                style: CustomTextStyle.h4(Colors.black),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.homeAllCategory);
+                                },
+                                child: Text(
+                                  "View all >",
+                                  style: CustomTextStyle.t4(
+                                      AppColors.primaryColor),
+                                ),
+                              ),
+                            ],
                           ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: _screenHeight * 0.14,
+                          child: ListCategory(
+                            homeController: homeController,
+                            scrollController: scrollCategory,
+                          ),
+                        ),
+                        ScrollIndicator(
+                          width: 48,
+                          height: 5,
+                          indicatorWidth: 15,
+                          scrollController: scrollCategory,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.neutralGrey,
+                          ),
+                          indicatorDecoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 11,
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 6,
                   ),
-                  SizedBox(
-                    height: _screenHeight * 0.14,
-                    child: ListCategory(
-                      homeController: homeController,
-                      scrollController: scrollCategory,
-                    ),
-                  ),
-                  ScrollIndicator(
-                    width: 48,
-                    height: 5,
-                    indicatorWidth: 15,
-                    scrollController: scrollCategory,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: AppColors.neutralGrey,
-                    ),
-                    indicatorDecoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(50),
+                  Container(
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 26, right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Now giving away!",
+                                style: CustomTextStyle.h4(Colors.black),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  homeController.typeScreen = "Sản phẩm mới";
+                                  Get.toNamed(AppRoutes.homeCategory);
+                                },
+                                child: Text(
+                                  "View all >",
+                                  style: CustomTextStyle.t4(
+                                      AppColors.primaryColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 220,
+                          child: HorizontalProductListView(
+                              isGiveAway: true,
+                              listProduct: listNewProduct,
+                              scrollController: scrollNewProduct),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        ScrollIndicator(
+                          width: 48,
+                          height: 5,
+                          indicatorWidth: 15,
+                          scrollController: scrollNewProduct,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.neutralGrey,
+                          ),
+                          indicatorDecoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 11,
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(
-                    height: 11,
+                    height: 6,
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 26, right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Recommended",
+                                style: CustomTextStyle.h4(Colors.black),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  homeController.typeScreen = "Gợi ý";
+                                  Get.toNamed(AppRoutes.homeCategory);
+                                },
+                                child: Text(
+                                  "View all >",
+                                  style: CustomTextStyle.t4(
+                                      AppColors.primaryColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 220,
+                          child: HorizontalProductListView(
+                              isGiveAway: false,
+                              listProduct: listRecommendProduct,
+                              scrollController: scrollRecommendProduct),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        ScrollIndicator(
+                          width: 48,
+                          height: 5,
+                          indicatorWidth: 15,
+                          scrollController: scrollRecommendProduct,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.neutralGrey,
+                          ),
+                          indicatorDecoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 11,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 6,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 26, right: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Sản phẩm mới",
-                                  style: CustomTextStyle.h4(Colors.black),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    homeController.typeScreen = "Sản phẩm mới";
-                                    Get.toNamed(AppRoutes.homeCategory);
-                                  },
-                                  child: Text(
-                                    "Xem thêm >",
-                                    style: CustomTextStyle.t4(
-                                        AppColors.primaryColor),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            height: 220,
-                            child: HorizontalProductListView(
-                                scrollController: scrollNewProduct),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          ScrollIndicator(
-                            width: 48,
-                            height: 5,
-                            indicatorWidth: 15,
-                            scrollController: scrollNewProduct,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.neutralGrey,
-                            ),
-                            indicatorDecoration: BoxDecoration(
-                              color: AppColors.primaryColor,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 11,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Container(
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 26, right: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Gợi ý cho bạn",
-                                  style: CustomTextStyle.h4(Colors.black),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    homeController.typeScreen = "Gợi ý";
-                                    Get.toNamed(AppRoutes.homeCategory);
-                                  },
-                                  child: Text(
-                                    "Xem tất cả >",
-                                    style: CustomTextStyle.t4(
-                                        AppColors.primaryColor),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            height: 220,
-                            child: HorizontalProductListView(
-                                scrollController: scrollRecommendProduct),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          ScrollIndicator(
-                            width: 48,
-                            height: 5,
-                            indicatorWidth: 15,
-                            scrollController: scrollRecommendProduct,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.neutralGrey,
-                            ),
-                            indicatorDecoration: BoxDecoration(
-                              color: AppColors.primaryColor,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 11,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

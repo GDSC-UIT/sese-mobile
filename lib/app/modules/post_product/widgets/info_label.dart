@@ -10,9 +10,11 @@ class InfoLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _text = (text.length > 32) ? text.substring(0, 30) + '...' : text;
     return RichText(
+      overflow: TextOverflow.ellipsis,
       text: TextSpan(
-        text: text,
+        text: _text,
         style: CustomTextStyle.t2(AppColors.darkGreyColor),
         children: <TextSpan>[
           TextSpan(

@@ -88,10 +88,10 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                     const Icon(
                       Icons.filter_alt_outlined,
                       color: AppColors.primaryColor,
-                      size: 40,
+                      size: 28,
                     ),
                     const SizedBox(
-                      width: 50,
+                      width: 40,
                     ),
                     Positioned(
                       bottom: 0,
@@ -151,7 +151,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                                 width: 10,
                               ),
                               Text(
-                                "Phổ biến",
+                                "Popular",
                                 style: CustomTextStyle.t4(
                                     tabController.index == 0
                                         ? AppColors.primaryColor
@@ -172,7 +172,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                               width: 10,
                             ),
                             Text(
-                              "Hàng mới",
+                              "Newest",
                               style: CustomTextStyle.t4(tabController.index == 1
                                   ? AppColors.primaryColor
                                   : Colors.black),
@@ -191,7 +191,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                               width: 10,
                             ),
                             Text(
-                              "Gần nhất",
+                              "Near me",
                               style: CustomTextStyle.t4(tabController.index == 2
                                   ? AppColors.primaryColor
                                   : Colors.black),

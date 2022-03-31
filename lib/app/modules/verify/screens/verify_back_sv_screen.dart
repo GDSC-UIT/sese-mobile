@@ -44,14 +44,14 @@ class VerifyBackSvScreen extends StatelessWidget {
                   height: AppConstant.gapBackButtonHeader,
                 ),
                 Text(
-                  "Xác thực tài khoản",
+                  "Verification",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
                 const SizedBox(
                   height: 23,
                 ),
                 Text(
-                  "Vui lòng chụp mặt sau ${verifyController.typeCard}",
+                  "Take a photo of the back of your ${verifyController.typeCard}",
                   style: CustomTextStyle.t4(Colors.black),
                 ),
                 const SizedBox(
@@ -76,7 +76,7 @@ class VerifyBackSvScreen extends StatelessWidget {
                   onPress: () {
                     verifyController.pickBackImage(ImageSource.camera);
                   },
-                  text: "CHỤP ẢNH",
+                  text: "CAPTURE",
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                   backgroundColor: AppColors.lightOrange,
                   borderColor: AppColors.primaryColor,
@@ -89,7 +89,7 @@ class VerifyBackSvScreen extends StatelessWidget {
                   onPress: () {
                     verifyController.pickBackImage(ImageSource.gallery);
                   },
-                  text: "CHỌN TỪ THƯ VIỆN",
+                  text: "CHOOSE FROM LIBRARY",
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                   backgroundColor: AppColors.lightOrange,
                   borderColor: AppColors.primaryColor,

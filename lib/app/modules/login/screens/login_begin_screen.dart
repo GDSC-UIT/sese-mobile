@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
@@ -27,7 +28,7 @@ class LoginBeginScreen extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    'Bắt đầu mua bán, trao đổi đồ cũ cùng Se Sẻ ngay bây giờ!',
+                    'Start buying, selling, and exchanging with Se Sẻ now!',
                     style: CustomTextStyle.h1(AppColors.primaryColor),
                   ),
                 ),
@@ -37,51 +38,41 @@ class LoginBeginScreen extends StatelessWidget {
                 child: Image.asset('assets/images/login_begin_img.png'),
                 // child: Container(),
               ),
-              Expanded(
-                child: AppButton(
-                  textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-                  onPress: () async {
-                    //show loader when login
-                    HttpService.showLoadingIndecator();
-                    //login
-                    await loginController.googleSignInAction();
+              AppButton(
+                textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
+                onPress: () async {
+                  //show loader when login
+                  HttpService.showLoadingIndecator();
+                  //login
+                  await loginController.googleSignInAction();
 
-                    AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.verifyBegin)
-                        : print('Login gg fail');
-                  },
-                  text: 'LOGGIN WITH GOOGLE',
-                  // textColor: AppColors.darkGreyColor,
-                  borderColor: AppColors.greenColor,
-                  icon: Image.asset(
-                    'assets/images/google_icon.png',
-                    scale: 0.5,
-                  ),
-                ),
+                  AuthService.instance.isLogined == true
+                      ? Get.offNamed(AppRoutes.authUni)
+                      : print('Login gg fail');
+                },
+                text: 'LOGIN WITH GOOGLE',
+                // textColor: AppColors.darkGreyColor,
+                borderColor: AppColors.greenColor,
+                icon: Assets.imagesGoogleIcon.image(),
               ),
               const SizedBox(
                 height: 16,
               ),
-              Expanded(
-                child: AppButton(
-                  textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-                  onPress: () async {
-                    //show loader when login
-                    HttpService.showLoadingIndecator();
-                    //login
-                    await loginController.facebookLoginAction();
-                    AuthService.instance.isLogined == true
-                        ? Get.toNamed(AppRoutes.authName)
-                        : print('Login facebook fail');
-                  },
-                  text: 'LOGGIN WITH FACEBOOK',
-                  // textColor: AppColors.darkGreyColor,
-                  borderColor: AppColors.greenColor,
-                  icon: Image.asset(
-                    'assets/images/facebook_icon.png',
-                    scale: 0.5,
-                  ),
-                ),
+              AppButton(
+                textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
+                onPress: () async {
+                  //show loader when login
+                  HttpService.showLoadingIndecator();
+                  //login
+                  await loginController.facebookLoginAction();
+                  AuthService.instance.isLogined == true
+                      ? Get.offNamed(AppRoutes.authName)
+                      : print('Login facebook fail');
+                },
+                text: 'LOGIN WITH FACEBOOK',
+                // textColor: AppColors.darkGreyColor,
+                borderColor: AppColors.greenColor,
+                icon: Assets.imagesFacebookIcon.image(),
               ),
             ],
           ),
