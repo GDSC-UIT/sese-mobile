@@ -5,6 +5,10 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/models/app_category_model.dart';
+import 'package:sese/app/data/models/category_model.dart';
+import 'package:sese/app/data/models/subCategory_model.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
@@ -97,10 +101,43 @@ class LoginUniversityScreen extends StatelessWidget {
                   var response = await HttpService.getRequest(
                       UrlValue.appUrlGetAllCategories);
                   var listInterests = json.decode(response.body)['categories'];
-
+                  //loop list of category
                   listInterests.forEach((item) {
+                    //set  isSelect property
                     item['isSelected'] = false;
+
+                    //get subcategoryList
+                    var subCategoriesList = item["subcategories"];
+                    //create subCategory
+                    Map<String, SubCategory> subCategory = {};
+                    subCategoriesList.forEach((sub) {
+                      //get params of sub
+                      var subParam = sub["params"];
+                      Map<String, dynamic> params = {};
+                      //loop subParam
+                      subParam.forEach((param) {
+                        params[param["param"]] = param;
+                      });
+                      //create subCategory
+                      subCategory[sub["_id"]] = SubCategory(
+                        category: sub["category"],
+                        name: sub["name"],
+                        id: sub["_id"],
+                        params: params,
+                      );
+                    });
+                    DataCenter.appCategory[item["_id"]] = AppCategoryModel(
+                        id: item['_id'],
+                        imageUrl: item['image'],
+                        name: item['name'],
+                        subCategory: subCategory);
                   });
+                  print(
+                      "Appcategory1name:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.name}");
+                  print(
+                      "Appcategory1imagUrl:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.imageUrl}");
+                  print(
+                      "Appcategory1SubCate:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.subCategory["623be0cac61a2e8a00b9b061"]?.params}");
                   Get.toNamed(AppRoutes.authInterest,
                       arguments: [listInterests]);
                 } else {
