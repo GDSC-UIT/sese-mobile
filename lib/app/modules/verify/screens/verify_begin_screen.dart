@@ -41,7 +41,7 @@ class VerifyBeginScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Text(
-                  "Hãy xác thực tài khoản với Se Sẻ nha",
+                  "Verification",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
               ),
@@ -50,7 +50,7 @@ class VerifyBeginScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.08,
                 ),
                 child: Text(
-                  "Mình muốn xác thực bằng:",
+                  "I want to use this for verification:",
                   style: CustomTextStyle.t4(Colors.black),
                 ),
               ),
@@ -59,10 +59,10 @@ class VerifyBeginScreen extends StatelessWidget {
               ),
               AppButton(
                 onPress: () {
-                  verifyController.typeCard = "thẻ sinh viên";
+                  verifyController.typeCard = "student card";
                   Get.toNamed(AppRoutes.verifyFrontSv);
                 },
-                text: "THẺ SINH VIÊN",
+                text: "STUDENT CARD",
                 textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
@@ -73,10 +73,10 @@ class VerifyBeginScreen extends StatelessWidget {
               ),
               AppButton(
                 onPress: () {
-                  verifyController.typeCard = "căn cước công dân";
+                  verifyController.typeCard = "citizen identity card";
                   Get.toNamed(AppRoutes.verifyFrontSv);
                 },
-                text: "CĂN CƯỚC CÔNG DÂN",
+                text: "CITIZEN IDENTITY CARD",
                 textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
@@ -87,10 +87,10 @@ class VerifyBeginScreen extends StatelessWidget {
               ),
               AppButton(
                 onPress: () {
-                  verifyController.typeCard = "chứng minh nhân dân";
+                  verifyController.typeCard = "identity card";
                   Get.toNamed(AppRoutes.verifyFrontSv);
                 },
-                text: "CHỨNG MINH NHÂN DÂN",
+                text: "IDENTITY CARD",
                 textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
@@ -105,7 +105,7 @@ class VerifyBeginScreen extends StatelessWidget {
                     Get.offAllNamed(AppRoutes.home);
                   },
                   child: const Text(
-                    "Mình sẽ xác thực sau nha",
+                    "I Will Do It Later",
                     style: TextStyle(
                       fontSize: 11,
                       color: AppColors.greenColor,

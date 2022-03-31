@@ -56,14 +56,14 @@ class VerifyBackSvSuccessScreen extends StatelessWidget {
                   height: AppConstant.gapBackButtonHeader,
                 ),
                 Text(
-                  "Xác thực tài khoản",
+                  "Verification",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
                 const SizedBox(
                   height: 23,
                 ),
                 Text(
-                  "Vui lòng chụp mặt sau ${verifyController.typeCard}",
+                  "Take a photo of the back of your ${verifyController.typeCard}",
                   style: CustomTextStyle.t4(Colors.black),
                 ),
                 const SizedBox(
@@ -78,7 +78,7 @@ class VerifyBackSvSuccessScreen extends StatelessWidget {
                     verifyController.pickBackImage(ImageSource.camera);
                   },
                   child: Text(
-                    "Chụp lại",
+                    "Recapture",
                     style: GoogleFonts.robotoMono(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -95,7 +95,7 @@ class VerifyBackSvSuccessScreen extends StatelessWidget {
                     await verifyController.getTypeCard();
                     Get.toNamed(AppRoutes.verifySuccess);
                   },
-                  text: "XÁC NHẬN",
+                  text: "NEXT",
                   backgroundColor: AppColors.primaryColor,
                   textStyle: CustomTextStyle.t8(Colors.white),
                 ),

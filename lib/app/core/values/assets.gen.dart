@@ -99,6 +99,9 @@ class Assets {
 
   /// File path: assets/images/thoi_trang.png
   static const AssetGenImage imagesThoiTrang = AssetGenImage('assets/images/thoi_trang.png');
+
+  /// File path: assets/images/verify_success.png
+  static const AssetGenImage imagesVerifySuccess = AssetGenImage('assets/images/verify_success.png');
 }
 
 class AssetGenImage extends AssetImage {

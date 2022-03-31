@@ -106,7 +106,9 @@ class LoginInterestScreen extends StatelessWidget {
                                       ),
                                       child: Text(
                                         loginController.listOfInterest[index]
-                                            ['name'],
+                                                ['name']
+                                            .toString()
+                                            .toUpperCase(),
                                         textAlign: TextAlign.center,
                                         style: CustomTextStyle.t8(
                                             loginController.listOfInterest[
