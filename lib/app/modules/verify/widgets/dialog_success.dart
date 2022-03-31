@@ -36,9 +36,9 @@ class DialogSuccess extends StatelessWidget {
             width: 29,
           ),
           Text(
-            "Chụp thành công!",
-            style: GoogleFonts.robotoMono(
-              fontSize: 16,
+            "Captured successfully",
+            style: GoogleFonts.inter(
+              fontSize: 14,
               color: Colors.black,
             ),
           ),

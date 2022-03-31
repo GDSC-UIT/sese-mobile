@@ -38,7 +38,7 @@ class LoginNameScreen extends StatelessWidget {
               height: 32,
             ),
             Text(
-              'Tên mình là',
+              'My name is',
               style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
@@ -46,7 +46,7 @@ class LoginNameScreen extends StatelessWidget {
             ),
             InPutTextField(
               textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-              hintText: 'Nhập tên bạn ở đây nhé',
+              hintText: 'Fill your name here',
               isEnable: true,
               controller: loginController.nameInputController.value,
             ),
@@ -62,7 +62,7 @@ class LoginNameScreen extends StatelessWidget {
                   Get.snackbar('', 'Please fill all  the field!');
                 }
               },
-              text: 'TIẾP TỤC NHA',
+              text: 'NEXT',
               textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )

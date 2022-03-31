@@ -4,4 +4,5 @@ import 'package:sese/app/data/models/category_model.dart';
 
 class DataCenter {
   static Map<String, AppCategoryModel> appCategory = {};
+  static Map<String, dynamic> user = {};
 }

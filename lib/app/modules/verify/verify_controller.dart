@@ -20,19 +20,19 @@ class VerifyController extends GetxController {
 
   Future getTypeCard() async {
     switch (typeCard) {
-      case "thẻ sinh viên":
+      case "student card":
         {
           typeCardEnum = TypeCard.student_card;
         }
         break;
 
-      case "căn cước công dân":
+      case "citizen identity card":
         {
           typeCardEnum = TypeCard.citizen_identity_card;
         }
         break;
 
-      case "chứng minh nhân dân":
+      case "identity card":
         {
           typeCardEnum = TypeCard.identity_card;
         }

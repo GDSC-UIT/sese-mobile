@@ -28,7 +28,7 @@ class LoginBeginScreen extends StatelessWidget {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    'Bắt đầu mua bán, trao đổi đồ cũ cùng Se Sẻ ngay bây giờ!',
+                    'Start buying, selling, and exchanging with Se Sẻ now!',
                     style: CustomTextStyle.h1(AppColors.primaryColor),
                   ),
                 ),
@@ -47,10 +47,10 @@ class LoginBeginScreen extends StatelessWidget {
                   await loginController.googleSignInAction();
 
                   AuthService.instance.isLogined == true
-                      ? Get.offNamed(AppRoutes.authUni)
+                      ? Get.offNamed(AppRoutes.verifyBegin)
                       : print('Login gg fail');
                 },
-                text: 'Continue with Google',
+                text: 'LOGIN WITH GOOGLE',
                 // textColor: AppColors.darkGreyColor,
                 borderColor: AppColors.greenColor,
                 icon: Assets.imagesGoogleIcon.image(),
@@ -69,7 +69,7 @@ class LoginBeginScreen extends StatelessWidget {
                       ? Get.offNamed(AppRoutes.authName)
                       : print('Login facebook fail');
                 },
-                text: 'Continue with Facebook',
+                text: 'LOGIN WITH FACEBOOK',
                 // textColor: AppColors.darkGreyColor,
                 borderColor: AppColors.greenColor,
                 icon: Assets.imagesFacebookIcon.image(),

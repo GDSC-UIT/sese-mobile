@@ -15,7 +15,7 @@ class CategoryListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return CategoryItemListView(
           text: listCategory[index].content,
-          icon: listCategory[index].iconData,
+          image: listCategory[index].image,
           homeController: homeController,
         );
       },

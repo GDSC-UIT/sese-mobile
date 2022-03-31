@@ -28,7 +28,7 @@ class PostProductInfoScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Thêm sản phẩm',
+            'List your products',
             style: CustomTextStyle.h4(AppColors.primaryColor),
           ),
           leading: InkWell(
@@ -75,13 +75,13 @@ class PostProductInfoScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Tên sản phẩm'),
+                  const InfoLabel(isRequired: true, text: 'Product name'),
                   const SizedBox(
                     height: 6,
                   ),
                   InPutTextField(
                       textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                      hintText: 'Nhập tên sản phẩm',
+                      hintText: 'Enter your product name here',
                       isEnable: true,
                       controller:
                           postProductController.nameProductInputController)
@@ -92,14 +92,14 @@ class PostProductInfoScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const InfoLabel(isRequired: true, text: 'Mô tả sản phẩm'),
+                  const InfoLabel(isRequired: true, text: 'Description'),
                   const SizedBox(
                     height: 6,
                   ),
                   InPutTextField(
                     maxLine: 5,
                     textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
-                    hintText: 'Nhập mô tả tại đây',
+                    hintText: 'Enter your product description here',
                     isEnable: true,
                     controller:
                         postProductController.descriptionProductInputController,
@@ -135,7 +135,7 @@ class PostProductInfoScreen extends StatelessWidget {
                       title: Obx(() => InfoLabel(
                           isRequired: postProductController.labelPrice.value
                                   .toLowerCase() ==
-                              "giá",
+                              "Price",
                           text: postProductController.labelPrice.value)),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
@@ -152,7 +152,7 @@ class PostProductInfoScreen extends StatelessWidget {
                     leading: Image.asset(
                       'assets/icons/Shopping_Bag_01.png',
                     ),
-                    title: const InfoLabel(isRequired: false, text: 'Số lượng'),
+                    title: const InfoLabel(isRequired: false, text: 'Quantity'),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -220,7 +220,7 @@ class PostProductInfoScreen extends StatelessWidget {
                       title: Obx(() => InfoLabel(
                           isRequired: postProductController.labelCategory.value
                                   .toLowerCase() ==
-                              "danh mục",
+                              "Category",
                           text: postProductController.labelCategory.value)),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
@@ -242,7 +242,8 @@ class PostProductInfoScreen extends StatelessWidget {
                       leading: Image.asset(
                         'assets/icons/Map_Pin.png',
                       ),
-                      title: const InfoLabel(isRequired: false, text: 'Vị trí'),
+                      title:
+                          const InfoLabel(isRequired: false, text: 'Location'),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
                         color: AppColors.backIcon,
@@ -299,7 +300,7 @@ class PostProductInfoScreen extends StatelessWidget {
                     Get.toNamed(AppRoutes.postProductFail);
                   }
                 },
-                text: 'Đăng sản phẩm',
+                text: 'LIST NOW',
                 borderColor: AppColors.primaryColor,
                 backgroundColor: AppColors.primaryColor,
                 textStyle: CustomTextStyle.t8(Colors.white),

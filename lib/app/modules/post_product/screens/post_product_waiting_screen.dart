@@ -10,7 +10,7 @@ class PostProductWaitingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 70),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -22,7 +22,13 @@ class PostProductWaitingScreen extends StatelessWidget {
               height: 24,
             ),
             Text(
-              'Đang đăng sản phẩm...',
+              'Hang on, your listing is',
+              style: CustomTextStyle.h2(
+                AppColors.darkGreyColor,
+              ),
+            ),
+            Text(
+              'being processed...',
               style: CustomTextStyle.h2(
                 AppColors.darkGreyColor,
               ),

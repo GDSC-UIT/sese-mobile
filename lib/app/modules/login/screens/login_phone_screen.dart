@@ -42,7 +42,7 @@ class LoginPhoneScreen extends StatelessWidget {
                 height: _screenHeight * 0.03,
               ),
               Text(
-                "Số điện thoại của mình là",
+                "My phone number is",
                 style: CustomTextStyle.h1(
                   AppColors.primaryColor,
                 ),
@@ -61,7 +61,7 @@ class LoginPhoneScreen extends StatelessWidget {
                 initialValue: number,
                 textFieldController: loginController.phoneInputController.value,
                 formatInput: false,
-                hintText: "Điền số điện thoại của bạn",
+                hintText: "Fill your number here",
                 textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
                 keyboardType: const TextInputType.numberWithOptions(
                     signed: true, decimal: true),
@@ -80,7 +80,7 @@ class LoginPhoneScreen extends StatelessWidget {
                     Get.snackbar('', 'Please fill all  the field!');
                   }
                 },
-                text: 'TIẾP TỤC NHA',
+                text: 'NEXT',
                 textStyle: CustomTextStyle.t8(Colors.white),
                 backgroundColor: AppColors.primaryColor,
               )
