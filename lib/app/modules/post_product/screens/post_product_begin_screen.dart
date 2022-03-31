@@ -16,7 +16,6 @@ class PostProductBeginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AppBottomNavigationBar(),
       appBar: AppBar(
         centerTitle: true,
         title: Text(

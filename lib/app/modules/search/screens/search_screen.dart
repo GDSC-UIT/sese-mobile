@@ -42,13 +42,13 @@ class SearchScreen extends StatelessWidget {
                       autofocus: true,
                       onSubmitted: (value) async {
                         print(value);
-                        searchController.isFirst.value = false;
+
                         HttpService.showLoadingIndecator();
                         var response = await HttpService.getRequest(
                             '${UrlValue.appUrlPostProduct}?q=$value');
                         searchController.listProduct.value =
                             json.decode(response.body)['posts'];
-
+                        searchController.isFirst.value = false;
                         Get.back();
                         print('list:${searchController.listProduct.value}');
                       },

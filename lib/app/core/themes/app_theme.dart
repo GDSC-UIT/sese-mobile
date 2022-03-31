@@ -89,6 +89,7 @@ class CustomTextStyle extends TextStyle {
       fontSize: 12,
       fontWeight: FontWeight.w600,
       color: color,
+      height: 1.8,
     );
   }
 

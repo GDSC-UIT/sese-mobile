@@ -42,7 +42,7 @@ class PostProductPriceScreen extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    text: 'Gía sản phẩm ',
+                    text: 'Giá sản phẩm ',
                     style: CustomTextStyle.t2(AppColors.darkGreyColor),
                     children: const <TextSpan>[
                       TextSpan(
@@ -62,8 +62,7 @@ class PostProductPriceScreen extends StatelessWidget {
                     textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
                     hintText: 'Nhập giá sản phẩm',
                     isEnable: true,
-                    controller:
-                        postProductController.priceInputController.value)
+                    controller: postProductController.priceInputController)
               ],
             ),
             const SizedBox(height: 48),

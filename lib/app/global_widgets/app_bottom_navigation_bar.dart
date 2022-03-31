@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
-  AppBottomNavigationBar({
-    Key? key,
-  }) : super(key: key);
-
-  //HomeController homeController = Get.find();
+  const AppBottomNavigationBar(
+      {Key? key, this.onTap, this.selectedIndex = 0, this.onPressButton})
+      : super(key: key);
+  final int selectedIndex;
+  final Function(int index)? onTap;
+  final VoidCallback? onPressButton;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,8 @@ class AppBottomNavigationBar extends StatelessWidget {
     //   () =>
     // );
     return BottomNavigationBar(
-      currentIndex: 0, //homeController.pageIdx.value,
-      onTap: (index) {
-        // homeController.changePage(index);
-      },
+      currentIndex: selectedIndex, //homeController.pageIdx.value,
+      onTap: onTap,
       elevation: 0,
       backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
@@ -46,7 +45,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
           label: '',
           icon: FloatingActionButton(
-            onPressed: () {},
+            onPressed: onPressButton,
             child: const Icon(
               Icons.add,
               color: Colors.white,

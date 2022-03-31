@@ -8,20 +8,23 @@ class AppColors {
   static const Color mainHomeColor = Color(0xFF739EF1);
   static const Color mainHomeBackGroundColor =
       Color.fromARGB(255, 221, 221, 221);
-  static const Color lightGreyColor = Color.fromARGB(255, 138, 138, 138);
+  static const Color lightGreyColor = Color.fromARGB(255, 138, 138, 132);
   static const Color textHomeColor = Color(0xFF3e4958);
 
   static const Color cloadDarkColor = Color(0xFFE8EDF1);
   static const Color greenColor = Color(0xFF8FD8B5);
+  static const Color boldGreenColor = Color.fromRGBO(76, 217, 100, 1);
   static const Color darkGreyColor = Color(0xFF190134);
   static const Color primaryColor = Color(0xFFFF6D3B);
   static const Color secondaryColor = Color(0xFF827717);
   static const Color whiteAccentColor = Color(0xffFAFAFA);
   static const Color lightGreenColor = Color(0xffDFF3EA);
   static const Color lightGreen = Color.fromRGBO(223, 243, 234, 1);
+  static const Color lightGrey = Color.fromRGBO(104, 88, 121, 1);
+  static const Color yellow = Color.fromRGBO(250, 191, 72, 1);
 
   static const Color backIcon = Color.fromRGBO(143, 216, 181, 1);
-  static const Color neutralGrey = Color.fromRGBO(179, 171, 188, 1);
+  static const Color neutralGrey = Color(0xFFB3ABBC);
   static const Color lightOrange = Color.fromRGBO(255, 239, 234, 1);
 
   static Color get backgroundColor =>

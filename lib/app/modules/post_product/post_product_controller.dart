@@ -17,14 +17,16 @@ class PostProductController extends GetxController {
   var listParams = [].obs;
   List<String?> listImgProductUrl = [];
   //varible to controller input
-  var categoryInputController = TextEditingController().obs;
-  var subCategoryInputController = TextEditingController().obs;
-  var priceInputController = TextEditingController().obs;
-  var nameProductInputController = TextEditingController().obs;
-  var descriptionProductInputController = TextEditingController().obs;
-  var provinceProductLoCationInputController = TextEditingController().obs;
-  var districtProductLoCationInputController = TextEditingController().obs;
-  var wardsProductLoCationInputController = TextEditingController().obs;
+  var categoryInputController = TextEditingController();
+  var subCategoryInputController = TextEditingController();
+  var priceInputController = TextEditingController();
+  var nameProductInputController = TextEditingController();
+  var descriptionProductInputController = TextEditingController();
+  var provinceProductLoCationInputController = TextEditingController();
+  var districtProductLoCationInputController = TextEditingController();
+  var wardsProductLoCationInputController = TextEditingController();
+  var labelPrice = 'Giá'.obs;
+  var labelCategory = 'Danh mục'.obs;
 
   //variable to check toggle
   var isNegotiable = true.obs;

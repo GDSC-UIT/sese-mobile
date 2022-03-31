@@ -64,15 +64,15 @@ class PostProductCategoryScreen extends StatelessWidget {
                               false;
                           //when user choose new category reset the subCategory text
                           postProductController
-                              .subCategoryInputController.value.text = '';
+                              .subCategoryInputController.text = '';
                           postProductController.idSubcategory.value = '';
                         },
                         child: InPutTextField(
                           textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
                           hintText: 'Chọn danh mục',
                           isEnable: false,
-                          controller: postProductController
-                              .categoryInputController.value,
+                          controller:
+                              postProductController.categoryInputController,
                           suffixIcon: const Icon(
                             Icons.expand_more,
                             color: AppColors.greenColor,
@@ -88,8 +88,8 @@ class PostProductCategoryScreen extends StatelessWidget {
                   Obx(() => postProductController.isOpenedCategory.value
                       ? ListViewCategory(
                           listItem: categories,
-                          controller: postProductController
-                              .categoryInputController.value,
+                          controller:
+                              postProductController.categoryInputController,
                           type: TypeCategory.category,
                         )
                       : const SizedBox()),
@@ -134,8 +134,8 @@ class PostProductCategoryScreen extends StatelessWidget {
                                   .subCategoryInputController.value.text
                               : 'Chọn danh mục',
                           isEnable: false,
-                          controller: postProductController
-                              .subCategoryInputController.value,
+                          controller:
+                              postProductController.subCategoryInputController,
                           suffixIcon: const Icon(
                             Icons.expand_more,
                             color: AppColors.greenColor,
@@ -153,7 +153,7 @@ class PostProductCategoryScreen extends StatelessWidget {
                         ? ListViewCategory(
                             listItem: subCategory,
                             controller: postProductController
-                                .subCategoryInputController.value,
+                                .subCategoryInputController,
                             type: TypeCategory.subCategory,
                           )
                         : const SizedBox(),

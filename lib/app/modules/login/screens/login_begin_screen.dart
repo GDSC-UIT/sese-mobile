@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
@@ -37,58 +38,41 @@ class LoginBeginScreen extends StatelessWidget {
                 child: Image.asset('assets/images/login_begin_img.png'),
                 // child: Container(),
               ),
-              Expanded(
-                child: AppButton(
-                  textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-                  onPress: () async {
-                    //show loader when login
-                    HttpService.showLoadingIndecator();
-                    //login
-                    await loginController.googleSignInAction();
-                    if (AuthService.instance.isLogined == true) {
-                      Get.back();
-                      Get.toNamed(AppRoutes.search);
-                    } else {
-                      Get.snackbar('Error',
-                          'Something went wrong, please try later in few minutes!!');
-                    }
-                  },
-                  text: 'LOGGIN WITH GOOGLE',
-                  // textColor: AppColors.darkGreyColor,
-                  borderColor: AppColors.greenColor,
-                  icon: Image.asset(
-                    'assets/images/google_icon.png',
-                    scale: 0.5,
-                  ),
-                ),
+              AppButton(
+                textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
+                onPress: () async {
+                  //show loader when login
+                  HttpService.showLoadingIndecator();
+                  //login
+                  await loginController.googleSignInAction();
+
+                  AuthService.instance.isLogined == true
+                      ? Get.offNamed(AppRoutes.search)
+                      : print('Login gg fail');
+                },
+                text: 'Continue with Google',
+                // textColor: AppColors.darkGreyColor,
+                borderColor: AppColors.greenColor,
+                icon: Assets.imagesGoogleIcon.image(),
               ),
               const SizedBox(
                 height: 16,
               ),
-              Expanded(
-                child: AppButton(
-                  textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-                  onPress: () async {
-                    //show loader when login
-                    HttpService.showLoadingIndecator();
-                    //login
-                    await loginController.facebookLoginAction();
-                    if (AuthService.instance.isLogined == true) {
-                      Get.back();
-                      Get.toNamed(AppRoutes.authName);
-                    } else {
-                      Get.snackbar('Error',
-                          'Something went wrong, please try later in few minutes!!');
-                    }
-                  },
-                  text: 'LOGGIN WITH FACEBOOK',
-                  // textColor: AppColors.darkGreyColor,
-                  borderColor: AppColors.greenColor,
-                  icon: Image.asset(
-                    'assets/images/facebook_icon.png',
-                    scale: 0.5,
-                  ),
-                ),
+              AppButton(
+                textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
+                onPress: () async {
+                  //show loader when login
+                  HttpService.showLoadingIndecator();
+                  //login
+                  await loginController.facebookLoginAction();
+                  AuthService.instance.isLogined == true
+                      ? Get.offNamed(AppRoutes.authName)
+                      : print('Login facebook fail');
+                },
+                text: 'Continue with Facebook',
+                // textColor: AppColors.darkGreyColor,
+                borderColor: AppColors.greenColor,
+                icon: Assets.imagesFacebookIcon.image(),
               ),
             ],
           ),
