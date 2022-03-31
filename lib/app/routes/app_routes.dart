@@ -48,4 +48,6 @@ abstract class AppRoutes {
   static const userProfile = '/user/profile';
   //search product
   static const search = '/search';
+  // chat route
+  static const chatDetail = '/chat/detail';
 }
