@@ -13,7 +13,8 @@ abstract class AppRoutes {
   static const authInterest = '/auth/interest';
   static const authPhone = '/auth/phone';
   static const authEmail = '/auth/email';
-  static const authVerifyBegin = '/auth/verifyBegin';
+
+  //verify route
   static const verifyBegin = '/verify/begin';
   static const verifyFrontSv = '/verify/frontSv';
   static const verifyFrontSvSuccess = '/verify/frontSvSuccess';

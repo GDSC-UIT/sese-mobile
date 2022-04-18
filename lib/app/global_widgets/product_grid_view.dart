@@ -75,12 +75,12 @@ class ProductGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         ProductModel product = productData[index];
         return ProductItemGridView(
-          address: product.address,
-          imageUrl: product.imageUrl,
-          name: product.name,
-          userName: product.userName,
-          timeUpload: product.timeUpload,
-          type: product.type,
+          address: product.address!,
+          imageUrl: product.imageUrl!,
+          name: product.name!,
+          userName: product.userName!,
+          timeUpload: product.timeUpload!,
+          type: product.type!,
         );
       },
     );

@@ -77,6 +77,7 @@ class VerifySuccessScreen extends StatelessWidget {
                 AppButton(
                   onPress: () async {
                     try {
+                      HttpService.showLoadingIndecator();
                       verifyController.frontImageUrl =
                           await UploadImageService.uploadImageToFirebase(
                                   File(verifyController.frontImage.value.path),
@@ -122,7 +123,7 @@ class VerifySuccessScreen extends StatelessWidget {
                       );
 
                       print("phát covid: ${response.body}");
-                      HttpService.showLoadingIndecator();
+
                       var responseNew = await HttpService.getRequest(
                           '${UrlValue.appUrlPostProduct}?type=new');
                       var listNewProduct =
@@ -143,8 +144,6 @@ class VerifySuccessScreen extends StatelessWidget {
                       );
                       print('loi:${e.toString()}');
                     }
-
-                    ;
                   },
                   text: "LET'S GET STARTED",
                   textStyle: CustomTextStyle.t8(Colors.white),

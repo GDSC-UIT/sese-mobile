@@ -15,16 +15,6 @@ class LoginNameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: InkWell(
-        //   onTap: () {
-        //     Get.back();
-        //   },
-        //   child: const Icon(
-        //     Icons.arrow_back_ios_new,
-        //     color: AppColors.backIcon,
-        //     size: 30,
-        //   ),
-        // ),
         leading: const SizedBox(),
         elevation: 0,
       ),

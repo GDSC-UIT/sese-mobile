@@ -17,13 +17,11 @@ import 'package:sese/app/modules/home/screens/home_detail_product_screen.dart';
 import 'package:sese/app/modules/home/screens/home_screen.dart';
 import 'package:sese/app/modules/login/login_binding.dart';
 import 'package:sese/app/modules/login/screens/login_begin_screen.dart';
-
 import 'package:sese/app/modules/login/screens/login_birth_screen.dart';
 import 'package:sese/app/modules/login/screens/login_name_screen.dart';
 import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
-import 'package:sese/app/modules/login/screens/login_verify_begin_screen.dart';
 import 'package:sese/app/modules/verify/screens/test_image.dart';
 import 'package:sese/app/modules/verify/screens/verify_back_sv_failed_screen.dart';
 import 'package:sese/app/modules/verify/screens/verify_back_sv_screen.dart';
@@ -129,13 +127,7 @@ abstract class AppPages {
       binding: LoginBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
-    GetPage(
-      name: AppRoutes.authVerifyBegin,
-      transition: Transition.cupertino,
-      page: () => LoginVerifyBeginScreen(),
-      binding: LoginBinding(),
-      transitionDuration: const Duration(seconds: 1),
-    ),
+
     GetPage(
       name: AppRoutes.verifyBegin,
       transition: Transition.cupertino,

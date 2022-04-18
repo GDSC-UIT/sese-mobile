@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
+import 'package:sese/app/data/models/app_category_model.dart';
+import 'package:sese/app/data/models/subCategory_model.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
@@ -65,15 +67,22 @@ class LoginController extends GetxController {
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
 
+        // get response user info from server
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
+            'idToken': idToken,
           }),
           url: UrlValue.appUrlLoginSocial,
         );
+        //decode response
+        var body = json.decode(response.body);
 
-        AuthService.instance
-            .saveIdToken(json.decode(response.body)['accessToken'].toString());
+        //get user info store to data center
+        DataCenter.user = body['user'];
+        print('userCenter:${DataCenter.user}');
+
+        //set accessToken
+        AuthService.instance.saveIdToken(body['accessToken'].toString());
       }
     } catch (e) {
       print('fbErorr:$e');
@@ -86,19 +95,83 @@ class LoginController extends GetxController {
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
 
+        // get response user info from server
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
+            'idToken': idToken,
           }),
           url: UrlValue.appUrlLoginSocial,
         );
-        DataCenter.user = json.decode(response.body)['user'];
+
+        //decode response
+        var body = json.decode(response.body);
+
+        //get user info store to data center
+        DataCenter.user = body['user'];
         print('userCenter:${DataCenter.user}');
+
         //set accessToken
-        AuthService.instance.saveIdToken(json.decode(response.body).toString());
+        AuthService.instance.saveIdToken(body['accessToken'].toString());
       }
     } catch (e) {
       print('errorGG: $e');
     }
+  }
+
+  void setCategoryToDataCenter(listInterests) {
+    listInterests.forEach((item) {
+      //set  isSelect property
+      item['isSelected'] = false;
+
+      //get subcategoryList
+      var subCategoriesList = item["subcategories"];
+      //create subCategory
+      Map<String, SubCategory> subCategory = {};
+      subCategoriesList.forEach((sub) {
+        //get params of sub
+        var subParam = sub["params"];
+        Map<String, dynamic> params = {};
+        //loop subParam
+        subParam.forEach((param) {
+          params[param["param"]] = param;
+        });
+        //create subCategory
+        subCategory[sub["_id"]] = SubCategory(
+          category: sub["category"],
+          name: sub["name"],
+          id: sub["_id"],
+          params: params,
+        );
+        DataCenter.appSubCategory[subCategory[sub["_id"]]!.id] =
+            subCategory[sub["_id"]];
+      });
+      DataCenter.appCategory[item["_id"]] = AppCategoryModel(
+          id: item['_id'],
+          imageUrl: item['image'],
+          name: item['name'],
+          subCategory: subCategory);
+    });
+  }
+
+  Future<void> updateUserInfoWithOutEvidence() async {
+    var favouriteListInterests =
+        listOfInterest.where((e) => e["isSelected"] == true).toList();
+    Map<String, dynamic> userInfo = {
+      "name": nameInputController.value.text,
+      "phoneNumber": phoneInputController.value.text,
+      "university": schoolInputController.value.text,
+      "interestedCategories": favouriteListInterests.map((e) => e["_id"]),
+    };
+    print("userinfo:$userInfo");
+    //update user info
+    var response = await HttpService.putRequest(
+      body: jsonEncode(userInfo),
+      url: UrlValue.appUrlUpdateUserProfile,
+    );
+    //decode response
+    var body = json.decode(response.body);
+    //get user info store to data center
+    DataCenter.user = body['user'];
+    print('userCenter:${DataCenter.user}');
   }
 }

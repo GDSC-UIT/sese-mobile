@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/modules/verify/verify_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
@@ -8,7 +9,7 @@ import '../../../core/values/app_colors.dart';
 import '../../../global_widgets/app_button.dart';
 
 class VerifyBeginScreen extends StatelessWidget {
-  final VerifyController verifyController = Get.put(VerifyController());
+  final VerifyController verifyController = Get.find();
 
   VerifyBeginScreen({Key? key}) : super(key: key);
 
@@ -101,7 +102,7 @@ class VerifyBeginScreen extends StatelessWidget {
               ),
               Center(
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     Get.offAllNamed(AppRoutes.home);
                   },
                   child: const Text(

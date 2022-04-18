@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -14,13 +13,12 @@ import 'package:sese/app/modules/post_product/post_product_controller.dart';
 import 'package:sese/app/modules/post_product/widgets/adjust_quantity_button.dart';
 import 'package:sese/app/modules/post_product/widgets/info_label.dart';
 import 'package:sese/app/modules/post_product/widgets/info_product_property_button.dart';
-import 'package:sese/app/modules/post_product/widgets/quantity_input.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class PostProductInfoScreen extends StatelessWidget {
   PostProductInfoScreen({Key? key}) : super(key: key);
 
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

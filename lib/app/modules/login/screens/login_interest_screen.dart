@@ -93,9 +93,13 @@ class LoginInterestScreen extends StatelessWidget {
                                       height: _screenHeight * 0.2,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                            image: NetworkImage(loginController
-                                                    .listOfInterest[index]
-                                                ["image"])),
+                                          image: NetworkImage(
+                                            loginController
+                                                        .listOfInterest[index]
+                                                    ["image"] ??
+                                                'https://media.istockphoto.com/vectors/flip-hourglass-icon-to-keep-track-of-the-elapsed-time-vector-id1322169400?b=1&k=20&m=1322169400&s=170667a&w=0&h=qkub6UGQNWBWvC2GdIXKHVMfgif5ahag3_3iZ0Mj56I=',
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     Padding(

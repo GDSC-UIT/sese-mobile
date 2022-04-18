@@ -103,50 +103,16 @@ class LoginUniversityScreen extends StatelessWidget {
                 if (loginController.schoolInputController.value.value.text !=
                     '') {
                   HttpService.showLoadingIndecator();
+
                   var response = await HttpService.getRequest(
                       UrlValue.appUrlGetAllCategories);
                   var listInterests = json.decode(response.body)['categories'];
-                  //loop list of category
-                  listInterests.forEach((item) {
-                    //set  isSelect property
-                    item['isSelected'] = false;
+                  //set category to data center
+                  loginController.setCategoryToDataCenter(listInterests);
 
-                    //get subcategoryList
-                    var subCategoriesList = item["subcategories"];
-                    //create subCategory
-                    Map<String, SubCategory> subCategory = {};
-                    subCategoriesList.forEach((sub) {
-                      //get params of sub
-                      var subParam = sub["params"];
-                      Map<String, dynamic> params = {};
-                      //loop subParam
-                      subParam.forEach((param) {
-                        params[param["param"]] = param;
-                      });
-                      //create subCategory
-                      subCategory[sub["_id"]] = SubCategory(
-                        category: sub["category"],
-                        name: sub["name"],
-                        id: sub["_id"],
-                        params: params,
-                      );
-                      DataCenter.appSubCategory[subCategory[sub["_id"]]!.id] =
-                          subCategory[sub["_id"]];
-                    });
-                    DataCenter.appCategory[item["_id"]] = AppCategoryModel(
-                        id: item['_id'],
-                        imageUrl: item['image'],
-                        name: item['name'],
-                        subCategory: subCategory);
-                  });
-                  print(
-                      "Appcategory1name:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.name}");
-                  print(
-                      "Appcategory1imagUrl:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.imageUrl}");
-                  print(
-                      "Appcategory1SubCate:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.subCategory["623be0cac61a2e8a00b9b061"]?.params}");
-                  Get.toNamed(AppRoutes.authInterest,
-                      arguments: [listInterests]);
+                  Get.back();
+
+                  Get.toNamed(AppRoutes.authEmail, arguments: [listInterests]);
                 } else {
                   Get.snackbar('', 'Please fill all  the field!');
                 }

@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sese/app/data/services/http_service.dart';
-import 'package:sese/app/data/services/upload_image_service.dart';
-import 'package:sese/app/routes/app_routes.dart';
+import 'package:sese/app/data/models/product_model.dart';
 
 class PostProductController extends GetxController {
+  Rx<ProductModel> productInfo = ProductModel().obs;
   //varible to store data
   String idCategory = '';
   RxString idSubcategory = ''.obs;
