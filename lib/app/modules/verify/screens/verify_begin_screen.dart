@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/modules/verify/verify_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
@@ -103,7 +104,12 @@ class VerifyBeginScreen extends StatelessWidget {
               Center(
                 child: GestureDetector(
                   onTap: () async {
-                    Get.offAllNamed(AppRoutes.home);
+                    HttpService.showLoadingIndecator();
+                    //Get data for home
+                    List listData =
+                        await AuthService.instance.getDataForHomeScreen();
+                    Get.back();
+                    Get.offAllNamed(AppRoutes.home, arguments: listData);
                   },
                   child: const Text(
                     "I Will Do It Later",

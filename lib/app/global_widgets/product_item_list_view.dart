@@ -31,7 +31,7 @@ class ProductItemListView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 15),
       padding: const EdgeInsets.all(5),
-      width: 129,
+      width: 130,
       decoration: BoxDecoration(
         border: Border.all(
           color: AppColors.neutralGrey,
@@ -41,10 +41,14 @@ class ProductItemListView extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Image.network(
-            imageUrl,
-            height: 97,
-          ),
+          FadeInImage(
+              placeholder: const AssetImage('assets/images/post_waiting.png'),
+              image: NetworkImage(
+                imageUrl,
+              ),
+              imageErrorBuilder: (_, __, ___) {
+                return Image.asset('assets/images/post_waiting.png');
+              }),
           const SizedBox(
             height: 6,
           ),

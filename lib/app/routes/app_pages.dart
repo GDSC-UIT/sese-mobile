@@ -325,5 +325,12 @@ abstract class AppPages {
       page: () => DetailChatScreen(),
       binding: ChatBinding(),
     ),
+    //on boading
+    GetPage(
+      name: AppRoutes.boading,
+      transition: Transition.cupertino,
+      page: () => DetailChatScreen(),
+      binding: ChatBinding(),
+    ),
   ];
 }

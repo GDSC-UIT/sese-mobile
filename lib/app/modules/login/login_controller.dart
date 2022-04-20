@@ -11,6 +11,8 @@ import 'package:sese/app/core/values/app_values.dart';
 
 import 'dart:convert';
 
+import 'package:sese/app/routes/app_routes.dart';
+
 class LoginController extends GetxController {
   var nameInputController = TextEditingController().obs;
   var dateInputController = TextEditingController().obs;
@@ -18,8 +20,9 @@ class LoginController extends GetxController {
   var emailInputController = TextEditingController().obs;
   var phoneInputController = TextEditingController().obs;
   var interestFavourite = [].obs;
-
   var recommendUniName = [].obs;
+  var listOfInterest = [].obs;
+  RxString searchKey = ''.obs;
 
   List<String> universityName = [
     'University of Technology',
@@ -28,9 +31,23 @@ class LoginController extends GetxController {
     'International University',
     'University of Technology and Education'
   ];
-  var listOfInterest = [].obs;
 
-  RxString searchKey = ''.obs;
+  @override
+  void onInit() async {
+    print("call onInit");
+    if (AuthService.instance.isLogined) {
+      AuthService.instance.readAccessToken();
+      print(
+          "access Token in login Controller: ${AuthService.instance.accessToken}");
+      //var response = await HttpService.getRequest(url)
+      //Get data for home
+      List listData = await AuthService.instance.getDataForHomeScreen();
+      Get.offAllNamed(AppRoutes.home, arguments: listData);
+    } else {
+      print("not login");
+    }
+    super.onInit();
+  }
 
   void toggleSelectInterest(index) {
     var interestChange = listOfInterest[index];
@@ -82,7 +99,7 @@ class LoginController extends GetxController {
         print('userCenter:${DataCenter.user}');
 
         //set accessToken
-        AuthService.instance.saveIdToken(body['accessToken'].toString());
+        AuthService.instance.saveAccessToken(body['accessToken'].toString());
       }
     } catch (e) {
       print('fbErorr:$e');
@@ -94,7 +111,7 @@ class LoginController extends GetxController {
       User? user = await AuthService.instance.googleSignIn();
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
-
+        print(idToken);
         // get response user info from server
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
@@ -111,7 +128,7 @@ class LoginController extends GetxController {
         print('userCenter:${DataCenter.user}');
 
         //set accessToken
-        AuthService.instance.saveIdToken(body['accessToken'].toString());
+        AuthService.instance.saveAccessToken(body['accessToken'].toString());
       }
     } catch (e) {
       print('errorGG: $e');
@@ -160,7 +177,8 @@ class LoginController extends GetxController {
       "name": nameInputController.value.text,
       "phoneNumber": phoneInputController.value.text,
       "university": schoolInputController.value.text,
-      "interestedCategories": favouriteListInterests.map((e) => e["_id"]),
+      "interestedCategories":
+          favouriteListInterests.map((e) => e["_id"]).toList(),
     };
     print("userinfo:$userInfo");
     //update user info

@@ -32,7 +32,6 @@ class EditProfileController extends GetxController {
 
   RxString searchKey = ''.obs;
 
-
   void searchSchool() {
     recommendUniName.value = universityName.where((element) {
       return element.contains(searchKey);
@@ -75,8 +74,8 @@ class EditProfileController extends GetxController {
           url: UrlValue.appUrlLoginSocial,
         );
 
-        AuthService.instance
-            .saveIdToken(json.decode(response.body)['accessToken'].toString());
+        AuthService.instance.saveAccessToken(
+            json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
       print('fbErorr:$e');
@@ -97,8 +96,8 @@ class EditProfileController extends GetxController {
         );
         //set accessToken
 
-        AuthService.instance
-            .saveIdToken(json.decode(response.body)['accessToken'].toString());
+        AuthService.instance.saveAccessToken(
+            json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
       print('errorGG: $e');

@@ -1,4 +1,5 @@
 abstract class AppRoutes {
+  static const boading = '/onboading';
   //home route
   static const home = '/home';
   static const homeAllCategory = '/home/allCategory';

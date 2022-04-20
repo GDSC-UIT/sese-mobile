@@ -19,15 +19,10 @@ class VerifyBackSvSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void showMessage() {
-      showDialog(
-        context: context,
-        builder: (_) => DialogSuccess(),
-        barrierDismissible: true,
-      );
-    }
+    //show dialog success
+    Get.dialog(DialogSuccess());
+    Future.delayed(const Duration(seconds: 2), () => Get.back());
 
-    Future.delayed(Duration.zero, () => showMessage());
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
