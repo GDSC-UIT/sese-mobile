@@ -7,7 +7,7 @@ class BoughtWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        itemCount: 4,
+        itemCount: 20,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

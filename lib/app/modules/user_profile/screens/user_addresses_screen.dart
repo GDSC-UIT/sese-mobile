@@ -12,6 +12,7 @@ class UserAddressesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var index = userProfileController.listAddresses.length; 
     return Scaffold(
         appBar: AppBar(
           leading: TextButton(
@@ -77,6 +78,7 @@ class UserAddressesScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               child: InkWell(
                   onTap: () {
+                    userProfileController.InitController(index);
                     Get.toNamed(AppRoutes.userNewAddress);
                   },
                   child: Container(

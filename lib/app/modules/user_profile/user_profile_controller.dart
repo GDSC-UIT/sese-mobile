@@ -9,7 +9,34 @@ class UserProfileController extends GetxController {
   var district = TextEditingController(text: "").obs;
   var ward = TextEditingController(text: "").obs;
   var streetBuildingName = TextEditingController(text: "").obs;
+  var myAddress = TextEditingController(text: "My Address").obs; 
   var isDefault = false.obs;
+
+  void InitController(int index) {
+    userAddress = TextEditingController(text: "").obs;
+    userName = TextEditingController(text: "").obs;
+    userPhoneNumber = TextEditingController(text: "").obs;
+    city = TextEditingController(text: "").obs;
+    district = TextEditingController(text: "").obs;
+    ward = TextEditingController(text: "").obs;
+    streetBuildingName = TextEditingController(text: "").obs;
+    isDefault = false.obs;
+  }
+
+  void ChangeAddress(int index) {
+    userAddress = TextEditingController(text: "abccccc").obs;
+    userName = TextEditingController(text: listAddresses[index]["name"]).obs;
+    userPhoneNumber =
+        TextEditingController(text: listAddresses[index]["phoneNumber"]).obs;
+    city = TextEditingController(text: listAddresses[index]["city"]).obs;
+    district =
+        TextEditingController(text: listAddresses[index]["district"]).obs;
+    ward = TextEditingController(text: listAddresses[index]["ward"]).obs;
+    streetBuildingName =
+        TextEditingController(text: listAddresses[index]["streetBuildingName"])
+            .obs;
+    isDefault.value = listAddresses[index]["isDefault"];
+  }
 
   var bought = false.obs;
 
@@ -34,23 +61,14 @@ class UserProfileController extends GetxController {
   }
 
   void saveAddress(index) {
-    if (userName.value.text != "") {
-      listAddresses[index]["name"] = userName.value.text;
-    }
-    if (userPhoneNumber.value.text != "") {
-      listAddresses[index]["phoneNumber"] = userPhoneNumber.value.text;
-    }
-    if (city.value.text != "") listAddresses[index]["city"] = city.value.text;
-    if (district.value.text != "") {
-      listAddresses[index]["district"] = district.value.text;
-    }
-    if (ward.value.text != "") listAddresses[index]["ward"] = ward.value.text;
-    if (streetBuildingName.value.text != "") {
-      listAddresses[index]["streetBuildingName"] =
-          streetBuildingName.value.text;
-    }
+    listAddresses[index]["name"] = userName.value.text;
+    listAddresses[index]["phoneNumber"] = userPhoneNumber.value.text;
+    listAddresses[index]["city"] = city.value.text;
+    listAddresses[index]["district"] = district.value.text;
+    listAddresses[index]["ward"] = ward.value.text;
+    listAddresses[index]["streetBuildingName"] = streetBuildingName.value.text;
     listAddresses[index]["isDefault"] = isDefault.value;
-    isDefault.value = false; 
+    isDefault.value = false;
   }
 
   void getFullAddress(index) {
@@ -79,6 +97,4 @@ class UserProfileController extends GetxController {
       "location": "Ha Noi"
     },
   ].obs;
-
-  
 }

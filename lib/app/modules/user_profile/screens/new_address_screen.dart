@@ -153,12 +153,11 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                     "ward": "",
                     "streetBuildingName": "",
                     "fullAddress": "",
-                    "isDefault": false
+                    "isDefault": false,
                   });
-
                   userProfileController.getFullAddress(index);
                   userProfileController.saveAddress(index);
-
+                  print(userProfileController.userName.value);
                   ++userProfileController.countAddress.value;
                   Get.back();
                 },

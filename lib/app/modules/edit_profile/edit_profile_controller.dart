@@ -20,6 +20,7 @@ class EditProfileController extends GetxController {
     {"gender": "Khác", "isSelected": false}
   ].obs;
   var recommendUniName = [].obs;
+  var saveSuccess = false.obs; 
 
   List<String> universityName = [
     'Đại học bách khoa',
@@ -31,7 +32,6 @@ class EditProfileController extends GetxController {
   var listOfInterest = [].obs;
 
   RxString searchKey = ''.obs;
-
 
   void searchSchool() {
     recommendUniName.value = universityName.where((element) {

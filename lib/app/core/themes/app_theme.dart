@@ -295,7 +295,7 @@ class AppTheme {
           AppColors.lightTextColor.withOpacity(AppColors.disabledTextOpacity),
       labelPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 12.0),
       indicator: const UnderlineTabIndicator(
-        borderSide: BorderSide(width: 2.0, color: AppColors.lightTextColor),
+        borderSide: BorderSide(width: 2.0, color: AppColors.primaryColor),
       ),
     ),
     textTheme: _textTheme(AppColors.lightTextColor),

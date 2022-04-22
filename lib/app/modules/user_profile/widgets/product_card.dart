@@ -24,8 +24,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 140,
-                  child: Image.network(
-                      'https://s3-alpha-sig.figma.com/img/4c65/ed6f/a2f0d6d42ac1e9c0de3bcc99b607416c?Expires=1649030400&Signature=LhAKC-3HQAsTvH1QQKRaR8WWVv6dOUoE0FtLyTcc1XrqKHmQyZBTUTNJYSDS1fwV6PgI5aEmh5rZby6XIj3v1GcItlKypRn0hitsRLfRTUNo-xlxCt5sbGLLtsk6-DKwFaabE4FCRbCQti7MYJPlb53XQRHyubDJuEfjoxgMH~FB3U3KiLZdgQGU5Tg8gOQTFPznb1DO-GVmVCneYkqF70JSHSXnYBYf~zgS6GAPIM8rJISoKPdufPiaRa90NvejDD5wDxbCFsLuxAx4Zm-i6Ww4uMvndp4KrTBTa1jQ2wshliHnBpWagqdglrA1MB8XkuEk3WyhWhtZkMHpAWeAIw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+                  child: Image.asset(
+                      'assets/images/avatar.png', 
                       width: MediaQuery.of(context).size.width / 2,
                       fit: BoxFit.cover),
                 ),

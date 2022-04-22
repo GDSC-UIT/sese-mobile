@@ -7,6 +7,7 @@ import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
+import 'package:sese/app/modules/edit_profile/widgets/pop_up_success.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class EditDateOfBirthScreen extends StatelessWidget {
@@ -54,7 +55,13 @@ class EditDateOfBirthScreen extends StatelessWidget {
               height: AppConstant.gapInputAppButton,
             ),
             AppButton(
-              onPress: () {},
+              onPress: () {
+                Get.back();
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _buildPopupDialog(context)); 
+              },
               text: "LƯU THAY ĐỔI",
               textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
@@ -64,4 +71,8 @@ class EditDateOfBirthScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _buildPopupDialog(BuildContext context) {
+  return PopUp(context);
 }

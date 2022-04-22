@@ -11,6 +11,101 @@ import 'package:sese/app/modules/user_profile/widgets/user_profile_bought.dart';
 import 'package:sese/app/modules/user_profile/widgets/user_profile_listing.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
+Widget _tabSection(BuildContext context) {
+  return DefaultTabController(
+    length: 2,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          child: const TabBar(indicatorColor: AppColors.primaryColor, tabs: [
+            Tab(text: "Bought"),
+            Tab(text: "Listing"),
+          ]),
+        ),
+        Container(
+          //Add this to give height
+          height: MediaQuery.of(context).size.height,
+          child: TabBarView(children: [
+            ListView(
+              children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.sort_sharp)),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        verticalDirection: VerticalDirection.down,
+                        children: [
+                          SortButton(
+                            onPress: () {},
+                            text: "Lowest-Highest",
+                          ),
+                          SortButton(
+                            onPress: () {},
+                            text: "Applications",
+                          ),
+                          SortButton(
+                            onPress: () {},
+                            text: "Highest-Lowest",
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+                Container(
+                    margin: const EdgeInsets.only(bottom: 400),
+                    child: BoughtWidget()),
+              ],
+            ),
+            ListView(
+              children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.sort_sharp)),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        verticalDirection: VerticalDirection.down,
+                        children: [
+                          SortButton(
+                            onPress: () {},
+                            text: "Lowest-Highest",
+                          ),
+                          SortButton(
+                            onPress: () {},
+                            text: "Applications",
+                          ),
+                          SortButton(
+                            onPress: () {},
+                            text: "Highest-Lowest",
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+                Container(
+                    margin: const EdgeInsets.only(bottom: 400),
+                    child: ListingWidget()),
+              ],
+            ),
+          ]),
+        ),
+      ],
+    ),
+  );
+}
+
 class UserProfileScreen extends StatelessWidget {
   UserProfileController userProfileController = Get.find();
   UserProfileScreen({Key? key}) : super(key: key);
@@ -95,76 +190,13 @@ class UserProfileScreen extends StatelessWidget {
             ),
           ),
           Container(
-            decoration: const BoxDecoration(
-              border: Border.symmetric(
-                horizontal: BorderSide(width: 1, color: Colors.black12),
-              ),
-            ),
-            height: 60,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                        child: TextButton(
-                      onPressed: () {
-                        userProfileController.bought.value = true;
-                      },
-                      child: Center(
-                          child: Text(
-                        "Bought",
-                        style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                      )),
-                    )),
-                    Expanded(
-                        child: TextButton(
-                      onPressed: () {
-                        userProfileController.bought.value = false;
-                      },
-                      child: Center(
-                          child: Text(
-                        "Listing",
-                        style: CustomTextStyle.t4(AppColors.darkGreyColor),
-                      )),
-                
-                    )),
-                
-                  ],
-                  
-                ),
-              ],
-            ),
-          ),
-          Row(children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.sort_sharp)),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  verticalDirection: VerticalDirection.down,
-                  children: [
-                    SortButton(
-                      onPress: () {},
-                      text: "Lowest-Highest",
-                    ),
-                    SortButton(
-                      onPress: () {},
-                      text: "Applications",
-                    ),
-                    SortButton(
-                      onPress: () {},
-                      text: "Highest-Lowest",
-                    )
-                  ],
+              decoration: const BoxDecoration(
+                border: Border.symmetric(
+                  horizontal: BorderSide(width: 1, color: Colors.black12),
                 ),
               ),
-            ),
-          ]),
-          Obx(()=> userProfileController.bought.value?BoughtWidget():ListingWidget()),
+              child: _tabSection(context)),
+          //Obx(()=> userProfileController.bought.value?BoughtWidget():ListingWidget()),
         ],
       ),
       bottomNavigationBar: AppBottomNavigationBar(),

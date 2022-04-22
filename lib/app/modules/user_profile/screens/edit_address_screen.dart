@@ -15,9 +15,11 @@ class EditAddressScreen extends StatefulWidget {
 
 class _EditAddressScreenState extends State<EditAddressScreen> {
   UserProfileController userProfileController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     var index = userProfileController.currentIndexAddress.value;
+    userProfileController.ChangeAddress(index);
     return Scaffold(
       appBar: AppBar(
         leading: TextButton(
@@ -153,7 +155,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                 onPress: () {
                   userProfileController.listAddresses.removeAt(index);
                   --userProfileController.countAddress.value;
-                  Get.back(); 
+                  Get.back();
                 },
                 text: "Delete Address",
                 borderColor: AppColors.neutralGrey,
