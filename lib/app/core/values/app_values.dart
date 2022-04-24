@@ -13,6 +13,7 @@ class UrlValue {
   static const appUrlVerifyUser =
       '${UrlValue.appUrl}/api/users/me/verification';
   static const appUrlPostProduct = '${UrlValue.appUrl}/api/posts';
+  static const appUrlGetUserInfoAccessToken = '${UrlValue.appUrl}/api/auth';
 }
 
 class FormatValue {
