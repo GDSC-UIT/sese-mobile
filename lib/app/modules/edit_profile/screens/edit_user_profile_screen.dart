@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/edit_card.dart';
 import 'package:sese/app/routes/app_routes.dart';
 import 'package:sese/app/modules/edit_profile/widgets/pop_up_success.dart';
 
 class EditUserProfileScreen extends StatelessWidget {
-
-   EditUserProfileScreen({Key? key}) : super(key: key);
+  EditUserProfileScreen({Key? key}) : super(key: key);
   EditProfileController editProfileController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,10 @@ class EditUserProfileScreen extends StatelessWidget {
         elevation: 0.5,
         centerTitle: true,
       ),
-      body:
-      SingleChildScrollView(
+      body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 47),
               child: Container(
@@ -73,9 +71,9 @@ class EditUserProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const EditCard(
+            EditCard(
               label: "Tên",
-              userInfo: "meow",
+              userInfo: DataCenter.user["name"],
               toPage: AppRoutes.editName,
             ),
             const EditCard(

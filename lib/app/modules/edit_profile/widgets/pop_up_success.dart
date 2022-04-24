@@ -16,7 +16,7 @@ Widget PopUp(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
+         Text(
           "Thông tin của bạn đã được cập nhật.",
           style: TextStyle(color: AppColors.darkGreyColor, fontSize: 16),
         ),
