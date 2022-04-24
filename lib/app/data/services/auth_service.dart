@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:sese/app/core/values/app_enums.dart';
+import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/data/services/theme_service.dart';
 
 class AuthService {
@@ -12,14 +15,14 @@ class AuthService {
   static final AuthService instance = AuthService._privateConstructor();
   String? accessToken = '';
 
-  void readIdToken() async {
+  void readAccessToken() async {
     accessToken = ThemeService.box.read('accessToken');
   }
 
-  void saveIdToken(newAccessToken) {
+  void saveAccessToken(newAccessToken) {
     //accessToken = newAccessToken;
     ThemeService.box.write('accessToken', newAccessToken);
-    readIdToken();
+    readAccessToken();
     print('acessTokenAuthServiceAfterSave:$accessToken');
     print('save suceess');
   }
@@ -31,6 +34,19 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
+
+  Future getDataForHomeScreen() async {
+    //Get new products
+    var responseNewProductsList =
+        await HttpService.getRequest('${UrlValue.appUrlPostProduct}?type=new');
+    var listNewProduct = json.decode(responseNewProductsList.body)["posts"];
+    //Get Recommend products
+    var responseRecommend = await HttpService.getRequest(
+        '${UrlValue.appUrlPostProduct}?type=recommendation');
+    var listRecommendProduct = json.decode(responseRecommend.body)["posts"];
+
+    return [listNewProduct, listRecommendProduct];
+  }
 
   Future<User?> facebookLogin() async {
     try {

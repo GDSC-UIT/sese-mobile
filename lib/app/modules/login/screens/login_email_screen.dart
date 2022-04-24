@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
@@ -44,7 +45,7 @@ class LoginEmailScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Text(
-                  "Đây là email của mình",
+                  "My email is",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
               ),
@@ -53,7 +54,7 @@ class LoginEmailScreen extends StatelessWidget {
               ),
               InPutTextField(
                 textStyle: CustomTextStyle.t8(AppColors.neutralGrey),
-                hintText: 'Điền địa chỉ email của bạn',
+                hintText: 'Fill your email here',
                 isEnable: true,
                 controller: loginController.emailInputController.value,
               ),
@@ -61,15 +62,18 @@ class LoginEmailScreen extends StatelessWidget {
                 height: _screenHeight * 0.076,
               ),
               AppButton(
-                onPress: () {
+                onPress: () async {
                   if (loginController.emailInputController.value.value.text !=
                       '') {
-                    Get.toNamed(AppRoutes.authVerifyBegin);
+                    HttpService.showLoadingIndecator();
+                    await loginController.updateUserInfoWithOutEvidence();
+                    Get.back();
+                    Get.toNamed(AppRoutes.verifyBegin);
                   } else {
                     Get.snackbar('', 'Please fill all  the field!');
                   }
                 },
-                text: 'TIẾP TỤC NHA',
+                text: 'NEXT',
                 textStyle: CustomTextStyle.t8(Colors.white),
                 backgroundColor: AppColors.primaryColor,
               ),

@@ -1,17 +1,25 @@
 class ProductModel {
-  String imageUrl;
-  String name;
-  String type;
-  double price;
-  int timeUpload;
-  String address;
+  String? imageUrl;
+  String? name;
+  String? userName;
+  String? type;
+  double? price;
+  int? timeUpload;
+  String? address;
+  String? note;
+  int? quantity;
+  String? location;
+  String? category;
+  String? categoryParams;
 
-  ProductModel({
-    required this.address,
-    required this.imageUrl,
-    required this.name,
-    required this.price,
-    required this.timeUpload,
-    required this.type,
-  });
+  ProductModel(
+      {this.address,
+      this.imageUrl,
+      this.name,
+      this.userName,
+      this.price,
+      this.timeUpload,
+      this.type,
+      this.note,
+      this.quantity});
 }

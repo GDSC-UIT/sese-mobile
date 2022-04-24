@@ -14,7 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   initializeDateFormatting();
-  GetStorage.init();
+  await GetStorage.init();
 
   runApp(const MyApp());
 }

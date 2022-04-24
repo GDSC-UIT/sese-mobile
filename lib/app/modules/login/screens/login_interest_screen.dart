@@ -22,7 +22,7 @@ class LoginInterestScreen extends StatelessWidget {
     var _screenHeight = MediaQuery.of(context).size.height;
     var _screenWidth = MediaQuery.of(context).size.width;
     loginController.listOfInterest.value = categories;
-    print('list of interest2: ${loginController.listOfInterest.value}');
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -49,7 +49,7 @@ class LoginInterestScreen extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.03,
                 ),
                 child: Text(
-                  "Mình quan tâm đến",
+                  "I'm interested",
                   style: CustomTextStyle.h1(AppColors.primaryColor),
                 ),
               ),
@@ -91,17 +91,29 @@ class LoginInterestScreen extends StatelessWidget {
                                     Container(
                                       width: _screenWidth * 0.36,
                                       height: _screenHeight * 0.2,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         image: DecorationImage(
-                                            image: Assets.imagesSach),
+                                          image: NetworkImage(
+                                            loginController
+                                                        .listOfInterest[index]
+                                                    ["image"] ??
+                                                'https://media.istockphoto.com/vectors/flip-hourglass-icon-to-keep-track-of-the-elapsed-time-vector-id1322169400?b=1&k=20&m=1322169400&s=170667a&w=0&h=qkub6UGQNWBWvC2GdIXKHVMfgif5ahag3_3iZ0Mj56I=',
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: _screenHeight * 0.02),
+                                        top: _screenHeight * 0.02,
+                                        left: 10,
+                                        right: 10,
+                                      ),
                                       child: Text(
                                         loginController.listOfInterest[index]
-                                            ['name'],
+                                                ['name']
+                                            .toString()
+                                            .toUpperCase(),
+                                        textAlign: TextAlign.center,
                                         style: CustomTextStyle.t8(
                                             loginController.listOfInterest[
                                                         index]['isSelected'] ==
@@ -116,21 +128,19 @@ class LoginInterestScreen extends StatelessWidget {
                             ));
                       },
                     ),
-                    Positioned(
-                      bottom: 20,
-                      right: 0,
-                      left: 0,
-                      child: AppButton(
-                        textStyle: CustomTextStyle.t8(Colors.white),
-                        onPress: () {
-                          Get.toNamed(AppRoutes.authPhone);
-                        },
-                        text: 'TIẾP TỤC NHA',
-                        backgroundColor: AppColors.primaryColor,
-                      ),
-                    ),
                   ],
                 ),
+              ),
+              AppButton(
+                textStyle: CustomTextStyle.t8(Colors.white),
+                onPress: () {
+                  Get.toNamed(AppRoutes.authPhone);
+                },
+                text: 'NEXT',
+                backgroundColor: AppColors.primaryColor,
+              ),
+              SizedBox(
+                height: _screenHeight * (50 / 846),
               ),
             ],
           ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
-class ShoppingCart extends StatelessWidget {
-  const ShoppingCart({
-    Key? key,
-  }) : super(key: key);
+class NotifyIcon extends StatelessWidget {
+  NotifyIcon(this.notifi, {Key? key}) : super(key: key);
+  final int notifi;
 
   @override
   Widget build(BuildContext context) {
@@ -16,27 +16,25 @@ class ShoppingCart extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           const Icon(
-            Icons.shopping_cart,
-            size: 35,
+            Icons.notifications,
+            size: 32,
             color: Colors.white,
           ),
           Positioned(
-            top: -5,
-            left: -5,
+            top: -2,
+            right: 0,
             child: Container(
-              width: 20,
-              height: 20,
-              child: const Center(
+              width: 16,
+              height: 16,
+              child: Center(
                 child: Text(
-                  '12',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+                  notifi.toString(),
+                  style: CustomTextStyle.link(Colors.white),
                 ),
               ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColors.mainHomeColor,
+                color: AppColors.primaryColor,
                 border: Border.all(
                   width: 1.5,
                   color: Colors.white,

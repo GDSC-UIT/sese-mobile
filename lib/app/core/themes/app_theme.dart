@@ -89,6 +89,7 @@ class CustomTextStyle extends TextStyle {
       fontSize: 12,
       fontWeight: FontWeight.w600,
       color: color,
+      height: 1.8,
     );
   }
 
@@ -126,7 +127,7 @@ class CustomTextStyle extends TextStyle {
 
   static TextStyle t10(Color color) {
     return GoogleFonts.inter(
-      fontSize: 10,
+      fontSize: 10.5,
       fontWeight: FontWeight.w400,
       color: color,
     );

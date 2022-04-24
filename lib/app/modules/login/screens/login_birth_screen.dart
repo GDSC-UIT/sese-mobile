@@ -39,7 +39,7 @@ class LoginBirthScreen extends StatelessWidget {
               height: 32,
             ),
             Text(
-              'Mình sinh ngày',
+              'My birthday is',
               style: CustomTextStyle.h1(AppColors.primaryColor),
             ),
             const SizedBox(
@@ -52,7 +52,7 @@ class LoginBirthScreen extends StatelessWidget {
               child: InPutTextField(
                 controller: loginController.dateInputController.value,
                 isEnable: false,
-                hintText: 'Ngày/Tháng/Năm',
+                hintText: 'DD/MM/YY',
                 textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
                 suffixIcon: Image.asset('assets/images/Calendar_icon.png'),
               ),
@@ -69,7 +69,7 @@ class LoginBirthScreen extends StatelessWidget {
                   Get.snackbar('', 'Please fill all  the field!');
                 }
               },
-              text: 'TIẾP TỤC NHA',
+              text: 'NEXT',
               textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,
             )

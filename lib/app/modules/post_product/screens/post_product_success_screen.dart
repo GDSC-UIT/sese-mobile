@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
-import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 
-class PostProductBegin extends StatelessWidget {
-  const PostProductBegin({Key? key}) : super(key: key);
+import '../../../routes/app_routes.dart';
+
+class PostProductSuccessScreen extends StatelessWidget {
+  const PostProductSuccessScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AppBottomNavigationBar(),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Thêm sản phẩm',
+          'List your products',
           style: CustomTextStyle.h4(AppColors.primaryColor),
         ),
         leading: InkWell(
@@ -30,39 +31,43 @@ class PostProductBegin extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Image.asset('assets/images/post_product_begin.png'),
-            ),
+            Image.asset('assets/images/post_success.png'),
             const SizedBox(
               height: 24,
             ),
             Text(
-              'Bắt đầu bán nào!',
+              'Your item was listed successfully!',
+              textAlign: TextAlign.center,
               style: CustomTextStyle.h2(AppColors.darkGreyColor),
-            ),
-            const SizedBox(
-              height: 56,
-            ),
-            AppButton(
-              onPress: () {},
-              text: 'CHỤP HÌNH',
-              textStyle: CustomTextStyle.t8(AppColors.primaryColor),
-              backgroundColor: AppColors.lightOrange,
-              borderColor: AppColors.primaryColor,
             ),
             const SizedBox(
               height: 24,
             ),
             AppButton(
-              onPress: () {},
-              text: 'CHỌN ẢNH TỪ THƯ VIỆN',
-              textStyle: CustomTextStyle.t8(AppColors.primaryColor),
-              backgroundColor: AppColors.lightOrange,
+              onPress: () async {
+                //await Get.offAllNamed(AppRoutes.home);
+                Get.toNamed(AppRoutes.postProductBegin);
+              },
+              text: 'LIST ANOTHER ITEM',
               borderColor: AppColors.primaryColor,
+              backgroundColor: AppColors.primaryColor,
+              textStyle: CustomTextStyle.t8(Colors.white),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            AppButton(
+              onPress: () {
+                Get.offAllNamed(AppRoutes.home);
+              },
+              text: 'BACK TO HOME SCREEN',
+              borderColor: AppColors.neutralGrey,
+              textStyle: CustomTextStyle.t8(AppColors.neutralGrey),
             ),
           ],
         ),
