@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_constant.dart';
+import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/services/data_center.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/global_widgets/app_check_box.dart';
@@ -69,13 +74,32 @@ class EditGenderScreen extends StatelessWidget {
             height: AppConstant.gapInputAppButton,
           ),
           AppButton(
-            onPress: () {
+            onPress: () async {
+              HttpService.showLoadingIndecator();
+              //update gender
+              editProfileController.updateGender();
+              var newGenderUser = {
+                "gender": editProfileController.genderInput,
+              };
+              var response = await HttpService.putRequest(
+                body: jsonEncode(newGenderUser),
+                url: UrlValue.appUrlUpdateUserProfile,
+              );
+              print("response:${response.body}");
+
+              DataCenter.user["gender"] =
+                  jsonDecode(response.body)["user"]["gender"];
+
+              editProfileController.gender.value = DataCenter.user["gender"];
+
+              // print(response.body);
               Get.back();
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        _buildPopupDialog(context),
-                  );
+              Get.back();
+
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => _buildPopupDialog(context),
+              );
             },
             text: "LƯU THAY ĐỔI",
             textStyle: CustomTextStyle.t8(Colors.white),
@@ -86,6 +110,7 @@ class EditGenderScreen extends StatelessWidget {
     );
   }
 }
+
 Widget _buildPopupDialog(BuildContext context) {
-  return PopUp(context); 
+  return PopUp(context);
 }

@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_constant.dart';
+import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/services/data_center.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
@@ -55,12 +60,30 @@ class EditDateOfBirthScreen extends StatelessWidget {
               height: AppConstant.gapInputAppButton,
             ),
             AppButton(
-              onPress: () {
+              onPress: () async {
+                HttpService.showLoadingIndecator();
+                var newBirthDateUser = {
+                  "birthDate":
+                      editProfileController.dateInputController.value.text
+                };
+                var response = await HttpService.putRequest(
+                  body: jsonEncode(newBirthDateUser),
+                  url: UrlValue.appUrlUpdateUserProfile,
+                );
+
+                DataCenter.user["birthDate"] =
+                    jsonDecode(response.body)["user"]["birthDate"];
+                
+                editProfileController.birthDate.value =
+                    DataCenter.user["birthDate"];
+
+                // print(response.body);
+                Get.back();
                 Get.back();
                 showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        _buildPopupDialog(context)); 
+                  context: context,
+                  builder: (BuildContext context) => _buildPopupDialog(context),
+                );
               },
               text: "LƯU THAY ĐỔI",
               textStyle: CustomTextStyle.t8(Colors.white),

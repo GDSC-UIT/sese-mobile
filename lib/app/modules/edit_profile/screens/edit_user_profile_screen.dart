@@ -35,6 +35,7 @@ class EditUserProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
+              
               padding: const EdgeInsets.symmetric(vertical: 47),
               child: Container(
                 child: Center(
@@ -71,21 +72,27 @@ class EditUserProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            EditCard(
-              label: "Tên",
-              userInfo: DataCenter.user["name"],
-              toPage: AppRoutes.editName,
+            Obx(
+              () => EditCard(
+                label: "Tên",
+                userInfo: editProfileController.name.value,
+                toPage: AppRoutes.editName,
+              ),
             ),
-            const EditCard(
-              label: "Ngày sinh",
-              userInfo: "22/02/2022",
-              toPage: AppRoutes.editDateOfBirth,
+            Obx(()=>
+              EditCard(
+                label: "Ngày sinh",
+                userInfo: editProfileController.birthDate.value,
+                toPage: AppRoutes.editDateOfBirth,
+              ),
             ),
-            const EditCard(
-              label: "Giới tính",
-              userInfo: "Nam",
-              toPage: AppRoutes.editGender,
-            ),
+             Obx(()=>
+                EditCard(
+                label: "Giới tính",
+                userInfo: editProfileController.gender.value,
+                toPage: AppRoutes.editGender,
+                         ),
+             ),
             const EditCard(
               label: "Đại học",
               userInfo: "VNU-UIT",
@@ -95,10 +102,12 @@ class EditUserProfileScreen extends StatelessWidget {
                 label: "Phone",
                 userInfo: "*****897",
                 toPage: AppRoutes.editPhoneNumber),
-            const EditCard(
-                label: "Email",
-                userInfo: "abc@gmail.com",
-                toPage: AppRoutes.editEmail),
+             Obx(()=>
+               EditCard(
+                  label: "Email",
+                  userInfo: editProfileController.email.value, 
+                  toPage: AppRoutes.editEmail),
+             ),
             const EditCard(
               label: "Tài khoản liên kết",
               userInfo: "",

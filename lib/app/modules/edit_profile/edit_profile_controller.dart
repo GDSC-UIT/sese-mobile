@@ -6,21 +6,30 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sese/app/core/values/app_values.dart';
 import 'package:sese/app/data/services/auth_service.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
 
 class EditProfileController extends GetxController {
   RxBool genderCheckbox = false.obs;
+
   var nameInputController = TextEditingController().obs;
   var schoolInputController = TextEditingController().obs;
   var dateInputController = TextEditingController().obs;
   var emailInputController = TextEditingController().obs;
+  var genderInput = "";
+  RxString name = "${DataCenter.user["name"]}".obs;
+  RxString email = "${DataCenter.user["email"]}".obs;
+  RxString birthDate = "${DataCenter.user["birthDate"]}".obs;
+  RxString gender = "${DataCenter.user["gender"]}".obs;
+  RxString university = "${DataCenter.user["university"]}".obs;
+  RxString phoneNumber = "${DataCenter.user["phoneNumber"]}".obs;
   RxList<Map> listGender = [
     {"gender": "Nam", "isSelected": false},
     {"gender": "Nữ", "isSelected": false},
     {"gender": "Khác", "isSelected": false}
   ].obs;
   var recommendUniName = [].obs;
-  var saveSuccess = false.obs; 
+  var saveSuccess = false.obs;
 
   List<String> universityName = [
     'Đại học bách khoa',
@@ -29,9 +38,26 @@ class EditProfileController extends GetxController {
     'Đại học quốc tế',
     'Đại học sư phạm kĩ thuật'
   ];
-  var listOfInterest = [].obs;
 
   RxString searchKey = ''.obs;
+
+  void updateGender() {
+    for (int i = 0; i < 3; ++i) {
+      if (listGender[i]["isSelected"]) {
+        switch (listGender[i]["gender"]) {
+          case "Nam":
+            genderInput = "male";
+            break;
+          case "Nữ":
+            genderInput = "female";
+            break;
+          case "Khác":
+            genderInput = "other";
+            break; 
+        }
+      }
+    }
+  }
 
   void searchSchool() {
     recommendUniName.value = universityName.where((element) {
@@ -41,8 +67,13 @@ class EditProfileController extends GetxController {
 
   void toggleSelectedGender(index) {
     var temListItem = listGender[index];
-    temListItem["isSelected"] = !temListItem["isSelected"];
+    temListItem["isSelected"] = true;
     listGender[index] = temListItem;
+    for (int i = 0; i < 3; ++i) {
+      if (i != index) {
+        listGender[i]["isSelected"] = false;
+      }
+    }
   }
 
   Future<void> datePicker(context) async {
@@ -57,7 +88,6 @@ class EditProfileController extends GetxController {
     if (picked != null && picked != DateTime.now()) {
       dateInputController.value.value =
           TextEditingValue(text: formatter.format(picked));
-      print('${dateInputController.value.value.text}');
     }
   }
 

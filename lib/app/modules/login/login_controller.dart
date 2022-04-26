@@ -39,10 +39,19 @@ class LoginController extends GetxController {
       AuthService.instance.readAccessToken();
       print(
           "access Token in login Controller: ${AuthService.instance.accessToken}");
+      //get user info by accesstoken
+      var response =
+          await HttpService.getRequest(UrlValue.appUrlGetUserInfoAccessToken);
+      //set info user for data center
+      print("userInfo:${response.body}");
+      DataCenter.user = jsonDecode(response.body)["user"];
+
       //var response = await HttpService.getRequest(url)
       //Get data for home
       List listData = await AuthService.instance.getDataForHomeScreen();
-      Get.offAllNamed(AppRoutes.home, arguments: listData);
+      //Get.offAllNamed(AppRoutes.home, arguments: listData);
+      Get.offAllNamed(AppRoutes.editUserProfile);
+      
     } else {
       print("not login");
     }
