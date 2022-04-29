@@ -47,7 +47,7 @@ class ProductItemListView extends StatelessWidget {
                 imageUrl,
               ),
               imageErrorBuilder: (_, __, ___) {
-                return Image.asset('assets/images/post_waiting.png');
+                return Image.asset('assets/images/post_fail.png');
               }),
           const SizedBox(
             height: 6,
