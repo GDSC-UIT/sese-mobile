@@ -40,21 +40,35 @@ class Filter extends StatelessWidget {
               child: Column(
                 children: [
                   TextField(
-                      "Nơi bán", "TP Hồ Chí Minh", homeController.seller.value),
+                      "Giá cả", "Cao -> Thấp", homeController.seller.value),
+                  TextField(
+                    "Nơi bán",
+                    "TP Hồ Chí Minh",
+                    homeController.seller.value,
+                  ),
                   (homeController.typeScreen == "Sản phẩm mới" ||
                           homeController.typeScreen == "Gợi ý")
                       ? Container()
                       : TextField(
-                          "Danh mục", "Quần áo", homeController.seller.value),
-                  TextField("Tình trạng", "Mới", homeController.seller.value),
+                          "Danh mục",
+                          "Quần áo",
+                          homeController.seller.value,
+                        ),
                   TextField(
-                      "Người bán", "phát covid", homeController.seller.value),
-                  TextField("Thời gian đăng", "1 giờ trước",
-                      homeController.seller.value),
+                    "Tình trạng",
+                    "Mới",
+                    homeController.seller.value,
+                  ),
                   TextField(
-                      "Trường đại học",
-                      "Trường đại học Công nghệ Thông tin",
-                      homeController.seller.value),
+                    "Người bán",
+                    "phát covid",
+                    homeController.seller.value,
+                  ),
+                  TextField(
+                    "Thời gian đăng",
+                    "1 giờ trước",
+                    homeController.seller.value,
+                  ),
                   (homeController.typeScreen == "Sản phẩm mới" ||
                           homeController.typeScreen == "Gợi ý")
                       ? Flexible(child: Container())
@@ -112,14 +126,17 @@ Widget TextField(String title, String hintText,
         ),
         Flexible(child: Container()),
         InPutTextField(
-            hintText: hintText,
-            isEnable: false,
-            suffixIcon: const Icon(
-              Icons.keyboard_arrow_down_outlined,
-              color: AppColors.backIcon,
-            ),
-            controller: textEditingController),
-        Flexible(child: Container()),
+          hintText: hintText,
+          isEnable: true,
+          suffixIcon: const Icon(
+            Icons.keyboard_arrow_down_outlined,
+            color: AppColors.backIcon,
+          ),
+          controller: textEditingController,
+        ),
+        Flexible(
+          child: Container(),
+        ),
       ],
     ),
   );
