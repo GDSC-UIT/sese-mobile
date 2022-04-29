@@ -42,13 +42,17 @@ class ProductItemListView extends StatelessWidget {
       child: Column(
         children: [
           FadeInImage(
-              placeholder: const AssetImage('assets/images/post_waiting.png'),
-              image: NetworkImage(
-                imageUrl,
-              ),
-              imageErrorBuilder: (_, __, ___) {
-                return Image.asset('assets/images/post_waiting.png');
-              }),
+            height: 120,
+            fit: BoxFit.fill,
+            placeholder: const AssetImage('assets/images/post_waiting.png'),
+            image: NetworkImage(
+              imageUrl,
+              scale: 0.3,
+            ),
+            imageErrorBuilder: (_, __, ___) {
+              return Image.asset('assets/images/post_waiting.png');
+            },
+          ),
           const SizedBox(
             height: 6,
           ),

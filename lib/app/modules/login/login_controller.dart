@@ -49,8 +49,8 @@ class LoginController extends GetxController {
       //var response = await HttpService.getRequest(url)
       //Get data for home
       List listData = await AuthService.instance.getDataForHomeScreen();
-      //Get.offAllNamed(AppRoutes.home, arguments: listData);
-      Get.offAllNamed(AppRoutes.editUserProfile);
+      Get.offAllNamed(AppRoutes.home, arguments: listData);
+      //Get.offAllNamed(AppRoutes.editUserProfile);
 
     } else {
       print("not login");
