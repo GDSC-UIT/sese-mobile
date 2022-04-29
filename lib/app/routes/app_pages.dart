@@ -50,6 +50,11 @@ import 'package:sese/app/routes/app_routes.dart';
 
 import '../modules/login/screens/login_interest_screen.dart';
 
+import '../modules/onboading/screens/onboarding_content_1.dart';
+import '../modules/onboading/screens/onboarding_content_2.dart';
+import '../modules/onboading/screens/onboarding_content_3.dart';
+import '../modules/onboading/screens/onboarding_begin_screen.dart';
+
 abstract class AppPages {
   static final List<GetPage> pages = [
     //home page
@@ -327,9 +332,27 @@ abstract class AppPages {
     ),
     //on boading
     GetPage(
-      name: AppRoutes.boading,
+      name: AppRoutes.onBoarding,
       transition: Transition.cupertino,
-      page: () => DetailChatScreen(),
+      page: () => OnboardingBeginScreen(),
+      binding: ChatBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent1,
+      transition: Transition.cupertino,
+      page: () => OnboardingContent1(),
+      binding: ChatBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent2,
+      transition: Transition.cupertino,
+      page: () => OnboardingContent2(),
+      binding: ChatBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent3,
+      transition: Transition.cupertino,
+      page: () => OnboardingContent3(),
       binding: ChatBinding(),
     ),
   ];
