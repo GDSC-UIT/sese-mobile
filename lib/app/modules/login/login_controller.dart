@@ -36,22 +36,26 @@ class LoginController extends GetxController {
   void onInit() async {
     print("call onInit");
     if (AuthService.instance.isLogined) {
+      //read access token from local storage
       AuthService.instance.readAccessToken();
       print(
           "access Token in login Controller: ${AuthService.instance.accessToken}");
-      //get user info by accesstoken
-      var response =
-          await HttpService.getRequest(UrlValue.appUrlGetUserInfoAccessToken);
-      //set info user for data center
-      print("userInfo:${response.body}");
-      DataCenter.user = jsonDecode(response.body)["user"];
-
-      //var response = await HttpService.getRequest(url)
+      //call api to get data user
+      var responseUserInfo =
+          await HttpService.getRequest(UrlValue.appUrlLoginAccessToken);
+      //set user info to data center
+      DataCenter.user = json.decode(responseUserInfo.body)["user"];
+      print(DataCenter.user);
+      //Get all category and set to data center
+      var responseCategory =
+          await HttpService.getRequest(UrlValue.appUrlGetAllCategories);
+      var listCategories = json.decode(responseCategory.body)['categories'];
+      //set category to data center
+      DataCenter.setCategoryToDataCenter(listCategories);
       //Get data for home
       List listData = await AuthService.instance.getDataForHomeScreen();
       Get.offAllNamed(AppRoutes.home, arguments: listData);
-      //Get.offAllNamed(AppRoutes.editUserProfile);
-
+      //Get.offAllNamed(AppRoutes.home);
     } else {
       print("not login");
     }
@@ -144,40 +148,40 @@ class LoginController extends GetxController {
     }
   }
 
-  void setCategoryToDataCenter(listInterests) {
-    listInterests.forEach((item) {
-      //set  isSelect property
-      item['isSelected'] = false;
+  // void setCategoryToDataCenter(listCategories) {
+  //   listCategories.forEach((item) {
+  //     //set  isSelect property
+  //     item['isSelected'] = false;
 
-      //get subcategoryList
-      var subCategoriesList = item["subcategories"];
-      //create subCategory
-      Map<String, SubCategory> subCategory = {};
-      subCategoriesList.forEach((sub) {
-        //get params of sub
-        var subParam = sub["params"];
-        Map<String, dynamic> params = {};
-        //loop subParam
-        subParam.forEach((param) {
-          params[param["param"]] = param;
-        });
-        //create subCategory
-        subCategory[sub["_id"]] = SubCategory(
-          category: sub["category"],
-          name: sub["name"],
-          id: sub["_id"],
-          params: params,
-        );
-        DataCenter.appSubCategory[subCategory[sub["_id"]]!.id] =
-            subCategory[sub["_id"]];
-      });
-      DataCenter.appCategory[item["_id"]] = AppCategoryModel(
-          id: item['_id'],
-          imageUrl: item['image'],
-          name: item['name'],
-          subCategory: subCategory);
-    });
-  }
+  //     //get subcategoryList
+  //     var subCategoriesList = item["subcategories"];
+  //     //create subCategory
+  //     Map<String, SubCategory> subCategory = {};
+  //     subCategoriesList.forEach((sub) {
+  //       //get params of sub
+  //       var subParam = sub["params"];
+  //       Map<String, dynamic> params = {};
+  //       //loop subParam
+  //       subParam.forEach((param) {
+  //         params[param["param"]] = param;
+  //       });
+  //       //create subCategory
+  //       subCategory[sub["_id"]] = SubCategory(
+  //         category: sub["category"],
+  //         name: sub["name"],
+  //         id: sub["_id"],
+  //         params: params,
+  //       );
+  //       DataCenter.appSubCategory[subCategory[sub["_id"]]!.id] =
+  //           subCategory[sub["_id"]];
+  //     });
+  //     DataCenter.appCategory[item["_id"]] = AppCategoryModel(
+  //         id: item['_id'],
+  //         imageUrl: item['image'],
+  //         name: item['name'],
+  //         subCategory: subCategory);
+  //   });
+  // }
 
   Future<void> updateUserInfoWithOutEvidence() async {
     var favouriteListInterests =

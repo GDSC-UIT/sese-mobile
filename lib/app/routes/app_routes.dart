@@ -52,4 +52,5 @@ abstract class AppRoutes {
   static const search = '/search';
   // chat route
   static const chatDetail = '/chat/detail';
+  static const allChats = '/chat/all';
 }

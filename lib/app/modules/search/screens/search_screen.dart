@@ -7,7 +7,6 @@ import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_values.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
-import 'package:sese/app/modules/search/search_binding.dart';
 import 'package:sese/app/modules/search/search_controller.dart';
 import 'package:sese/app/modules/search/widgets/product_info.dart';
 
@@ -40,41 +39,19 @@ class SearchScreen extends StatelessWidget {
                     width: 16,
                   ),
                   Expanded(
-                    child: TextField(
-                      autofocus: true,
-                      onSubmitted: (value) async {
+                    child: InPutTextField(
+                      hintText: 'Search here',
+                      isEnable: true,
+                      textStyle: CustomTextStyle.t6(AppColors.darkGreyColor),
+                      onSubmit: (value) async {
                         HttpService.showLoadingIndecator();
-                        var response = await HttpService.getRequest(
-                            '${UrlValue.appUrlPostProduct}?q=$value');
-                        searchController.listProduct.value =
-                            json.decode(response.body)['posts'];
-                        searchController.isFirst.value = false;
+                        await searchController.searchProducts(value);
                         Get.back();
                         print('list:${searchController.listProduct.value}');
                       },
-                      style: CustomTextStyle.t6(AppColors.darkGreyColor),
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.search,
-                          color: AppColors.greenColor,
-                        ),
-                        hintText: 'Search here',
-                        hintStyle: CustomTextStyle.t6(AppColors.darkGreyColor),
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.lightGreen,
-                            width: 1.5,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.greenColor,
-                            width: 1.5,
-                          ),
-                        ),
+                      prefixicon: const Icon(
+                        Icons.search,
+                        color: AppColors.greenColor,
                       ),
                     ),
                   )
