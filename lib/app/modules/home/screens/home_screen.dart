@@ -5,6 +5,7 @@ import 'package:scroll_indicator/scroll_indicator.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/global_widgets/horizontal_product_list_view.dart';
 import 'package:sese/app/modules/home/widgets/list_category.dart';
 import 'package:sese/app/global_widgets/notify_icon.dart';
@@ -12,6 +13,9 @@ import 'package:sese/app/global_widgets/search_input.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/routes/app_routes.dart';
+
+import '../../../core/values/app_values.dart';
+import '../../../data/services/http_service.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeController homeController = Get.find<HomeController>();

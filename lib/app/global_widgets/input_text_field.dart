@@ -45,7 +45,7 @@ class InPutTextField extends StatelessWidget {
         hintStyle: textStyle,
         border: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.lightGreen,
+            color: AppColors.greenColor,
             width: 1.5,
           ),
           borderRadius: BorderRadius.all(

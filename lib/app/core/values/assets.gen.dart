@@ -28,6 +28,18 @@ class Assets {
   /// File path: assets/icons/app_icon.png
   static const AssetGenImage iconsAppIcon = AssetGenImage('assets/icons/app_icon.png');
 
+  /// File path: assets/icons/facebook.png
+  static const AssetGenImage iconsFacebook = AssetGenImage('assets/icons/facebook.png');
+
+  /// File path: assets/icons/instagram.png
+  static const AssetGenImage iconsInstagram = AssetGenImage('assets/icons/instagram.png');
+
+  /// File path: assets/icons/messenger.png
+  static const AssetGenImage iconsMessenger = AssetGenImage('assets/icons/messenger.png');
+
+  /// File path: assets/icons/twitter.png
+  static const AssetGenImage iconsTwitter = AssetGenImage('assets/icons/twitter.png');
+
   /// File path: assets/images/Calendar_icon.png
   static const AssetGenImage imagesCalendarIcon = AssetGenImage('assets/images/Calendar_icon.png');
 
@@ -100,8 +112,14 @@ class Assets {
   /// File path: assets/images/thoi_trang.png
   static const AssetGenImage imagesThoiTrang = AssetGenImage('assets/images/thoi_trang.png');
 
+  /// File path: assets/images/tra_gia.png
+  static const AssetGenImage imagesTraGia = AssetGenImage('assets/images/tra_gia.png');
+
   /// File path: assets/images/verify_success.png
   static const AssetGenImage imagesVerifySuccess = AssetGenImage('assets/images/verify_success.png');
+
+  /// File path: assets/vietnamese_province.txt
+  static const String vietnameseProvince = 'assets/vietnamese_province.txt';
 }
 
 class AssetGenImage extends AssetImage {

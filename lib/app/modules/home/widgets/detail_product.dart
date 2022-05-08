@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sese/app/data/models/subCategory_model.dart';
 import 'package:sese/app/data/services/data_center.dart';
 
@@ -16,6 +17,9 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
+  var isReadMore = true.obs;
+  var maxLines = 4.obs;
+
   @override
   Widget build(BuildContext context) {
     double _screenHeight = MediaQuery.of(context).size.height;
@@ -84,19 +88,28 @@ class _DetailProductState extends State<DetailProduct> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Container(
             width: double.infinity,
-            height: _screenHeight * (109 / 1000),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
-                color: AppColors.lightGreyColor,
+                color: AppColors.greenColor,
                 width: 1,
               ),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Text(
-                widget.product["note"],
-                style: CustomTextStyle.t6(AppColors.darkGreyColor),
+              child: Row(
+                children: [
+                  Flexible(
+                    child: Obx(
+                      () => Text(
+                        widget.product["note"],
+                        style: CustomTextStyle.t6(AppColors.darkGreyColor),
+                        // overflow: TextOverflow.ellipsis,
+                        maxLines: (isReadMore.value) ? maxLines.value : null,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -107,25 +120,43 @@ class _DetailProductState extends State<DetailProduct> {
         ),
         SizedBox(
           height: 37,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "View more",
-                style: CustomTextStyle.t8(AppColors.primaryColor),
-              ),
-              const SizedBox(
-                width: 9,
-              ),
-              Transform.rotate(
-                angle: -90 * pi / 180,
-                child: const Icon(
-                  Icons.arrow_back_ios_new_outlined,
-                  size: 15,
-                  color: AppColors.primaryColor,
+          child: InkWell(
+            onTap: () {
+              isReadMore.value = !isReadMore.value;
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Obx(
+                  () => Text(
+                    (isReadMore.value) ? "SEE MORE" : "SEE LESS",
+                    style: CustomTextStyle.t8(AppColors.primaryColor),
+                  ),
                 ),
-              )
-            ],
+                const SizedBox(
+                  width: 9,
+                ),
+                Obx(
+                  () => (isReadMore.value)
+                      ? Transform.rotate(
+                          angle: -90 * pi / 180,
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            size: 15,
+                            color: AppColors.primaryColor,
+                          ),
+                        )
+                      : Transform.rotate(
+                          angle: 90 * pi / 180,
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            size: 15,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                ),
+              ],
+            ),
           ),
         )
       ],

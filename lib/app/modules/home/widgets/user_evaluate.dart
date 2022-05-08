@@ -21,12 +21,12 @@ class UserEvaluate extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "Review user",
+                  "Review",
                   style: CustomTextStyle.h4(Colors.black),
                 ),
                 Row(
                   children: [
-                    StarVote(star: 3),
+                    const StarVote(star: 4),
                     const SizedBox(
                       width: 17,
                     ),
@@ -37,7 +37,7 @@ class UserEvaluate extends StatelessWidget {
                           style: CustomTextStyle.t6(AppColors.primaryColor),
                         ),
                         Text(
-                          "(1 review(s))",
+                          "(1 đánh giá)",
                           style: CustomTextStyle.t6(AppColors.neutralGrey),
                         ),
                       ],

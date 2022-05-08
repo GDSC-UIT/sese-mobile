@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scroll_indicator/scroll_indicator.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
+import 'package:sese/app/modules/home/widgets/bargain_dialog.dart';
 import 'package:sese/app/modules/home/widgets/detail_product.dart';
 import 'package:sese/app/modules/home/widgets/info_product.dart';
 import 'package:sese/app/modules/home/widgets/info_seller.dart';
@@ -14,6 +16,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../routes/app_routes.dart';
 import '../../../core/utils/utils.dart';
+import '../widgets/share_dialog.dart';
 
 class HomeDetailProductScreen extends StatefulWidget {
   HomeDetailProductScreen({
@@ -27,6 +30,7 @@ class HomeDetailProductScreen extends StatefulWidget {
 
 class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
   final HomeController homeController = Get.find();
+  var isLiked = false.obs;
   int activeIndex = 0;
   ScrollController scrollNewProduct = ScrollController();
   var urlImages = [];
@@ -49,7 +53,9 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
             children: [
               Expanded(
                 child: AppButton(
-                  onPress: () {},
+                  onPress: () {
+                    Get.dialog(BargainDialog());
+                  },
                   text: "MAKE OFFER",
                   backgroundColor: AppColors.lightOrange,
                   borderColor: AppColors.primaryColor,
@@ -67,6 +73,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                   },
                   text: "SEND MESSAGE",
                   backgroundColor: AppColors.primaryColor,
+                  borderColor: AppColors.primaryColor,
                   textStyle: CustomTextStyle.t8(Colors.white),
                 ),
               ),
@@ -87,18 +94,24 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
           ),
           title: Row(
             children: [
-              SizedBox(
-                width: _screeenWidth * 0.5,
-                child: Text(
-                  widget.product["name"],
-                  style: CustomTextStyle.t1(AppColors.primaryColor),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+              InkWell(
+                onTap: () => print(
+                    "alo alo: ${DataCenter.appCategory["62448ea54b07a13297348b8d"]?.name}"),
+                child: SizedBox(
+                  width: _screeenWidth * 0.5,
+                  child: Text(
+                    widget.product["name"],
+                    style: CustomTextStyle.t1(AppColors.primaryColor),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
               ),
               Expanded(child: Container()),
               InkWell(
-                onTap: (() {}),
+                onTap: (() {
+                  Get.dialog(ShareDialog());
+                }),
                 child: const Icon(
                   Icons.share,
                   color: AppColors.backIcon,
@@ -143,32 +156,49 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                       dotColor: AppColors.lightGreyColor.withOpacity(0.5)),
                 ),
               ),
-              // SizedBox(
-              //   height: _screenHeight * (58 / 844),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.end,
-              //     crossAxisAlignment: CrossAxisAlignment.center,
-              //     children: const [
-              //       SizedBox(
-              //         width: 20,
-              //       ),
-              //       Icon(
-              //         Icons.info_outline,
-              //         color: AppColors.backIcon,
-              //       ),
-              //       SizedBox(
-              //         width: 15,
-              //       ),
-              //       Icon(
-              //         Icons.more_vert,
-              //         color: AppColors.backIcon,
-              //       ),
-              //       SizedBox(
-              //         width: 20,
-              //       ),
-              //     ],
-              //   ),
-              // ),
+              SizedBox(
+                height: _screenHeight * (58 / 844),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        isLiked.value = !isLiked.value;
+                      },
+                      child: Obx(
+                        () => (isLiked.value)
+                            ? const Icon(
+                                Icons.favorite_outlined,
+                                color: AppColors.backIcon,
+                              )
+                            : const Icon(
+                                Icons.favorite_border_outlined,
+                                color: AppColors.backIcon,
+                              ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.homeReport);
+                      },
+                      child: const Icon(
+                        Icons.error_outline,
+                        color: AppColors.backIcon,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -207,7 +237,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                 height: 4,
                 color: AppColors.cloadDarkColor,
               ),
-              UserEvaluate(),
+              const UserEvaluate(),
               Container(
                 height: 4,
                 color: AppColors.cloadDarkColor,
@@ -215,54 +245,55 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
               Column(
                 children: [
                   Container(
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 26, right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Suggestion",
+                                style: CustomTextStyle.h4(Colors.black),
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 26, right: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Suggestion",
-                                  style: CustomTextStyle.h4(Colors.black),
-                                ),
-                              ],
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const SizedBox(
+                          height: 220,
+                          // child: HorizontalProductListView(
+                          //     scrollController: scrollNewProduct),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        ScrollIndicator(
+                          width: 48,
+                          height: 5,
+                          indicatorWidth: 15,
+                          scrollController: scrollNewProduct,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.neutralGrey,
                           ),
-                          const SizedBox(
-                            height: 10,
+                          indicatorDecoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(50),
                           ),
-                          SizedBox(
-                            height: 220,
-                            // child: HorizontalProductListView(
-                            //     scrollController: scrollNewProduct),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          ScrollIndicator(
-                            width: 48,
-                            height: 5,
-                            indicatorWidth: 15,
-                            scrollController: scrollNewProduct,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.neutralGrey,
-                            ),
-                            indicatorDecoration: BoxDecoration(
-                              color: AppColors.primaryColor,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 11,
-                          ),
-                        ],
-                      ))
+                        ),
+                        const SizedBox(
+                          height: 11,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],

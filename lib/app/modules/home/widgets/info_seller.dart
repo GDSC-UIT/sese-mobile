@@ -91,11 +91,11 @@ class InfoSeller extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: AppButton(
                 onPress: () {},
-                text: "View Profile",
-                textStyle: CustomTextStyle.t3(AppColors.primaryColor),
+                text: "SELLLER'S PROFILE",
+                textStyle: CustomTextStyle.t8(AppColors.primaryColor),
                 backgroundColor: AppColors.lightOrange,
                 borderColor: AppColors.primaryColor,
               ),

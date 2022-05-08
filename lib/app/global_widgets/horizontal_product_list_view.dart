@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sese/app/data/models/product_model.dart';
-import 'package:sese/app/global_widgets/product_item_list_view.dart';
+import 'package:sese/app/global_widgets/horizontal_product_item_list_view.dart';
 import 'package:duration/duration.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -33,14 +33,9 @@ class HorizontalProductListView extends StatelessWidget {
               minutes: dateTime.minute));
           timeago.setLocaleMessages('en', timeago.ViMessages());
 
-          return ProductItemListView(
-            address: product["location"],
-            imageUrl: product["images"][0],
-            price: product["price"],
-            name: product["name"],
-            userName: product["user"]["name"],
-            userAvatar: product["user"]["avatar"],
-            timeUpload: timeago.format(timeAgo, locale: 'us'),
+          return HorizontalProductItemListView(
+            product: product,
+            // timeUpload: timeago.format(timeAgo, locale: 'us'),
             isGiveAway: isGiveAway,
           );
         },

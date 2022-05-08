@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
-import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Filter extends StatelessWidget {
   Filter({Key? key}) : super(key: key);
@@ -35,48 +35,75 @@ class Filter extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
+            child: Column(
+              children: [
+                TextField(
+                  "Giá cả",
+                  'Không có',
+                  homeController.seller.value,
+                  homeController.listPrice,
+                  homeController.selectedPriceFilter.value,
+                ),
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.cloadDarkColor,
+                ),
+                TextField(
+                  "Nơi bán",
+                  'Không có',
+                  homeController.seller.value,
+                  homeController.listSellerPlace,
+                  homeController.selectedSellerPlaceFilter.value,
+                ),
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.cloadDarkColor,
+                ),
+                if (homeController.typeScreen == "Sản phẩm mới" ||
+                    homeController.typeScreen == "Gợi ý")
+                  Container()
+                else
                   TextField(
-                      "Giá cả", "Cao -> Thấp", homeController.seller.value),
-                  TextField(
-                    "Nơi bán",
-                    "TP Hồ Chí Minh",
+                    "Danh mục",
+                    'Không có',
                     homeController.seller.value,
+                    homeController.listCategory,
+                    homeController.selectedCategoryFilter.value,
                   ),
-                  (homeController.typeScreen == "Sản phẩm mới" ||
-                          homeController.typeScreen == "Gợi ý")
-                      ? Container()
-                      : TextField(
-                          "Danh mục",
-                          "Quần áo",
-                          homeController.seller.value,
-                        ),
-                  TextField(
-                    "Tình trạng",
-                    "Mới",
-                    homeController.seller.value,
+                if (homeController.typeScreen == "Sản phẩm mới" ||
+                    homeController.typeScreen == "Gợi ý")
+                  Container()
+                else
+                  Container(
+                    height: 1,
+                    width: double.infinity,
+                    color: AppColors.cloadDarkColor,
                   ),
-                  TextField(
-                    "Người bán",
-                    "phát covid",
-                    homeController.seller.value,
-                  ),
-                  TextField(
-                    "Thời gian đăng",
-                    "1 giờ trước",
-                    homeController.seller.value,
-                  ),
-                  (homeController.typeScreen == "Sản phẩm mới" ||
-                          homeController.typeScreen == "Gợi ý")
-                      ? Flexible(child: Container())
-                      : Container(),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  Row(
+                TextField(
+                  "Tình trạng",
+                  'Không có',
+                  homeController.seller.value,
+                  homeController.listStatus,
+                  homeController.selectedStatusFilter.value,
+                ),
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.cloadDarkColor,
+                ),
+                (homeController.typeScreen == "Sản phẩm mới" ||
+                        homeController.typeScreen == "Gợi ý")
+                    ? Flexible(child: Container())
+                    : Container(),
+                const SizedBox(
+                  height: 7,
+                ),
+                const Expanded(child: const SizedBox()),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
                     children: [
                       Expanded(
                         child: AppButton(
@@ -84,6 +111,7 @@ class Filter extends StatelessWidget {
                           text: "Áp dụng",
                           textStyle: CustomTextStyle.t3(Colors.white),
                           backgroundColor: AppColors.primaryColor,
+                          borderColor: AppColors.primaryColor,
                         ),
                       ),
                       const SizedBox(
@@ -100,11 +128,11 @@ class Filter extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 26,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+              ],
             ),
           ),
         ],
@@ -113,31 +141,78 @@ class Filter extends StatelessWidget {
   }
 }
 
-Widget TextField(String title, String hintText,
-    TextEditingController textEditingController) {
+Widget TextField(
+  String title,
+  String hintText,
+  TextEditingController textEditingController,
+  List<String> listItem,
+  String selectedValue,
+) {
   return Flexible(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Flexible(child: Container()),
-        Text(
-          title,
-          style: CustomTextStyle.t3(Colors.black),
-        ),
-        Flexible(child: Container()),
-        InPutTextField(
-          hintText: hintText,
-          isEnable: true,
-          suffixIcon: const Icon(
-            Icons.keyboard_arrow_down_outlined,
-            color: AppColors.backIcon,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Flexible(child: Container()),
+          Text(
+            title,
+            style: CustomTextStyle.t3(Colors.black),
           ),
-          controller: textEditingController,
-        ),
-        Flexible(
-          child: Container(),
-        ),
-      ],
+          Flexible(child: Container()),
+          DropdownButtonFormField2(
+            enableFeedback: true,
+            focusColor: AppColors.backIcon,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.zero,
+              border: OutlineInputBorder(borderSide: BorderSide.none),
+            ),
+            hint: Text(
+              hintText,
+              style: CustomTextStyle.t6(AppColors.neutralGrey),
+            ),
+            icon: const Icon(
+              Icons.arrow_drop_down,
+              color: AppColors.backIcon,
+            ),
+            iconSize: 30,
+            dropdownMaxHeight: 300,
+            buttonHeight: 48,
+            buttonDecoration: BoxDecoration(
+              border: Border.all(color: AppColors.backIcon),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+            dropdownDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            isExpanded: true,
+            items: listItem
+                .map((item) => DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: CustomTextStyle.t6(AppColors.neutralGrey),
+                      ),
+                    ))
+                .toList(),
+            validator: (value) {
+              if (value == null) {
+                return 'Please select gender.';
+              }
+            },
+            onChanged: (value) {
+              //Do something when changing the item if you want.
+            },
+            onSaved: (value) {
+              selectedValue = value.toString();
+            },
+          ),
+          Flexible(
+            child: Container(),
+          ),
+        ],
+      ),
     ),
   );
 }

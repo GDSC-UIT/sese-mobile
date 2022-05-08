@@ -4,7 +4,6 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/search_input.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/global_widgets/product_grid_view.dart';
-import 'package:sese/app/modules/home/screens/home_all_category_screen.dart';
 import 'package:sese/app/modules/home/widgets/filter.dart';
 
 import '../../../core/values/app_colors.dart';
@@ -78,8 +77,9 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
               const SizedBox(
                 width: 10,
               ),
-              InkWell(
-                onTap: (() {
+              GestureDetector(
+                onTap: (() async {
+                  await homeController.getList();
                   globalKey.currentState!.openEndDrawer();
                 }),
                 child: Stack(
@@ -91,7 +91,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                       size: 28,
                     ),
                     const SizedBox(
-                      width: 40,
+                      width: 50,
                     ),
                     Positioned(
                       bottom: 0,

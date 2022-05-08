@@ -5,6 +5,7 @@ abstract class AppRoutes {
   static const homeAllCategory = '/home/allCategory';
   static const homeCategory = '/home/category';
   static const homeDetailProduct = '/home/detailProduct';
+  static const homeReport = '/home/report';
   //auth route
   static const authBegin = '/auth/begin';
   static const authName = '/auth/name';
