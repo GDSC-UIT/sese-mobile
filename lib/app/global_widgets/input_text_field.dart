@@ -6,7 +6,7 @@ class InPutTextField extends StatelessWidget {
       {Key? key,
       required this.hintText,
       required this.isEnable,
-      required this.controller,
+      this.controller,
       this.typeKeyBoard,
       this.suffixIcon,
       this.prefixicon,
@@ -19,7 +19,7 @@ class InPutTextField extends StatelessWidget {
   final Function? onSubmit;
   final Widget? suffixIcon;
   final Widget? prefixicon;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final bool isEnable;
   final TextStyle? textStyle;
   final Function? onChange;
@@ -29,7 +29,7 @@ class InPutTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onSubmitted: (value) {
-        onSubmit == null ? () {} : onSubmit!();
+        onSubmit == null ? () {} : onSubmit!(value);
       },
       maxLines: maxLine ?? 1,
       controller: controller,

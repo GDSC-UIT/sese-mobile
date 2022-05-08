@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/values/app_colors.dart';
 
 class StarVote extends StatelessWidget {
-  StarVote({Key? key, required this.star}) : super(key: key);
+  const StarVote({Key? key, required this.star}) : super(key: key);
   final int star;
 
   @override
@@ -12,27 +12,27 @@ class StarVote extends StatelessWidget {
       case 0:
         return Row(
           children: [
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,

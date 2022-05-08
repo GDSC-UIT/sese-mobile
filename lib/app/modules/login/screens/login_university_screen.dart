@@ -103,16 +103,17 @@ class LoginUniversityScreen extends StatelessWidget {
                 if (loginController.schoolInputController.value.value.text !=
                     '') {
                   HttpService.showLoadingIndecator();
-
+                  //call api to get category
                   var response = await HttpService.getRequest(
                       UrlValue.appUrlGetAllCategories);
                   var listInterests = json.decode(response.body)['categories'];
                   //set category to data center
-                  loginController.setCategoryToDataCenter(listInterests);
+                  DataCenter.setCategoryToDataCenter(listInterests);
 
                   Get.back();
 
-                  Get.toNamed(AppRoutes.authEmail, arguments: [listInterests]);
+                  Get.toNamed(AppRoutes.authInterest,
+                      arguments: [listInterests]);
                 } else {
                   Get.snackbar('', 'Please fill all  the field!');
                 }

@@ -280,7 +280,7 @@ class HomeScreen extends StatelessWidget {
                           height: 10,
                         ),
                         SizedBox(
-                          height: 220,
+                          height: 240,
                           child: HorizontalProductListView(
                               isGiveAway: false,
                               listProduct: listRecommendProduct,

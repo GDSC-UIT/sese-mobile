@@ -57,4 +57,5 @@ abstract class AppRoutes {
   static const onBoardingContent1 = '/onboarding/content1';
   static const onBoardingContent2 = '/onboarding/content2';
   static const onBoardingContent3 = '/onboarding/content3';
+  static const allChats = '/chat/all';
 }

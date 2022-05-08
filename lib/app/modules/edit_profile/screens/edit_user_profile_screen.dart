@@ -5,7 +5,7 @@ import 'package:sese/app/modules/edit_profile/widgets/edit_card.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class EditUserProfileScreen extends StatelessWidget {
-  const EditUserProfileScreen({Key? key}) : super(key: key);
+   EditUserProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

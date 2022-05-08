@@ -8,11 +8,15 @@ class UrlValue {
   // API endpoints go here
   static const appUrl = 'https://sturee.herokuapp.com';
   static const appUrlLoginSocial = '${UrlValue.appUrl}/api/auth/login/social';
+  static const appUrlLoginAccessToken = '${UrlValue.appUrl}/api/auth';
   static const appUrlUpdateUserProfile = '${UrlValue.appUrl}/api/users/me';
   static const appUrlGetAllCategories = '${UrlValue.appUrl}/api/categories';
+  static const appUrlGetAllConversations =
+      '${UrlValue.appUrl}/api/conversations';
   static const appUrlVerifyUser =
       '${UrlValue.appUrl}/api/users/me/verification';
   static const appUrlPostProduct = '${UrlValue.appUrl}/api/posts';
+  static const appUrlGetUserInfoAccessToken = '${UrlValue.appUrl}/api/auth';
 }
 
 class FormatValue {
