@@ -54,6 +54,7 @@ abstract class AppRoutes {
 
   // onboarding route
   static const onBoarding = '/onboarding/begin';
+  static const onBoardingContent = '/onboarding/content';
   static const onBoardingContent1 = '/onboarding/content1';
   static const onBoardingContent2 = '/onboarding/content2';
   static const onBoardingContent3 = '/onboarding/content3';

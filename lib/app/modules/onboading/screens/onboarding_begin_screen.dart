@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/modules/onboading/onboading_controller.dart';
 import '../../../routes/app_routes.dart';
 
 class OnboardingBeginScreen extends StatelessWidget {
-  const OnboardingBeginScreen({Key? key}) : super(key: key);
-
+  OnboardingBeginScreen({Key? key}) : super(key: key);
+  OnboadingController onboadingController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 108, 59, 1),
       body: GestureDetector(
-        onTap: () => Get.offNamed(AppRoutes.onBoardingContent1),
+        onTap: () => Get.offNamed(AppRoutes.onBoardingContent),
         child: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(20),

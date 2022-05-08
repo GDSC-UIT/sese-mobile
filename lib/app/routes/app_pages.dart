@@ -23,6 +23,8 @@ import 'package:sese/app/modules/login/screens/login_name_screen.dart';
 import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
+import 'package:sese/app/modules/onboading/onboading_binding.dart';
+import 'package:sese/app/modules/onboading/screens/onboading_content.dart';
 import 'package:sese/app/modules/verify/screens/test_image.dart';
 import 'package:sese/app/modules/verify/screens/verify_back_sv_failed_screen.dart';
 import 'package:sese/app/modules/verify/screens/verify_back_sv_screen.dart';
@@ -342,7 +344,13 @@ abstract class AppPages {
       name: AppRoutes.onBoarding,
       transition: Transition.cupertino,
       page: () => OnboardingBeginScreen(),
-      binding: ChatBinding(),
+      binding: OnboadingBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent,
+      transition: Transition.cupertino,
+      page: () => OnboadingContent(),
+      binding: OnboadingBinding(),
     ),
     GetPage(
       name: AppRoutes.onBoardingContent1,
