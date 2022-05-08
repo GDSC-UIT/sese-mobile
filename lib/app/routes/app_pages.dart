@@ -24,6 +24,8 @@ import 'package:sese/app/modules/login/screens/login_name_screen.dart';
 import 'package:sese/app/modules/login/screens/login_university_screen.dart';
 import 'package:sese/app/modules/login/screens/login_email_screen.dart';
 import 'package:sese/app/modules/login/screens/login_phone_screen.dart';
+import 'package:sese/app/modules/onboading/onboading_binding.dart';
+import 'package:sese/app/modules/onboading/screens/onboading_content.dart';
 import 'package:sese/app/modules/verify/screens/test_image.dart';
 import 'package:sese/app/modules/verify/screens/verify_back_sv_failed_screen.dart';
 import 'package:sese/app/modules/verify/screens/verify_back_sv_screen.dart';
@@ -51,6 +53,11 @@ import 'package:sese/app/modules/user_profile/user_profile_binding.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 import '../modules/login/screens/login_interest_screen.dart';
+
+import '../modules/onboading/screens/onboarding_content_1.dart';
+import '../modules/onboading/screens/onboarding_content_2.dart';
+import '../modules/onboading/screens/onboarding_content_3.dart';
+import '../modules/onboading/screens/onboarding_begin_screen.dart';
 
 abstract class AppPages {
   static final List<GetPage> pages = [
@@ -341,9 +348,33 @@ abstract class AppPages {
     ),
     //on boading
     GetPage(
-      name: AppRoutes.boading,
+      name: AppRoutes.onBoarding,
       transition: Transition.cupertino,
-      page: () => DetailChatScreen(),
+      page: () => OnboardingBeginScreen(),
+      binding: OnboadingBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent,
+      transition: Transition.cupertino,
+      page: () => OnboadingContent(),
+      binding: OnboadingBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent1,
+      transition: Transition.cupertino,
+      page: () => OnboardingContent1(),
+      binding: ChatBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent2,
+      transition: Transition.cupertino,
+      page: () => OnboardingContent2(),
+      binding: ChatBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.onBoardingContent3,
+      transition: Transition.cupertino,
+      page: () => OnboardingContent3(),
       binding: ChatBinding(),
     ),
   ];

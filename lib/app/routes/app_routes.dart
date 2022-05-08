@@ -1,5 +1,4 @@
 abstract class AppRoutes {
-  static const boading = '/onboading';
   //home route
   static const home = '/home';
   static const homeAllCategory = '/home/allCategory';
@@ -53,5 +52,12 @@ abstract class AppRoutes {
   static const search = '/search';
   // chat route
   static const chatDetail = '/chat/detail';
+
+  // onboarding route
+  static const onBoarding = '/onboarding/begin';
+  static const onBoardingContent = '/onboarding/content';
+  static const onBoardingContent1 = '/onboarding/content1';
+  static const onBoardingContent2 = '/onboarding/content2';
+  static const onBoardingContent3 = '/onboarding/content3';
   static const allChats = '/chat/all';
 }
