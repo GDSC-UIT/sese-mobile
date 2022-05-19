@@ -35,6 +35,8 @@ abstract class AppRoutes {
   static const editPhoneNumber = '/edit/phoneNumber';
   static const editLinkAccount = '/edit/linkAccount';
   static const editUniversity = '/edit/university';
+  static const editAvatar = '/edit/avatar';
+  
 
   //post product route
   static const postProductBegin = '/post/product/begin';
@@ -52,7 +54,7 @@ abstract class AppRoutes {
   static const userSettingLanguage = '/user/settings/language';
   static const userSettingAddresses = '/user/settings/addresses';
   static const userNewAddress = '/user/newAddress';
-  static const userEditAddress = '/user/editAddress'; 
+  static const userEditAddress = '/user/editAddress';
   //search product
   static const search = '/search';
   // chat route

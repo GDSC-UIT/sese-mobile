@@ -125,7 +125,6 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
               const SizedBox(
                 height: 12,
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -41,12 +41,7 @@ class ChangeLinkAccountScreen extends StatelessWidget {
           Expanded(
             child: AppButton(
               textStyle: CustomTextStyle.t8(AppColors.darkGreyColor),
-              onPress: () async {
-                await editProfileController.googleSignInAction();
-                AuthService.instance.isLogined == true
-                    ? Get.toNamed(AppRoutes.authName)
-                    : print('Login gg fail');
-              },
+              onPress: () async {},
               text: 'LOGIN WITH GOOGLE',
               // textColor: AppColors.darkGreyColor,
               borderColor: AppColors.greenColor,

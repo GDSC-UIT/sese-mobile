@@ -82,7 +82,7 @@ class EditNameScreen extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) =>
-                        _buildPopupDialog(context),
+                        PopUp(context)
                   );
                 },
                 text: "LƯU THAY ĐỔI",
@@ -97,6 +97,3 @@ class EditNameScreen extends StatelessWidget {
   }
 }
 
-Widget _buildPopupDialog(BuildContext context) {
-  return PopUp(context);
-}

@@ -21,6 +21,7 @@ class UploadImageService {
       return value;
     } catch (e) {
       Get.snackbar('Error occurs when upload image', e.toString());
+      print("errorUpload:${e.toString()}");
       return 'khong co link';
     }
   }

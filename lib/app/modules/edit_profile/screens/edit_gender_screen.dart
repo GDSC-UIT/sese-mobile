@@ -44,29 +44,20 @@ class EditGenderScreen extends StatelessWidget {
           // GenderCheckbox(2),
           Obx(
             () => AppCheckBox(
-              textOptionString: editProfileController.listGender[0]["gender"],
+              textOptionString: "Nam",
               onPress: () {
-                editProfileController.toggleSelectedGender(0);
+                editProfileController.isMale.value = true;
               },
-              isSelected: editProfileController.listGender[0]["isSelected"],
+              isSelected: editProfileController.isMale.value,
             ),
           ),
           Obx(
             () => AppCheckBox(
-              textOptionString: editProfileController.listGender[1]["gender"],
+              textOptionString: "Nữ",
               onPress: () {
-                editProfileController.toggleSelectedGender(1);
+                editProfileController.isMale.value = false;
               },
-              isSelected: editProfileController.listGender[1]["isSelected"],
-            ),
-          ),
-          Obx(
-            () => AppCheckBox(
-              textOptionString: editProfileController.listGender[2]["gender"],
-              onPress: () {
-                editProfileController.toggleSelectedGender(2);
-              },
-              isSelected: editProfileController.listGender[2]["isSelected"],
+              isSelected: !editProfileController.isMale.value,
             ),
           ),
 
@@ -79,8 +70,9 @@ class EditGenderScreen extends StatelessWidget {
               //update gender
               editProfileController.updateGender();
               var newGenderUser = {
-                "gender": editProfileController.genderInput,
+                "gender": editProfileController.gender.value,
               };
+              print(editProfileController.isMale.value);
               var response = await HttpService.putRequest(
                 body: jsonEncode(newGenderUser),
                 url: UrlValue.appUrlUpdateUserProfile,
@@ -92,7 +84,7 @@ class EditGenderScreen extends StatelessWidget {
 
               editProfileController.gender.value = DataCenter.user["gender"];
 
-              // print(response.body);
+              //print(response.body);
               Get.back();
               Get.back();
 

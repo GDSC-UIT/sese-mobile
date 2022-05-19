@@ -1,22 +1,26 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_constant.dart';
+import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/data/services/data_center.dart';
+import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 
-class EditPhoneNumberScreen extends StatefulWidget {
+import '../widgets/pop_up_success.dart';
+
+class EditPhoneNumberScreen extends StatelessWidget {
   const EditPhoneNumberScreen({Key? key}) : super(key: key);
 
   @override
-  State<EditPhoneNumberScreen> createState() => _EditPhoneNumberScreenState();
-}
-
-class _EditPhoneNumberScreenState extends State<EditPhoneNumberScreen> {
-  @override
   Widget build(BuildContext context) {
+    EditProfileController editProfileController = Get.find();
     final TextEditingController controller = TextEditingController();
     PhoneNumber number = PhoneNumber(isoCode: 'VN');
     return Scaffold(
@@ -49,7 +53,8 @@ class _EditPhoneNumberScreenState extends State<EditPhoneNumberScreen> {
             ),
             selectorTextStyle: CustomTextStyle.t6(AppColors.greenColor),
             initialValue: number,
-            textFieldController: controller,
+            textFieldController:
+                editProfileController.phoneNumberInputController.value,
             formatInput: false,
             hintText: "Điền số điện thoại của bạn",
             textStyle: CustomTextStyle.t6(AppColors.neutralGrey),
@@ -61,14 +66,37 @@ class _EditPhoneNumberScreenState extends State<EditPhoneNumberScreen> {
             ),
           ),
           const SizedBox(
-                height: AppConstant.gapInputAppButton,
-              ),
+            height: AppConstant.gapInputAppButton,
+          ),
           AppButton(
-                onPress: () {},
-                text: "LƯU THAY ĐỔI",
-                textStyle: CustomTextStyle.t8(Colors.white),
-                backgroundColor: AppColors.primaryColor,
-              ),
+            onPress: () async {
+              HttpService.showLoadingIndecator();
+
+              var newPhoneNumberUser = {
+                "phoneNumber":
+                    editProfileController.phoneNumberInputController.value.text
+              };
+
+              var response = await HttpService.putRequest(
+                body: jsonEncode(newPhoneNumberUser),
+                url: UrlValue.appUrlUpdateUserProfile,
+              );
+              print(response.body);
+              DataCenter.user["phoneNumber"] =
+                  jsonDecode(response.body)["user"]["phoneNumber"];
+
+              editProfileController.phoneNumber.value =
+                  DataCenter.user["phoneNumber"];
+              Get.back();
+              Get.back();
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) => PopUp(context));
+            },
+            text: "LƯU THAY ĐỔI",
+            textStyle: CustomTextStyle.t8(Colors.white),
+            backgroundColor: AppColors.primaryColor,
+          ),
         ]),
       ),
     );

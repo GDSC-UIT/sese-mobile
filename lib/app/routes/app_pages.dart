@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:sese/app/modules/chat/chat_binding.dart';
 import 'package:sese/app/modules/chat/screens/detail_chat_screen.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_binding.dart';
+import 'package:sese/app/modules/edit_profile/screens/change_avatar.dart';
 import 'package:sese/app/modules/edit_profile/screens/change_link_accounts_screen.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_dob_screen.dart';
 import 'package:sese/app/modules/edit_profile/screens/edit_email_screen.dart';
@@ -248,6 +249,13 @@ abstract class AppPages {
       name: AppRoutes.editLinkAccount,
       transition: Transition.cupertino,
       page: () => ChangeLinkAccountScreen(),
+      binding: EditProfileBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: AppRoutes.editAvatar,
+      transition: Transition.cupertino,
+      page: () => ChangeAvatarScreen(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),

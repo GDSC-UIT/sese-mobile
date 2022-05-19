@@ -44,7 +44,7 @@ class LoginController extends GetxController {
           await HttpService.getRequest(UrlValue.appUrlGetUserInfoAccessToken);
       //set info user for data center
       print("userInfo:${response.body}");
-      DataCenter.user = jsonDecode(response.body)["user"];
+      DataCenter.user = jsonDecode(response.body)["data"];
 
       //var response = await HttpService.getRequest(url)
       //Get data for home

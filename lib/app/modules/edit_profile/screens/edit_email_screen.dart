@@ -69,27 +69,23 @@ class EditEmailScreen extends StatelessWidget {
                           "email": editProfileController
                               .emailInputController.value.text
                         };
-                        print(newEmailUser); 
+                        
                         var response = await HttpService.putRequest(
                           body: jsonEncode(newEmailUser),
                           url: UrlValue.appUrlUpdateUserProfile,
                         );
-
+                        print(response.body);
                         DataCenter.user["email"] =
                             jsonDecode(response.body)["user"]["email"];
 
                         editProfileController.email.value =
                             DataCenter.user["email"];
 
-                        print(response.body);
                         Get.back();
-
                         Get.back();
                         showDialog(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              _buildPopupDialog(context),
-                        );
+                            context: context,
+                            builder: (BuildContext context) => PopUp(context));
                       },
                       text: "LƯU THAY ĐỔI",
                       textStyle: CustomTextStyle.t8(Colors.white),
@@ -102,8 +98,4 @@ class EditEmailScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _buildPopupDialog(BuildContext context) {
-  return PopUp(context);
 }

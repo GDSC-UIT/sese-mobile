@@ -4,9 +4,9 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
+import 'package:sese/app/global_widgets/product_grid_view.dart';
 import 'package:sese/app/modules/user_profile/user_profile_controller.dart';
 import 'package:sese/app/modules/user_profile/widgets/column_text.dart';
-import 'package:sese/app/modules/user_profile/widgets/sort_button.dart';
 import 'package:sese/app/modules/user_profile/widgets/user_profile_bought.dart';
 import 'package:sese/app/modules/user_profile/widgets/user_profile_listing.dart';
 import 'package:sese/app/routes/app_routes.dart';
@@ -27,78 +27,14 @@ Widget _tabSection(BuildContext context) {
           //Add this to give height
           height: MediaQuery.of(context).size.height,
           child: TabBarView(children: [
-            ListView(
-              children: [
-                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.sort_sharp)),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        verticalDirection: VerticalDirection.down,
-                        children: [
-                          SortButton(
-                            onPress: () {},
-                            text: "Lowest-Highest",
-                          ),
-                          SortButton(
-                            onPress: () {},
-                            text: "Applications",
-                          ),
-                          SortButton(
-                            onPress: () {},
-                            text: "Highest-Lowest",
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ]),
-                Container(
-                    margin: const EdgeInsets.only(bottom: 400),
-                    child: BoughtWidget()),
-              ],
-            ),
-            ListView(
-              children: [
-                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.sort_sharp)),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        verticalDirection: VerticalDirection.down,
-                        children: [
-                          SortButton(
-                            onPress: () {},
-                            text: "Lowest-Highest",
-                          ),
-                          SortButton(
-                            onPress: () {},
-                            text: "Applications",
-                          ),
-                          SortButton(
-                            onPress: () {},
-                            text: "Highest-Lowest",
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ]),
-                Container(
-                    margin: const EdgeInsets.only(bottom: 400),
-                    child: ListingWidget()),
-              ],
-            ),
+            Container(
+                margin: const EdgeInsets.only(
+                    left: 9, right: 9, top: 14, bottom: 400),
+                child: ProductGridView()),
+            Container(
+                margin: const EdgeInsets.only(
+                    left: 9, right: 9, top: 14, bottom: 400),
+                child: ProductGridView()),
           ]),
         ),
       ],
@@ -196,7 +132,7 @@ class UserProfileScreen extends StatelessWidget {
                 ),
               ),
               child: _tabSection(context)),
-          //Obx(()=> userProfileController.bought.value?BoughtWidget():ListingWidget()),
+          
         ],
       ),
       bottomNavigationBar: AppBottomNavigationBar(),

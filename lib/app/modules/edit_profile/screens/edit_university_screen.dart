@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -7,8 +9,14 @@ import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 import 'package:sese/app/modules/edit_profile/widgets/input_text_field_recommend_edit_profile.dart';
+
 import 'package:sese/app/modules/login/widgets/input_text_field_recommend_login.dart';
 import 'package:sese/app/routes/app_routes.dart';
+
+import '../../../core/values/app_values.dart';
+import '../../../data/services/data_center.dart';
+import '../../../data/services/http_service.dart';
+import '../widgets/pop_up_success.dart';
 
 class EditUniversityScreen extends StatelessWidget {
   EditProfileController editProfileController = Get.find();
@@ -83,7 +91,30 @@ class EditUniversityScreen extends StatelessWidget {
               height: AppConstant.gapInputAppButton,
             ),
             AppButton(
-              onPress: () {},
+              onPress: () async {
+                HttpService.showLoadingIndecator();
+                var newUniversityUser = {
+                  "university":
+                      editProfileController.schoolInputController.value.text
+                };
+                var response = await HttpService.putRequest(
+                  body: jsonEncode(newUniversityUser),
+                  url: UrlValue.appUrlUpdateUserProfile,
+                );
+
+                DataCenter.user["university"] =
+                    jsonDecode(response.body)["user"]["university"];
+
+                editProfileController.university.value =
+                    DataCenter.user["university"];
+
+                // print(response.body);
+                Get.back();
+                Get.back();
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => PopUp(context));
+              },
               text: "LƯU THAY ĐỔI",
               textStyle: CustomTextStyle.t8(Colors.white),
               backgroundColor: AppColors.primaryColor,

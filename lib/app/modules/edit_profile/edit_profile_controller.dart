@@ -1,33 +1,40 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:sese/app/core/values/app_values.dart';
+import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/auth_service.dart';
 import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
+import 'package:sese/app/data/services/upload_image_service.dart';
+
+import '../../routes/app_routes.dart';
 
 class EditProfileController extends GetxController {
   RxBool genderCheckbox = false.obs;
+  String avatarUrl = '';
+  Rx<File> image = File(Assets.imagesCalendarIcon.path).obs;
+  Rx<File> avatar = File(Assets.imagesAvatar.path).obs;
 
   var nameInputController = TextEditingController().obs;
   var schoolInputController = TextEditingController().obs;
   var dateInputController = TextEditingController().obs;
   var emailInputController = TextEditingController().obs;
-  var genderInput = "";
+  var phoneNumberInputController = TextEditingController().obs;
   RxString name = "${DataCenter.user["name"]}".obs;
   RxString email = "${DataCenter.user["email"]}".obs;
   RxString birthDate = "${DataCenter.user["birthDate"]}".obs;
   RxString gender = "${DataCenter.user["gender"]}".obs;
   RxString university = "${DataCenter.user["university"]}".obs;
   RxString phoneNumber = "${DataCenter.user["phoneNumber"]}".obs;
-  RxList<Map> listGender = [
-    {"gender": "Nam", "isSelected": false},
-    {"gender": "Nữ", "isSelected": false},
-    {"gender": "Khác", "isSelected": false}
-  ].obs;
+  RxBool isMale =
+      "${DataCenter.user["gender"]}" == "male" ? true.obs : false.obs;
   var recommendUniName = [].obs;
   var saveSuccess = false.obs;
 
@@ -42,38 +49,13 @@ class EditProfileController extends GetxController {
   RxString searchKey = ''.obs;
 
   void updateGender() {
-    for (int i = 0; i < 3; ++i) {
-      if (listGender[i]["isSelected"]) {
-        switch (listGender[i]["gender"]) {
-          case "Nam":
-            genderInput = "male";
-            break;
-          case "Nữ":
-            genderInput = "female";
-            break;
-          case "Khác":
-            genderInput = "other";
-            break; 
-        }
-      }
-    }
+    isMale.value == true ? gender.value = "male" : gender.value = "female";
   }
 
   void searchSchool() {
     recommendUniName.value = universityName.where((element) {
       return element.contains(searchKey);
     }).toList();
-  }
-
-  void toggleSelectedGender(index) {
-    var temListItem = listGender[index];
-    temListItem["isSelected"] = true;
-    listGender[index] = temListItem;
-    for (int i = 0; i < 3; ++i) {
-      if (i != index) {
-        listGender[i]["isSelected"] = false;
-      }
-    }
   }
 
   Future<void> datePicker(context) async {
@@ -91,47 +73,37 @@ class EditProfileController extends GetxController {
     }
   }
 
-  Future<void> facebookLoginAction() async {
+  Future pickAvatarFromGallery(ImageSource source) async {
     try {
-      print('sign in with face');
-      User? user = await AuthService.instance.facebookLogin();
-      if (user != null) {
-        String idToken = await user.getIdToken(true); //get idToken from user
-
-        var response = await HttpService.postRequest(
-          body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
-          }),
-          url: UrlValue.appUrlLoginSocial,
-        );
-
-        AuthService.instance.saveAccessToken(
-            json.decode(response.body)['accessToken'].toString());
-      }
-    } catch (e) {
-      print('fbErorr:$e');
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      this.image.value = imageTemp;
+      print("Avatar path heluuuuu: " + avatar.value.path);
+      Get.toNamed(AppRoutes.editUserProfile);
+      avatar.value = imageTemp;
+    } on PlatformException catch (e) {
+      print('Lấy ảnh không thành công: $e');
+      Get.toNamed(AppRoutes.editUserProfile);
     }
   }
 
-  Future<void> googleSignInAction() async {
+  Future addAvatar() async {
     try {
-      User? user = await AuthService.instance.googleSignIn();
-      if (user != null) {
-        String idToken = await user.getIdToken(true); //get idToken from user
+      print("avata value path: ${avatar.value.path}");
+      //up image to firebase to get imgUrl
+      avatarUrl = (await UploadImageService.uploadImageToFirebase(
+          File(avatar.value.path), "avatar_image"))!;
+      print('avatar url:${avatarUrl}');
 
-        var response = await HttpService.postRequest(
-          body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
-          }),
-          url: UrlValue.appUrlLoginSocial,
-        );
-        //set accessToken
-
-        AuthService.instance.saveAccessToken(
-            json.decode(response.body)['accessToken'].toString());
-      }
+      Map<String, dynamic> userAvatar = {"avatar_image": avatarUrl};
+      var response = await HttpService.putRequest(
+        body: jsonEncode(userAvatar),
+        url: UrlValue.appUrlUpdateUserProfile,
+      );
     } catch (e) {
-      print('errorGG: $e');
+      Get.snackbar('', 'Please try again');
+      print("error $e");
     }
   }
 }
