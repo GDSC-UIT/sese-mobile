@@ -4,6 +4,7 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/auth_service.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
@@ -45,10 +46,19 @@ class LoginBeginScreen extends StatelessWidget {
                   HttpService.showLoadingIndecator();
                   //login
                   await loginController.googleSignInAction();
-
-                  AuthService.instance.isLogined == true
-                      ? Get.offNamed(AppRoutes.authName)
-                      : print('Login gg fail');
+                  if (DataCenter.user["isVerified"]) {
+                    //go home
+                    HttpService.showLoadingIndecator();
+                    //Get data for home
+                    List listData =
+                        await AuthService.instance.getDataForHomeScreen();
+                    Get.back();
+                    Get.offAllNamed(AppRoutes.home, arguments: listData);
+                  } else {
+                    AuthService.instance.isLogined == true
+                        ? Get.offNamed(AppRoutes.authName)
+                        : print('Login gg fail');
+                  }
                 },
                 text: 'LOGIN WITH GOOGLE',
                 // textColor: AppColors.darkGreyColor,

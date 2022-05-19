@@ -12,13 +12,15 @@ class OnboadingController extends GetxController {
   @override
   void onReady() async {
     // TODO: implement onReady
+    // await AuthService.instance.googleSignOut();
     print("call onReady");
+    //read access token from local storage
+    AuthService.instance.readAccessToken();
     print("isLogin:${AuthService.instance.isLogined}");
-    if (AuthService.instance.isLogined) {
-      //read access token from local storage
-      AuthService.instance.readAccessToken();
-      print(
-          "access Token in login Controller: ${AuthService.instance.accessToken}");
+    print(
+        "access Token in login Controller: ${AuthService.instance.accessToken}");
+    if (AuthService.instance.isLogined &&
+        AuthService.instance.accessToken != null) {
       //call api to get data user
       var responseUserInfo =
           await HttpService.getRequest(UrlValue.appUrlLoginAccessToken);
@@ -35,10 +37,14 @@ class OnboadingController extends GetxController {
       //Get data for home
       List listData = await AuthService.instance.getDataForHomeScreen();
       Get.offAllNamed(AppRoutes.home, arguments: listData);
-      //Get.offAllNamed(AppRoutes.home);
     } else {
+      AuthService.instance.readIsFirstUse();
       Future.delayed(const Duration(milliseconds: 1000), () {
-        Get.offNamed(AppRoutes.onBoardingContent);
+        if (AuthService.instance.isFirstUse == true) {
+          Get.offNamed(AppRoutes.onBoardingContent);
+        } else {
+          Get.offNamed(AppRoutes.authBegin);
+        }
       });
     }
 

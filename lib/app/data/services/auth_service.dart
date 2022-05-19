@@ -14,6 +14,7 @@ class AuthService {
   AuthService._privateConstructor();
   static final AuthService instance = AuthService._privateConstructor();
   String? accessToken = '';
+  bool? isFirstUse = true;
 
   void readAccessToken() async {
     accessToken = ThemeService.box.read('accessToken');
@@ -24,6 +25,18 @@ class AuthService {
     ThemeService.box.write('accessToken', newAccessToken);
     readAccessToken();
     print('acessTokenAuthServiceAfterSave:$accessToken');
+    print('save suceess');
+  }
+
+  void readIsFirstUse() async {
+    isFirstUse = ThemeService.box.read('isFirstUse') ?? true;
+  }
+
+  void saveIsFirstUse() {
+    //accessToken = newAccessToken;
+    ThemeService.box.write('isFirstUse', false);
+    readIsFirstUse();
+    print('isFirstUseAfterSave:$isFirstUse');
     print('save suceess');
   }
 
