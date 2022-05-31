@@ -47,6 +47,7 @@ class VerifyController extends GetxController {
 
   Future pickFrontImage(ImageSource source) async {
     try {
+      print("font");
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       final imageTemp = File(image.path);

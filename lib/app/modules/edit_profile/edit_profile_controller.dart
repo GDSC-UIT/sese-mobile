@@ -19,8 +19,8 @@ import '../../routes/app_routes.dart';
 class EditProfileController extends GetxController {
   RxBool genderCheckbox = false.obs;
   String avatarUrl = '';
-  Rx<File> image = File(Assets.imagesCalendarIcon.path).obs;
-  Rx<File> avatar = File(Assets.imagesAvatar.path).obs;
+  Rx<XFile> image = XFile(Assets.imagesCalendarIcon.path).obs;
+  Rx<XFile> avatar = XFile(Assets.imagesAvatar.path).obs;
 
   var nameInputController = TextEditingController().obs;
   var schoolInputController = TextEditingController().obs;
@@ -77,7 +77,7 @@ class EditProfileController extends GetxController {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
-      final imageTemp = File(image.path);
+      final imageTemp = XFile(image.path);
       this.image.value = imageTemp;
       print("Avatar path heluuuuu: " + avatar.value.path);
       Get.toNamed(AppRoutes.editUserProfile);

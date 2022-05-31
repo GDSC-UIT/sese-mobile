@@ -74,8 +74,8 @@ class VerifyFrontSvScreen extends StatelessWidget {
                   height: 53,
                 ),
                 AppButton(
-                  onPress: () {
-                    verifyController.pickFrontImage(ImageSource.camera);
+                  onPress: () async {
+                    await verifyController.pickFrontImage(ImageSource.camera);
                   },
                   text: "CAPTURE",
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor),
