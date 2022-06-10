@@ -9,7 +9,7 @@ import 'package:sese/app/modules/home/widgets/filter.dart';
 import '../../../core/values/app_colors.dart';
 
 class HomeCategoryScreen extends StatefulWidget {
-  HomeCategoryScreen({Key? key}) : super(key: key);
+  const HomeCategoryScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeCategoryScreen> createState() => _HomeCategoryScreenState();
@@ -24,6 +24,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
   @override
   void initState() {
     super.initState();
+    // homeController.getListCategoryProduct(homeController.typeScreen);
     tabController = TabController(length: 3, vsync: this);
     tabController.addListener(() {
       setState(() {});
@@ -216,9 +217,12 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
                   child: TabBarView(
                     controller: tabController,
                     children: [
-                      ProductGridView(),
-                      ProductGridView(),
-                      ProductGridView(),
+                      ProductGridView(
+                          productData: homeController.listCategoryProduct),
+                      ProductGridView(
+                          productData: homeController.listCategoryProduct),
+                      ProductGridView(
+                          productData: homeController.listCategoryProduct),
                     ],
                   ),
                 ),

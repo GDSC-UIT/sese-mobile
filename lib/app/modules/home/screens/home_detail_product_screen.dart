@@ -7,16 +7,16 @@ import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/modules/home/widgets/bargain_dialog.dart';
-import 'package:sese/app/modules/home/widgets/detail_product.dart';
-import 'package:sese/app/modules/home/widgets/info_product.dart';
-import 'package:sese/app/modules/home/widgets/info_seller.dart';
-import 'package:sese/app/modules/home/widgets/user_evaluate.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/values/app_colors.dart';
 import '../../../routes/app_routes.dart';
 import '../../../core/utils/utils.dart';
+import '../widgets/detail_product.dart';
+import '../widgets/info_product.dart';
+import '../widgets/info_seller.dart';
 import '../widgets/share_dialog.dart';
+import '../widgets/user_evaluate.dart';
 
 class HomeDetailProductScreen extends StatefulWidget {
   HomeDetailProductScreen({
@@ -36,6 +36,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
   var urlImages = [];
   @override
   void initState() {
+    print("product: ${widget.product['images']}");
     urlImages = widget.product['images'];
     super.initState();
   }
@@ -94,23 +95,19 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
           ),
           title: Row(
             children: [
-              InkWell(
-                onTap: () => print(
-                    "alo alo: ${DataCenter.appCategory["62448ea54b07a13297348b8d"]?.name}"),
-                child: SizedBox(
-                  width: _screeenWidth * 0.5,
-                  child: Text(
-                    widget.product["name"],
-                    style: CustomTextStyle.t1(AppColors.primaryColor),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
+              SizedBox(
+                width: _screeenWidth * 0.5,
+                child: Text(
+                  widget.product["name"],
+                  style: CustomTextStyle.t1(AppColors.primaryColor),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
               ),
               Expanded(child: Container()),
               InkWell(
                 onTap: (() {
-                  Get.dialog(ShareDialog());
+                  Get.dialog(const ShareDialog());
                 }),
                 child: const Icon(
                   Icons.share,
@@ -217,31 +214,37 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
               const SizedBox(
                 height: 16,
               ),
-              InfoProduct(
-                product: widget.product,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                height: 8,
-                color: AppColors.cloadDarkColor,
-              ),
-              DetailProduct(product: widget.product),
-              Container(
-                height: 4,
-                color: AppColors.cloadDarkColor,
-              ),
-              InfoSeller(product: widget.product),
-              Container(
-                height: 4,
-                color: AppColors.cloadDarkColor,
-              ),
-              const UserEvaluate(),
-              Container(
-                height: 4,
-                color: AppColors.cloadDarkColor,
-              ),
+              (widget.product != null)
+                  ? Column(
+                      children: [
+                        InfoProduct(
+                          product: widget.product,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                          height: 8,
+                          color: AppColors.cloadDarkColor,
+                        ),
+                        DetailProduct(product: widget.product),
+                        Container(
+                          height: 4,
+                          color: AppColors.cloadDarkColor,
+                        ),
+                        InfoSeller(product: widget.product),
+                        Container(
+                          height: 4,
+                          color: AppColors.cloadDarkColor,
+                        ),
+                        const UserEvaluate(),
+                        Container(
+                          height: 4,
+                          color: AppColors.cloadDarkColor,
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
               Column(
                 children: [
                   Container(
@@ -333,5 +336,8 @@ Widget TextIcon(IconData icon, String text, int flex, TextStyle textStyle) {
 
 Widget buildImage(String urlImage, int index) => Container(
       color: Colors.grey,
-      child: Image.network(urlImage, fit: BoxFit.cover),
+      child: Image.network(
+        (urlImage != "khong co link") ? urlImage : DataCenter.errorImage,
+        fit: BoxFit.cover,
+      ),
     );

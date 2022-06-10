@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/utils/utils.dart';
 import 'package:sese/app/core/values/app_colors.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/routes/app_routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
-import '../core/values/assets.gen.dart';
 
 class HorizontalProductItemListView extends StatelessWidget {
   HorizontalProductItemListView({
@@ -60,7 +59,9 @@ class HorizontalProductItemListView extends StatelessWidget {
               fit: BoxFit.fill,
               placeholder: const AssetImage('assets/images/post_waiting.png'),
               image: NetworkImage(
-                imageUrl,
+                (imageUrl != "khong co link")
+                    ? imageUrl
+                    : DataCenter.errorImage,
                 scale: 0.3,
               ),
               imageErrorBuilder: (_, __, ___) {

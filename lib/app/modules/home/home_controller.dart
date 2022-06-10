@@ -1,16 +1,19 @@
-import 'dart:ffi';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/data/services/data_center.dart';
 
-import '../../data/models/category_model.dart';
+import '../../core/values/app_values.dart';
+import '../../data/services/http_service.dart';
 
 class HomeController extends GetxController {
   var pageIdx = 0.obs;
   var sliderIdx = 0.obs;
   var seller = TextEditingController().obs;
   var bargainPrice = TextEditingController().obs;
+  var listCategoryProduct = [].obs;
 
   String typeScreen = "";
 
@@ -21,7 +24,7 @@ class HomeController extends GetxController {
   ];
   late List<String> listSellerPlace;
   final List<String> listCategory =
-      CategoryModel.createListCategory().map((e) => e.content).toList();
+      DataCenter.listAppCategory.map((e) => e.name).toList();
   final List<String> listStatus = [
     'Không có',
     'Mới',
@@ -35,6 +38,12 @@ class HomeController extends GetxController {
 
   RxList<bool> listReportBool = List.filled(7, false).obs;
 
+  Future getListCategoryProduct(String id) async {
+    var response = await HttpService.getRequest(
+        '${UrlValue.appUrlPostProduct}?category=$id');
+    listCategoryProduct.value = json.decode(response.body)['posts'];
+  }
+
   void changePage(int index) {
     pageIdx.value = index;
     update();
@@ -43,11 +52,6 @@ class HomeController extends GetxController {
   void changeSlider(int index) {
     sliderIdx.value = index;
     update();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   Future<void> getList() async {

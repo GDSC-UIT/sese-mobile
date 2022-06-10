@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sese/app/core/values/assets.gen.dart';
-import 'package:sese/app/data/services/data_center.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../core/themes/app_theme.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../data/services/data_center.dart';
 
 class InfoProduct extends StatelessWidget {
   const InfoProduct({Key? key, this.product}) : super(key: key);
@@ -32,45 +31,49 @@ class InfoProduct extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.list,
-                  color: AppColors.neutralGrey,
-                  size: 15,
-                ),
-                RichText(
-                  text: TextSpan(
+            child: (DataCenter.appSubCategory[product['category']] != null)
+                ? Row(
                     children: [
-                      TextSpan(
-                        text: "in",
-                        style: CustomTextStyle.t10(AppColors.neutralGrey),
+                      const Icon(
+                        Icons.list,
+                        color: AppColors.neutralGrey,
+                        size: 15,
                       ),
-                      TextSpan(
-                        text: " " +
-                            (DataCenter.appSubCategory[product['category']]!
-                                        .name.length >
-                                    8
-                                ? DataCenter
-                                        .appSubCategory[product['category']]!
-                                        .name
-                                        .substring(0, 8) +
-                                    "..."
-                                : DataCenter
-                                    .appSubCategory[product['category']]!.name),
-                        style: CustomTextStyle.t10(AppColors.backIcon),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "in",
+                              style: CustomTextStyle.t10(AppColors.neutralGrey),
+                            ),
+                            TextSpan(
+                              text: " " +
+                                  (DataCenter
+                                              .appSubCategory[
+                                                  product['category']]!
+                                              .name
+                                              .length >
+                                          8
+                                      ? DataCenter
+                                              .appSubCategory[
+                                                  product['category']]!
+                                              .name
+                                              .substring(0, 8) +
+                                          "..."
+                                      : DataCenter
+                                          .appSubCategory[product['category']]!
+                                          .name),
+                              style: CustomTextStyle.t10(AppColors.backIcon),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
-                  ),
-                ),
-              ],
-            ),
+                  )
+                : const SizedBox(),
           ),
           const SizedBox(
-            width: 5,
-          ),
-          const SizedBox(
-            width: 5,
+            width: 10,
           ),
           TextIcon(Icons.location_on_outlined, product["location"], 3,
               CustomTextStyle.t10(AppColors.neutralGrey)),

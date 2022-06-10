@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sese/app/data/models/subCategory_model.dart';
-import 'package:sese/app/data/services/data_center.dart';
 
 import '../../../core/themes/app_theme.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../data/models/subCategory_model.dart';
+import '../../../data/services/data_center.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key, required this.product}) : super(key: key);
@@ -22,11 +22,20 @@ class _DetailProductState extends State<DetailProduct> {
 
   @override
   Widget build(BuildContext context) {
-    double _screenHeight = MediaQuery.of(context).size.height;
-    String catergory = widget.product["category"];
-    SubCategory subCategory = DataCenter.appSubCategory[catergory]!;
-    List<dynamic> properties = subCategory.params.values.toList();
-    Map<String, dynamic> params = widget.product["categoryParams"];
+    List<dynamic>? properties;
+    Map<String, dynamic>? params;
+    if (widget.product["category"] != null) {
+      String catergory = widget.product["category"];
+      if (DataCenter.appSubCategory[catergory] != null) {
+        SubCategory subCategory = DataCenter.appSubCategory[catergory]!;
+
+        properties = subCategory.params.values.toList();
+      }
+    }
+    if (widget.product["categoryParams"] != null) {
+      params = widget.product["categoryParams"];
+    }
+
     return Column(
       children: [
         SizedBox(
@@ -47,40 +56,44 @@ class _DetailProductState extends State<DetailProduct> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (int i = 0; i < properties.length; i++)
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          properties[i]["label"],
-                          style: CustomTextStyle.t8(AppColors.lightGrey),
-                        ),
+              (properties != null)
+                  ? Expanded(
+                      flex: 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (int i = 0; i < properties.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                properties[i]["label"],
+                                style: CustomTextStyle.t8(AppColors.lightGrey),
+                              ),
+                            ),
+                        ],
                       ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (int i = 0; i < properties.length; i++)
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          params[properties[i]["_id"]],
-                          style: CustomTextStyle.t8(Colors.black),
-                        ),
+                    )
+                  : const SizedBox(),
+              (params != null && properties != null)
+                  ? Expanded(
+                      flex: 3,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (int i = 0; i < properties.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                params[properties[i]["_id"]],
+                                style: CustomTextStyle.t8(Colors.black),
+                              ),
+                            ),
+                        ],
                       ),
-                  ],
-                ),
-              ),
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),

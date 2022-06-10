@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
-import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 
 import '../../../core/values/app_colors.dart';
@@ -12,11 +11,11 @@ import '../../../routes/app_routes.dart';
 class CategoryItemListView extends StatelessWidget {
   const CategoryItemListView(
       {Key? key,
-      required this.image,
+      required this.icon,
       required this.text,
       required this.homeController})
       : super(key: key);
-  final AssetGenImage image;
+  final String icon;
   final String text;
   final HomeController homeController;
 
@@ -32,7 +31,7 @@ class CategoryItemListView extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(
-                width: 24,
+                width: 20,
               ),
               Container(
                 padding: const EdgeInsets.all(8),
@@ -40,10 +39,10 @@ class CategoryItemListView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(90),
                   color: AppColors.primaryColor,
                 ),
-                child: Image(
-                  image: image,
-                  height: 32,
-                  width: 32,
+                child: Image.network(
+                  icon,
+                  height: 35,
+                  width: 35,
                 ),
               ),
               const SizedBox(

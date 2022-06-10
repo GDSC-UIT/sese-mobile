@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sese/app/data/models/category_model.dart';
+import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/modules/home/widgets/category_item_list_view.dart';
 
 import '../home_controller.dart';
 
 class CategoryListView extends StatelessWidget {
   CategoryListView({Key? key, required this.homeController}) : super(key: key);
-  final List<CategoryModel> listCategory = CategoryModel.createListCategory();
+  var listCategory = DataCenter.listAppCategory;
   final HomeController homeController;
 
   @override
@@ -14,8 +14,8 @@ class CategoryListView extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         return CategoryItemListView(
-          text: listCategory[index].content,
-          image: listCategory[index].image,
+          text: listCategory[index].name,
+          icon: listCategory[index].icon,
           homeController: homeController,
         );
       },

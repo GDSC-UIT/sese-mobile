@@ -6,7 +6,6 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_values.dart';
 import 'package:sese/app/data/models/app_category_model.dart';
-import 'package:sese/app/data/models/category_model.dart';
 import 'package:sese/app/data/models/subCategory_model.dart';
 import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
@@ -66,7 +65,7 @@ class LoginUniversityScreen extends StatelessWidget {
             Obx(
               () => loginController.recommendUniName.isEmpty
                   ? const SizedBox()
-                  : Container(
+                  : SizedBox(
                       height: 150,
                       child: ListView.builder(
                         itemBuilder: (context, index) {

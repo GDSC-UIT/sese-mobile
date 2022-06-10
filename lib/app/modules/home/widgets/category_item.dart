@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sese/app/core/values/app_colors.dart';
-import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class CategoryItem extends StatelessWidget {
-  CategoryItem({
+  const CategoryItem({
     Key? key,
+    required this.id,
     required this.content,
     required this.homeController,
-    required this.image,
+    required this.icon,
   }) : super(key: key);
+  final String id;
   final String content;
   final HomeController homeController;
-  final AssetGenImage image;
+  final String icon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,9 +24,12 @@ class CategoryItem extends StatelessWidget {
       child: Column(
         children: [
           InkWell(
-            onTap: () {
+            onTap: () async {
               homeController.typeScreen = content;
+              print("Name: $content");
+              await homeController.getListCategoryProduct(id);
               Get.toNamed(AppRoutes.homeCategory);
+              print("List: ${homeController.listCategoryProduct}");
             },
             child: Container(
               padding: const EdgeInsets.all(16),
@@ -38,8 +42,8 @@ class CategoryItem extends StatelessWidget {
                       blurRadius: 2,
                     ),
                   ]),
-              child: Image(
-                image: image,
+              child: Image.network(
+                icon,
                 height: 30,
                 width: 30,
               ),
