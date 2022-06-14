@@ -108,7 +108,8 @@ class LoginUniversityScreen extends StatelessWidget {
                       UrlValue.appUrlGetAllCategories);
                   var listInterests = json.decode(response.body)['categories'];
                   //set category to data center
-                  DataCenter.setCategoryToDataCenter(listInterests);
+                  DataCenter.setCategoryAndSubCategoryToDataCenter(
+                      listInterests);
 
                   Get.back();
 

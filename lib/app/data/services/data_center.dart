@@ -13,7 +13,7 @@ class DataCenter {
   static Map<String, SubCategory?> appSubCategory = {};
   static Map<String, dynamic> user = {};
 
-  static void setCategoryToDataCenter(listCategories) {
+  static void setCategoryAndSubCategoryToDataCenter(listCategories) {
     listCategories.forEach((item) {
       //set  isSelect property
       item['isSelected'] = false;
@@ -46,5 +46,7 @@ class DataCenter {
           name: item['name'],
           subCategory: subCategory);
     });
+
+    print("dataCenterSub: ${DataCenter.appSubCategory}");
   }
 }

@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 class AppColors {
   AppColors._();
 
+  static const Color subPrimary = Color(0xFF128C7E);
+
+  static const Color ownMessageColor = Color(0xFFdcf8c6);
   //color temporary for home screen
   static const Color mainHomeColor = Color(0xFF739EF1);
   static const Color mainHomeBackGroundColor =

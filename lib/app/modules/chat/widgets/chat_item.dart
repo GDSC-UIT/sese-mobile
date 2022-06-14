@@ -20,7 +20,7 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     chatText =
-        (chatText!.length > 30) ? chatText!.substring(0, 30) + '...' : chatText;
+        (chatText!.length > 20) ? chatText!.substring(0, 20) + '...' : chatText;
     return ListTile(
         leading: SizedBox(
           width: 64,

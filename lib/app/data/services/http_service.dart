@@ -35,6 +35,7 @@ class HttpService {
 
   static showLoadingIndecator() {
     Get.defaultDialog(
+        barrierDismissible: false,
         title: 'Loading...',
         content: const CircularProgressIndicator(
           color: AppColors.primaryColor,

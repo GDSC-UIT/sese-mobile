@@ -68,6 +68,14 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
+  static TextStyle t2Bold(Color color) {
+    return GoogleFonts.openSans(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+      color: color,
+    );
+  }
+
   static TextStyle t3(Color color) {
     return GoogleFonts.inter(
       fontSize: 14,

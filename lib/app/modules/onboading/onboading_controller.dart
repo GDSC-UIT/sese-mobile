@@ -33,10 +33,11 @@ class OnboadingController extends GetxController {
           await HttpService.getRequest(UrlValue.appUrlGetAllCategories);
       var listCategories = json.decode(responseCategory.body)['categories'];
       //set category to data center
-      DataCenter.setCategoryToDataCenter(listCategories);
+      DataCenter.setCategoryAndSubCategoryToDataCenter(listCategories);
       //Get data for home
       List listData = await AuthService.instance.getDataForHomeScreen();
-      Get.offAllNamed(AppRoutes.home, arguments: listData);
+      // Get.offAllNamed(AppRoutes.home, arguments: listData);
+      Get.offAllNamed(AppRoutes.allChats);
     } else {
       AuthService.instance.readIsFirstUse();
       Future.delayed(const Duration(milliseconds: 1000), () {

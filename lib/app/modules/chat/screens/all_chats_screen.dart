@@ -5,6 +5,7 @@ import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/chat/chat_controller.dart';
 import 'package:sese/app/modules/chat/widgets/chat_item.dart';
+import 'package:sese/app/routes/app_routes.dart';
 
 class AllChatScreen extends StatelessWidget {
   AllChatScreen({Key? key}) : super(key: key);
@@ -61,12 +62,17 @@ class AllChatScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return ChatItem(
-                      name: "Khanh Linh",
-                      avatar:
-                          'http://images5.fanpop.com/image/photos/24800000/Pusheen-pusheen-the-cat-24896681-350-328.gif',
-                      chatText: "Heluuufjndjnfjnjnfjanjnajndjnajnjannf",
-                      time: "22:03");
+                  return InkWell(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.chatDetail);
+                    },
+                    child: ChatItem(
+                        name: "Khanh Linh",
+                        avatar:
+                            'http://images5.fanpop.com/image/photos/24800000/Pusheen-pusheen-the-cat-24896681-350-328.gif',
+                        chatText: "Heluuufjndjnfjnjnfjanjnajndjnajnjannf",
+                        time: "22:03"),
+                  );
                 },
               ),
             )

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sese/app/core/themes/app_theme.dart';
+import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/modules/onboading/onboading_controller.dart';
 import '../../../routes/app_routes.dart';
 
@@ -22,6 +24,27 @@ class OnboardingBeginScreen extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: Image.asset('assets/images/logo_onboarding.png'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Loading...",
+                      style: CustomTextStyle.t2(
+                        Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    const CircularProgressIndicator(
+                      color: AppColors.primaryColor,
+                      backgroundColor: AppColors.cloadDarkColor,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
                 ),
               ],
             ),
