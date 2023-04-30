@@ -16,7 +16,7 @@ class LoginEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _screenHeight = MediaQuery.of(context).size.height;
+    var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -48,7 +48,7 @@ class LoginEmailScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: _screenHeight * 0.028,
+                height: screenHeight * 0.028,
               ),
               InPutTextField(
                 textStyle: CustomTextStyle.t8(AppColors.neutralGrey),
@@ -57,7 +57,7 @@ class LoginEmailScreen extends StatelessWidget {
                 controller: loginController.emailInputController.value,
               ),
               SizedBox(
-                height: _screenHeight * 0.076,
+                height: screenHeight * 0.076,
               ),
               AppButton(
                 onPress: () {

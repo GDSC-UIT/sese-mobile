@@ -38,8 +38,8 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double _screeenWidth = MediaQuery.of(context).size.width;
-    double _screenHeight = MediaQuery.of(context).size.height;
+    double screeenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
@@ -88,7 +88,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
           title: Row(
             children: [
               SizedBox(
-                width: _screeenWidth * 0.5,
+                width: screeenWidth * 0.5,
                 child: Text(
                   widget.product["name"],
                   style: CustomTextStyle.t1(AppColors.primaryColor),
@@ -123,7 +123,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                 },
                 options: CarouselOptions(
                     viewportFraction: 1,
-                    height: _screenHeight * (272 / 844),
+                    height: screenHeight * (272 / 844),
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) {
                       setState(() {

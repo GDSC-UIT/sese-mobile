@@ -12,16 +12,16 @@ class Filter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _screeenWidth = MediaQuery.of(context).size.width;
-    double _screenHeight = MediaQuery.of(context).size.height;
+    double screeenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       color: Colors.white,
-      width: _screeenWidth * 0.83,
-      height: _screenHeight,
+      width: screeenWidth * 0.83,
+      height: screenHeight,
       child: Column(
         children: [
           Container(
-            height: _screenHeight * 0.105,
+            height: screenHeight * 0.105,
             color: AppColors.primaryColor,
             child: Align(
               alignment: Alignment.bottomLeft,

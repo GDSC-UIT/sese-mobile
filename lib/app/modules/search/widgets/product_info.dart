@@ -16,9 +16,9 @@ class ProductInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String time = product["createdAt"];
-    time = time.substring(0, 10) + " " + time.substring(11);
+    time = "${time.substring(0, 10)} ${time.substring(11)}";
     DateTime dateTime = DateTime.parse(time);
-    var _postTime = DateTime.now().subtract(Duration(
+    var postTime = DateTime.now().subtract(Duration(
         days: dateTime.day, hours: dateTime.hour, minutes: dateTime.minute));
     timeago.setLocaleMessages('en', timeago.ViMessages());
     return InkWell(
@@ -107,7 +107,7 @@ class ProductInfo extends StatelessWidget {
                                 width: 8,
                               ),
                               Text(
-                                timeago.format(_postTime, locale: 'us'),
+                                timeago.format(postTime, locale: 'us'),
                                 style:
                                     CustomTextStyle.t10(AppColors.neutralGrey),
                               ),

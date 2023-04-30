@@ -22,7 +22,7 @@ class HorizontalProductListView extends StatelessWidget {
         itemBuilder: (context, index) {
           var product = listProduct[index];
           String time = product["createdAt"];
-          time = time.substring(0, 10) + " " + time.substring(11);
+          time = "${time.substring(0, 10)} ${time.substring(11)}";
           DateTime dateTime = DateTime.parse(time);
           var timeAgo = DateTime.now().subtract(Duration(
               days: dateTime.day,

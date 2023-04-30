@@ -14,8 +14,8 @@ class LoginInterestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _screenHeight = MediaQuery.of(context).size.height;
-    var _screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     loginController.listOfInterest.value = categories;
 
     return SafeArea(
@@ -59,7 +59,7 @@ class LoginInterestScreen extends StatelessWidget {
                         crossAxisCount: 2,
                         mainAxisSpacing: 2,
                         childAspectRatio:
-                            ((_screenWidth * 0.43) / (_screenHeight * 0.29)),
+                            ((screenWidth * 0.43) / (screenHeight * 0.29)),
                       ),
                       itemCount: loginController.listOfInterest.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -84,8 +84,8 @@ class LoginInterestScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      width: _screenWidth * 0.36,
-                                      height: _screenHeight * 0.2,
+                                      width: screenWidth * 0.36,
+                                      height: screenHeight * 0.2,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image: NetworkImage(loginController
@@ -95,7 +95,7 @@ class LoginInterestScreen extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                        top: _screenHeight * 0.02,
+                                        top: screenHeight * 0.02,
                                         left: 10,
                                         right: 10,
                                       ),
@@ -131,7 +131,7 @@ class LoginInterestScreen extends StatelessWidget {
                 backgroundColor: AppColors.primaryColor,
               ),
               SizedBox(
-                height: _screenHeight * (50 / 846),
+                height: screenHeight * (50 / 846),
               ),
             ],
           ),

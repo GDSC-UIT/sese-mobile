@@ -34,7 +34,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double _screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -96,7 +96,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                         children: [
                           Container(
                             constraints:
-                                BoxConstraints(maxWidth: _screenWidth * 0.8),
+                                BoxConstraints(maxWidth: screenWidth * 0.8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: AppColors.backIcon,
@@ -140,7 +140,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                                 ),
                           Container(
                             constraints:
-                                BoxConstraints(maxWidth: _screenWidth * 0.8),
+                                BoxConstraints(maxWidth: screenWidth * 0.8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: AppColors.messageBoxColor,

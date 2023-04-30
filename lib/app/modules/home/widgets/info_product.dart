@@ -11,9 +11,9 @@ class InfoProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String time = product["createdAt"];
-    time = time.substring(0, 10) + " " + time.substring(11);
+    time = "${time.substring(0, 10)} ${time.substring(11)}";
     DateTime dateTime = DateTime.parse(time);
-    var _postTime = DateTime.now().subtract(Duration(
+    var postTime = DateTime.now().subtract(Duration(
         days: dateTime.day, hours: dateTime.hour, minutes: dateTime.minute));
     timeago.setLocaleMessages('en', timeago.ViMessages());
 
@@ -21,8 +21,8 @@ class InfoProduct extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          textIcon(Icons.access_time, timeago.format(_postTime, locale: "vi"),
-              3, CustomTextStyle.t10(AppColors.neutralGrey)),
+          textIcon(Icons.access_time, timeago.format(postTime, locale: "vi"), 3,
+              CustomTextStyle.t10(AppColors.neutralGrey)),
           const SizedBox(
             width: 5,
           ),
@@ -46,17 +46,8 @@ class InfoProduct extends StatelessWidget {
                         style: CustomTextStyle.t10(AppColors.neutralGrey),
                       ),
                       TextSpan(
-                        text: " " +
-                            (DataCenter.appSubCategory[product['category']]!
-                                        .name.length >
-                                    8
-                                ? DataCenter
-                                        .appSubCategory[product['category']]!
-                                        .name
-                                        .substring(0, 8) +
-                                    "..."
-                                : DataCenter
-                                    .appSubCategory[product['category']]!.name),
+                        text:
+                            " ${DataCenter.appSubCategory[product['category']]!.name.length > 8 ? "${DataCenter.appSubCategory[product['category']]!.name.substring(0, 8)}..." : DataCenter.appSubCategory[product['category']]!.name}",
                         style: CustomTextStyle.t10(AppColors.backIcon),
                       ),
                     ],

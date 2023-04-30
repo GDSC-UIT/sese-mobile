@@ -18,7 +18,7 @@ class DetailProduct extends StatefulWidget {
 class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
-    double _screenHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
     String catergory = widget.product["category"];
     SubCategory subCategory = DataCenter.appSubCategory[catergory]!;
     List<dynamic> properties = subCategory.params.values.toList();
@@ -84,7 +84,7 @@ class _DetailProductState extends State<DetailProduct> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Container(
             width: double.infinity,
-            height: _screenHeight * (109 / 1000),
+            height: screenHeight * (109 / 1000),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               border: Border.all(

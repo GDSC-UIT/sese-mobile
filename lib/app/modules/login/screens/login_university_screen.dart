@@ -77,14 +77,14 @@ class LoginUniversityScreen extends StatelessWidget {
                             child: Container(
                               margin: const EdgeInsets.symmetric(vertical: 2),
                               padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                  color: AppColors.recommendBackground,
+                                  borderRadius: BorderRadius.circular(8)),
                               child: Text(
                                 loginController.recommendUniName[index],
                                 style:
                                     CustomTextStyle.t8(AppColors.neutralGrey),
                               ),
-                              decoration: BoxDecoration(
-                                  color: AppColors.recommendBackground,
-                                  borderRadius: BorderRadius.circular(8)),
                             ),
                           );
                         },

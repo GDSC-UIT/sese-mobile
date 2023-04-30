@@ -52,13 +52,12 @@ class AuthService {
 
   Future<User?> googleSignIn() async {
     try {
-      var _googleUser = await _googleSignIn.signIn();
-      GoogleSignInAuthentication _googleAuth =
-          await _googleUser!.authentication;
+      var googleUser = await _googleSignIn.signIn();
+      GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
 
       var credential = GoogleAuthProvider.credential(
-        accessToken: _googleAuth.accessToken,
-        idToken: _googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
       User? user = (await _auth.signInWithCredential(credential)).user;

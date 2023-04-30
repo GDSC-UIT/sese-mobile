@@ -29,8 +29,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _screeenWidth = MediaQuery.of(context).size.width;
-    double _screenHeight = MediaQuery.of(context).size.height;
+    double screeenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -48,14 +48,14 @@ class HomeScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 16),
             color: AppColors.primaryColor,
-            height: _screenHeight * 0.16,
+            height: screenHeight * 0.16,
             child: Column(
               children: [
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsets.only(
-                      top: _screenHeight * 0.022,
+                      top: screenHeight * 0.022,
                     ),
                     child: const Image(
                       image: Assets.imagesSese,
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: _screenHeight * 0.02,
+                  height: screenHeight * 0.02,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                           Get.toNamed(AppRoutes.search);
                         },
                         child: SizedBox(
-                          width: _screeenWidth * 0.68,
+                          width: screeenWidth * 0.68,
                           height: 34,
                           child: const SearchInput(
                             hintText: "Search",
@@ -152,7 +152,7 @@ class HomeScreen extends StatelessWidget {
                           height: 10,
                         ),
                         SizedBox(
-                          height: _screenHeight * 0.14,
+                          height: screenHeight * 0.14,
                           child: ListCategory(
                             homeController: homeController,
                             scrollController: scrollCategory,

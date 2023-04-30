@@ -16,7 +16,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
   final LoginController loginController = Get.find();
   @override
   Widget build(BuildContext context) {
-    var _screenHeight = MediaQuery.of(context).size.height;
+    var screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -59,7 +59,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: _screenHeight * 0.032,
+                height: screenHeight * 0.032,
               ),
               AppButton(
                   onPress: () {},
@@ -69,7 +69,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                   borderColor: AppColors.primaryColor,
                   textStyle: CustomTextStyle.t8(AppColors.primaryColor)),
               SizedBox(
-                height: _screenHeight * 0.032,
+                height: screenHeight * 0.032,
               ),
               AppButton(
                 onPress: () {},
@@ -79,7 +79,7 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                 borderColor: AppColors.primaryColor,
               ),
               SizedBox(
-                height: _screenHeight * 0.076,
+                height: screenHeight * 0.076,
               ),
               Center(
                 child: InkWell(

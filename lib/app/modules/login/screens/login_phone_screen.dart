@@ -17,7 +17,7 @@ class LoginPhoneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _screenHeight = MediaQuery.of(context).size.height;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
@@ -41,7 +41,7 @@ class LoginPhoneScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: _screenHeight * 0.03,
+                height: screenHeight * 0.03,
               ),
               Text(
                 "My phone number is",
@@ -50,7 +50,7 @@ class LoginPhoneScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: _screenHeight * 0.028,
+                height: screenHeight * 0.028,
               ),
               InternationalPhoneNumberInput(
                 locale: 'Vietnam',

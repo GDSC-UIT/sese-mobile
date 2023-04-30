@@ -28,18 +28,18 @@ class NotifyIcon extends StatelessWidget {
             child: Container(
               width: 16,
               height: 16,
-              child: Center(
-                child: Text(
-                  notifi.toString(),
-                  style: CustomTextStyle.link(Colors.white),
-                ),
-              ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.primaryColor,
                 border: Border.all(
                   width: 1.5,
                   color: Colors.white,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  notifi.toString(),
+                  style: CustomTextStyle.link(Colors.white),
                 ),
               ),
             ),

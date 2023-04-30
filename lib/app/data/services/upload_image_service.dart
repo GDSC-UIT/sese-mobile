@@ -1,8 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:get/get.dart';
 import 'package:path/path.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class UploadImageService {
   static firebase_storage.FirebaseStorage storage =

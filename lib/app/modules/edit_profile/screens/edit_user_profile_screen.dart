@@ -46,6 +46,8 @@ class EditUserProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
+                        bottom: -8,
+                        right: 0,
                         child: InkWell(
                           child: const CircleAvatar(
                             radius: 13,
@@ -58,8 +60,6 @@ class EditUserProfileScreen extends StatelessWidget {
                           ),
                           onTap: () {},
                         ),
-                        bottom: -8,
-                        right: 0,
                       )
                     ]),
               ),

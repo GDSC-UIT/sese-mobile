@@ -26,8 +26,8 @@ class LocalizationService extends Translations {
     'vi': 'Tiếng Việt',
   });
 
-  static void changeLocale(String _languageCode) {
-    final locale = _getLocaleFromLanguage(languageCode: _languageCode);
+  static void changeLocale(String languageCode) {
+    final locale = _getLocaleFromLanguage(languageCode: languageCode);
     Get.updateLocale(locale);
   }
 

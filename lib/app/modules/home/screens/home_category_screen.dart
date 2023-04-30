@@ -38,7 +38,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
 
   @override
   Widget build(BuildContext context) {
-    double _screeenWidth = MediaQuery.of(context).size.width;
+    double screeenWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
@@ -66,7 +66,7 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: SizedBox(
-                  width: _screeenWidth * 0.6,
+                  width: screeenWidth * 0.6,
                   child: SearchInput(
                     hintText: homeController.typeScreen,
                     color: AppColors.neutralGrey,

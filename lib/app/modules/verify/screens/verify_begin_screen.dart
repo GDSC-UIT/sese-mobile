@@ -14,7 +14,7 @@ class VerifyBeginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _screenHeight = MediaQuery.of(context).size.height;
+    var screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -28,7 +28,7 @@ class VerifyBeginScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: _screenHeight * 0.05,
+                  top: screenHeight * 0.05,
                 ),
                 child: const Icon(
                   Icons.arrow_back_ios_new,
@@ -55,7 +55,7 @@ class VerifyBeginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: _screenHeight * 0.032,
+                height: screenHeight * 0.032,
               ),
               AppButton(
                 onPress: () {
@@ -69,7 +69,7 @@ class VerifyBeginScreen extends StatelessWidget {
                 borderThickness: 1,
               ),
               SizedBox(
-                height: _screenHeight * 0.032,
+                height: screenHeight * 0.032,
               ),
               AppButton(
                 onPress: () {
@@ -83,7 +83,7 @@ class VerifyBeginScreen extends StatelessWidget {
                 borderThickness: 1,
               ),
               SizedBox(
-                height: _screenHeight * 0.032,
+                height: screenHeight * 0.032,
               ),
               AppButton(
                 onPress: () {
@@ -97,7 +97,7 @@ class VerifyBeginScreen extends StatelessWidget {
                 borderThickness: 1,
               ),
               SizedBox(
-                height: _screenHeight * 0.076,
+                height: screenHeight * 0.076,
               ),
               Center(
                 child: GestureDetector(

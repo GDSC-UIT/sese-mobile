@@ -60,13 +60,13 @@ class EditUniversityScreen extends StatelessWidget {
                             child: Container(
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               padding: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                  color: AppColors.greenColor,
+                                  borderRadius: BorderRadius.circular(8)),
                               child: Text(
                                 editProfileController.recommendUniName[index],
                                 style: CustomTextStyle.t8(Colors.white),
                               ),
-                              decoration: BoxDecoration(
-                                  color: AppColors.greenColor,
-                                  borderRadius: BorderRadius.circular(8)),
                             ),
                           );
                         },
