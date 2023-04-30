@@ -9,4 +9,5 @@ enum TypeCategory {
   subCategory,
   params,
 }
-enum TypeCard { student_card, identity_card, citizen_identity_card }
+
+enum TypeCard { studentCard, identityCard, citizenIdentityCard }

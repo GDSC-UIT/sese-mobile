@@ -22,19 +22,19 @@ class VerifyController extends GetxController {
     switch (typeCard) {
       case "student card":
         {
-          typeCardEnum = TypeCard.student_card;
+          typeCardEnum = TypeCard.studentCard;
         }
         break;
 
       case "citizen identity card":
         {
-          typeCardEnum = TypeCard.citizen_identity_card;
+          typeCardEnum = TypeCard.citizenIdentityCard;
         }
         break;
 
       case "identity card":
         {
-          typeCardEnum = TypeCard.identity_card;
+          typeCardEnum = TypeCard.identityCard;
         }
         break;
     }

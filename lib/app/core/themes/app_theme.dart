@@ -146,7 +146,7 @@ class AppTheme {
   static final ElevatedButtonThemeData _elevatedButtonThemeData =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: AppColors.primaryColor,
+      backgroundColor: AppColors.primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
     ),
   );
@@ -154,20 +154,20 @@ class AppTheme {
   static final TextButtonThemeData _secondaryButtonDarkThemeData =
       TextButtonThemeData(
           style: TextButton.styleFrom(
-              primary: Colors.white,
+              foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18))));
   static final TextButtonThemeData _secondaryButtonLightThemeData =
       TextButtonThemeData(
           style: TextButton.styleFrom(
-              primary: AppColors.primaryColor,
+              foregroundColor: AppColors.primaryColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18))));
 
   static final OutlinedButtonThemeData _outlinedButtonDarkThemeData =
       OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-              primary: Colors.white,
+              foregroundColor: Colors.white,
               side: const BorderSide(color: Colors.white, width: 2),
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)))));
@@ -175,80 +175,77 @@ class AppTheme {
   static final OutlinedButtonThemeData _outlinedButtonLightThemeData =
       OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-              primary: AppColors.primaryColor,
+              foregroundColor: AppColors.primaryColor,
               side: const BorderSide(color: AppColors.primaryColor, width: 2),
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)))));
   static TextTheme _textTheme(Color textColor) => TextTheme(
-        headline1: GoogleFonts.inter(
+        displayLarge: GoogleFonts.inter(
           color: textColor,
           fontSize: 32,
           fontWeight: FontWeight.w600,
         ),
-        headline2: GoogleFonts.inter(
+        displayMedium: GoogleFonts.inter(
           color: textColor,
           fontSize: 24,
           fontWeight: FontWeight.w600,
         ),
-        headline3: GoogleFonts.inter(
+        displaySmall: GoogleFonts.inter(
           color: textColor,
           fontSize: 20,
           fontWeight: FontWeight.w600,
         ),
-        headline4: GoogleFonts.inter(
+        headlineMedium: GoogleFonts.inter(
           color: textColor,
           fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
-        headline5: GoogleFonts.inter(
+        headlineSmall: GoogleFonts.inter(
           color: textColor,
           fontSize: 12,
           fontWeight: FontWeight.w600,
         ),
-        headline6: GoogleFonts.inter(
+        titleLarge: GoogleFonts.inter(
           color: textColor,
           fontSize: 10,
           fontWeight: FontWeight.w600,
         ),
-        subtitle1: GoogleFonts.montserrat(
+        titleMedium: GoogleFonts.montserrat(
           color: textColor,
           fontSize: 10.5,
           fontWeight: FontWeight.normal,
         ),
-        subtitle2: GoogleFonts.montserrat(
+        titleSmall: GoogleFonts.montserrat(
           color: textColor.withOpacity(0.5),
           fontSize: 10.5,
           fontWeight: FontWeight.w500,
         ),
-        bodyText1: GoogleFonts.montserrat(
+        bodyLarge: GoogleFonts.montserrat(
           color: textColor,
           fontSize: 12,
           fontWeight: FontWeight.normal,
         ),
-        bodyText2: GoogleFonts.montserrat(
+        bodyMedium: GoogleFonts.montserrat(
           color: textColor,
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
-        button: GoogleFonts.montserrat(
+        labelLarge: GoogleFonts.montserrat(
           color: textColor,
           fontSize: 13,
           fontWeight: FontWeight.w600,
           wordSpacing: 1.5,
         ),
-        caption: GoogleFonts.montserrat(
+        bodySmall: GoogleFonts.montserrat(
           color: textColor,
           fontSize: 14,
         ),
-        overline: GoogleFonts.montserrat(
+        labelSmall: GoogleFonts.montserrat(
           color: textColor,
         ),
       );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    colorScheme: const ColorScheme.light().copyWith(
-      primary: AppColors.primaryColor,
-    ),
     appBarTheme: AppBarTheme(
       color: AppColors.lightBackgroundColor,
       iconTheme: const IconThemeData(color: AppColors.darkBackgroundColor),
@@ -265,7 +262,6 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     primaryColorDark: AppColors.primaryColor,
     primaryColorLight: AppColors.primaryColor,
-    backgroundColor: AppColors.lightBackgroundColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.lightBackgroundColor,
       showSelectedLabels: true,
@@ -304,12 +300,14 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.lightDeepBackgroundColor,
     dividerColor:
         AppColors.lightTextColor.withOpacity(AppColors.disabledTextOpacity),
+    colorScheme: const ColorScheme.light()
+        .copyWith(
+          primary: AppColors.primaryColor,
+        )
+        .copyWith(background: AppColors.lightBackgroundColor),
   );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    colorScheme: const ColorScheme.dark().copyWith(
-      primary: AppColors.primaryColor,
-    ),
     appBarTheme: AppBarTheme(
       color: AppColors.darkBackgroundColor,
       iconTheme: const IconThemeData(color: AppColors.lightBackgroundColor),
@@ -326,7 +324,6 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     primaryColorDark: AppColors.primaryColor,
     primaryColorLight: AppColors.primaryColor,
-    backgroundColor: AppColors.darkBackgroundColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.darkBackgroundColor,
       showSelectedLabels: true,
@@ -365,6 +362,11 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.darkDeepBackgroundColor,
     dividerColor:
         AppColors.darkTextColor.withOpacity(AppColors.disabledTextOpacity),
+    colorScheme: const ColorScheme.dark()
+        .copyWith(
+          primary: AppColors.primaryColor,
+        )
+        .copyWith(background: AppColors.darkBackgroundColor),
   );
   static ThemeData currentTheme = (Get.isDarkMode ? darkTheme : lightTheme);
 }

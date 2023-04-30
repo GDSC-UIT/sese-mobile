@@ -30,39 +30,38 @@ class EditUserProfileScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 47),
-              child: Container(
-                child: Center(
-                  child: Stack(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      overflow: Overflow.visible,
-                      children: [
-                        const SizedBox(
-                          width: 96,
-                          height: 96,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/avatar.png'),
-                            radius: 50,
-                          ),
+              child: Center(
+                child: Stack(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    // overflow: Overflow.visible,
+                    // TODO
+                    children: [
+                      const SizedBox(
+                        width: 96,
+                        height: 96,
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/avatar.png'),
+                          radius: 50,
                         ),
-                        Positioned(
-                          child: InkWell(
-                            child: const CircleAvatar(
-                              radius: 13,
-                              backgroundColor: AppColors.backIcon,
-                              child: Icon(
-                                Icons.photo_camera,
-                                color: Colors.white,
-                                size: 15,
-                              ),
+                      ),
+                      Positioned(
+                        child: InkWell(
+                          child: const CircleAvatar(
+                            radius: 13,
+                            backgroundColor: AppColors.backIcon,
+                            child: Icon(
+                              Icons.photo_camera,
+                              color: Colors.white,
+                              size: 15,
                             ),
-                            onTap: () {},
                           ),
-                          bottom: -8,
-                          right: 0,
-                        )
-                      ]),
-                ),
+                          onTap: () {},
+                        ),
+                        bottom: -8,
+                        right: 0,
+                      )
+                    ]),
               ),
             ),
             const EditCard(

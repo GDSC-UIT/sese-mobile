@@ -95,11 +95,11 @@ class VerifySuccessScreen extends StatelessWidget {
 
                       //tranfer type of card
                       if (verifyController.typeCardEnum ==
-                          TypeCard.citizen_identity_card) {
+                          TypeCard.citizenIdentityCard) {
                         typeCard = 'citizen_identity_card';
                       } else {
                         if (verifyController.typeCardEnum ==
-                            TypeCard.identity_card) {
+                            TypeCard.identityCard) {
                           typeCard = 'identity_card';
                         } else {
                           typeCard = 'student_card';
