@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,6 @@ class EditProfileController extends GetxController {
 
   RxString searchKey = ''.obs;
 
-
   void searchSchool() {
     recommendUniName.value = universityName.where((element) {
       return element.contains(searchKey);
@@ -57,20 +57,20 @@ class EditProfileController extends GetxController {
     if (picked != null && picked != DateTime.now()) {
       dateInputController.value.value =
           TextEditingValue(text: formatter.format(picked));
-      print('${dateInputController.value.value.text}');
+      log(dateInputController.value.value.text);
     }
   }
 
   Future<void> facebookLoginAction() async {
     try {
-      print('sign in with face');
+      log('sign in with face');
       User? user = await AuthService.instance.facebookLogin();
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
 
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
+            'idToken': idToken,
           }),
           url: UrlValue.appUrlLoginSocial,
         );
@@ -79,7 +79,7 @@ class EditProfileController extends GetxController {
             .saveIdToken(json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
-      print('fbErorr:$e');
+      log('fbErorr:$e');
     }
   }
 
@@ -91,7 +91,7 @@ class EditProfileController extends GetxController {
 
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
+            'idToken': idToken,
           }),
           url: UrlValue.appUrlLoginSocial,
         );
@@ -101,7 +101,7 @@ class EditProfileController extends GetxController {
             .saveIdToken(json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
-      print('errorGG: $e');
+      log('errorGG: $e');
     }
   }
 }

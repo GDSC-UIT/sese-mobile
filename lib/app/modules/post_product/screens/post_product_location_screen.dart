@@ -9,7 +9,7 @@ import 'package:sese/app/modules/post_product/widgets/info_label.dart';
 
 class PostProductLocationScreen extends StatelessWidget {
   PostProductLocationScreen({Key? key}) : super(key: key);
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

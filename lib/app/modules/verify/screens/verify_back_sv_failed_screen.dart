@@ -11,7 +11,7 @@ import '../widgets/dialog_failed.dart';
 import '../widgets/image_verify.dart';
 
 class VerifyBackSvFailedScreen extends StatelessWidget {
-  VerifyController verifyController = Get.find();
+  final VerifyController verifyController = Get.find();
 
   VerifyBackSvFailedScreen({Key? key}) : super(key: key);
 
@@ -67,7 +67,7 @@ class VerifyBackSvFailedScreen extends StatelessWidget {
                 const SizedBox(
                   height: 29,
                 ),
-                Obx(() => ImageVerify(verifyController.image)),
+                Obx(() => imageVerify(verifyController.image)),
                 const SizedBox(
                   height: 109,
                 ),

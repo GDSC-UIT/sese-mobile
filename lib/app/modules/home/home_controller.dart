@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sese/app/data/services/auth_service.dart';
 
 class HomeController extends GetxController {
   var pageIdx = 0.obs;
@@ -25,8 +24,4 @@ class HomeController extends GetxController {
     update();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/values/app_colors.dart';
 
 class StarVote extends StatelessWidget {
-  StarVote({Key? key, required this.star}) : super(key: key);
+  const StarVote({Key? key, required this.star}) : super(key: key);
   final int star;
 
   @override
@@ -11,28 +11,28 @@ class StarVote extends StatelessWidget {
     switch (star) {
       case 0:
         return Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
@@ -41,28 +41,28 @@ class StarVote extends StatelessWidget {
         );
       case 1:
         return Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
@@ -72,28 +72,28 @@ class StarVote extends StatelessWidget {
 
       case 2:
         return Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
@@ -103,28 +103,28 @@ class StarVote extends StatelessWidget {
 
       case 3:
         return Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
@@ -134,28 +134,28 @@ class StarVote extends StatelessWidget {
 
       case 4:
         return Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.lightGreyColor,
               size: 20,
@@ -165,28 +165,28 @@ class StarVote extends StatelessWidget {
 
       case 5:
         return Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
             ),
-            const Icon(
+            Icon(
               Icons.star,
               color: AppColors.yellow,
               size: 20,
@@ -195,7 +195,7 @@ class StarVote extends StatelessWidget {
         );
       default:
         return Row(
-          children: [
+          children: const [
             Icon(
               Icons.star,
               color: AppColors.lightGreyColor,

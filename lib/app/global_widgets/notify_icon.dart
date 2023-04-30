@@ -1,16 +1,18 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class NotifyIcon extends StatelessWidget {
-  NotifyIcon(this.notifi, {Key? key}) : super(key: key);
+  const NotifyIcon(this.notifi, {Key? key}) : super(key: key);
   final int notifi;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('go to carts screen');
+        log('go to carts screen');
       },
       child: Stack(
         clipBehavior: Clip.none,

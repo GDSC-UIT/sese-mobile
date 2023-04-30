@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class InPutTextField extends StatelessWidget {
-  InPutTextField(
+  const InPutTextField(
       {Key? key,
       required this.hintText,
       required this.isEnable,

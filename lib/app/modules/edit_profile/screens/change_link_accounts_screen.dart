@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +12,7 @@ import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class ChangeLinkAccountScreen extends StatelessWidget {
-  EditProfileController editProfileController = Get.find();
+  final EditProfileController editProfileController = Get.find();
   ChangeLinkAccountScreen({Key? key}) : super(key: key);
 
   get loginController => null;
@@ -45,7 +47,7 @@ class ChangeLinkAccountScreen extends StatelessWidget {
                 await editProfileController.googleSignInAction();
                 AuthService.instance.isLogined == true
                     ? Get.toNamed(AppRoutes.authName)
-                    : print('Login gg fail');
+                    : log('Login gg fail');
               },
               text: 'LOGIN WITH GOOGLE',
               // textColor: AppColors.darkGreyColor,
@@ -66,7 +68,7 @@ class ChangeLinkAccountScreen extends StatelessWidget {
                 await loginController.facebookLoginAction();
                 AuthService.instance.isLogined == true
                     ? Get.toNamed(AppRoutes.authName)
-                    : print('Login facebook fail');
+                    : log('Login facebook fail');
               },
               text: 'LOGGIN WITH FACEBOOK',
               // textColor: AppColors.darkGreyColor,

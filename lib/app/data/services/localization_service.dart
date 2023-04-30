@@ -46,6 +46,8 @@ class LocalizationService extends Translations {
   }
 
   Future<String?> getLanguague() async {
+    return null;
+
     // var storage = AppSettingStorage();
     // String value = await storage.readAppConfig();
     // if (value != "") {

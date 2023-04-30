@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -10,13 +12,21 @@ import 'package:sese/app/modules/post_product/widgets/info_label.dart';
 import 'package:sese/app/modules/post_product/widgets/list_view_category.dart';
 import 'package:sese/app/modules/post_product/widgets/list_view_params.dart';
 
-class PostProductCategoryScreen extends StatelessWidget {
-  var categories = Get.arguments[0];
+class PostProductCategoryScreen extends StatefulWidget {
+  const PostProductCategoryScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PostProductCategoryScreen> createState() =>
+      _PostProductCategoryScreenState();
+}
+
+class _PostProductCategoryScreenState extends State<PostProductCategoryScreen> {
+  final categories = Get.arguments[0];
 
   var subCategory = [];
 
-  PostProductCategoryScreen({Key? key}) : super(key: key);
   final TextEditingController controller = TextEditingController();
+
   final PostProductController postProductController = Get.find();
 
   @override
@@ -178,14 +188,14 @@ class PostProductCategoryScreen extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        print('click');
+                                        log('click');
                                         int index = e["index"];
                                         var temp = postProductController
                                             .listParams[index];
                                         temp["isOpen"] = !temp["isOpen"];
                                         postProductController
                                             .listParams[index] = temp;
-                                        print(postProductController
+                                        log(postProductController
                                             .listParams[index]);
                                       },
                                       child: InPutTextField(

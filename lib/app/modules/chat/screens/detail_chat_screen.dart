@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -209,7 +211,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      print(chatController.messageController.text);
+                      log(chatController.messageController.text);
                       setState(() {
                         listMesage.add({
                           "_id": userId1,
@@ -218,7 +220,7 @@ class _DetailChatScreenState extends State<DetailChatScreen> {
                         Future.delayed(
                           const Duration(milliseconds: 500),
                           () {
-                            print('response');
+                            log('response');
                             setState(() {
                               listMesage.add(
                                 {

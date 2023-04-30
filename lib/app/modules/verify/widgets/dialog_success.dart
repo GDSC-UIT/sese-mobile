@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/values/app_colors.dart';
 
 class DialogSuccess extends StatelessWidget {
+  const DialogSuccess({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

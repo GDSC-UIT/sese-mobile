@@ -12,7 +12,7 @@ import '../widgets/image_verify.dart';
 
 class VerifyFrontSvFailedScreen extends StatelessWidget {
   VerifyFrontSvFailedScreen({Key? key}) : super(key: key);
-  VerifyController verifyController = Get.find();
+  final VerifyController verifyController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class VerifyFrontSvFailedScreen extends StatelessWidget {
                 const SizedBox(
                   height: 29,
                 ),
-                Obx(() => ImageVerify(verifyController.image)),
+                Obx(() => imageVerify(verifyController.image)),
                 const SizedBox(
                   height: 109,
                 ),

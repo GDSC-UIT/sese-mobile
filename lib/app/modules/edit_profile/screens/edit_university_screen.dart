@@ -7,11 +7,9 @@ import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 import 'package:sese/app/modules/edit_profile/widgets/input_text_field_recommend_edit_profile.dart';
-import 'package:sese/app/modules/login/widgets/input_text_field_recommend_login.dart';
-import 'package:sese/app/routes/app_routes.dart';
 
 class EditUniversityScreen extends StatelessWidget {
-  EditProfileController editProfileController = Get.find();
+  final EditProfileController editProfileController = Get.find();
   EditUniversityScreen({Key? key}) : super(key: key);
 
   @override

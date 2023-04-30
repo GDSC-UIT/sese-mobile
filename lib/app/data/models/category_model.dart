@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:sese/app/core/values/assets.gen.dart';
 
 class CategoryModel {

@@ -8,7 +8,7 @@ import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/global_widgets/app_check_box.dart';
 
 class EditGenderScreen extends StatelessWidget {
-  EditProfileController editProfileController = Get.find();
+  final EditProfileController editProfileController = Get.find();
   EditGenderScreen({Key? key}) : super(key: key);
 
   @override

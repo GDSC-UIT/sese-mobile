@@ -7,7 +7,7 @@ import 'package:sese/app/routes/app_routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ProductInfo extends StatelessWidget {
-  ProductInfo({
+  const ProductInfo({
     Key? key,
     required this.product,
   }) : super(key: key);

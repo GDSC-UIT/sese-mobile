@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -16,7 +17,9 @@ import 'package:sese/app/routes/app_routes.dart';
 import '../../../core/values/app_values.dart';
 
 class VerifySuccessScreen extends StatelessWidget {
-  VerifyController verifyController = Get.find();
+  final VerifyController verifyController = Get.find();
+
+  VerifySuccessScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +86,14 @@ class VerifySuccessScreen extends StatelessWidget {
                                   "verify_images") ??
                               'rong';
 
-                      print('frontImg:${verifyController.frontImageUrl}');
+                      log('frontImg:${verifyController.frontImageUrl}');
 
                       verifyController.backImageUrl =
                           await UploadImageService.uploadImageToFirebase(
                                   File(verifyController.backImage.value.path),
                                   "verify_images") ??
                               'rong';
-                      print('backImg:${verifyController.backImageUrl}');
+                      log('backImg:${verifyController.backImageUrl}');
                       String typeCard = '';
 
                       //tranfer type of card
@@ -112,7 +115,7 @@ class VerifySuccessScreen extends StatelessWidget {
                           "backImg": verifyController.backImageUrl,
                         }
                       };
-                      print(userVerifyInfo);
+                      log(userVerifyInfo.toString());
 
                       var response = await HttpService.putRequest(
                         body: jsonEncode(
@@ -121,7 +124,7 @@ class VerifySuccessScreen extends StatelessWidget {
                         url: UrlValue.appUrlVerifyUser,
                       );
 
-                      print("phát covid: ${response.body}");
+                      log("phát covid: ${response.body}");
                       HttpService.showLoadingIndecator();
                       var responseNew = await HttpService.getRequest(
                           '${UrlValue.appUrlPostProduct}?type=new');
@@ -141,10 +144,8 @@ class VerifySuccessScreen extends StatelessWidget {
                         'Something went wrong, ${e.toString()}',
                         duration: const Duration(seconds: 30),
                       );
-                      print('loi:${e.toString()}');
+                      log('loi:${e.toString()}');
                     }
-
-                    ;
                   },
                   text: "LET'S GET STARTED",
                   textStyle: CustomTextStyle.t8(Colors.white),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sese/app/core/values/assets.gen.dart';
 import 'package:sese/app/data/services/data_center.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -22,7 +21,7 @@ class InfoProduct extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          TextIcon(Icons.access_time, timeago.format(_postTime, locale: "vi"),
+          textIcon(Icons.access_time, timeago.format(_postTime, locale: "vi"),
               3, CustomTextStyle.t10(AppColors.neutralGrey)),
           const SizedBox(
             width: 5,
@@ -72,7 +71,7 @@ class InfoProduct extends StatelessWidget {
           const SizedBox(
             width: 5,
           ),
-          TextIcon(Icons.location_on_outlined, product["location"], 3,
+          textIcon(Icons.location_on_outlined, product["location"], 3,
               CustomTextStyle.t10(AppColors.neutralGrey)),
         ],
       ),
@@ -80,7 +79,7 @@ class InfoProduct extends StatelessWidget {
   }
 }
 
-Widget TextIcon(IconData icon, String text, int flex, TextStyle textStyle) {
+Widget textIcon(IconData icon, String text, int flex, TextStyle textStyle) {
   return Expanded(
     flex: flex,
     child: Row(

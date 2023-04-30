@@ -1,12 +1,9 @@
-import 'dart:io';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sese/app/data/services/http_service.dart';
-import 'package:sese/app/data/services/upload_image_service.dart';
-import 'package:sese/app/routes/app_routes.dart';
 
 class PostProductController extends GetxController {
   //varible to store data
@@ -38,10 +35,10 @@ class PostProductController extends GetxController {
     try {
       //final imagesTem = await ImagePicker().pickMultiImage();
       List<XFile>? pickedFileList = await ImagePicker().pickMultiImage();
-      if (!pickedFileList!.isNotEmpty) return;
+      if (!pickedFileList.isNotEmpty) return;
       imageFileList.value = pickedFileList;
     } on PlatformException catch (e) {
-      print('Lấy ảnh không thành công: $e');
+      log('Lấy ảnh không thành công: $e');
     }
   }
 }

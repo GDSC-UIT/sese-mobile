@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,13 +15,12 @@ import 'package:sese/app/modules/post_product/post_product_controller.dart';
 import 'package:sese/app/modules/post_product/widgets/adjust_quantity_button.dart';
 import 'package:sese/app/modules/post_product/widgets/info_label.dart';
 import 'package:sese/app/modules/post_product/widgets/info_product_property_button.dart';
-import 'package:sese/app/modules/post_product/widgets/quantity_input.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class PostProductInfoScreen extends StatelessWidget {
   PostProductInfoScreen({Key? key}) : super(key: key);
 
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -210,7 +210,7 @@ class PostProductInfoScreen extends StatelessWidget {
                               "- ${postProductController.subCategoryInputController.text}";
                         }
                       }
-                      print("${postProductController.labelCategory.value}");
+                      log(postProductController.labelCategory.value);
                       FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: InfoProductPropertyButton(
@@ -257,8 +257,7 @@ class PostProductInfoScreen extends StatelessWidget {
                 onPress: () async {
                   Get.toNamed(AppRoutes.postProductWaiting);
                   //upload img to firestore
-                  for (var element
-                      in postProductController.imageFileList.value) {
+                  for (var element in postProductController.imageFileList) {
                     String? response =
                         await UploadImageService.uploadImageToFirebase(
                             File(element.path), 'product_images');

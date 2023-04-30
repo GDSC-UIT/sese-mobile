@@ -69,7 +69,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: AppRoutes.homeCategory,
-      page: () => HomeCategoryScreen(),
+      page: () => const HomeCategoryScreen(),
       transition: Transition.cupertino,
       binding: HomeBinding(),
     ),
@@ -201,7 +201,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.editUserProfile,
       transition: Transition.cupertino,
-      page: () => EditUserProfileScreen(),
+      page: () => const EditUserProfileScreen(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -236,7 +236,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.editPhoneNumber,
       transition: Transition.cupertino,
-      page: () => EditPhoneNumberScreen(),
+      page: () => const EditPhoneNumberScreen(),
       binding: EditProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -258,7 +258,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.userProfile,
       transition: Transition.cupertino,
-      page: () => UserProfileScreen(),
+      page: () => const UserProfileScreen(),
       binding: UserProfileBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -287,7 +287,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.postProductCategory,
       transition: Transition.cupertino,
-      page: () => PostProductCategoryScreen(),
+      page: () => const PostProductCategoryScreen(),
       binding: PostProductBinding(),
       transitionDuration: const Duration(seconds: 1),
     ),

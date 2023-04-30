@@ -13,7 +13,7 @@ import '../widgets/dialog_success.dart';
 import '../widgets/image_verify.dart';
 
 class VerifyBackSvSuccessScreen extends StatelessWidget {
-  VerifyController verifyController = Get.find();
+  final VerifyController verifyController = Get.find();
 
   VerifyBackSvSuccessScreen({Key? key}) : super(key: key);
 
@@ -22,7 +22,7 @@ class VerifyBackSvSuccessScreen extends StatelessWidget {
     void showMessage() {
       showDialog(
         context: context,
-        builder: (_) => DialogSuccess(),
+        builder: (_) => const DialogSuccess(),
         barrierDismissible: true,
       );
     }
@@ -69,7 +69,7 @@ class VerifyBackSvSuccessScreen extends StatelessWidget {
                 const SizedBox(
                   height: 29,
                 ),
-                Obx(() => ImageVerify(verifyController.image)),
+                Obx(() => imageVerify(verifyController.image)),
                 const SizedBox(
                   height: 75,
                 ),

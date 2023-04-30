@@ -9,9 +9,11 @@ import 'package:sese/app/routes/app_routes.dart';
 import '../../../core/values/app_colors.dart';
 
 class LoginPhoneScreen extends StatelessWidget {
-  String initialCountry = 'VNM';
-  PhoneNumber number = PhoneNumber(isoCode: 'VN');
-  LoginController loginController = Get.find();
+  final String initialCountry = 'VNM';
+  final PhoneNumber number = PhoneNumber(isoCode: 'VN');
+  final LoginController loginController = Get.find();
+
+  LoginPhoneScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

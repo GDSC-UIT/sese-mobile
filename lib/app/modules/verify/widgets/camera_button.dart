@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class CameraButton extends StatelessWidget {
-  CameraButton(this.function);
+  const CameraButton(this.function, {Key? key}) : super(key: key);
   final Function function;
 
   @override

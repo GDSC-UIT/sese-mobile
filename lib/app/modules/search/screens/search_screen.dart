@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,13 +7,11 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_values.dart';
 import 'package:sese/app/data/services/http_service.dart';
-import 'package:sese/app/global_widgets/input_text_field.dart';
-import 'package:sese/app/modules/search/search_binding.dart';
 import 'package:sese/app/modules/search/search_controller.dart';
 import 'package:sese/app/modules/search/widgets/product_info.dart';
 
 class SearchScreen extends StatelessWidget {
-  SearchController searchController = Get.find();
+  final SearchController searchController = Get.find();
 
   SearchScreen({Key? key}) : super(key: key);
   @override
@@ -50,7 +49,7 @@ class SearchScreen extends StatelessWidget {
                             json.decode(response.body)['posts'];
                         searchController.isFirst.value = false;
                         Get.back();
-                        print('list:${searchController.listProduct.value}');
+                        log('list:${searchController.listProduct}');
                       },
                       style: CustomTextStyle.t6(AppColors.darkGreyColor),
                       decoration: InputDecoration(
@@ -83,7 +82,7 @@ class SearchScreen extends StatelessWidget {
             ),
             //body
             Obx(
-              () => searchController.listProduct.value.length > 0
+              () => searchController.listProduct.isNotEmpty
                   ? Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

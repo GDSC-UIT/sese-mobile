@@ -3,10 +3,10 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
 class SearchInput extends StatelessWidget {
-  SearchInput({Key? key, required this.color, required this.hintText})
+  const SearchInput({Key? key, required this.color, required this.hintText})
       : super(key: key);
-  Color color;
-  String hintText;
+  final Color color;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
-import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
 import 'package:sese/app/modules/post_product/post_product_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class PostProductBeginScreen extends StatelessWidget {
   PostProductBeginScreen({Key? key}) : super(key: key);
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

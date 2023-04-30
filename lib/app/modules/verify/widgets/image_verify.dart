@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget ImageVerify(Rx<File>? image) {
+Widget imageVerify(Rx<File>? image) {
   return Container(
     height: 262,
     decoration: BoxDecoration(

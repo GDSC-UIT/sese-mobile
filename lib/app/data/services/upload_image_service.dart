@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
@@ -17,7 +18,7 @@ class UploadImageService {
           firebaseStorageRef.putFile(image);
       firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
       String value = await taskSnapshot.ref.getDownloadURL();
-      print('image link:$value');
+      log('image link:$value');
       return value;
     } catch (e) {
       Get.snackbar('Error occurs when upload image', e.toString());

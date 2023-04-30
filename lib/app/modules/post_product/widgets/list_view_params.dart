@@ -1,12 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
-import 'package:sese/app/core/values/app_enums.dart';
 import 'package:sese/app/modules/post_product/post_product_controller.dart';
 
 class ListViewParams extends StatelessWidget {
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
   ListViewParams(
       {Key? key,
       required this.listItem,
@@ -40,7 +41,7 @@ class ListViewParams extends StatelessWidget {
               var temp = postProductController.listParams[idx];
               temp["isOpen"] = !temp["isOpen"];
               postProductController.listParams[idx] = temp;
-              print(postProductController.listParams[idx]);
+              log(postProductController.listParams[idx]);
             },
             child: Padding(
               padding: const EdgeInsets.all(16.0),

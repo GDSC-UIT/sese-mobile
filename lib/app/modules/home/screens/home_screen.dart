@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,14 +16,14 @@ import 'package:sese/app/global_widgets/app_bottom_navigation_bar.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeController homeController = Get.find<HomeController>();
-  ScrollController scrollCategory = ScrollController();
-  ScrollController scrollNewProduct = ScrollController();
-  ScrollController scrollRecommendProduct = ScrollController();
-  var listNewProduct = Get.arguments[0];
-  var listRecommendProduct = Get.arguments[1];
+  final HomeController homeController = Get.find<HomeController>();
+  final ScrollController scrollCategory = ScrollController();
+  final ScrollController scrollNewProduct = ScrollController();
+  final ScrollController scrollRecommendProduct = ScrollController();
+  final listNewProduct = Get.arguments[0];
+  final listRecommendProduct = Get.arguments[1];
 
-  int notifi = 3;
+  final int notifi = 3;
 
   HomeScreen({Key? key}) : super(key: key);
 
@@ -71,8 +73,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          print(
-                              "list recommend: ${listRecommendProduct[0]["name"]}");
+                          log("list recommend: ${listRecommendProduct[0]["name"]}");
                         },
                         child: Container(
                           height: 32,
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                         child: SizedBox(
                           width: _screeenWidth * 0.68,
                           height: 34,
-                          child: SearchInput(
+                          child: const SearchInput(
                             hintText: "Search",
                             color: Colors.transparent,
                           ),

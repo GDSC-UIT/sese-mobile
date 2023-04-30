@@ -7,9 +7,9 @@ class ListCategory extends StatelessWidget {
   ListCategory(
       {Key? key, required this.scrollController, required this.homeController})
       : super(key: key);
-  ScrollController scrollController;
-  HomeController homeController;
-  List<CategoryModel> categoryData = CategoryModel.createListCategory();
+  final ScrollController scrollController;
+  final HomeController homeController;
+  final List<CategoryModel> categoryData = CategoryModel.createListCategory();
   @override
   Widget build(BuildContext context) {
     // return CarouselSlider.builder(

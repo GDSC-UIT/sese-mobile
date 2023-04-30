@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -8,7 +10,7 @@ import 'package:sese/app/modules/post_product/post_product_controller.dart';
 class QuantityInput extends StatelessWidget {
   QuantityInput({Key? key}) : super(key: key);
 
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +25,14 @@ class QuantityInput extends StatelessWidget {
         ),
         suffixIcon: InkWell(
           onTap: () {
-            print('click row');
+            log('click row');
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
                 onTap: () {
-                  print('click');
+                  log('click');
                 },
                 child: Container(
                   decoration: const BoxDecoration(
@@ -55,7 +57,7 @@ class QuantityInput extends StatelessWidget {
               InkWell(
                 onTap: () {
                   HttpService.showLoadingIndecator();
-                  print('click');
+                  log('click');
                 },
                 child: Container(
                   decoration: const BoxDecoration(

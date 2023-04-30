@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -49,7 +50,7 @@ class VerifyController extends GetxController {
       Get.toNamed(AppRoutes.verifyFrontSvSuccess);
       frontImage.value = imageTemp;
     } on PlatformException catch (e) {
-      print('Lấy ảnh không thành công: $e');
+      log('Lấy ảnh không thành công: $e');
       Get.toNamed(AppRoutes.verifyFrontSvFailed);
     }
   }
@@ -64,7 +65,7 @@ class VerifyController extends GetxController {
       backImage.value = imageTemp;
     } on PlatformException catch (e) {
       Get.toNamed(AppRoutes.verifyBackSvFailed);
-      print('Lấy ảnh không thành công: $e');
+      log('Lấy ảnh không thành công: $e');
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,12 +7,10 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 import 'package:sese/app/core/values/app_values.dart';
 import 'package:sese/app/data/models/app_category_model.dart';
-import 'package:sese/app/data/models/category_model.dart';
-import 'package:sese/app/data/models/subCategory_model.dart';
+import 'package:sese/app/data/models/sub_category.dart';
 import 'package:sese/app/data/services/data_center.dart';
 import 'package:sese/app/data/services/http_service.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
-import 'package:sese/app/global_widgets/input_text_field.dart';
 import 'package:sese/app/modules/login/login_controller.dart';
 import 'package:sese/app/modules/login/widgets/input_text_field_recommend_login.dart';
 import 'package:sese/app/routes/app_routes.dart';
@@ -66,7 +65,7 @@ class LoginUniversityScreen extends StatelessWidget {
             Obx(
               () => loginController.recommendUniName.isEmpty
                   ? const SizedBox()
-                  : Container(
+                  : SizedBox(
                       height: 150,
                       child: ListView.builder(
                         itemBuilder: (context, index) {
@@ -139,12 +138,9 @@ class LoginUniversityScreen extends StatelessWidget {
                         name: item['name'],
                         subCategory: subCategory);
                   });
-                  print(
-                      "Appcategory1name:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.name}");
-                  print(
-                      "Appcategory1imagUrl:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.imageUrl}");
-                  print(
-                      "Appcategory1SubCate:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.subCategory["623be0cac61a2e8a00b9b061"]?.params}");
+                  log("Appcategory1name:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.name}");
+                  log("Appcategory1imagUrl:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.imageUrl}");
+                  log("Appcategory1SubCate:${DataCenter.appCategory["623be0cac61a2e8a00b9b05e"]?.subCategory["623be0cac61a2e8a00b9b061"]?.params}");
                   Get.toNamed(AppRoutes.authInterest,
                       arguments: [listInterests]);
                 } else {

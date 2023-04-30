@@ -9,7 +9,7 @@ import 'package:sese/app/modules/edit_profile/edit_profile_controller.dart';
 import 'package:sese/app/modules/edit_profile/widgets/header_text.dart';
 
 class EditEmailScreen extends StatelessWidget {
-  EditProfileController editProfileController = Get.find();
+  final EditProfileController editProfileController = Get.find();
   EditEmailScreen({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class EditEmailScreen extends StatelessWidget {
         elevation: 0.5,
         centerTitle: true,
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [

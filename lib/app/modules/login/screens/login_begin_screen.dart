@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -14,7 +16,7 @@ class LoginBeginScreen extends StatelessWidget {
   final LoginController loginController = Get.find();
   @override
   Widget build(BuildContext context) {
-    print('isLogin: ${AuthService.instance.isLogined}');
+    log('isLogin: ${AuthService.instance.isLogined}');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -48,7 +50,7 @@ class LoginBeginScreen extends StatelessWidget {
 
                   AuthService.instance.isLogined == true
                       ? Get.offNamed(AppRoutes.authUni)
-                      : print('Login gg fail');
+                      : log('Login gg fail');
                 },
                 text: 'LOGIN WITH GOOGLE',
                 // textColor: AppColors.darkGreyColor,
@@ -67,7 +69,7 @@ class LoginBeginScreen extends StatelessWidget {
                   await loginController.facebookLoginAction();
                   AuthService.instance.isLogined == true
                       ? Get.offNamed(AppRoutes.authName)
-                      : print('Login facebook fail');
+                      : log('Login facebook fail');
                 },
                 text: 'LOGIN WITH FACEBOOK',
                 // textColor: AppColors.darkGreyColor,
@@ -79,6 +81,5 @@ class LoginBeginScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

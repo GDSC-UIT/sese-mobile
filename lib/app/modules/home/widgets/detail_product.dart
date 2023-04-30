@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:sese/app/data/models/subCategory_model.dart';
+import 'package:sese/app/data/models/sub_category.dart';
 import 'package:sese/app/data/services/data_center.dart';
 
 import '../../../core/themes/app_theme.dart';
@@ -133,7 +133,7 @@ class _DetailProductState extends State<DetailProduct> {
   }
 }
 
-Widget TextIcon(IconData icon, String text, int flex, TextStyle textStyle) {
+Widget textIcon(IconData icon, String text, int flex, TextStyle textStyle) {
   return Expanded(
     flex: flex,
     child: Row(

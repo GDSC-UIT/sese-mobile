@@ -7,7 +7,7 @@ import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/routes/app_routes.dart';
 
 class CategoryItem extends StatelessWidget {
-  CategoryItem({
+  const CategoryItem({
     Key? key,
     required this.content,
     required this.homeController,

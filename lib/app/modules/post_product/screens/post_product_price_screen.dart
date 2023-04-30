@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
@@ -9,7 +11,7 @@ import 'package:sese/app/modules/post_product/post_product_controller.dart';
 
 class PostProductPriceScreen extends StatelessWidget {
   PostProductPriceScreen({Key? key}) : super(key: key);
-  PostProductController postProductController = Get.find();
+  final PostProductController postProductController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +77,13 @@ class PostProductPriceScreen extends StatelessWidget {
               () => AppCheckBox(
                 textOptionString: 'Yes',
                 onPress: () {
-                  print('click');
+                  log('click');
                   postProductController.isNegotiable.value =
                       !postProductController.isNegotiable.value;
                 },
-                isSelected:
-                    postProductController.isNegotiable == true ? true : false,
+                isSelected: postProductController.isNegotiable.value == true
+                    ? true
+                    : false,
               ),
             ),
             const SizedBox(height: 20),
@@ -91,8 +94,9 @@ class PostProductPriceScreen extends StatelessWidget {
                   postProductController.isNegotiable.value =
                       !postProductController.isNegotiable.value;
                 },
-                isSelected:
-                    postProductController.isNegotiable == false ? true : false,
+                isSelected: postProductController.isNegotiable.value == false
+                    ? true
+                    : false,
               ),
             ),
             const SizedBox(height: 48),

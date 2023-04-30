@@ -87,10 +87,10 @@ class UserProfileScreen extends StatelessWidget {
                 ],
               )),
           Row(
-            children: [],
+            children: const [],
           ),
           Row(
-            children: [],
+            children: const [],
           )
         ]),
       ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +34,7 @@ class LoginController extends GetxController {
 
   void toggleSelectInterest(index) {
     var interestChange = listOfInterest[index];
-    print('${interestChange['isSelected']}');
+    log('${interestChange['isSelected']}');
     interestChange['isSelected'] = !interestChange['isSelected'];
     listOfInterest[index] = interestChange;
   }
@@ -60,14 +62,14 @@ class LoginController extends GetxController {
 
   Future<void> facebookLoginAction() async {
     try {
-      print('sign in with face');
+      log('sign in with face');
       User? user = await AuthService.instance.facebookLogin();
       if (user != null) {
         String idToken = await user.getIdToken(true); //get idToken from user
 
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
+            'idToken': idToken,
           }),
           url: UrlValue.appUrlLoginSocial,
         );
@@ -76,7 +78,7 @@ class LoginController extends GetxController {
             .saveIdToken(json.decode(response.body)['accessToken'].toString());
       }
     } catch (e) {
-      print('fbErorr:$e');
+      log('fbErorr:$e');
     }
   }
 
@@ -88,17 +90,17 @@ class LoginController extends GetxController {
 
         var response = await HttpService.postRequest(
           body: jsonEncode(<String, String>{
-            'idToken': '$idToken',
+            'idToken': idToken,
           }),
           url: UrlValue.appUrlLoginSocial,
         );
         DataCenter.user = json.decode(response.body)['user'];
-        print('userCenter:${DataCenter.user}');
+        log('userCenter:${DataCenter.user}');
         //set accessToken
         AuthService.instance.saveIdToken(json.decode(response.body).toString());
       }
     } catch (e) {
-      print('errorGG: $e');
+      log('errorGG: $e');
     }
   }
 }

@@ -3,10 +3,8 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/core/utils/utils.dart';
 import 'package:sese/app/core/values/app_colors.dart';
 
-import '../core/values/assets.gen.dart';
-
 class ProductItemListView extends StatelessWidget {
-  ProductItemListView({
+  const ProductItemListView({
     Key? key,
     required this.imageUrl,
     required this.price,
@@ -18,14 +16,14 @@ class ProductItemListView extends StatelessWidget {
     required this.isGiveAway,
   }) : super(key: key);
 
-  String imageUrl;
-  int price;
-  String name;
-  String userName;
-  String userAvatar;
-  String timeUpload;
-  String address;
-  bool isGiveAway;
+  final String imageUrl;
+  final int price;
+  final String name;
+  final String userName;
+  final String userAvatar;
+  final String timeUpload;
+  final String address;
+  final bool isGiveAway;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -103,11 +101,11 @@ class ProductItemListView extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              IconText(Icons.access_time, timeUpload),
+              iconText(Icons.access_time, timeUpload),
               const SizedBox(
                 height: 4,
               ),
-              IconText(Icons.location_on_outlined, address),
+              iconText(Icons.location_on_outlined, address),
             ],
           )
         ],
@@ -116,7 +114,7 @@ class ProductItemListView extends StatelessWidget {
   }
 }
 
-Widget IconText(IconData icon, String text) {
+Widget iconText(IconData icon, String text) {
   return Row(
     children: [
       Icon(

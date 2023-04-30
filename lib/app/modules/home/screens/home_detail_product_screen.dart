@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:scroll_indicator/scroll_indicator.dart';
 import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/app_button.dart';
@@ -13,7 +12,6 @@ import 'package:sese/app/modules/home/widgets/user_evaluate.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/values/app_colors.dart';
-import '../../../global_widgets/horizontal_product_list_view.dart';
 import '../../../routes/app_routes.dart';
 import '../../../core/utils/utils.dart';
 
@@ -209,7 +207,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                 height: 4,
                 color: AppColors.cloadDarkColor,
               ),
-              UserEvaluate(),
+              const UserEvaluate(),
               Container(
                 height: 4,
                 color: AppColors.cloadDarkColor,
@@ -238,7 +236,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 220,
                             // child: HorizontalProductListView(
                             //     scrollController: scrollNewProduct),
@@ -275,7 +273,7 @@ class _HomeDetailProductScreenState extends State<HomeDetailProductScreen> {
   }
 }
 
-Widget TextIcon(IconData icon, String text, int flex, TextStyle textStyle) {
+Widget textIcon(IconData icon, String text, int flex, TextStyle textStyle) {
   return Expanded(
     flex: flex,
     child: Row(

@@ -5,7 +5,7 @@ import 'package:sese/app/core/values/app_colors.dart';
 import '../core/values/assets.gen.dart';
 
 class ProductItemGridView extends StatelessWidget {
-  ProductItemGridView({
+  const ProductItemGridView({
     Key? key,
     required this.imageUrl,
     required this.name,
@@ -15,12 +15,12 @@ class ProductItemGridView extends StatelessWidget {
     required this.address,
   }) : super(key: key);
 
-  String imageUrl;
-  String name;
-  String userName;
-  String type;
-  int timeUpload;
-  String address;
+  final String imageUrl;
+  final String name;
+  final String userName;
+  final String type;
+  final int timeUpload;
+  final String address;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -84,15 +84,15 @@ class ProductItemGridView extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              IconText(Icons.access_time, "$timeUpload trước"),
+              iconText(Icons.access_time, "$timeUpload trước"),
               const SizedBox(
                 height: 4,
               ),
-              IconText(Icons.list, type),
+              iconText(Icons.list, type),
               const SizedBox(
                 height: 4,
               ),
-              IconText(Icons.location_on_outlined, address),
+              iconText(Icons.location_on_outlined, address),
             ],
           )
         ],
@@ -101,7 +101,7 @@ class ProductItemGridView extends StatelessWidget {
   }
 }
 
-Widget IconText(IconData icon, String text) {
+Widget iconText(IconData icon, String text) {
   return Row(
     children: [
       Icon(

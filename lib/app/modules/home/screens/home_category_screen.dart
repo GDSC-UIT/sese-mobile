@@ -4,13 +4,12 @@ import 'package:sese/app/core/themes/app_theme.dart';
 import 'package:sese/app/global_widgets/search_input.dart';
 import 'package:sese/app/modules/home/home_controller.dart';
 import 'package:sese/app/global_widgets/product_grid_view.dart';
-import 'package:sese/app/modules/home/screens/home_all_category_screen.dart';
 import 'package:sese/app/modules/home/widgets/filter.dart';
 
 import '../../../core/values/app_colors.dart';
 
 class HomeCategoryScreen extends StatefulWidget {
-  HomeCategoryScreen({Key? key}) : super(key: key);
+  const HomeCategoryScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeCategoryScreen> createState() => _HomeCategoryScreenState();
@@ -40,7 +39,6 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen>
   @override
   Widget build(BuildContext context) {
     double _screeenWidth = MediaQuery.of(context).size.width;
-    double _screenHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(

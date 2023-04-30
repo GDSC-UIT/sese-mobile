@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,7 @@ import '../../../core/values/app_colors.dart';
 
 class LoginVerifyBeginScreen extends StatelessWidget {
   LoginVerifyBeginScreen({Key? key}) : super(key: key);
-  LoginController loginController = Get.find();
+  final LoginController loginController = Get.find();
   @override
   Widget build(BuildContext context) {
     var _screenHeight = MediaQuery.of(context).size.height;
@@ -99,16 +100,16 @@ class LoginVerifyBeginScreen extends StatelessWidget {
                         "interestedCategories":
                             favouriteListInterests.map((e) => e["_id"]),
                       };
-                      print('userInfo:$userInfo');
+                      log('userInfo:$userInfo');
                       var response = await HttpService.putRequest(
                         body: jsonEncode(
                           userInfo,
                         ),
                         url: UrlValue.appUrlUpdateUserProfile,
                       );
-                      print('response:${response.body}');
+                      log('response:${response.body}');
                     } catch (e) {
-                      Get.snackbar('Error', '${e}');
+                      Get.snackbar('Error', '$e');
                     }
                   },
                   child: const Text(

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:sese/app/data/models/subCategory_model.dart';
+import 'package:sese/app/data/models/sub_category.dart';
 
 class AppCategoryModel {
   String id;

@@ -39,19 +39,19 @@ class Filter extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  TextField(
+                  textField(
                       "Nơi bán", "TP Hồ Chí Minh", homeController.seller.value),
                   (homeController.typeScreen == "Sản phẩm mới" ||
                           homeController.typeScreen == "Gợi ý")
                       ? Container()
-                      : TextField(
+                      : textField(
                           "Danh mục", "Quần áo", homeController.seller.value),
-                  TextField("Tình trạng", "Mới", homeController.seller.value),
-                  TextField(
+                  textField("Tình trạng", "Mới", homeController.seller.value),
+                  textField(
                       "Người bán", "phát covid", homeController.seller.value),
-                  TextField("Thời gian đăng", "1 giờ trước",
+                  textField("Thời gian đăng", "1 giờ trước",
                       homeController.seller.value),
-                  TextField(
+                  textField(
                       "Trường đại học",
                       "Trường đại học Công nghệ Thông tin",
                       homeController.seller.value),
@@ -99,7 +99,7 @@ class Filter extends StatelessWidget {
   }
 }
 
-Widget TextField(String title, String hintText,
+Widget textField(String title, String hintText,
     TextEditingController textEditingController) {
   return Flexible(
     child: Column(

@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 class ThemeService {
   static final box = GetStorage();
-  static final _key = 'themeMode';
+  static const _key = 'themeMode';
 
   static ThemeMode get theme => _loadThemeFromBox();
 

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:sese/app/data/models/product_model.dart';
 import 'package:sese/app/global_widgets/product_item_list_view.dart';
-import 'package:duration/duration.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class HorizontalProductListView extends StatelessWidget {
-  HorizontalProductListView(
+  const HorizontalProductListView(
       {Key? key,
       required this.scrollController,
       required this.listProduct,

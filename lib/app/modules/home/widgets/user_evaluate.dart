@@ -26,7 +26,7 @@ class UserEvaluate extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    StarVote(star: 3),
+                    const StarVote(star: 3),
                     const SizedBox(
                       width: 17,
                     ),

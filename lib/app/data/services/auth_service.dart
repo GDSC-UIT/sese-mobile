@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
@@ -19,8 +21,8 @@ class AuthService {
     //accessToken = newAccessToken;
     ThemeService.box.write('accessToken', newAccessToken);
     readIdToken();
-    print('acessTokenAuthServiceAfterSave:$accessToken');
-    print('save suceess');
+    log('acessTokenAuthServiceAfterSave:$accessToken');
+    log('save suceess');
   }
 
   bool get isLogined => FirebaseAuth.instance.currentUser != null;
@@ -42,7 +44,7 @@ class AuthService {
         return user;
       }
     } catch (e) {
-      print('error: $e');
+      log('error: $e');
       return null;
     }
     return null;
@@ -62,7 +64,7 @@ class AuthService {
       User? user = (await _auth.signInWithCredential(credential)).user;
       return user;
     } catch (e) {
-      print('errorGG: $e');
+      log('errorGG: $e');
       return null;
     }
   }
@@ -79,7 +81,7 @@ class AuthService {
 
   Future<void> checkLogin() async {
     User? user = FirebaseAuth.instance.currentUser;
-    print('user:$user');
+    log('user:$user');
     if (user != null) {
       if (user.providerData[0].providerId ==
           'google.com') //check the previous login method
